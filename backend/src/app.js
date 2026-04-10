@@ -1,13 +1,24 @@
 require('dotenv').config();
+const dbConnection = require('../db/server');
 const users = require('../routers/usersRouters')
 
 const express = require('express');
-const app = express();
+const app = express(); 
 
 //routers
 app.use('/api/v1/user', users)
 
+//database connection
 const PORT = process.env.PORT || 5000
-app.listen(PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+const connection = async ()=>{
+    try{
+        await dbConnection(process.env.MONGO_URI)
+        app.listen(PORT, ()=>{
+            console.log(`Server running on port ${PORT}`)
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+connection();
