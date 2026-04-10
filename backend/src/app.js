@@ -1,6 +1,6 @@
 require('dotenv').config();
-const dbConnection = require('../db/server');
-const users = require('../routers/usersRouters')
+const dbConnection = require('./db/server');
+const users = require('./routers/usersRouters')
 
 const express = require('express');
 const app = express(); 
