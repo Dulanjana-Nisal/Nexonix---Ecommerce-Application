@@ -1,16 +1,12 @@
 const Users = require('../models/usersModule')
 const statusCodes = require('http-status-codes');
+const asyncHaddler = require('../utils/asyncHaddler');
 
 //user signup constroller
-const userSignup = async (req,res)=>{
-    try{
-        const signup = await Users.create(req.body)
-        res.status(200).send('User signup')
-    }
-    catch(err){
-        res.status(statusCodes.INTERNAL_SERVER_ERROR).json({success: false, messaage: err})
-    }
-}
+const userSignup = asyncHaddler(async (req,res)=>{
+    const signup = await Users.create(req.body)
+    res.status(200).json({success: true, data: signup})
+})
 
 
 //user signin controller
