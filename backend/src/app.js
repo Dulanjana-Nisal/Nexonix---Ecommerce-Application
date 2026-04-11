@@ -5,6 +5,9 @@ const users = require('./routers/usersRouters')
 const express = require('express');
 const app = express(); 
 
+//middleware
+app.use(express.json());
+
 //routers
 app.use('/api/v1/user', users)
 
