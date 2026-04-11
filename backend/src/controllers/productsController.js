@@ -6,7 +6,26 @@ const statusCodes = require('http-status-codes');
 
 //get all products
 const getAllProducts = asyncHaddler(async(req,res)=>{
-    res.status(200).send('Get all Products!')
+
+    //get all product with pageing (page=page_number, limit=1)
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 10;
+
+    const skip = (page-1)*limit
+
+    const allProductCount = await Products.find();
+    const allProducts = await Products
+                                .find()
+                                .sort({updatedAt: -1})
+                                .skip(skip)
+                                .limit(limit)
+
+    res.status(statusCodes.OK).json({
+        success: true,
+        result_count: allProductCount.length,
+        products: allProducts,
+        page: page,
+    })
 })
 
 //add products
