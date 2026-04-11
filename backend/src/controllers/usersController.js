@@ -2,6 +2,7 @@ const Users = require('../models/usersModule')
 const asyncHaddler = require('../utils/asyncHaddler');
 const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
+const statusCodes = require('http-status-codes');
 
 //user signup constroller
 const userSignup = asyncHaddler(async (req,res)=>{
@@ -13,7 +14,7 @@ const userSignup = asyncHaddler(async (req,res)=>{
     if(!token){
         throw new BadrequestErrorHaddler('Token is not created')
     }
-    res.status(201).json({success: true, data: signup, token: token})
+    res.status(statusCodes.CREATED).json({success: true, data: signup, token: token})
 })
 
 //user signin controller
@@ -35,11 +36,23 @@ const userSignin = asyncHaddler(async (req,res)=>{
     if(!checkPass){
         throw new BadrequestErrorHaddler('Invalid Password!')
     }
+    const token = await signin.createJWT(signin)
+    res.status(statusCodes.OK).json({success: true, user: req.user, token: token})
+})
 
-    res.status(200).json(req.user)
+//delete users
+const deleteUsers = asyncHaddler(async(req,res)=>{
+    const userId = req.params.id;
+    const deleteUser = await Users.findOneAndDelete({_id: userId})
+
+    if(!deleteUser){
+        throw new NotFoundErrorHaddler('User not found')
+    }
+    res.status(statusCodes.OK).json({success: true, message: `${userId} user is deleted`})
 })
 
 module.exports = {
     userSignup,
-    userSignin
+    userSignin,
+    deleteUsers
 }
