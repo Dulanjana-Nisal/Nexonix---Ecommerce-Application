@@ -36,8 +36,14 @@ UserSchema.pre('save', async function(){
     this.password = hashpassword;
 })
 
+//create jwt token
 UserSchema.methods.createJWT = function(userData){
-    return jwt.sign({id: userData._id, name: userData.name, email: userData.email},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN})
+    return jwt.sign({_id: userData._id, name: userData.name, email: userData.email},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN})
+}
+
+//password decode
+UserSchema.methods.decodePassword = async function(userPassword){
+    return await bcrypt.compare(userPassword, this.password)
 }
 
 module.exports = mongoose.model('users', UserSchema);

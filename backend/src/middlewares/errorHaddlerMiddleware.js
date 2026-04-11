@@ -6,7 +6,6 @@ const errorHaddlerMiddleware = (err,req,res,next)=>{
         status: err.status || statusCodes.INTERNAL_SERVER_ERROR,
         code: err.code || 'INTERNAL_SERVER_ERROR'
     }
-    
     //check validation errors
     if(err.name === "ValidationError"){
 
@@ -30,6 +29,13 @@ const errorHaddlerMiddleware = (err,req,res,next)=>{
         customErrors.status = statusCodes.BAD_REQUEST,
         customErrors.code = 'BAD_REQUEST'
     } 
+
+    //check jsonwebtoken error
+    else if(err.name === "JsonWebTokenError"){
+        customErrors.message = err.message,
+        customErrors.status = statusCodes.UNAUTHORIZED,
+        customErrors.code = 'UNAUTHORIZED'
+    }    
 
     //check dupicate errors
     try{
