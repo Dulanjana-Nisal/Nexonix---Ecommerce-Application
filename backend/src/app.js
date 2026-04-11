@@ -2,7 +2,9 @@ require('dotenv').config();
 const dbConnection = require('./db/server');
 const errorHaddlerMiddleware = require('./middlewares/errorHaddlerMiddleware');
 const notFoundMiddleware = require('./middlewares/notFoundMiddlewaare')
-const users = require('./routers/usersRouters')
+
+const users = require('./routers/usersRouters');
+const products = require('./routers/productsRouters');
 
 const express = require('express');
 const app = express(); 
@@ -11,7 +13,8 @@ const app = express();
 app.use(express.json());
 
 //routers
-app.use('/api/v1/user', users)
+app.use('/api/v1/user', users);
+app.use('/api/v1/products', products);
 
 //error haddlers
 app.use(errorHaddlerMiddleware)
