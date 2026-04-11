@@ -6,7 +6,7 @@ const errorHaddlerMiddleware = (err,req,res,next)=>{
         status: err.status || statusCodes.INTERNAL_SERVER_ERROR,
         code: err.code || 'INTERNAL_SERVER_ERROR'
     }
-    console.log(err)
+    
     //check validation errors
     if(err.name === "ValidationError"){
 
@@ -32,11 +32,15 @@ const errorHaddlerMiddleware = (err,req,res,next)=>{
     } 
 
     //check dupicate errors
-    else if(err.cause.code === 11000){
-        customErrors.message = 'Email is already exist!',
-        customErrors.status = statusCodes.BAD_REQUEST,
-        customErrors.code = 'BAD_REQUEST'
-    } 
+    try{
+        if(err.cause.code === 11000){
+            customErrors.message = 'Email is already exist!',
+            customErrors.status = statusCodes.BAD_REQUEST,
+            customErrors.code = 'BAD_REQUEST'
+        } 
+
+    }
+    catch(err){}
 
     res.status(customErrors.status).json({
         success: false,
