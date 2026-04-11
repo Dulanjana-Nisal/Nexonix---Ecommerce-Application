@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Users = require('../models/usersModule')
 const bcrypt = require('bcryptjs')
-
+require('dotenv').config();
 const createAdmin = async ()=>{
     try{
         await mongoose.connect(process.env.MONGO_URI)
@@ -19,7 +19,8 @@ const createAdmin = async ()=>{
         const admin = await Users.create({
             name : "Dulanjana Nisal (Admin)",
             email:"dulanjananisal67@gmail.com",
-            password: hashPassword
+            password: hashPassword,
+            role: 'admin'
         })
         console.log(`Admin Created`, admin)
         process.exit();
