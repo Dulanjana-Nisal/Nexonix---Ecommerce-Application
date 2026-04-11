@@ -5,7 +5,7 @@ const UserSchema = mongoose.Schema({
     name:{
         type: String,
         required: true,
-        minLength: [3, 'User name must be more than 3 letters!']
+        minLength: [3, 'User name must be more than 3 letters!'],
     },
     email: {
         type: String,
@@ -13,13 +13,13 @@ const UserSchema = mongoose.Schema({
         lowercase: true,
         trim: true,
         match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/,'Please use a valid email address!'],
-        unique: [true, 'Email already exist!']
+        unique: [true, 'Email already exist!'],
     },
     password: {
         type: String,
         required: true,
-        minLength: [6, 'Password must be more than 6 characters']
-    }
+        minLength: [6, 'Password must be more than 6 characters'],
+    },
 })
 
 module.exports = mongoose.model('users', UserSchema);
