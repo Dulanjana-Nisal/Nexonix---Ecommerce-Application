@@ -1,1294 +1,426 @@
 [
   {
-    "name": "Product 1 Plus",
-    "image": "product1.jpg",
-    "stock": 88,
-    "price": 1142.59,
-    "ratings": 2.7,
-    "description": "This is a high quality product number 1",
-    "keywords": [
-      "desktop",
-      "speed",
-      "gaming"
-    ],
-    "category": "laptops",
-    "brand": "HP",
-    "availability": true
-  },
-  {
-    "name": "Product 2 Max",
-    "image": "product2.jpg",
-    "stock": 46,
-    "price": 254.73,
-    "ratings": 2.8,
-    "description": "This is a high quality product number 2",
-    "keywords": [
-      "speed",
-      "gaming",
-      "desktop"
-    ],
-    "category": "laptops",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 3 Pro",
-    "image": "product3.jpg",
-    "stock": 17,
-    "price": 216.37,
-    "ratings": 2.6,
-    "description": "This is a high quality product number 3",
-    "keywords": [
-      "laptop",
-      "external",
-      "mouse"
-    ],
-    "category": "components",
-    "brand": "Dell",
-    "availability": true
-  },
-  {
-    "name": "Product 4 Pro",
-    "image": "product4.jpg",
-    "stock": 60,
-    "price": 469.07,
-    "ratings": 1.1,
-    "description": "This is a high quality product number 4",
-    "keywords": [
-      "gaming",
-      "streaming",
-      "portable"
-    ],
-    "category": "laptops",
-    "brand": "Samsung",
-    "availability": false
-  },
-  {
-    "name": "Product 5 Max",
-    "image": "product5.jpg",
-    "stock": 16,
-    "price": 856.38,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 5",
+    "name": "Logitech MX Master 3S",
+    "image": "https://example.com/images/logitech-mx-master-3s.jpg",
+    "stock": 120,
+    "price": 99.99,
+    "ratings": 5,
+    "description": "The Logitech MX Master 3S is an advanced wireless mouse with ultra-fast MagSpeed scrolling, ergonomic design, and customizable buttons for power users.",
     "keywords": [
       "wireless",
-      "USB",
-      "laptop"
-    ],
-    "category": "components",
-    "brand": "Samsung",
-    "availability": true
-  },
-  {
-    "name": "Product 6 Max",
-    "image": "product6.jpg",
-    "stock": 77,
-    "price": 68.36,
-    "ratings": 3.9,
-    "description": "This is a high quality product number 6",
-    "keywords": [
-      "external",
-      "keyboard",
-      "computer"
-    ],
-    "category": "softwares",
-    "brand": "Samsung",
-    "availability": true
-  },
-  {
-    "name": "Product 7 Plus",
-    "image": "product7.jpg",
-    "stock": 70,
-    "price": 886.74,
-    "ratings": 5.0,
-    "description": "This is a high quality product number 7",
-    "keywords": [
-      "storage",
-      "desktop",
-      "USB"
-    ],
-    "category": "softwares",
-    "brand": "Acer",
-    "availability": true
-  },
-  {
-    "name": "Product 8 Pro",
-    "image": "product8.jpg",
-    "stock": 46,
-    "price": 474.35,
-    "ratings": 0.5,
-    "description": "This is a high quality product number 8",
-    "keywords": [
-      "keyboard",
-      "external",
-      "streaming"
-    ],
-    "category": "gamings",
-    "brand": "Lenovo",
-    "availability": true
-  },
-  {
-    "name": "Product 9 X",
-    "image": "product9.jpg",
-    "stock": 83,
-    "price": 428.16,
-    "ratings": 0.4,
-    "description": "This is a high quality product number 9",
-    "keywords": [
-      "computer",
-      "streaming",
-      "portable"
-    ],
-    "category": "gamings",
-    "brand": "MSI",
-    "availability": true
-  },
-  {
-    "name": "Product 10 X",
-    "image": "product10.jpg",
-    "stock": 78,
-    "price": 1410.99,
-    "ratings": 0.4,
-    "description": "This is a high quality product number 10",
-    "keywords": [
-      "desktop",
-      "RGB",
-      "USB"
-    ],
-    "category": "components",
-    "brand": "HP",
-    "availability": true
-  },
-  {
-    "name": "Product 11 Plus",
-    "image": "product11.jpg",
-    "stock": 54,
-    "price": 301.23,
-    "ratings": 4.8,
-    "description": "This is a high quality product number 11",
-    "keywords": [
       "mouse",
-      "storage",
-      "external"
+      "USB"
     ],
-    "category": "softwares",
-    "brand": "Razer",
-    "availability": false
-  },
-  {
-    "name": "Product 12 Max",
-    "image": "product12.jpg",
-    "stock": 31,
-    "price": 252.15,
-    "ratings": 4.5,
-    "description": "This is a high quality product number 12",
-    "keywords": [
-      "storage",
-      "streaming",
-      "keyboard"
-    ],
-    "category": "gamings",
-    "brand": "CoolerMaster",
+    "category": "components",
+    "brand": "Logitech",
     "availability": true
   },
   {
-    "name": "Product 13 Elite",
-    "image": "product13.jpg",
-    "stock": 91,
-    "price": 1399.46,
-    "ratings": 1.1,
-    "description": "This is a high quality product number 13",
+    "name": "Razer BlackWidow V4 Pro",
+    "image": "https://example.com/images/razer-blackwidow-v4-pro.jpg",
+    "stock": 75,
+    "price": 229.99,
+    "ratings": 4,
+    "description": "The Razer BlackWidow V4 Pro is a premium mechanical gaming keyboard with Razer Yellow switches, RGB backlighting, and fully programmable macro keys.",
     "keywords": [
-      "external",
+      "gaming",
       "keyboard",
-      "mouse"
+      "RGB",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Samsung 990 Pro 2TB NVMe SSD",
+    "image": "https://example.com/images/samsung-990-pro-2tb.jpg",
+    "stock": 200,
+    "price": 179.99,
+    "ratings": 5,
+    "description": "The Samsung 990 Pro 2TB NVMe SSD delivers exceptional read and write speeds for demanding workloads, gaming, and content creation with industry-leading reliability.",
+    "keywords": [
+      "storage",
+      "speed",
+      "hardware"
     ],
     "category": "components",
     "brand": "Samsung",
     "availability": true
   },
   {
-    "name": "Product 14 Plus",
-    "image": "product14.jpg",
-    "stock": 8,
-    "price": 1199.73,
-    "ratings": 0.8,
-    "description": "This is a high quality product number 14",
+    "name": "ASUS ROG Strix G16 Gaming Laptop",
+    "image": "https://example.com/images/asus-rog-strix-g16.jpg",
+    "stock": 30,
+    "price": 1499.99,
+    "ratings": 4,
+    "description": "The ASUS ROG Strix G16 is a powerhouse gaming laptop featuring an Intel Core i9 processor, NVIDIA RTX 4070 GPU, 165Hz display, and advanced thermal cooling system.",
     "keywords": [
-      "external",
-      "hardware",
-      "gaming"
-    ],
-    "category": "softwares",
-    "brand": "Microsoft",
-    "availability": true
-  },
-  {
-    "name": "Product 15 Max",
-    "image": "product15.jpg",
-    "stock": 25,
-    "price": 1277.68,
-    "ratings": 2.7,
-    "description": "This is a high quality product number 15",
-    "keywords": [
-      "external",
       "gaming",
+      "laptop",
       "RGB"
     ],
-    "category": "components",
-    "brand": "HyperX",
-    "availability": false
-  },
-  {
-    "name": "Product 16 Elite",
-    "image": "product16.jpg",
-    "stock": 10,
-    "price": 939.67,
-    "ratings": 0.8,
-    "description": "This is a high quality product number 16",
-    "keywords": [
-      "RGB",
-      "laptop",
-      "keyboard"
-    ],
     "category": "laptops",
-    "brand": "LogiTech",
-    "availability": false
-  },
-  {
-    "name": "Product 17 Plus",
-    "image": "product17.jpg",
-    "stock": 63,
-    "price": 1251.88,
-    "ratings": 3.0,
-    "description": "This is a high quality product number 17",
-    "keywords": [
-      "USB",
-      "external",
-      "mouse"
-    ],
-    "category": "components",
-    "brand": "MSI",
-    "availability": false
-  },
-  {
-    "name": "Product 18 Elite",
-    "image": "product18.jpg",
-    "stock": 12,
-    "price": 704.75,
-    "ratings": 4.7,
-    "description": "This is a high quality product number 18",
-    "keywords": [
-      "laptop",
-      "gaming",
-      "USB"
-    ],
-    "category": "computers",
-    "brand": "Asus",
+    "brand": "ASUS",
     "availability": true
   },
   {
-    "name": "Product 19 X",
-    "image": "product19.jpg",
-    "stock": 8,
-    "price": 1063.54,
-    "ratings": 3.4,
-    "description": "This is a high quality product number 19",
-    "keywords": [
-      "gaming",
-      "wireless",
-      "portable"
-    ],
-    "category": "gamings",
-    "brand": "HyperX",
-    "availability": false
-  },
-  {
-    "name": "Product 20 Max",
-    "image": "product20.jpg",
+    "name": "Corsair K70 RGB MK.2",
+    "image": "https://example.com/images/corsair-k70-rgb-mk2.jpg",
     "stock": 50,
-    "price": 718.04,
-    "ratings": 3.8,
-    "description": "This is a high quality product number 20",
-    "keywords": [
-      "desktop",
-      "gaming",
-      "computer"
-    ],
-    "category": "components",
-    "brand": "HyperX",
-    "availability": true
-  },
-  {
-    "name": "Product 21 Elite",
-    "image": "product21.jpg",
-    "stock": 87,
-    "price": 642.83,
-    "ratings": 0.3,
-    "description": "This is a high quality product number 21",
+    "price": 159.99,
+    "ratings": 4,
+    "description": "The Corsair K70 RGB MK.2 is a full-sized mechanical gaming keyboard with Cherry MX switches, dynamic RGB per-key lighting, and an aircraft-grade aluminum frame.",
     "keywords": [
       "gaming",
-      "portable",
-      "wireless"
-    ],
-    "category": "gamings",
-    "brand": "Samsung",
-    "availability": true
-  },
-  {
-    "name": "Product 22 Max",
-    "image": "product22.jpg",
-    "stock": 6,
-    "price": 197.53,
-    "ratings": 1.3,
-    "description": "This is a high quality product number 22",
-    "keywords": [
-      "storage",
-      "RGB",
-      "wireless"
-    ],
-    "category": "components",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 23 Pro",
-    "image": "product23.jpg",
-    "stock": 48,
-    "price": 766.97,
-    "ratings": 4.7,
-    "description": "This is a high quality product number 23",
-    "keywords": [
-      "laptop",
-      "wireless",
-      "external"
-    ],
-    "category": "gamings",
-    "brand": "HP",
-    "availability": true
-  },
-  {
-    "name": "Product 24 Plus",
-    "image": "product24.jpg",
-    "stock": 94,
-    "price": 760.96,
-    "ratings": 2.9,
-    "description": "This is a high quality product number 24",
-    "keywords": [
-      "gaming",
-      "desktop",
-      "portable"
-    ],
-    "category": "gamings",
-    "brand": "Microsoft",
-    "availability": true
-  },
-  {
-    "name": "Product 25 Elite",
-    "image": "product25.jpg",
-    "stock": 81,
-    "price": 900.85,
-    "ratings": 0.5,
-    "description": "This is a high quality product number 25",
-    "keywords": [
       "keyboard",
-      "hardware",
-      "storage"
-    ],
-    "category": "computers",
-    "brand": "Asus",
-    "availability": true
-  },
-  {
-    "name": "Product 26 Pro",
-    "image": "product26.jpg",
-    "stock": 57,
-    "price": 948.06,
-    "ratings": 2.4,
-    "description": "This is a high quality product number 26",
-    "keywords": [
       "RGB",
-      "computer",
-      "wireless"
-    ],
-    "category": "laptops",
-    "brand": "LogiTech",
-    "availability": true
-  },
-  {
-    "name": "Product 27 Pro",
-    "image": "product27.jpg",
-    "stock": 75,
-    "price": 364.25,
-    "ratings": 2.5,
-    "description": "This is a high quality product number 27",
-    "keywords": [
-      "computer",
-      "external",
-      "laptop"
-    ],
-    "category": "softwares",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 28 Pro",
-    "image": "product28.jpg",
-    "stock": 77,
-    "price": 1344.56,
-    "ratings": 3.9,
-    "description": "This is a high quality product number 28",
-    "keywords": [
-      "keyboard",
-      "speed",
-      "RGB"
-    ],
-    "category": "laptops",
-    "brand": "HyperX",
-    "availability": true
-  },
-  {
-    "name": "Product 29 X",
-    "image": "product29.jpg",
-    "stock": 91,
-    "price": 1023.73,
-    "ratings": 3.0,
-    "description": "This is a high quality product number 29",
-    "keywords": [
-      "storage",
-      "mouse",
       "hardware"
     ],
     "category": "gamings",
-    "brand": "HP",
+    "brand": "Corsair",
     "availability": true
   },
   {
-    "name": "Product 30 Plus",
-    "image": "product30.jpg",
-    "stock": 42,
-    "price": 1200.54,
-    "ratings": 1.1,
-    "description": "This is a high quality product number 30",
-    "keywords": [
-      "wireless",
-      "keyboard",
-      "desktop"
-    ],
-    "category": "components",
-    "brand": "CoolerMaster",
-    "availability": false
-  },
-  {
-    "name": "Product 31 Elite",
-    "image": "product31.jpg",
-    "stock": 52,
-    "price": 484.37,
-    "ratings": 2.1,
-    "description": "This is a high quality product number 31",
-    "keywords": [
-      "gaming",
-      "laptop",
-      "portable"
-    ],
-    "category": "laptops",
-    "brand": "Dell",
-    "availability": false
-  },
-  {
-    "name": "Product 32 Pro",
-    "image": "product32.jpg",
-    "stock": 12,
-    "price": 1028.31,
-    "ratings": 4.0,
-    "description": "This is a high quality product number 32",
-    "keywords": [
-      "mouse",
-      "portable",
-      "RGB"
-    ],
-    "category": "gamings",
-    "brand": "HP",
-    "availability": false
-  },
-  {
-    "name": "Product 33 Plus",
-    "image": "product33.jpg",
-    "stock": 53,
-    "price": 1458.42,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 33",
-    "keywords": [
-      "portable",
-      "laptop",
-      "streaming"
-    ],
-    "category": "laptops",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 34 Plus",
-    "image": "product34.jpg",
-    "stock": 40,
-    "price": 1080.54,
-    "ratings": 4.9,
-    "description": "This is a high quality product number 34",
-    "keywords": [
-      "wireless",
-      "portable",
-      "external"
-    ],
-    "category": "gamings",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 35 Plus",
-    "image": "product35.jpg",
-    "stock": 87,
-    "price": 977.65,
-    "ratings": 3.7,
-    "description": "This is a high quality product number 35",
-    "keywords": [
-      "desktop",
-      "wireless",
-      "external"
-    ],
-    "category": "softwares",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 36 Max",
-    "image": "product36.jpg",
-    "stock": 64,
-    "price": 317.59,
-    "ratings": 4.9,
-    "description": "This is a high quality product number 36",
-    "keywords": [
-      "portable",
-      "storage",
-      "mouse"
-    ],
-    "category": "gamings",
-    "brand": "LogiTech",
-    "availability": false
-  },
-  {
-    "name": "Product 37 X",
-    "image": "product37.jpg",
-    "stock": 52,
-    "price": 1337.2,
-    "ratings": 4.4,
-    "description": "This is a high quality product number 37",
-    "keywords": [
-      "RGB",
-      "USB",
-      "wireless"
-    ],
-    "category": "gamings",
-    "brand": "CoolerMaster",
-    "availability": false
-  },
-  {
-    "name": "Product 38 X",
-    "image": "product38.jpg",
-    "stock": 17,
-    "price": 1253.51,
-    "ratings": 1.1,
-    "description": "This is a high quality product number 38",
-    "keywords": [
-      "RGB",
-      "wireless",
-      "hardware"
-    ],
-    "category": "computers",
-    "brand": "HyperX",
-    "availability": true
-  },
-  {
-    "name": "Product 39 Plus",
-    "image": "product39.jpg",
-    "stock": 22,
-    "price": 478.59,
-    "ratings": 3.2,
-    "description": "This is a high quality product number 39",
-    "keywords": [
-      "streaming",
-      "computer",
-      "laptop"
-    ],
-    "category": "gamings",
-    "brand": "Asus",
-    "availability": false
-  },
-  {
-    "name": "Product 40 Plus",
-    "image": "product40.jpg",
-    "stock": 77,
-    "price": 187.39,
-    "ratings": 2.2,
-    "description": "This is a high quality product number 40",
-    "keywords": [
-      "desktop",
-      "laptop",
-      "portable"
-    ],
-    "category": "softwares",
-    "brand": "HyperX",
-    "availability": true
-  },
-  {
-    "name": "Product 41 X",
-    "image": "product41.jpg",
-    "stock": 29,
-    "price": 641.76,
-    "ratings": 2.5,
-    "description": "This is a high quality product number 41",
-    "keywords": [
-      "external",
-      "storage",
-      "laptop"
-    ],
-    "category": "components",
-    "brand": "Samsung",
-    "availability": true
-  },
-  {
-    "name": "Product 42 Max",
-    "image": "product42.jpg",
-    "stock": 72,
-    "price": 1225.82,
-    "ratings": 2.2,
-    "description": "This is a high quality product number 42",
-    "keywords": [
-      "computer",
-      "streaming",
-      "USB"
-    ],
-    "category": "gamings",
-    "brand": "Acer",
-    "availability": true
-  },
-  {
-    "name": "Product 43 Max",
-    "image": "product43.jpg",
-    "stock": 86,
-    "price": 659.82,
-    "ratings": 1.4,
-    "description": "This is a high quality product number 43",
-    "keywords": [
-      "portable",
-      "streaming",
-      "USB"
-    ],
-    "category": "gamings",
-    "brand": "Samsung",
-    "availability": true
-  },
-  {
-    "name": "Product 44 Pro",
-    "image": "product44.jpg",
-    "stock": 92,
-    "price": 786.97,
-    "ratings": 0.4,
-    "description": "This is a high quality product number 44",
-    "keywords": [
-      "desktop",
-      "portable",
-      "hardware"
-    ],
-    "category": "components",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 45 X",
-    "image": "product45.jpg",
-    "stock": 80,
-    "price": 424.64,
-    "ratings": 3.9,
-    "description": "This is a high quality product number 45",
-    "keywords": [
-      "desktop",
-      "wireless",
-      "RGB"
-    ],
-    "category": "gamings",
-    "brand": "Dell",
-    "availability": true
-  },
-  {
-    "name": "Product 46 Pro",
-    "image": "product46.jpg",
-    "stock": 52,
-    "price": 1109.27,
-    "ratings": 3.0,
-    "description": "This is a high quality product number 46",
-    "keywords": [
-      "RGB",
-      "streaming",
-      "computer"
-    ],
-    "category": "computers",
-    "brand": "HyperX",
-    "availability": false
-  },
-  {
-    "name": "Product 47 X",
-    "image": "product47.jpg",
-    "stock": 20,
-    "price": 705.14,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 47",
-    "keywords": [
-      "desktop",
-      "mouse",
-      "RGB"
-    ],
-    "category": "softwares",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 48 Elite",
-    "image": "product48.jpg",
-    "stock": 75,
-    "price": 832.64,
-    "ratings": 2.0,
-    "description": "This is a high quality product number 48",
-    "keywords": [
-      "computer",
-      "wireless",
-      "USB"
-    ],
-    "category": "laptops",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 49 Pro",
-    "image": "product49.jpg",
-    "stock": 26,
-    "price": 327.98,
-    "ratings": 1.3,
-    "description": "This is a high quality product number 49",
-    "keywords": [
-      "hardware",
-      "mouse",
-      "laptop"
-    ],
-    "category": "softwares",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 50 Pro",
-    "image": "product50.jpg",
-    "stock": 30,
-    "price": 860.08,
-    "ratings": 2.2,
-    "description": "This is a high quality product number 50",
-    "keywords": [
-      "USB",
-      "external",
-      "laptop"
-    ],
-    "category": "computers",
-    "brand": "Lenovo",
-    "availability": false
-  },
-  {
-    "name": "Product 51 Max",
-    "image": "product51.jpg",
-    "stock": 10,
-    "price": 945.72,
-    "ratings": 2.8,
-    "description": "This is a high quality product number 51",
-    "keywords": [
-      "portable",
-      "wireless",
-      "mouse"
-    ],
-    "category": "components",
-    "brand": "HP",
-    "availability": true
-  },
-  {
-    "name": "Product 52 Elite",
-    "image": "product52.jpg",
-    "stock": 46,
-    "price": 1404.24,
-    "ratings": 4.2,
-    "description": "This is a high quality product number 52",
-    "keywords": [
-      "gaming",
-      "hardware",
-      "desktop"
-    ],
-    "category": "computers",
-    "brand": "Asus",
-    "availability": true
-  },
-  {
-    "name": "Product 53 X",
-    "image": "product53.jpg",
-    "stock": 13,
-    "price": 373.57,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 53",
-    "keywords": [
-      "desktop",
-      "mouse",
-      "storage"
-    ],
-    "category": "components",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 54 Elite",
-    "image": "product54.jpg",
-    "stock": 84,
-    "price": 1041.83,
-    "ratings": 4.6,
-    "description": "This is a high quality product number 54",
-    "keywords": [
-      "streaming",
-      "keyboard",
-      "desktop"
-    ],
-    "category": "gamings",
-    "brand": "Microsoft",
-    "availability": true
-  },
-  {
-    "name": "Product 55 Elite",
-    "image": "product55.jpg",
-    "stock": 49,
-    "price": 41.08,
-    "ratings": 1.4,
-    "description": "This is a high quality product number 55",
-    "keywords": [
-      "computer",
-      "wireless",
-      "hardware"
-    ],
-    "category": "computers",
-    "brand": "Dell",
-    "availability": true
-  },
-  {
-    "name": "Product 56 Pro",
-    "image": "product56.jpg",
-    "stock": 20,
-    "price": 100.57,
-    "ratings": 2.6,
-    "description": "This is a high quality product number 56",
-    "keywords": [
-      "desktop",
-      "external",
-      "keyboard"
-    ],
-    "category": "components",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 57 Plus",
-    "image": "product57.jpg",
-    "stock": 16,
-    "price": 556.11,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 57",
-    "keywords": [
-      "gaming",
-      "desktop",
-      "wireless"
-    ],
-    "category": "gamings",
-    "brand": "MSI",
-    "availability": false
-  },
-  {
-    "name": "Product 58 X",
-    "image": "product58.jpg",
-    "stock": 64,
-    "price": 1254.35,
-    "ratings": 0.4,
-    "description": "This is a high quality product number 58",
-    "keywords": [
-      "gaming",
-      "computer",
-      "hardware"
-    ],
-    "category": "computers",
-    "brand": "Lenovo",
-    "availability": true
-  },
-  {
-    "name": "Product 59 X",
-    "image": "product59.jpg",
-    "stock": 89,
-    "price": 1048.0,
-    "ratings": 4.0,
-    "description": "This is a high quality product number 59",
-    "keywords": [
-      "hardware",
-      "portable",
-      "wireless"
-    ],
-    "category": "softwares",
-    "brand": "HP",
-    "availability": false
-  },
-  {
-    "name": "Product 60 Pro",
-    "image": "product60.jpg",
-    "stock": 74,
-    "price": 1161.3,
-    "ratings": 1.6,
-    "description": "This is a high quality product number 60",
-    "keywords": [
-      "storage",
-      "external",
-      "mouse"
-    ],
-    "category": "laptops",
-    "brand": "Anker",
-    "availability": false
-  },
-  {
-    "name": "Product 61 Elite",
-    "image": "product61.jpg",
-    "stock": 97,
-    "price": 309.57,
-    "ratings": 3.0,
-    "description": "This is a high quality product number 61",
-    "keywords": [
-      "speed",
-      "USB",
-      "external"
-    ],
-    "category": "gamings",
-    "brand": "Dell",
-    "availability": true
-  },
-  {
-    "name": "Product 62 Elite",
-    "image": "product62.jpg",
-    "stock": 73,
-    "price": 33.16,
-    "ratings": 2.1,
-    "description": "This is a high quality product number 62",
-    "keywords": [
-      "USB",
-      "laptop",
-      "keyboard"
-    ],
-    "category": "laptops",
-    "brand": "HyperX",
-    "availability": false
-  },
-  {
-    "name": "Product 63 Max",
-    "image": "product63.jpg",
-    "stock": 52,
-    "price": 934.98,
-    "ratings": 0.1,
-    "description": "This is a high quality product number 63",
-    "keywords": [
-      "streaming",
-      "desktop",
-      "USB"
-    ],
-    "category": "gamings",
-    "brand": "Asus",
-    "availability": true
-  },
-  {
-    "name": "Product 64 Elite",
-    "image": "product64.jpg",
-    "stock": 79,
-    "price": 740.85,
-    "ratings": 0.9,
-    "description": "This is a high quality product number 64",
-    "keywords": [
-      "computer",
-      "gaming",
-      "streaming"
-    ],
-    "category": "laptops",
-    "brand": "LogiTech",
-    "availability": true
-  },
-  {
-    "name": "Product 65 Plus",
-    "image": "product65.jpg",
-    "stock": 32,
-    "price": 315.33,
-    "ratings": 2.5,
-    "description": "This is a high quality product number 65",
-    "keywords": [
-      "portable",
-      "laptop",
-      "desktop"
-    ],
-    "category": "softwares",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 66 Pro",
-    "image": "product66.jpg",
-    "stock": 40,
-    "price": 343.84,
-    "ratings": 1.8,
-    "description": "This is a high quality product number 66",
-    "keywords": [
-      "external",
-      "RGB",
-      "wireless"
-    ],
-    "category": "laptops",
-    "brand": "Asus",
-    "availability": true
-  },
-  {
-    "name": "Product 67 Max",
-    "image": "product67.jpg",
-    "stock": 88,
-    "price": 1108.92,
-    "ratings": 1.4,
-    "description": "This is a high quality product number 67",
-    "keywords": [
-      "hardware",
-      "wireless",
-      "laptop"
-    ],
-    "category": "laptops",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 68 Elite",
-    "image": "product68.jpg",
-    "stock": 8,
-    "price": 873.5,
-    "ratings": 4.0,
-    "description": "This is a high quality product number 68",
-    "keywords": [
-      "external",
-      "wireless",
-      "computer"
-    ],
-    "category": "softwares",
-    "brand": "Lenovo",
-    "availability": true
-  },
-  {
-    "name": "Product 69 Max",
-    "image": "product69.jpg",
-    "stock": 90,
-    "price": 1410.44,
-    "ratings": 3.5,
-    "description": "This is a high quality product number 69",
-    "keywords": [
-      "hardware",
-      "RGB",
-      "speed"
-    ],
-    "category": "components",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 70 Max",
-    "image": "product70.jpg",
-    "stock": 7,
-    "price": 520.16,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 70",
-    "keywords": [
-      "external",
-      "mouse",
-      "storage"
-    ],
-    "category": "computers",
-    "brand": "MSI",
-    "availability": false
-  },
-  {
-    "name": "Product 71 X",
-    "image": "product71.jpg",
-    "stock": 100,
-    "price": 856.46,
-    "ratings": 3.9,
-    "description": "This is a high quality product number 71",
-    "keywords": [
-      "hardware",
-      "keyboard",
-      "wireless"
-    ],
-    "category": "softwares",
-    "brand": "LogiTech",
-    "availability": true
-  },
-  {
-    "name": "Product 72 Max",
-    "image": "product72.jpg",
-    "stock": 66,
-    "price": 1274.87,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 72",
-    "keywords": [
-      "mouse",
-      "USB",
-      "keyboard"
-    ],
-    "category": "components",
-    "brand": "Asus",
-    "availability": false
-  },
-  {
-    "name": "Product 73 Plus",
-    "image": "product73.jpg",
-    "stock": 14,
-    "price": 1476.27,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 73",
-    "keywords": [
-      "RGB",
-      "streaming",
-      "storage"
-    ],
-    "category": "computers",
-    "brand": "MSI",
-    "availability": true
-  },
-  {
-    "name": "Product 74 Max",
-    "image": "product74.jpg",
-    "stock": 82,
-    "price": 1411.75,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 74",
-    "keywords": [
-      "wireless",
-      "hardware",
-      "mouse"
-    ],
-    "category": "computers",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 75 Plus",
-    "image": "product75.jpg",
-    "stock": 79,
-    "price": 1441.11,
-    "ratings": 2.4,
-    "description": "This is a high quality product number 75",
-    "keywords": [
-      "computer",
-      "gaming",
-      "desktop"
-    ],
-    "category": "components",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 76 Plus",
-    "image": "product76.jpg",
-    "stock": 82,
-    "price": 401.59,
-    "ratings": 0.3,
-    "description": "This is a high quality product number 76",
-    "keywords": [
-      "wireless",
-      "speed",
-      "computer"
-    ],
-    "category": "softwares",
-    "brand": "Lenovo",
-    "availability": true
-  },
-  {
-    "name": "Product 77 Plus",
-    "image": "product77.jpg",
+    "name": "Dell XPS 15 Laptop",
+    "image": "https://example.com/images/dell-xps-15.jpg",
     "stock": 45,
-    "price": 306.31,
-    "ratings": 1.9,
-    "description": "This is a high quality product number 77",
+    "price": 1799.99,
+    "ratings": 5,
+    "description": "The Dell XPS 15 combines stunning 4K OLED display technology with Intel Core i7 performance and long-lasting battery life in a premium slim and lightweight chassis.",
     "keywords": [
-      "keyboard",
-      "gaming",
-      "computer"
+      "laptop",
+      "portable"
     ],
-    "category": "gamings",
-    "brand": "LogiTech",
+    "category": "laptops",
+    "brand": "Dell",
     "availability": true
   },
   {
-    "name": "Product 78 Max",
-    "image": "product78.jpg",
-    "stock": 85,
-    "price": 866.86,
-    "ratings": 2.3,
-    "description": "This is a high quality product number 78",
+    "name": "SteelSeries Arctis Nova Pro Wireless",
+    "image": "https://example.com/images/steelseries-arctis-nova-pro.jpg",
+    "stock": 60,
+    "price": 349.99,
+    "ratings": 5,
+    "description": "The SteelSeries Arctis Nova Pro Wireless is a premium gaming headset with active noise cancellation, dual-wireless connectivity, hot-swappable batteries, and Hi-Fi audio drivers.",
     "keywords": [
+      "gaming",
       "wireless",
-      "keyboard",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "SteelSeries",
+    "availability": true
+  },
+  {
+    "name": "WD My Passport 5TB Portable HDD",
+    "image": "https://example.com/images/wd-my-passport-5tb.jpg",
+    "stock": 300,
+    "price": 129.99,
+    "ratings": 4,
+    "description": "The WD My Passport 5TB portable hard drive offers ample storage in a compact form factor with USB-C connectivity, password protection, and automatic backup software.",
+    "keywords": [
+      "storage",
+      "portable",
+      "external",
+      "USB"
+    ],
+    "category": "components",
+    "brand": "Western Digital",
+    "availability": true
+  },
+  {
+    "name": "Intel Core i9-14900K Desktop Processor",
+    "image": "https://example.com/images/intel-i9-14900k.jpg",
+    "stock": 85,
+    "price": 589.99,
+    "ratings": 5,
+    "description": "The Intel Core i9-14900K is a flagship desktop processor with 24 cores, 32 threads, and a max turbo frequency of 6.0GHz, built for extreme gaming and professional workloads.",
+    "keywords": [
+      "desktop",
+      "computer",
+      "hardware",
+      "gaming",
+      "speed"
+    ],
+    "category": "computers",
+    "brand": "Intel",
+    "availability": true
+  },
+  {
+    "name": "Adobe Creative Cloud All Apps",
+    "image": "https://example.com/images/adobe-creative-cloud.jpg",
+    "stock": 999,
+    "price": 599.99,
+    "ratings": 4,
+    "description": "Adobe Creative Cloud All Apps gives you access to the full suite of creative applications including Photoshop, Illustrator, Premiere Pro, and over 20 more industry-standard tools.",
+    "keywords": [
+      "streaming",
+      "portable"
+    ],
+    "category": "softwares",
+    "brand": "Adobe",
+    "availability": true
+  },
+  {
+    "name": "Elgato Stream Deck MK.2",
+    "image": "https://example.com/images/elgato-stream-deck-mk2.jpg",
+    "stock": 140,
+    "price": 149.99,
+    "ratings": 5,
+    "description": "The Elgato Stream Deck MK.2 features 15 customizable LCD keys to control your stream, switch scenes, launch apps, and automate complex tasks with one touch.",
+    "keywords": [
+      "streaming",
+      "USB",
       "gaming"
     ],
     "category": "gamings",
+    "brand": "Elgato",
+    "availability": true
+  },
+  {
+    "name": "Alienware Aurora R15 Gaming Desktop",
+    "image": "https://example.com/images/alienware-aurora-r15.jpg",
+    "stock": 20,
+    "price": 2499.99,
+    "ratings": 4,
+    "description": "The Alienware Aurora R15 is a high-performance gaming desktop with an Intel Core i9 processor, NVIDIA RTX 4090 graphics, and tool-less chassis for easy upgrades.",
+    "keywords": [
+      "desktop",
+      "gaming",
+      "computer",
+      "RGB",
+      "hardware"
+    ],
+    "category": "computers",
+    "brand": "Alienware",
+    "availability": true
+  },
+  {
+    "name": "HP Envy 16 Laptop",
+    "image": "https://example.com/images/hp-envy-16.jpg",
+    "stock": 55,
+    "price": 1349.99,
+    "ratings": 4,
+    "description": "The HP Envy 16 is a versatile creator laptop with an Intel Core i7 processor, NVIDIA RTX 4060 GPU, and a stunning 16-inch 2.5K IPS display with wide color coverage.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Logitech G Pro X Superlight 2",
+    "image": "https://example.com/images/logitech-g-pro-x-superlight2.jpg",
+    "stock": 95,
+    "price": 159.99,
+    "ratings": 5,
+    "description": "The Logitech G Pro X Superlight 2 is an ultra-lightweight wireless gaming mouse weighing under 60g, featuring the HERO 2 sensor for precision esports-level tracking.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "Corsair Vengeance RGB DDR5 32GB",
+    "image": "https://example.com/images/corsair-vengeance-ddr5-32gb.jpg",
+    "stock": 180,
+    "price": 119.99,
+    "ratings": 5,
+    "description": "Corsair Vengeance RGB DDR5 32GB 6000MHz memory kit delivers blazing-fast performance with dynamic RGB lighting and Intel XMP 3.0 and AMD EXPO support.",
+    "keywords": [
+      "hardware",
+      "RGB",
+      "desktop",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "Microsoft Windows 11 Pro",
+    "image": "https://example.com/images/windows-11-pro.jpg",
+    "stock": 500,
+    "price": 199.99,
+    "ratings": 4,
+    "description": "Microsoft Windows 11 Pro offers enhanced security features, DirectStorage for gaming, virtual desktops, and a redesigned Start menu experience for professionals.",
+    "keywords": [
+      "computer",
+      "desktop",
+      "laptop",
+      "speed"
+    ],
+    "category": "softwares",
     "brand": "Microsoft",
     "availability": true
   },
   {
-    "name": "Product 79 Elite",
-    "image": "product79.jpg",
-    "stock": 33,
-    "price": 471.54,
-    "ratings": 3.7,
-    "description": "This is a high quality product number 79",
+    "name": "NVIDIA GeForce RTX 4080 Super",
+    "image": "https://example.com/images/rtx-4080-super.jpg",
+    "stock": 40,
+    "price": 999.99,
+    "ratings": 5,
+    "description": "The NVIDIA GeForce RTX 4080 Super GPU delivers exceptional 4K gaming performance with DLSS 3.5, ray tracing, and AI-accelerated graphics for the ultimate gaming experience.",
+    "keywords": [
+      "gaming",
+      "desktop",
+      "hardware",
+      "RGB"
+    ],
+    "category": "components",
+    "brand": "NVIDIA",
+    "availability": true
+  },
+  {
+    "name": "Razer Viper V3 Pro",
+    "image": "https://example.com/images/razer-viper-v3-pro.jpg",
+    "stock": 110,
+    "price": 179.99,
+    "ratings": 5,
+    "description": "The Razer Viper V3 Pro is an ultra-lightweight wireless esports mouse with Focus Pro 35K sensor, 90-hour battery life, and 8K polling rate for tournament-ready precision.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse",
+      "speed"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Seagate Barracuda 8TB HDD",
+    "image": "https://example.com/images/seagate-barracuda-8tb.jpg",
+    "stock": 250,
+    "price": 139.99,
+    "ratings": 4,
+    "description": "The Seagate Barracuda 8TB internal hard drive provides massive storage capacity at an affordable price, with MultiTier Caching Technology for improved read and write performance.",
+    "keywords": [
+      "storage",
+      "hardware",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "Seagate",
+    "availability": true
+  },
+  {
+    "name": "Apple MacBook Pro 14-inch M4",
+    "image": "https://example.com/images/macbook-pro-14-m4.jpg",
+    "stock": 35,
+    "price": 1999.99,
+    "ratings": 5,
+    "description": "The Apple MacBook Pro 14-inch with M4 chip delivers industry-leading performance for professionals with a stunning Liquid Retina XDR display and all-day battery life.",
     "keywords": [
       "laptop",
       "portable",
       "speed"
     ],
-    "category": "components",
-    "brand": "Acer",
-    "availability": false
+    "category": "laptops",
+    "brand": "Apple",
+    "availability": true
   },
   {
-    "name": "Product 80 Max",
-    "image": "product80.jpg",
-    "stock": 56,
-    "price": 643.95,
-    "ratings": 0.1,
-    "description": "This is a high quality product number 80",
+    "name": "ASUS ProArt B650-Creator Motherboard",
+    "image": "https://example.com/images/asus-proart-b650.jpg",
+    "stock": 65,
+    "price": 299.99,
+    "ratings": 4,
+    "description": "The ASUS ProArt B650-Creator is a feature-rich AMD motherboard for content creators with Thunderbolt 4, 2.5G LAN, PCIe 5.0 support, and robust power delivery.",
     "keywords": [
       "hardware",
-      "keyboard",
-      "external"
+      "desktop",
+      "computer"
     ],
-    "category": "softwares",
-    "brand": "HyperX",
-    "availability": false
+    "category": "components",
+    "brand": "ASUS",
+    "availability": true
   },
   {
-    "name": "Product 81 Plus",
-    "image": "product81.jpg",
-    "stock": 21,
-    "price": 274.94,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 81",
+    "name": "Corsair iCUE H150i Elite Capellix XT",
+    "image": "https://example.com/images/corsair-h150i-elite.jpg",
+    "stock": 90,
+    "price": 219.99,
+    "ratings": 4,
+    "description": "The Corsair iCUE H150i Elite Capellix XT is a 360mm all-in-one liquid CPU cooler with 33 ultra-bright Capellix LEDs and three LL120 RGB fans for outstanding cooling performance.",
     "keywords": [
-      "external",
+      "hardware",
+      "RGB",
       "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "Lenovo ThinkPad X1 Carbon Gen 12",
+    "image": "https://example.com/images/thinkpad-x1-carbon-gen12.jpg",
+    "stock": 40,
+    "price": 1649.99,
+    "ratings": 5,
+    "description": "The Lenovo ThinkPad X1 Carbon Gen 12 is an ultra-light business laptop with Intel Core Ultra 7, military-grade durability, outstanding keyboard, and 2K IPS display.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Razer Kraken V3 HyperSense",
+    "image": "https://example.com/images/razer-kraken-v3-hypersense.jpg",
+    "stock": 80,
+    "price": 129.99,
+    "ratings": 4,
+    "description": "The Razer Kraken V3 HyperSense is a USB gaming headset with haptic technology that delivers bass vibrations, THX Spatial Audio, and TriForce Titanium 50mm drivers.",
+    "keywords": [
+      "gaming",
+      "USB",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Kingston Fury Beast DDR5 16GB",
+    "image": "https://example.com/images/kingston-fury-beast-ddr5.jpg",
+    "stock": 220,
+    "price": 64.99,
+    "ratings": 4,
+    "description": "Kingston Fury Beast DDR5 16GB 5200MHz RAM offers high-speed performance with low latency for gaming and productivity, compatible with Intel and AMD platforms.",
+    "keywords": [
+      "hardware",
+      "speed",
+      "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Kingston",
+    "availability": true
+  },
+  {
+    "name": "MSI Titan GT77 HX Gaming Laptop",
+    "image": "https://example.com/images/msi-titan-gt77.jpg",
+    "stock": 15,
+    "price": 3499.99,
+    "ratings": 5,
+    "description": "The MSI Titan GT77 HX is the ultimate gaming laptop powered by Intel Core i9 HX, NVIDIA RTX 4090, a 4K 144Hz mini-LED display, and Cherry MX mechanical keyboard.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "keyboard",
       "RGB"
     ],
     "category": "laptops",
@@ -1296,307 +428,1216 @@
     "availability": true
   },
   {
-    "name": "Product 82 Pro",
-    "image": "product82.jpg",
-    "stock": 23,
-    "price": 982.17,
-    "ratings": 1.2,
-    "description": "This is a high quality product number 82",
+    "name": "Elgato 4K60 Pro MK.2 Capture Card",
+    "image": "https://example.com/images/elgato-4k60-pro-mk2.jpg",
+    "stock": 70,
+    "price": 199.99,
+    "ratings": 4,
+    "description": "The Elgato 4K60 Pro MK.2 is an internal PCIe capture card that records console gameplay in stunning 4K60 HDR10, with VRR support and instant gameview for zero-lag monitoring.",
     "keywords": [
-      "USB",
-      "computer",
-      "gaming"
-    ],
-    "category": "components",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 83 Pro",
-    "image": "product83.jpg",
-    "stock": 86,
-    "price": 92.66,
-    "ratings": 4.4,
-    "description": "This is a high quality product number 83",
-    "keywords": [
-      "mouse",
-      "hardware",
-      "computer"
-    ],
-    "category": "components",
-    "brand": "LogiTech",
-    "availability": true
-  },
-  {
-    "name": "Product 84 Pro",
-    "image": "product84.jpg",
-    "stock": 72,
-    "price": 472.52,
-    "ratings": 3.5,
-    "description": "This is a high quality product number 84",
-    "keywords": [
-      "USB",
       "streaming",
-      "external"
-    ],
-    "category": "computers",
-    "brand": "Dell",
-    "availability": false
-  },
-  {
-    "name": "Product 85 X",
-    "image": "product85.jpg",
-    "stock": 41,
-    "price": 1345.88,
-    "ratings": 2.5,
-    "description": "This is a high quality product number 85",
-    "keywords": [
-      "speed",
-      "computer",
-      "USB"
-    ],
-    "category": "gamings",
-    "brand": "Asus",
-    "availability": true
-  },
-  {
-    "name": "Product 86 Elite",
-    "image": "product86.jpg",
-    "stock": 77,
-    "price": 1371.02,
-    "ratings": 4.8,
-    "description": "This is a high quality product number 86",
-    "keywords": [
-      "desktop",
-      "streaming",
-      "portable"
-    ],
-    "category": "computers",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 87 Plus",
-    "image": "product87.jpg",
-    "stock": 30,
-    "price": 462.16,
-    "ratings": 1.9,
-    "description": "This is a high quality product number 87",
-    "keywords": [
       "gaming",
-      "mouse",
-      "streaming"
+      "hardware"
     ],
     "category": "gamings",
-    "brand": "Samsung",
-    "availability": false
+    "brand": "Elgato",
+    "availability": true
   },
   {
-    "name": "Product 88 Max",
-    "image": "product88.jpg",
-    "stock": 46,
-    "price": 371.15,
-    "ratings": 0.9,
-    "description": "This is a high quality product number 88",
+    "name": "SanDisk Extreme Pro 2TB Portable SSD",
+    "image": "https://example.com/images/sandisk-extreme-pro-2tb.jpg",
+    "stock": 160,
+    "price": 189.99,
+    "ratings": 5,
+    "description": "The SanDisk Extreme Pro 2TB portable SSD delivers read speeds up to 2000MB/s with USB 3.2 Gen 2x2, rugged IP65 resistance, and password protection for secure on-the-go storage.",
     "keywords": [
-      "portable",
       "storage",
-      "computer"
-    ],
-    "category": "laptops",
-    "brand": "Microsoft",
-    "availability": false
-  },
-  {
-    "name": "Product 89 Pro",
-    "image": "product89.jpg",
-    "stock": 99,
-    "price": 437.29,
-    "ratings": 0.5,
-    "description": "This is a high quality product number 89",
-    "keywords": [
-      "speed",
-      "USB",
-      "computer"
-    ],
-    "category": "gamings",
-    "brand": "Lenovo",
-    "availability": true
-  },
-  {
-    "name": "Product 90 Plus",
-    "image": "product90.jpg",
-    "stock": 43,
-    "price": 1052.07,
-    "ratings": 2.6,
-    "description": "This is a high quality product number 90",
-    "keywords": [
-      "wireless",
-      "hardware",
-      "mouse"
-    ],
-    "category": "laptops",
-    "brand": "LogiTech",
-    "availability": true
-  },
-  {
-    "name": "Product 91 Elite",
-    "image": "product91.jpg",
-    "stock": 87,
-    "price": 1222.08,
-    "ratings": 0.2,
-    "description": "This is a high quality product number 91",
-    "keywords": [
-      "USB",
-      "RGB",
-      "hardware"
-    ],
-    "category": "laptops",
-    "brand": "Lenovo",
-    "availability": false
-  },
-  {
-    "name": "Product 92 Max",
-    "image": "product92.jpg",
-    "stock": 40,
-    "price": 957.18,
-    "ratings": 3.1,
-    "description": "This is a high quality product number 92",
-    "keywords": [
+      "portable",
       "external",
-      "RGB",
-      "laptop"
-    ],
-    "category": "laptops",
-    "brand": "Razer",
-    "availability": true
-  },
-  {
-    "name": "Product 93 Plus",
-    "image": "product93.jpg",
-    "stock": 100,
-    "price": 944.14,
-    "ratings": 3.1,
-    "description": "This is a high quality product number 93",
-    "keywords": [
-      "wireless",
-      "mouse",
-      "USB"
-    ],
-    "category": "laptops",
-    "brand": "CoolerMaster",
-    "availability": true
-  },
-  {
-    "name": "Product 94 Max",
-    "image": "product94.jpg",
-    "stock": 25,
-    "price": 498.48,
-    "ratings": 2.4,
-    "description": "This is a high quality product number 94",
-    "keywords": [
-      "streaming",
-      "desktop",
-      "gaming"
-    ],
-    "category": "gamings",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 95 Elite",
-    "image": "product95.jpg",
-    "stock": 6,
-    "price": 99.21,
-    "ratings": 1.0,
-    "description": "This is a high quality product number 95",
-    "keywords": [
-      "hardware",
-      "external",
-      "gaming"
-    ],
-    "category": "softwares",
-    "brand": "Anker",
-    "availability": true
-  },
-  {
-    "name": "Product 96 Plus",
-    "image": "product96.jpg",
-    "stock": 48,
-    "price": 1434.18,
-    "ratings": 4.1,
-    "description": "This is a high quality product number 96",
-    "keywords": [
-      "streaming",
-      "gaming",
-      "hardware"
-    ],
-    "category": "softwares",
-    "brand": "Razer",
-    "availability": false
-  },
-  {
-    "name": "Product 97 Elite",
-    "image": "product97.jpg",
-    "stock": 58,
-    "price": 387.12,
-    "ratings": 4.3,
-    "description": "This is a high quality product number 97",
-    "keywords": [
       "USB",
-      "computer",
-      "streaming"
-    ],
-    "category": "softwares",
-    "brand": "HP",
-    "availability": true
-  },
-  {
-    "name": "Product 98 Plus",
-    "image": "product98.jpg",
-    "stock": 91,
-    "price": 768.61,
-    "ratings": 1.0,
-    "description": "This is a high quality product number 98",
-    "keywords": [
-      "USB",
-      "hardware",
       "speed"
     ],
     "category": "components",
-    "brand": "Microsoft",
+    "brand": "SanDisk",
     "availability": true
   },
   {
-    "name": "Product 99 Max",
-    "image": "product99.jpg",
-    "stock": 88,
-    "price": 1212.79,
-    "ratings": 3.4,
-    "description": "This is a high quality product number 99",
+    "name": "AMD Ryzen 9 7950X Processor",
+    "image": "https://example.com/images/amd-ryzen9-7950x.jpg",
+    "stock": 55,
+    "price": 699.99,
+    "ratings": 5,
+    "description": "The AMD Ryzen 9 7950X features 16 cores and 32 threads with a boost clock of 5.7GHz, built on TSMC 5nm architecture for exceptional multi-threaded workstation and desktop performance.",
     "keywords": [
-      "external",
-      "keyboard",
-      "gaming"
+      "desktop",
+      "computer",
+      "hardware",
+      "speed"
     ],
-    "category": "softwares",
+    "category": "computers",
+    "brand": "AMD",
+    "availability": true
+  },
+  {
+    "name": "Logitech G915 TKL Wireless Keyboard",
+    "image": "https://example.com/images/logitech-g915-tkl.jpg",
+    "stock": 100,
+    "price": 229.99,
+    "ratings": 5,
+    "description": "The Logitech G915 TKL is a tenkeyless wireless gaming keyboard with ultra-thin low-profile GL mechanical switches, RGB lighting, and dual wireless connectivity.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "Acer Predator Helios 18 Laptop",
+    "image": "https://example.com/images/acer-predator-helios-18.jpg",
+    "stock": 25,
+    "price": 2199.99,
+    "ratings": 4,
+    "description": "The Acer Predator Helios 18 is a top-tier gaming laptop with Intel Core i9 HX, NVIDIA RTX 4090, QHD 250Hz IPS display, and Killer Wi-Fi 6E for competitive gaming.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "RGB",
+      "wireless"
+    ],
+    "category": "laptops",
     "brand": "Acer",
     "availability": true
   },
   {
-    "name": "Product 100 Max",
-    "image": "product100.jpg",
-    "stock": 7,
-    "price": 716.09,
-    "ratings": 0.7,
-    "description": "This is a high quality product number 100",
+    "name": "Corsair RM1000x SHIFT Modular PSU",
+    "image": "https://example.com/images/corsair-rm1000x-shift.jpg",
+    "stock": 75,
+    "price": 219.99,
+    "ratings": 5,
+    "description": "The Corsair RM1000x SHIFT is an 80 PLUS Gold certified 1000W fully modular power supply with side-mounted connectors, ultra-quiet Zero RPM fan mode, and a 10-year warranty.",
     "keywords": [
-      "RGB",
+      "hardware",
+      "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "Razer DeathAdder V3 HyperSpeed",
+    "image": "https://example.com/images/razer-deathadder-v3-hyperspeed.jpg",
+    "stock": 130,
+    "price": 89.99,
+    "ratings": 4,
+    "description": "The Razer DeathAdder V3 HyperSpeed is a wireless gaming mouse featuring the iconic ergonomic design with Focus X 26K optical sensor and 300-hour battery life.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Crucial P5 Plus 1TB NVMe SSD",
+    "image": "https://example.com/images/crucial-p5-plus-1tb.jpg",
+    "stock": 190,
+    "price": 89.99,
+    "ratings": 4,
+    "description": "The Crucial P5 Plus 1TB PCIe 4.0 NVMe SSD delivers sequential read speeds up to 6600MB/s, with dynamic write acceleration and enhanced reliability for demanding workloads.",
+    "keywords": [
+      "storage",
       "speed",
-      "laptop"
+      "hardware"
+    ],
+    "category": "components",
+    "brand": "Crucial",
+    "availability": true
+  },
+  {
+    "name": "Microsoft Office 365 Personal",
+    "image": "https://example.com/images/microsoft-office-365.jpg",
+    "stock": 800,
+    "price": 69.99,
+    "ratings": 4,
+    "description": "Microsoft Office 365 Personal includes Word, Excel, PowerPoint, Outlook, and 1TB of OneDrive cloud storage, with continuous updates for one user across all devices.",
+    "keywords": [
+      "laptop",
+      "computer",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "NZXT H9 Elite Mid-Tower Case",
+    "image": "https://example.com/images/nzxt-h9-elite.jpg",
+    "stock": 60,
+    "price": 199.99,
+    "ratings": 5,
+    "description": "The NZXT H9 Elite is a stunning mid-tower PC case with panoramic tempered glass panels, full-view dual-chamber layout, and included 120mm RGB fans for exceptional airflow.",
+    "keywords": [
+      "desktop",
+      "hardware",
+      "RGB",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "NZXT",
+    "availability": true
+  },
+  {
+    "name": "Logitech G502 X Plus Wireless",
+    "image": "https://example.com/images/logitech-g502x-plus.jpg",
+    "stock": 115,
+    "price": 159.99,
+    "ratings": 4,
+    "description": "The Logitech G502 X Plus is a wireless gaming mouse with LIGHTFORCE hybrid optical-mechanical switches, HERO 25K sensor, and LIGHTSYNC RGB for an enhanced gaming experience.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "Acer Swift 5 Laptop",
+    "image": "https://example.com/images/acer-swift-5.jpg",
+    "stock": 50,
+    "price": 1099.99,
+    "ratings": 4,
+    "description": "The Acer Swift 5 is an ultra-thin and lightweight laptop weighing under 1kg, featuring Intel Core Ultra 7, OLED touchscreen display, and all-day battery life for on-the-go productivity.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "Acer",
+    "availability": true
+  },
+  {
+    "name": "HyperX Cloud III Wireless Headset",
+    "image": "https://example.com/images/hyperx-cloud-iii-wireless.jpg",
+    "stock": 85,
+    "price": 149.99,
+    "ratings": 5,
+    "description": "The HyperX Cloud III Wireless gaming headset delivers immersive audio with 53mm angled drivers, DTS Headphone:X spatial audio, and up to 120-hour battery life.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Gigabyte RTX 4070 Ti Super Gaming OC",
+    "image": "https://example.com/images/gigabyte-rtx-4070ti-super.jpg",
+    "stock": 45,
+    "price": 849.99,
+    "ratings": 4,
+    "description": "The Gigabyte RTX 4070 Ti Super Gaming OC features the WINDFORCE cooling system, factory overclocked Ada Lovelace GPU, and RGB Fusion lighting for powerful 1440p and 4K gaming.",
+    "keywords": [
+      "gaming",
+      "hardware",
+      "desktop",
+      "RGB"
+    ],
+    "category": "components",
+    "brand": "Gigabyte",
+    "availability": true
+  },
+  {
+    "name": "Elgato Wave XLR Audio Interface",
+    "image": "https://example.com/images/elgato-wave-xlr.jpg",
+    "stock": 95,
+    "price": 149.99,
+    "ratings": 5,
+    "description": "The Elgato Wave XLR is a premium audio interface for streamers and podcasters, with 75dB of gain, real-time monitoring, and Wave Link integration for professional-grade broadcasting.",
+    "keywords": [
+      "streaming",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Elgato",
+    "availability": true
+  },
+  {
+    "name": "Lenovo IdeaPad Gaming 3 Laptop",
+    "image": "https://example.com/images/lenovo-ideapad-gaming-3.jpg",
+    "stock": 70,
+    "price": 799.99,
+    "ratings": 3,
+    "description": "The Lenovo IdeaPad Gaming 3 is an entry-level gaming laptop powered by AMD Ryzen 5 and NVIDIA RTX 3050, offering a 144Hz FHD display and solid gaming performance at a budget price.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "ASUS TUF Gaming F15 Laptop",
+    "image": "https://example.com/images/asus-tuf-gaming-f15.jpg",
+    "stock": 60,
+    "price": 999.99,
+    "ratings": 4,
+    "description": "The ASUS TUF Gaming F15 is a military-grade durable gaming laptop with Intel Core i7, NVIDIA RTX 4060, 144Hz FHD display, and MIL-STD-810H certification for rugged reliability.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "ASUS",
+    "availability": true
+  },
+  {
+    "name": "Corsair Sabre RGB Pro Champion",
+    "image": "https://example.com/images/corsair-sabre-rgb-pro.jpg",
+    "stock": 140,
+    "price": 49.99,
+    "ratings": 4,
+    "description": "The Corsair Sabre RGB Pro Champion is an ultra-lightweight wired gaming mouse at just 74g, with a MARKSMAN 26K optical sensor and iCUE-compatible RGB lighting for tournament play.",
+    "keywords": [
+      "gaming",
+      "mouse",
+      "RGB",
+      "speed"
+    ],
+    "category": "gamings",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "G.Skill Trident Z5 Neo RGB 64GB DDR5",
+    "image": "https://example.com/images/gskill-trident-z5-neo-64gb.jpg",
+    "stock": 100,
+    "price": 229.99,
+    "ratings": 5,
+    "description": "G.Skill Trident Z5 Neo RGB 64GB DDR5-6000 is optimized for AMD Ryzen 7000 systems with EXPO overclocking, CL30 latency, and dazzling addressable RGB lighting.",
+    "keywords": [
+      "hardware",
+      "RGB",
+      "desktop",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "G.Skill",
+    "availability": true
+  },
+  {
+    "name": "Norton 360 Antivirus Plus",
+    "image": "https://example.com/images/norton-360.jpg",
+    "stock": 600,
+    "price": 39.99,
+    "ratings": 4,
+    "description": "Norton 360 Antivirus Plus provides comprehensive device security with real-time threat protection, a secure VPN, password manager, and dark web monitoring for complete peace of mind.",
+    "keywords": [
+      "computer",
+      "laptop",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "Norton",
+    "availability": true
+  },
+  {
+    "name": "Thermaltake Toughpower GF3 1200W",
+    "image": "https://example.com/images/thermaltake-gf3-1200w.jpg",
+    "stock": 55,
+    "price": 239.99,
+    "ratings": 4,
+    "description": "The Thermaltake Toughpower GF3 1200W is an ATX 3.0 compliant 80 PLUS Gold certified fully modular power supply with a native PCIe 5.0 16-pin connector and 16cm silent fan.",
+    "keywords": [
+      "hardware",
+      "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Thermaltake",
+    "availability": true
+  },
+  {
+    "name": "Razer Huntsman V3 Pro Keyboard",
+    "image": "https://example.com/images/razer-huntsman-v3-pro.jpg",
+    "stock": 65,
+    "price": 199.99,
+    "ratings": 5,
+    "description": "The Razer Huntsman V3 Pro features second-generation analog optical switches with 8000Hz polling rate, per-key RGB lighting, and premium doubleshot PBT keycaps for pro gaming.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "RGB",
+      "speed"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Microsoft Surface Laptop 6",
+    "image": "https://example.com/images/surface-laptop-6.jpg",
+    "stock": 40,
+    "price": 1299.99,
+    "ratings": 4,
+    "description": "Microsoft Surface Laptop 6 features Intel Core Ultra 7, a vibrant 13.5-inch PixelSense touchscreen, all-day battery, and Copilot AI integration for a premium Windows experience.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "be quiet! Dark Rock Pro 5 CPU Cooler",
+    "image": "https://example.com/images/bequiet-dark-rock-pro-5.jpg",
+    "stock": 80,
+    "price": 99.99,
+    "ratings": 5,
+    "description": "The be quiet! Dark Rock Pro 5 is a dual-tower air CPU cooler with 250W TDP, two Silent Wings 4 fans, brushed aluminum top cover, and virtually silent operation at full load.",
+    "keywords": [
+      "hardware",
+      "desktop",
+      "computer"
+    ],
+    "category": "components",
+    "brand": "be quiet!",
+    "availability": true
+  },
+  {
+    "name": "Logitech G PRO X 60 Keyboard",
+    "image": "https://example.com/images/logitech-gpro-x-60.jpg",
+    "stock": 90,
+    "price": 149.99,
+    "ratings": 4,
+    "description": "The Logitech G PRO X 60 is a 60% wireless gaming keyboard with LIGHTSPEED technology, GX optical switches, LIGHTSYNC RGB, and a compact lightweight design built for esports.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "ASUS ZenBook 14 OLED",
+    "image": "https://example.com/images/asus-zenbook-14-oled.jpg",
+    "stock": 55,
+    "price": 1099.99,
+    "ratings": 4,
+    "description": "The ASUS ZenBook 14 OLED features AMD Ryzen 7, a gorgeous 2.8K 90Hz OLED display, Intel Arc graphics, and a featherlight design for creative professionals on the move.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "ASUS",
+    "availability": true
+  },
+  {
+    "name": "Sony Inzone H9 Wireless Headset",
+    "image": "https://example.com/images/sony-inzone-h9.jpg",
+    "stock": 75,
+    "price": 229.99,
+    "ratings": 5,
+    "description": "The Sony Inzone H9 wireless gaming headset features active noise cancellation, 360 Spatial Sound for gaming, dual wireless connectivity, and 32-hour battery life for immersive play.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Sony",
+    "availability": true
+  },
+  {
+    "name": "Sabrent Rocket 4 Plus 4TB NVMe SSD",
+    "image": "https://example.com/images/sabrent-rocket-4plus-4tb.jpg",
+    "stock": 110,
+    "price": 299.99,
+    "ratings": 4,
+    "description": "The Sabrent Rocket 4 Plus 4TB is a high-performance PCIe Gen4 NVMe SSD with speeds up to 7100MB/s read, ideal for content creators and power users needing massive fast storage.",
+    "keywords": [
+      "storage",
+      "speed",
+      "hardware"
+    ],
+    "category": "components",
+    "brand": "Sabrent",
+    "availability": true
+  },
+  {
+    "name": "Razer Basilisk V3 Pro Wireless",
+    "image": "https://example.com/images/razer-basilisk-v3-pro.jpg",
+    "stock": 100,
+    "price": 159.99,
+    "ratings": 5,
+    "description": "The Razer Basilisk V3 Pro is a wireless gaming mouse with Razer HyperScroll Tilt Wheel, 11 programmable buttons, Focus Pro 30K sensor, and Chroma RGB underglow lighting.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "MSI MPG B650 Carbon WiFi Motherboard",
+    "image": "https://example.com/images/msi-mpg-b650-carbon-wifi.jpg",
+    "stock": 70,
+    "price": 259.99,
+    "ratings": 4,
+    "description": "The MSI MPG B650 Carbon WiFi is a high-end AMD AM5 motherboard with PCIe 5.0, Wi-Fi 6E, 2.5G LAN, USB 3.2 Gen 2x2, and Mystic Light RGB for powerful Ryzen 7000 builds.",
+    "keywords": [
+      "hardware",
+      "desktop",
+      "wireless",
+      "RGB"
+    ],
+    "category": "components",
+    "brand": "MSI",
+    "availability": true
+  },
+  {
+    "name": "HP Omen 45L Gaming Desktop",
+    "image": "https://example.com/images/hp-omen-45l.jpg",
+    "stock": 22,
+    "price": 2199.99,
+    "ratings": 4,
+    "description": "The HP Omen 45L Gaming Desktop comes with AMD Ryzen 9, NVIDIA RTX 4080, 64GB DDR5 RAM, 2TB SSD, and a liquid-cooled Cryo Chamber design for extreme thermal performance.",
+    "keywords": [
+      "gaming",
+      "desktop",
+      "computer",
+      "RGB"
     ],
     "category": "computers",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Elgato Key Light Air",
+    "image": "https://example.com/images/elgato-key-light-air.jpg",
+    "stock": 130,
+    "price": 99.99,
+    "ratings": 4,
+    "description": "The Elgato Key Light Air is a professional LED panel light for streamers and content creators, offering app-controlled 1400 lumens brightness and adjustable color temperature.",
+    "keywords": [
+      "streaming",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "Elgato",
+    "availability": true
+  },
+  {
+    "name": "Corsair Void RGB Elite Wireless Headset",
+    "image": "https://example.com/images/corsair-void-rgb-elite.jpg",
+    "stock": 95,
+    "price": 99.99,
+    "ratings": 4,
+    "description": "The Corsair Void RGB Elite is a wireless gaming headset with 7.1 surround sound, 50mm neodymium speaker drivers, up to 16-hour battery life, and iCUE RGB lighting.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "RGB",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "LG gram 17 Laptop",
+    "image": "https://example.com/images/lg-gram-17.jpg",
+    "stock": 35,
+    "price": 1599.99,
+    "ratings": 4,
+    "description": "The LG gram 17 is an incredibly lightweight 17-inch laptop weighing only 1.35kg, powered by Intel Core Ultra 7, with a stunning WQXGA IPS display and military-grade durability.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "LG",
+    "availability": true
+  },
+  {
+    "name": "ASUS ROG Claymore II Keyboard",
+    "image": "https://example.com/images/asus-rog-claymore-ii.jpg",
+    "stock": 50,
+    "price": 249.99,
+    "ratings": 5,
+    "description": "The ASUS ROG Claymore II is a modular wireless gaming keyboard with a detachable numpad, ROG RX optical switches, per-key Aura Sync RGB, and dual-mode connectivity.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "ASUS",
+    "availability": true
+  },
+  {
+    "name": "Seagate FireCuda 530 2TB SSD",
+    "image": "https://example.com/images/seagate-firecuda-530-2tb.jpg",
+    "stock": 145,
+    "price": 169.99,
+    "ratings": 5,
+    "description": "The Seagate FireCuda 530 2TB is a PCIe Gen4 NVMe SSD with read speeds up to 7300MB/s, featuring an E18 controller, 3D TLC NAND, and 1275TBW endurance for demanding use.",
+    "keywords": [
+      "storage",
+      "speed",
+      "hardware",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Seagate",
+    "availability": true
+  },
+  {
+    "name": "Steam Deck OLED 1TB",
+    "image": "https://example.com/images/steam-deck-oled.jpg",
+    "stock": 50,
+    "price": 649.99,
+    "ratings": 5,
+    "description": "The Steam Deck OLED 1TB is a handheld gaming PC featuring a brilliant 7.4-inch HDR OLED display, extended battery life, Wi-Fi 6E, and access to your entire Steam library.",
+    "keywords": [
+      "gaming",
+      "portable",
+      "storage",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "Valve",
+    "availability": true
+  },
+  {
+    "name": "NZXT Kraken 360 RGB AIO Cooler",
+    "image": "https://example.com/images/nzxt-kraken-360-rgb.jpg",
+    "stock": 65,
+    "price": 189.99,
+    "ratings": 4,
+    "description": "The NZXT Kraken 360 RGB is a 360mm all-in-one liquid CPU cooler with an LCD display, three 120mm RGB fans, and redesigned pump head for superior cooling performance.",
+    "keywords": [
+      "hardware",
+      "RGB",
+      "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "NZXT",
+    "availability": true
+  },
+  {
+    "name": "SteelSeries Rival 5 Gaming Mouse",
+    "image": "https://example.com/images/steelseries-rival-5.jpg",
+    "stock": 150,
+    "price": 59.99,
+    "ratings": 4,
+    "description": "The SteelSeries Rival 5 gaming mouse features a TrueMove Air optical sensor, 9 programmable buttons, golden micro IP54 switches, and 9-zone PrismSync RGB lighting.",
+    "keywords": [
+      "gaming",
+      "mouse",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "SteelSeries",
+    "availability": true
+  },
+  {
+    "name": "Bitdefender Total Security 2025",
+    "image": "https://example.com/images/bitdefender-total-security.jpg",
+    "stock": 700,
+    "price": 49.99,
+    "ratings": 5,
+    "description": "Bitdefender Total Security 2025 provides multi-layer ransomware protection, advanced threat defense, anti-phishing, VPN, and parental controls across Windows, Mac, iOS, and Android.",
+    "keywords": [
+      "computer",
+      "laptop",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "Bitdefender",
+    "availability": true
+  },
+  {
+    "name": "Corsair MM700 RGB Extended Mouse Pad",
+    "image": "https://example.com/images/corsair-mm700-rgb.jpg",
+    "stock": 200,
+    "price": 59.99,
+    "ratings": 4,
+    "description": "The Corsair MM700 RGB Extended is a large gaming mouse pad with dynamic 360-degree iCUE RGB edge lighting, USB pass-through, and a premium micro-textured cloth surface.",
+    "keywords": [
+      "gaming",
+      "RGB",
+      "USB",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "MSI Stealth 16 AI Studio Laptop",
+    "image": "https://example.com/images/msi-stealth-16-ai.jpg",
+    "stock": 28,
+    "price": 2799.99,
+    "ratings": 5,
+    "description": "The MSI Stealth 16 AI Studio is a creator and gaming powerhouse featuring Intel Core Ultra 9, NVIDIA RTX 4080, a 4K OLED 120Hz display, and an ultra-slim premium chassis.",
+    "keywords": [
+      "laptop",
+      "gaming",
+      "portable",
+      "RGB"
+    ],
+    "category": "laptops",
+    "brand": "MSI",
+    "availability": true
+  },
+  {
+    "name": "Fnatic miniSTREAK Silent Keyboard",
+    "image": "https://example.com/images/fnatic-ministreak-silent.jpg",
+    "stock": 85,
+    "price": 109.99,
+    "ratings": 4,
+    "description": "The Fnatic miniSTREAK Silent is a compact TKL gaming keyboard with Cherry MX Silent Red switches, individually lit RGB keys, and a durable aluminum top plate for esports.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Fnatic",
+    "availability": true
+  },
+  {
+    "name": "WD Black SN850X 4TB NVMe SSD",
+    "image": "https://example.com/images/wd-black-sn850x-4tb.jpg",
+    "stock": 120,
+    "price": 349.99,
+    "ratings": 5,
+    "description": "The WD Black SN850X 4TB NVMe Gen4 SSD features Predictive Loading technology with read speeds up to 7300MB/s, heatsink option, and official PlayStation 5 compatibility.",
+    "keywords": [
+      "storage",
+      "speed",
+      "gaming",
+      "hardware"
+    ],
+    "category": "components",
+    "brand": "Western Digital",
+    "availability": true
+  },
+  {
+    "name": "Logitech G733 Lightspeed Wireless Headset",
+    "image": "https://example.com/images/logitech-g733.jpg",
+    "stock": 90,
+    "price": 129.99,
+    "ratings": 4,
+    "description": "The Logitech G733 Lightspeed is a wireless gaming headset with LIGHTSPEED wireless, LIGHTSYNC RGB, Blue VO!CE microphone technology, and 29-hour battery life.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "RGB",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "Acer Nitro V 15 Gaming Laptop",
+    "image": "https://example.com/images/acer-nitro-v-15.jpg",
+    "stock": 80,
+    "price": 749.99,
+    "ratings": 3,
+    "description": "The Acer Nitro V 15 is a budget-friendly gaming laptop with Intel Core i5 H, NVIDIA RTX 4060, a 144Hz FHD IPS display, and dual-fan Acer CoolBoost thermal system.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "Acer",
+    "availability": true
+  },
+  {
+    "name": "Razer Seiren V3 Mini Microphone",
+    "image": "https://example.com/images/razer-seiren-v3-mini.jpg",
+    "stock": 160,
+    "price": 59.99,
+    "ratings": 4,
+    "description": "The Razer Seiren V3 Mini is a compact USB condenser microphone with a cardioid pickup pattern, tap-to-mute with LED indicator, and Chroma RGB lighting for streaming setups.",
+    "keywords": [
+      "streaming",
+      "USB",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Intel Arc A770 16GB Graphics Card",
+    "image": "https://example.com/images/intel-arc-a770-16gb.jpg",
+    "stock": 70,
+    "price": 329.99,
+    "ratings": 3,
+    "description": "The Intel Arc A770 16GB is a discrete desktop GPU with XeSS AI upscaling, DirectX 12 Ultimate support, AV1 hardware encode and decode, and 16GB of GDDR6 video memory.",
+    "keywords": [
+      "hardware",
+      "desktop",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Intel",
+    "availability": true
+  },
+  {
+    "name": "Corsair K65 Plus Wireless 75% Keyboard",
+    "image": "https://example.com/images/corsair-k65-plus-wireless.jpg",
+    "stock": 75,
+    "price": 129.99,
+    "ratings": 4,
+    "description": "The Corsair K65 Plus Wireless is a 75% layout gaming keyboard with tri-mode wireless, hot-swappable switches, premium south-facing RGB, and a machined aluminum top case.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "Lenovo Legion 7i Gen 9 Laptop",
+    "image": "https://example.com/images/lenovo-legion-7i-gen9.jpg",
+    "stock": 30,
+    "price": 1999.99,
+    "ratings": 5,
+    "description": "The Lenovo Legion 7i Gen 9 is a premium gaming laptop with Intel Core i9 HX, NVIDIA RTX 4080, a QHD+ 240Hz mini-LED display, and Legion ColdFront 5.0 thermal solution.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "RGB"
+    ],
+    "category": "laptops",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "ASUS ROG Phone 8 Pro",
+    "image": "https://example.com/images/asus-rog-phone-8-pro.jpg",
+    "stock": 40,
+    "price": 1099.99,
+    "ratings": 5,
+    "description": "The ASUS ROG Phone 8 Pro is an ultimate gaming smartphone with Snapdragon 8 Gen 3, a 6.78-inch 165Hz AMOLED display, 65W fast charging, and AeroActive Cooler compatibility.",
+    "keywords": [
+      "gaming",
+      "portable",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "ASUS",
+    "availability": true
+  },
+  {
+    "name": "Glorious Model O 2 Wireless Mouse",
+    "image": "https://example.com/images/glorious-model-o2-wireless.jpg",
+    "stock": 115,
+    "price": 79.99,
+    "ratings": 4,
+    "description": "The Glorious Model O 2 Wireless is an ultra-lightweight honeycomb gaming mouse with a 26K DPI sensor, 190-hour battery, and symmetric ambidextrous design for all grip styles.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Glorious",
+    "availability": true
+  },
+  {
+    "name": "Crucial T705 2TB PCIe Gen5 SSD",
+    "image": "https://example.com/images/crucial-t705-2tb-gen5.jpg",
+    "stock": 95,
+    "price": 249.99,
+    "ratings": 5,
+    "description": "The Crucial T705 is the fastest PCIe Gen5 NVMe M.2 SSD with sequential reads up to 14,500MB/s and writes up to 12,700MB/s, ideal for next-gen workstations and high-end PCs.",
+    "keywords": [
+      "storage",
+      "speed",
+      "hardware"
+    ],
+    "category": "components",
+    "brand": "Crucial",
+    "availability": true
+  },
+  {
+    "name": "NZXT Function 2 TKL Keyboard",
+    "image": "https://example.com/images/nzxt-function2-tkl.jpg",
+    "stock": 60,
+    "price": 109.99,
+    "ratings": 4,
+    "description": "The NZXT Function 2 TKL is a gaming keyboard with hot-swappable optical switches, per-key RGB lighting, USB-C detachable cable, and multi-platform compatibility.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "RGB",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "NZXT",
+    "availability": true
+  },
+  {
+    "name": "AVG Internet Security 2025",
+    "image": "https://example.com/images/avg-internet-security-2025.jpg",
+    "stock": 500,
+    "price": 34.99,
+    "ratings": 3,
+    "description": "AVG Internet Security 2025 delivers enhanced protection against viruses, ransomware, phishing, and spyware with a lightweight engine that keeps your PC running smoothly.",
+    "keywords": [
+      "computer",
+      "laptop",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "AVG",
+    "availability": true
+  },
+  {
+    "name": "Razer Naga V2 HyperSpeed Wireless",
+    "image": "https://example.com/images/razer-naga-v2-hyperspeed.jpg",
+    "stock": 90,
+    "price": 109.99,
+    "ratings": 4,
+    "description": "The Razer Naga V2 HyperSpeed is a wireless MMO gaming mouse with 19 plus 1 programmable buttons, HyperSpeed wireless technology, Focus Pro 30K sensor, and 150-hour battery life.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "AMD Radeon RX 7900 XTX",
+    "image": "https://example.com/images/amd-rx-7900-xtx.jpg",
+    "stock": 35,
+    "price": 949.99,
+    "ratings": 5,
+    "description": "The AMD Radeon RX 7900 XTX is AMD's flagship RDNA 3 GPU with 24GB GDDR6 memory, AV1 encode support, and exceptional 4K gaming and content creation performance.",
+    "keywords": [
+      "gaming",
+      "hardware",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "AMD",
+    "availability": true
+  },
+  {
+    "name": "Samsung T9 4TB Portable SSD",
+    "image": "https://example.com/images/samsung-t9-4tb.jpg",
+    "stock": 130,
+    "price": 299.99,
+    "ratings": 4,
+    "description": "The Samsung T9 4TB is a high-speed portable SSD with USB 3.2 Gen 2x2 delivering read and write speeds up to 2000MB/s, rugged design, and NVMe-level performance in your pocket.",
+    "keywords": [
+      "storage",
+      "portable",
+      "external",
+      "USB",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Blue Yeti USB Microphone",
+    "image": "https://example.com/images/logitech-blue-yeti.jpg",
+    "stock": 175,
+    "price": 129.99,
+    "ratings": 5,
+    "description": "The Blue Yeti USB microphone offers four selectable pickup patterns, studio-quality sound for podcasting and streaming, Blue VO!CE software integration, and plug-and-play simplicity.",
+    "keywords": [
+      "streaming",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "HP Spectre x360 14 2-in-1 Laptop",
+    "image": "https://example.com/images/hp-spectre-x360-14.jpg",
+    "stock": 42,
+    "price": 1699.99,
+    "ratings": 5,
+    "description": "The HP Spectre x360 14 is a premium 2-in-1 convertible laptop with Intel Core Ultra 7, a 2.8K OLED touchscreen, Intel Arc GPU, and a stunning tile-edge design.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Cooler Master MasterCase H500M",
+    "image": "https://example.com/images/cm-mastercase-h500m.jpg",
+    "stock": 50,
+    "price": 199.99,
+    "ratings": 4,
+    "description": "The Cooler Master MasterCase H500M is a premium mid-tower ATX case with dual 200mm ARGB fans, tempered glass side and front panels, and modular design for flexible PC builds.",
+    "keywords": [
+      "desktop",
+      "hardware",
+      "RGB",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Cooler Master",
+    "availability": true
+  },
+  {
+    "name": "HyperX Alloy Origins 65 Keyboard",
+    "image": "https://example.com/images/hyperx-alloy-origins-65.jpg",
+    "stock": 95,
+    "price": 89.99,
+    "ratings": 4,
+    "description": "The HyperX Alloy Origins 65 is a compact gaming keyboard with HyperX Red linear switches, per-key RGB lighting, a solid aluminum body, and three-layer software-free customization.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "RGB"
+    ],
+    "category": "gamings",
     "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Zotac Gaming GeForce RTX 4060 Ti",
+    "image": "https://example.com/images/zotac-rtx-4060-ti.jpg",
+    "stock": 80,
+    "price": 449.99,
+    "ratings": 4,
+    "description": "The Zotac Gaming RTX 4060 Ti features NVIDIA Ada Lovelace GPU, DLSS 3, 8GB GDDR6, and the IceStorm 2.0 cooling system for smooth 1080p and 1440p gaming performance.",
+    "keywords": [
+      "gaming",
+      "hardware",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "Zotac",
+    "availability": true
+  },
+  {
+    "name": "Razer Wolverine V3 Pro Controller",
+    "image": "https://example.com/images/razer-wolverine-v3-pro.jpg",
+    "stock": 70,
+    "price": 199.99,
+    "ratings": 5,
+    "description": "The Razer Wolverine V3 Pro is a wireless pro gaming controller for PC and Xbox with HyperSpeed wireless, micro-switches, 6 remappable buttons, and hair-trigger locks.",
+    "keywords": [
+      "gaming",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Samsung 870 QVO 8TB SATA SSD",
+    "image": "https://example.com/images/samsung-870-qvo-8tb.jpg",
+    "stock": 100,
+    "price": 399.99,
+    "ratings": 4,
+    "description": "The Samsung 870 QVO 8TB is a high-capacity 2.5-inch SATA SSD with Intelligent TurboWrite technology, 560MB/s sequential read speed, and a 3-year warranty for bulk storage.",
+    "keywords": [
+      "storage",
+      "hardware",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "ASUS ROG Delta S Animate Headset",
+    "image": "https://example.com/images/asus-rog-delta-s-animate.jpg",
+    "stock": 55,
+    "price": 299.99,
+    "ratings": 4,
+    "description": "The ASUS ROG Delta S Animate is a USB-C gaming headset with a customizable AniMe Matrix LED display on the earcup, Hi-Res ESS DAC, and AI noise-canceling microphone.",
+    "keywords": [
+      "gaming",
+      "USB",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "ASUS",
+    "availability": true
+  },
+  {
+    "name": "Acer ConceptD 7 Pro Creator Laptop",
+    "image": "https://example.com/images/acer-conceptd-7-pro.jpg",
+    "stock": 18,
+    "price": 3299.99,
+    "ratings": 4,
+    "description": "The Acer ConceptD 7 Pro is a professional creator laptop with Intel Core i7, NVIDIA RTX A5000, factory-calibrated Delta-E less than 2 4K IPS display, and Pantone Validated color accuracy.",
+    "keywords": [
+      "laptop",
+      "computer",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "Acer",
     "availability": false
+  },
+  {
+    "name": "Logitech G Hub Software",
+    "image": "https://example.com/images/logitech-g-hub.jpg",
+    "stock": 999,
+    "price": 0.0,
+    "ratings": 3,
+    "description": "Logitech G Hub is a free software platform to customize Logitech G gaming gear, program macros, sync Lightsync RGB, and manage device profiles all in one place.",
+    "keywords": [
+      "gaming",
+      "computer",
+      "laptop",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "Logitech",
+    "availability": true
+  },
+  {
+    "name": "Alienware m18 R2 Gaming Laptop",
+    "image": "https://example.com/images/alienware-m18-r2.jpg",
+    "stock": 12,
+    "price": 3499.99,
+    "ratings": 5,
+    "description": "The Alienware m18 R2 is a desktop-replacement gaming laptop with Intel Core i9 HX, NVIDIA RTX 4090, an 18-inch QHD+ 240Hz display, and Cherry MX mechanical keyboard.",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "keyboard",
+      "RGB"
+    ],
+    "category": "laptops",
+    "brand": "Alienware",
+    "availability": true
+  },
+  {
+    "name": "EpocCam Pro Webcam App",
+    "image": "https://example.com/images/epoccam-pro.jpg",
+    "stock": 999,
+    "price": 29.99,
+    "ratings": 4,
+    "description": "EpocCam Pro transforms your iPhone or Android into a high-quality wireless webcam for OBS, Zoom, and Teams, with 4K support, background removal, and low-latency connectivity.",
+    "keywords": [
+      "streaming",
+      "wireless",
+      "laptop",
+      "computer"
+    ],
+    "category": "softwares",
+    "brand": "Elgato",
+    "availability": true
+  },
+  {
+    "name": "Corsair Scimitar Elite Wireless Mouse",
+    "image": "https://example.com/images/corsair-scimitar-elite-wireless.jpg",
+    "stock": 80,
+    "price": 119.99,
+    "ratings": 4,
+    "description": "The Corsair Scimitar Elite Wireless is an MMO gaming mouse with 16 fully programmable side buttons, SLIPSTREAM wireless technology, 26K DPI sensor, and 100-hour battery life.",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "Corsair",
+    "availability": true
+  },
+  {
+    "name": "Fractal Design Torrent Compact Case",
+    "image": "https://example.com/images/fractal-torrent-compact.jpg",
+    "stock": 65,
+    "price": 139.99,
+    "ratings": 5,
+    "description": "The Fractal Design Torrent Compact is a high-airflow mid-tower PC case with three included 140mm fans, open-vent front panel, and flexible E-ATX support in a compact footprint.",
+    "keywords": [
+      "desktop",
+      "hardware",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Fractal Design",
+    "availability": true
+  },
+  {
+    "name": "SteelSeries Apex Pro TKL Wireless",
+    "image": "https://example.com/images/steelseries-apex-pro-tkl-wireless.jpg",
+    "stock": 70,
+    "price": 229.99,
+    "ratings": 5,
+    "description": "The SteelSeries Apex Pro TKL Wireless features the world's first adjustable actuation OmniPoint 2.0 magnetic switches, Quantum 2.0 wireless, and 100-hour battery life.",
+    "keywords": [
+      "gaming",
+      "keyboard",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "SteelSeries",
+    "availability": true
+  },
+  {
+    "name": "ASUS VivoBook 15 Laptop",
+    "image": "https://example.com/images/asus-vivobook-15.jpg",
+    "stock": 100,
+    "price": 549.99,
+    "ratings": 3,
+    "description": "The ASUS VivoBook 15 is an affordable everyday laptop with AMD Ryzen 5 7520U, 8GB RAM, 512GB SSD, FHD display, and a fingerprint reader for secure and convenient daily use.",
+    "keywords": [
+      "laptop",
+      "portable",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "ASUS",
+    "availability": true
   }
 ]
