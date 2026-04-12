@@ -7,8 +7,7 @@ const statusCodes = require('http-status-codes');
 //get all products
 const getAllProducts = asyncHaddler(async(req,res)=>{
 
-    const {search,category,limit,page,sortBy,brand,price,rating} = req.query;
-
+    const {search,category,availability,sortBy,brand,select,pr,rr} = req.query;
     let queryObject = {}; 
 
     //products filter by serach
@@ -24,6 +23,29 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
         queryObject.category = category;
 
     }
+    //product filter by availability
+    if(availability){
+        queryObject.availability = availability==='false' ? false : true;
+    }
+    //products filters by rangers price
+    if(pr){
+        const values = pr.split('-')
+        const maxValue = Number(values[0]) 
+        const minValue = Number(values[1])
+        queryObject.price = {$gte: maxValue,$lte: minValue}
+    }   
+    if(rr){
+        const values = rr.split('-')
+        const maxValue = Number(values[0]) 
+        const minValue = Number(values[1])
+        queryObject.ratings = {$gte: maxValue,$lte: minValue}
+    }
+
+    //product paging
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page-1)*limit
+
     const result = Products.find(queryObject);
 
     //product sortby price
@@ -36,23 +58,23 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
         }
     }
 
-    //product paging
-    const pageCount = page || 1;
-    const limitSize = limit || 10;
-    const skip = (pageCount-1)*limitSize
+    //product selecttions
+    if(select){
+        const selectValues = select.split(',').join(' ')
+        result.select(selectValues)
+    }
 
     //get products
-    const allProducts = await result
-        .skip(skip)
-        .limit(limit)
+    const allProducts = await result.skip(skip).limit(limit)
 
     //count all products
     const allProductCount = await Products.find(queryObject);
     res.status(statusCodes.OK).json({
         success: true,
-        result_count: allProductCount.length,
+        all_result: allProductCount.length,
+        page_result: allProducts.length,
         products: allProducts,
-        page: pageCount,
+        page: page,
     })
 })
 
