@@ -47,4 +47,10 @@ const ProductsSchema = mongoose.Schema({
     }
 }, {timestamps: true});
 
+ProductsSchema.pre('save', function(){
+    if(this.stock === 0 || !this.stock){
+        return this.availability = false;
+    }
+})
+
 module.exports = mongoose.model('products', ProductsSchema);

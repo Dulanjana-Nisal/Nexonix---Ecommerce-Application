@@ -47,7 +47,6 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
     const skip = (page-1)*limit
 
     const result = Products.find(queryObject);
-
     //product sortby price
     if(sortBy){
         if(sortBy === 'low_to_high'){
@@ -57,7 +56,6 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
             result.sort({price: -1})
         }
     }
-
     //product selecttions
     if(select){
         const selectValues = select.split(',').join(' ')
@@ -73,36 +71,90 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
         success: true,
         all_result: allProductCount.length,
         page_result: allProducts.length,
-        products: allProducts,
+        data: allProducts,
         page: page,
     })
 })
 
 //add products
 const addProducts = asyncHaddler(async(req,res)=>{
-    await Products.create(req.body)
-    res.status(statusCodes.OK).send("Product Added!")
+    const createProducts = await Products.create(req.body)
+    res.status(statusCodes.CREATED).json({success: true, data: createProducts})
 })
 
 //get single products
 const getSingleProduct = asyncHaddler(async(req,res)=>{
-    res.status(200).send('Get single Products!')
+    //get product by id
+    const paremID = req.params.id;
+    const singleProduct = await Products.findOne({_id: paremID})
+    if(!singleProduct){
+        throw new NotFoundErrorHaddler('Product not found!')
+    }
+    res.status(statusCodes.OK).json({success: true, data: singleProduct})
+})
+
+//products Recommendations
+const recommendProducts = asyncHaddler(async(req,res)=>{
+    const paremID = req.params.id; 
+    const getProductDetails = await Products.findOne({_id: paremID});
+    const productCategory = getProductDetails.category;
+    const productPrice = getProductDetails.price;
+
+    let priceRange = 10; 
+    if(0 < productPrice < 10){
+        priceRange = 1
+    }
+    if(10 < productPrice < 100){
+        priceRange = 10
+    }
+    if(100 < productPrice < 1000){
+        priceRange = 100
+    }
+    if(1000 < productPrice < 10000){
+        priceRange = 1000
+    }
+    console.log(productPrice)
+    console.log(priceRange)
+    const productRecomendation = await Products.find({
+        category: productCategory,
+        price: {
+            $gte: productPrice-priceRange,
+            $lte: productPrice+priceRange
+        }
+    }).limit(10)
+    res.status(200).json({success: true, all_result: productRecomendation.length, data: productRecomendation})
 })
 
 //update products
 const updateProducts = asyncHaddler(async(req,res)=>{
-    res.status(200).send('Update Products!')
+    const paremID = req.params.id; 
+    if(req.body.stock === 0){
+        req.body.availability = false
+    }
+    if(req.body.stock !== 0 || req.body.availability === true){
+        req.body.availability = true
+    }
+    console.log(req.body.stock)
+    console.log(req.body.availability)
+    const updateProduct = await Products.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})
+    res.status(statusCodes.OK).json({success: true, data: updateProduct})
 })
 
 //delete products
 const deleteProducts = asyncHaddler(async(req,res)=>{
-    res.status(200).send('Delete Products!')
+    const paremID = req.params.id;
+    const deleteProduct = await Products.findOneAndDelete({_id: paremID})
+    if(!deleteProduct){
+        throw new NotFoundErrorHaddler('Product not found!');
+    }
+    res.status(200).json({success: true, message: `${deleteProduct.name} is deleted!`})
 })
 
 module.exports = {
     getAllProducts,
     addProducts,
     getSingleProduct,
+    recommendProducts,
     updateProducts,
     deleteProducts
 }
