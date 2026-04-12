@@ -1,0 +1,1602 @@
+[
+  {
+    "name": "Product 1 Plus",
+    "image": "product1.jpg",
+    "stock": 88,
+    "price": 1142.59,
+    "ratings": 2.7,
+    "description": "This is a high quality product number 1",
+    "keywords": [
+      "desktop",
+      "speed",
+      "gaming"
+    ],
+    "category": "laptops",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 2 Max",
+    "image": "product2.jpg",
+    "stock": 46,
+    "price": 254.73,
+    "ratings": 2.8,
+    "description": "This is a high quality product number 2",
+    "keywords": [
+      "speed",
+      "gaming",
+      "desktop"
+    ],
+    "category": "laptops",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 3 Pro",
+    "image": "product3.jpg",
+    "stock": 17,
+    "price": 216.37,
+    "ratings": 2.6,
+    "description": "This is a high quality product number 3",
+    "keywords": [
+      "laptop",
+      "external",
+      "mouse"
+    ],
+    "category": "components",
+    "brand": "Dell",
+    "availability": true
+  },
+  {
+    "name": "Product 4 Pro",
+    "image": "product4.jpg",
+    "stock": 60,
+    "price": 469.07,
+    "ratings": 1.1,
+    "description": "This is a high quality product number 4",
+    "keywords": [
+      "gaming",
+      "streaming",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "Samsung",
+    "availability": false
+  },
+  {
+    "name": "Product 5 Max",
+    "image": "product5.jpg",
+    "stock": 16,
+    "price": 856.38,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 5",
+    "keywords": [
+      "wireless",
+      "USB",
+      "laptop"
+    ],
+    "category": "components",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 6 Max",
+    "image": "product6.jpg",
+    "stock": 77,
+    "price": 68.36,
+    "ratings": 3.9,
+    "description": "This is a high quality product number 6",
+    "keywords": [
+      "external",
+      "keyboard",
+      "computer"
+    ],
+    "category": "softwares",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 7 Plus",
+    "image": "product7.jpg",
+    "stock": 70,
+    "price": 886.74,
+    "ratings": 5.0,
+    "description": "This is a high quality product number 7",
+    "keywords": [
+      "storage",
+      "desktop",
+      "USB"
+    ],
+    "category": "softwares",
+    "brand": "Acer",
+    "availability": true
+  },
+  {
+    "name": "Product 8 Pro",
+    "image": "product8.jpg",
+    "stock": 46,
+    "price": 474.35,
+    "ratings": 0.5,
+    "description": "This is a high quality product number 8",
+    "keywords": [
+      "keyboard",
+      "external",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Product 9 X",
+    "image": "product9.jpg",
+    "stock": 83,
+    "price": 428.16,
+    "ratings": 0.4,
+    "description": "This is a high quality product number 9",
+    "keywords": [
+      "computer",
+      "streaming",
+      "portable"
+    ],
+    "category": "gamings",
+    "brand": "MSI",
+    "availability": true
+  },
+  {
+    "name": "Product 10 X",
+    "image": "product10.jpg",
+    "stock": 78,
+    "price": 1410.99,
+    "ratings": 0.4,
+    "description": "This is a high quality product number 10",
+    "keywords": [
+      "desktop",
+      "RGB",
+      "USB"
+    ],
+    "category": "components",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 11 Plus",
+    "image": "product11.jpg",
+    "stock": 54,
+    "price": 301.23,
+    "ratings": 4.8,
+    "description": "This is a high quality product number 11",
+    "keywords": [
+      "mouse",
+      "storage",
+      "external"
+    ],
+    "category": "softwares",
+    "brand": "Razer",
+    "availability": false
+  },
+  {
+    "name": "Product 12 Max",
+    "image": "product12.jpg",
+    "stock": 31,
+    "price": 252.15,
+    "ratings": 4.5,
+    "description": "This is a high quality product number 12",
+    "keywords": [
+      "storage",
+      "streaming",
+      "keyboard"
+    ],
+    "category": "gamings",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 13 Elite",
+    "image": "product13.jpg",
+    "stock": 91,
+    "price": 1399.46,
+    "ratings": 1.1,
+    "description": "This is a high quality product number 13",
+    "keywords": [
+      "external",
+      "keyboard",
+      "mouse"
+    ],
+    "category": "components",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 14 Plus",
+    "image": "product14.jpg",
+    "stock": 8,
+    "price": 1199.73,
+    "ratings": 0.8,
+    "description": "This is a high quality product number 14",
+    "keywords": [
+      "external",
+      "hardware",
+      "gaming"
+    ],
+    "category": "softwares",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "Product 15 Max",
+    "image": "product15.jpg",
+    "stock": 25,
+    "price": 1277.68,
+    "ratings": 2.7,
+    "description": "This is a high quality product number 15",
+    "keywords": [
+      "external",
+      "gaming",
+      "RGB"
+    ],
+    "category": "components",
+    "brand": "HyperX",
+    "availability": false
+  },
+  {
+    "name": "Product 16 Elite",
+    "image": "product16.jpg",
+    "stock": 10,
+    "price": 939.67,
+    "ratings": 0.8,
+    "description": "This is a high quality product number 16",
+    "keywords": [
+      "RGB",
+      "laptop",
+      "keyboard"
+    ],
+    "category": "laptops",
+    "brand": "LogiTech",
+    "availability": false
+  },
+  {
+    "name": "Product 17 Plus",
+    "image": "product17.jpg",
+    "stock": 63,
+    "price": 1251.88,
+    "ratings": 3.0,
+    "description": "This is a high quality product number 17",
+    "keywords": [
+      "USB",
+      "external",
+      "mouse"
+    ],
+    "category": "components",
+    "brand": "MSI",
+    "availability": false
+  },
+  {
+    "name": "Product 18 Elite",
+    "image": "product18.jpg",
+    "stock": 12,
+    "price": 704.75,
+    "ratings": 4.7,
+    "description": "This is a high quality product number 18",
+    "keywords": [
+      "laptop",
+      "gaming",
+      "USB"
+    ],
+    "category": "computers",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 19 X",
+    "image": "product19.jpg",
+    "stock": 8,
+    "price": 1063.54,
+    "ratings": 3.4,
+    "description": "This is a high quality product number 19",
+    "keywords": [
+      "gaming",
+      "wireless",
+      "portable"
+    ],
+    "category": "gamings",
+    "brand": "HyperX",
+    "availability": false
+  },
+  {
+    "name": "Product 20 Max",
+    "image": "product20.jpg",
+    "stock": 50,
+    "price": 718.04,
+    "ratings": 3.8,
+    "description": "This is a high quality product number 20",
+    "keywords": [
+      "desktop",
+      "gaming",
+      "computer"
+    ],
+    "category": "components",
+    "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Product 21 Elite",
+    "image": "product21.jpg",
+    "stock": 87,
+    "price": 642.83,
+    "ratings": 0.3,
+    "description": "This is a high quality product number 21",
+    "keywords": [
+      "gaming",
+      "portable",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 22 Max",
+    "image": "product22.jpg",
+    "stock": 6,
+    "price": 197.53,
+    "ratings": 1.3,
+    "description": "This is a high quality product number 22",
+    "keywords": [
+      "storage",
+      "RGB",
+      "wireless"
+    ],
+    "category": "components",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 23 Pro",
+    "image": "product23.jpg",
+    "stock": 48,
+    "price": 766.97,
+    "ratings": 4.7,
+    "description": "This is a high quality product number 23",
+    "keywords": [
+      "laptop",
+      "wireless",
+      "external"
+    ],
+    "category": "gamings",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 24 Plus",
+    "image": "product24.jpg",
+    "stock": 94,
+    "price": 760.96,
+    "ratings": 2.9,
+    "description": "This is a high quality product number 24",
+    "keywords": [
+      "gaming",
+      "desktop",
+      "portable"
+    ],
+    "category": "gamings",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "Product 25 Elite",
+    "image": "product25.jpg",
+    "stock": 81,
+    "price": 900.85,
+    "ratings": 0.5,
+    "description": "This is a high quality product number 25",
+    "keywords": [
+      "keyboard",
+      "hardware",
+      "storage"
+    ],
+    "category": "computers",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 26 Pro",
+    "image": "product26.jpg",
+    "stock": 57,
+    "price": 948.06,
+    "ratings": 2.4,
+    "description": "This is a high quality product number 26",
+    "keywords": [
+      "RGB",
+      "computer",
+      "wireless"
+    ],
+    "category": "laptops",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 27 Pro",
+    "image": "product27.jpg",
+    "stock": 75,
+    "price": 364.25,
+    "ratings": 2.5,
+    "description": "This is a high quality product number 27",
+    "keywords": [
+      "computer",
+      "external",
+      "laptop"
+    ],
+    "category": "softwares",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 28 Pro",
+    "image": "product28.jpg",
+    "stock": 77,
+    "price": 1344.56,
+    "ratings": 3.9,
+    "description": "This is a high quality product number 28",
+    "keywords": [
+      "keyboard",
+      "speed",
+      "RGB"
+    ],
+    "category": "laptops",
+    "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Product 29 X",
+    "image": "product29.jpg",
+    "stock": 91,
+    "price": 1023.73,
+    "ratings": 3.0,
+    "description": "This is a high quality product number 29",
+    "keywords": [
+      "storage",
+      "mouse",
+      "hardware"
+    ],
+    "category": "gamings",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 30 Plus",
+    "image": "product30.jpg",
+    "stock": 42,
+    "price": 1200.54,
+    "ratings": 1.1,
+    "description": "This is a high quality product number 30",
+    "keywords": [
+      "wireless",
+      "keyboard",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "CoolerMaster",
+    "availability": false
+  },
+  {
+    "name": "Product 31 Elite",
+    "image": "product31.jpg",
+    "stock": 52,
+    "price": 484.37,
+    "ratings": 2.1,
+    "description": "This is a high quality product number 31",
+    "keywords": [
+      "gaming",
+      "laptop",
+      "portable"
+    ],
+    "category": "laptops",
+    "brand": "Dell",
+    "availability": false
+  },
+  {
+    "name": "Product 32 Pro",
+    "image": "product32.jpg",
+    "stock": 12,
+    "price": 1028.31,
+    "ratings": 4.0,
+    "description": "This is a high quality product number 32",
+    "keywords": [
+      "mouse",
+      "portable",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "HP",
+    "availability": false
+  },
+  {
+    "name": "Product 33 Plus",
+    "image": "product33.jpg",
+    "stock": 53,
+    "price": 1458.42,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 33",
+    "keywords": [
+      "portable",
+      "laptop",
+      "streaming"
+    ],
+    "category": "laptops",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 34 Plus",
+    "image": "product34.jpg",
+    "stock": 40,
+    "price": 1080.54,
+    "ratings": 4.9,
+    "description": "This is a high quality product number 34",
+    "keywords": [
+      "wireless",
+      "portable",
+      "external"
+    ],
+    "category": "gamings",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 35 Plus",
+    "image": "product35.jpg",
+    "stock": 87,
+    "price": 977.65,
+    "ratings": 3.7,
+    "description": "This is a high quality product number 35",
+    "keywords": [
+      "desktop",
+      "wireless",
+      "external"
+    ],
+    "category": "softwares",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 36 Max",
+    "image": "product36.jpg",
+    "stock": 64,
+    "price": 317.59,
+    "ratings": 4.9,
+    "description": "This is a high quality product number 36",
+    "keywords": [
+      "portable",
+      "storage",
+      "mouse"
+    ],
+    "category": "gamings",
+    "brand": "LogiTech",
+    "availability": false
+  },
+  {
+    "name": "Product 37 X",
+    "image": "product37.jpg",
+    "stock": 52,
+    "price": 1337.2,
+    "ratings": 4.4,
+    "description": "This is a high quality product number 37",
+    "keywords": [
+      "RGB",
+      "USB",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "CoolerMaster",
+    "availability": false
+  },
+  {
+    "name": "Product 38 X",
+    "image": "product38.jpg",
+    "stock": 17,
+    "price": 1253.51,
+    "ratings": 1.1,
+    "description": "This is a high quality product number 38",
+    "keywords": [
+      "RGB",
+      "wireless",
+      "hardware"
+    ],
+    "category": "computers",
+    "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Product 39 Plus",
+    "image": "product39.jpg",
+    "stock": 22,
+    "price": 478.59,
+    "ratings": 3.2,
+    "description": "This is a high quality product number 39",
+    "keywords": [
+      "streaming",
+      "computer",
+      "laptop"
+    ],
+    "category": "gamings",
+    "brand": "Asus",
+    "availability": false
+  },
+  {
+    "name": "Product 40 Plus",
+    "image": "product40.jpg",
+    "stock": 77,
+    "price": 187.39,
+    "ratings": 2.2,
+    "description": "This is a high quality product number 40",
+    "keywords": [
+      "desktop",
+      "laptop",
+      "portable"
+    ],
+    "category": "softwares",
+    "brand": "HyperX",
+    "availability": true
+  },
+  {
+    "name": "Product 41 X",
+    "image": "product41.jpg",
+    "stock": 29,
+    "price": 641.76,
+    "ratings": 2.5,
+    "description": "This is a high quality product number 41",
+    "keywords": [
+      "external",
+      "storage",
+      "laptop"
+    ],
+    "category": "components",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 42 Max",
+    "image": "product42.jpg",
+    "stock": 72,
+    "price": 1225.82,
+    "ratings": 2.2,
+    "description": "This is a high quality product number 42",
+    "keywords": [
+      "computer",
+      "streaming",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Acer",
+    "availability": true
+  },
+  {
+    "name": "Product 43 Max",
+    "image": "product43.jpg",
+    "stock": 86,
+    "price": 659.82,
+    "ratings": 1.4,
+    "description": "This is a high quality product number 43",
+    "keywords": [
+      "portable",
+      "streaming",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Samsung",
+    "availability": true
+  },
+  {
+    "name": "Product 44 Pro",
+    "image": "product44.jpg",
+    "stock": 92,
+    "price": 786.97,
+    "ratings": 0.4,
+    "description": "This is a high quality product number 44",
+    "keywords": [
+      "desktop",
+      "portable",
+      "hardware"
+    ],
+    "category": "components",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 45 X",
+    "image": "product45.jpg",
+    "stock": 80,
+    "price": 424.64,
+    "ratings": 3.9,
+    "description": "This is a high quality product number 45",
+    "keywords": [
+      "desktop",
+      "wireless",
+      "RGB"
+    ],
+    "category": "gamings",
+    "brand": "Dell",
+    "availability": true
+  },
+  {
+    "name": "Product 46 Pro",
+    "image": "product46.jpg",
+    "stock": 52,
+    "price": 1109.27,
+    "ratings": 3.0,
+    "description": "This is a high quality product number 46",
+    "keywords": [
+      "RGB",
+      "streaming",
+      "computer"
+    ],
+    "category": "computers",
+    "brand": "HyperX",
+    "availability": false
+  },
+  {
+    "name": "Product 47 X",
+    "image": "product47.jpg",
+    "stock": 20,
+    "price": 705.14,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 47",
+    "keywords": [
+      "desktop",
+      "mouse",
+      "RGB"
+    ],
+    "category": "softwares",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 48 Elite",
+    "image": "product48.jpg",
+    "stock": 75,
+    "price": 832.64,
+    "ratings": 2.0,
+    "description": "This is a high quality product number 48",
+    "keywords": [
+      "computer",
+      "wireless",
+      "USB"
+    ],
+    "category": "laptops",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 49 Pro",
+    "image": "product49.jpg",
+    "stock": 26,
+    "price": 327.98,
+    "ratings": 1.3,
+    "description": "This is a high quality product number 49",
+    "keywords": [
+      "hardware",
+      "mouse",
+      "laptop"
+    ],
+    "category": "softwares",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 50 Pro",
+    "image": "product50.jpg",
+    "stock": 30,
+    "price": 860.08,
+    "ratings": 2.2,
+    "description": "This is a high quality product number 50",
+    "keywords": [
+      "USB",
+      "external",
+      "laptop"
+    ],
+    "category": "computers",
+    "brand": "Lenovo",
+    "availability": false
+  },
+  {
+    "name": "Product 51 Max",
+    "image": "product51.jpg",
+    "stock": 10,
+    "price": 945.72,
+    "ratings": 2.8,
+    "description": "This is a high quality product number 51",
+    "keywords": [
+      "portable",
+      "wireless",
+      "mouse"
+    ],
+    "category": "components",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 52 Elite",
+    "image": "product52.jpg",
+    "stock": 46,
+    "price": 1404.24,
+    "ratings": 4.2,
+    "description": "This is a high quality product number 52",
+    "keywords": [
+      "gaming",
+      "hardware",
+      "desktop"
+    ],
+    "category": "computers",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 53 X",
+    "image": "product53.jpg",
+    "stock": 13,
+    "price": 373.57,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 53",
+    "keywords": [
+      "desktop",
+      "mouse",
+      "storage"
+    ],
+    "category": "components",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 54 Elite",
+    "image": "product54.jpg",
+    "stock": 84,
+    "price": 1041.83,
+    "ratings": 4.6,
+    "description": "This is a high quality product number 54",
+    "keywords": [
+      "streaming",
+      "keyboard",
+      "desktop"
+    ],
+    "category": "gamings",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "Product 55 Elite",
+    "image": "product55.jpg",
+    "stock": 49,
+    "price": 41.08,
+    "ratings": 1.4,
+    "description": "This is a high quality product number 55",
+    "keywords": [
+      "computer",
+      "wireless",
+      "hardware"
+    ],
+    "category": "computers",
+    "brand": "Dell",
+    "availability": true
+  },
+  {
+    "name": "Product 56 Pro",
+    "image": "product56.jpg",
+    "stock": 20,
+    "price": 100.57,
+    "ratings": 2.6,
+    "description": "This is a high quality product number 56",
+    "keywords": [
+      "desktop",
+      "external",
+      "keyboard"
+    ],
+    "category": "components",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 57 Plus",
+    "image": "product57.jpg",
+    "stock": 16,
+    "price": 556.11,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 57",
+    "keywords": [
+      "gaming",
+      "desktop",
+      "wireless"
+    ],
+    "category": "gamings",
+    "brand": "MSI",
+    "availability": false
+  },
+  {
+    "name": "Product 58 X",
+    "image": "product58.jpg",
+    "stock": 64,
+    "price": 1254.35,
+    "ratings": 0.4,
+    "description": "This is a high quality product number 58",
+    "keywords": [
+      "gaming",
+      "computer",
+      "hardware"
+    ],
+    "category": "computers",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Product 59 X",
+    "image": "product59.jpg",
+    "stock": 89,
+    "price": 1048.0,
+    "ratings": 4.0,
+    "description": "This is a high quality product number 59",
+    "keywords": [
+      "hardware",
+      "portable",
+      "wireless"
+    ],
+    "category": "softwares",
+    "brand": "HP",
+    "availability": false
+  },
+  {
+    "name": "Product 60 Pro",
+    "image": "product60.jpg",
+    "stock": 74,
+    "price": 1161.3,
+    "ratings": 1.6,
+    "description": "This is a high quality product number 60",
+    "keywords": [
+      "storage",
+      "external",
+      "mouse"
+    ],
+    "category": "laptops",
+    "brand": "Anker",
+    "availability": false
+  },
+  {
+    "name": "Product 61 Elite",
+    "image": "product61.jpg",
+    "stock": 97,
+    "price": 309.57,
+    "ratings": 3.0,
+    "description": "This is a high quality product number 61",
+    "keywords": [
+      "speed",
+      "USB",
+      "external"
+    ],
+    "category": "gamings",
+    "brand": "Dell",
+    "availability": true
+  },
+  {
+    "name": "Product 62 Elite",
+    "image": "product62.jpg",
+    "stock": 73,
+    "price": 33.16,
+    "ratings": 2.1,
+    "description": "This is a high quality product number 62",
+    "keywords": [
+      "USB",
+      "laptop",
+      "keyboard"
+    ],
+    "category": "laptops",
+    "brand": "HyperX",
+    "availability": false
+  },
+  {
+    "name": "Product 63 Max",
+    "image": "product63.jpg",
+    "stock": 52,
+    "price": 934.98,
+    "ratings": 0.1,
+    "description": "This is a high quality product number 63",
+    "keywords": [
+      "streaming",
+      "desktop",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 64 Elite",
+    "image": "product64.jpg",
+    "stock": 79,
+    "price": 740.85,
+    "ratings": 0.9,
+    "description": "This is a high quality product number 64",
+    "keywords": [
+      "computer",
+      "gaming",
+      "streaming"
+    ],
+    "category": "laptops",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 65 Plus",
+    "image": "product65.jpg",
+    "stock": 32,
+    "price": 315.33,
+    "ratings": 2.5,
+    "description": "This is a high quality product number 65",
+    "keywords": [
+      "portable",
+      "laptop",
+      "desktop"
+    ],
+    "category": "softwares",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 66 Pro",
+    "image": "product66.jpg",
+    "stock": 40,
+    "price": 343.84,
+    "ratings": 1.8,
+    "description": "This is a high quality product number 66",
+    "keywords": [
+      "external",
+      "RGB",
+      "wireless"
+    ],
+    "category": "laptops",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 67 Max",
+    "image": "product67.jpg",
+    "stock": 88,
+    "price": 1108.92,
+    "ratings": 1.4,
+    "description": "This is a high quality product number 67",
+    "keywords": [
+      "hardware",
+      "wireless",
+      "laptop"
+    ],
+    "category": "laptops",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 68 Elite",
+    "image": "product68.jpg",
+    "stock": 8,
+    "price": 873.5,
+    "ratings": 4.0,
+    "description": "This is a high quality product number 68",
+    "keywords": [
+      "external",
+      "wireless",
+      "computer"
+    ],
+    "category": "softwares",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Product 69 Max",
+    "image": "product69.jpg",
+    "stock": 90,
+    "price": 1410.44,
+    "ratings": 3.5,
+    "description": "This is a high quality product number 69",
+    "keywords": [
+      "hardware",
+      "RGB",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 70 Max",
+    "image": "product70.jpg",
+    "stock": 7,
+    "price": 520.16,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 70",
+    "keywords": [
+      "external",
+      "mouse",
+      "storage"
+    ],
+    "category": "computers",
+    "brand": "MSI",
+    "availability": false
+  },
+  {
+    "name": "Product 71 X",
+    "image": "product71.jpg",
+    "stock": 100,
+    "price": 856.46,
+    "ratings": 3.9,
+    "description": "This is a high quality product number 71",
+    "keywords": [
+      "hardware",
+      "keyboard",
+      "wireless"
+    ],
+    "category": "softwares",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 72 Max",
+    "image": "product72.jpg",
+    "stock": 66,
+    "price": 1274.87,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 72",
+    "keywords": [
+      "mouse",
+      "USB",
+      "keyboard"
+    ],
+    "category": "components",
+    "brand": "Asus",
+    "availability": false
+  },
+  {
+    "name": "Product 73 Plus",
+    "image": "product73.jpg",
+    "stock": 14,
+    "price": 1476.27,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 73",
+    "keywords": [
+      "RGB",
+      "streaming",
+      "storage"
+    ],
+    "category": "computers",
+    "brand": "MSI",
+    "availability": true
+  },
+  {
+    "name": "Product 74 Max",
+    "image": "product74.jpg",
+    "stock": 82,
+    "price": 1411.75,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 74",
+    "keywords": [
+      "wireless",
+      "hardware",
+      "mouse"
+    ],
+    "category": "computers",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 75 Plus",
+    "image": "product75.jpg",
+    "stock": 79,
+    "price": 1441.11,
+    "ratings": 2.4,
+    "description": "This is a high quality product number 75",
+    "keywords": [
+      "computer",
+      "gaming",
+      "desktop"
+    ],
+    "category": "components",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 76 Plus",
+    "image": "product76.jpg",
+    "stock": 82,
+    "price": 401.59,
+    "ratings": 0.3,
+    "description": "This is a high quality product number 76",
+    "keywords": [
+      "wireless",
+      "speed",
+      "computer"
+    ],
+    "category": "softwares",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Product 77 Plus",
+    "image": "product77.jpg",
+    "stock": 45,
+    "price": 306.31,
+    "ratings": 1.9,
+    "description": "This is a high quality product number 77",
+    "keywords": [
+      "keyboard",
+      "gaming",
+      "computer"
+    ],
+    "category": "gamings",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 78 Max",
+    "image": "product78.jpg",
+    "stock": 85,
+    "price": 866.86,
+    "ratings": 2.3,
+    "description": "This is a high quality product number 78",
+    "keywords": [
+      "wireless",
+      "keyboard",
+      "gaming"
+    ],
+    "category": "gamings",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "Product 79 Elite",
+    "image": "product79.jpg",
+    "stock": 33,
+    "price": 471.54,
+    "ratings": 3.7,
+    "description": "This is a high quality product number 79",
+    "keywords": [
+      "laptop",
+      "portable",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "Acer",
+    "availability": false
+  },
+  {
+    "name": "Product 80 Max",
+    "image": "product80.jpg",
+    "stock": 56,
+    "price": 643.95,
+    "ratings": 0.1,
+    "description": "This is a high quality product number 80",
+    "keywords": [
+      "hardware",
+      "keyboard",
+      "external"
+    ],
+    "category": "softwares",
+    "brand": "HyperX",
+    "availability": false
+  },
+  {
+    "name": "Product 81 Plus",
+    "image": "product81.jpg",
+    "stock": 21,
+    "price": 274.94,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 81",
+    "keywords": [
+      "external",
+      "desktop",
+      "RGB"
+    ],
+    "category": "laptops",
+    "brand": "MSI",
+    "availability": true
+  },
+  {
+    "name": "Product 82 Pro",
+    "image": "product82.jpg",
+    "stock": 23,
+    "price": 982.17,
+    "ratings": 1.2,
+    "description": "This is a high quality product number 82",
+    "keywords": [
+      "USB",
+      "computer",
+      "gaming"
+    ],
+    "category": "components",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 83 Pro",
+    "image": "product83.jpg",
+    "stock": 86,
+    "price": 92.66,
+    "ratings": 4.4,
+    "description": "This is a high quality product number 83",
+    "keywords": [
+      "mouse",
+      "hardware",
+      "computer"
+    ],
+    "category": "components",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 84 Pro",
+    "image": "product84.jpg",
+    "stock": 72,
+    "price": 472.52,
+    "ratings": 3.5,
+    "description": "This is a high quality product number 84",
+    "keywords": [
+      "USB",
+      "streaming",
+      "external"
+    ],
+    "category": "computers",
+    "brand": "Dell",
+    "availability": false
+  },
+  {
+    "name": "Product 85 X",
+    "image": "product85.jpg",
+    "stock": 41,
+    "price": 1345.88,
+    "ratings": 2.5,
+    "description": "This is a high quality product number 85",
+    "keywords": [
+      "speed",
+      "computer",
+      "USB"
+    ],
+    "category": "gamings",
+    "brand": "Asus",
+    "availability": true
+  },
+  {
+    "name": "Product 86 Elite",
+    "image": "product86.jpg",
+    "stock": 77,
+    "price": 1371.02,
+    "ratings": 4.8,
+    "description": "This is a high quality product number 86",
+    "keywords": [
+      "desktop",
+      "streaming",
+      "portable"
+    ],
+    "category": "computers",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 87 Plus",
+    "image": "product87.jpg",
+    "stock": 30,
+    "price": 462.16,
+    "ratings": 1.9,
+    "description": "This is a high quality product number 87",
+    "keywords": [
+      "gaming",
+      "mouse",
+      "streaming"
+    ],
+    "category": "gamings",
+    "brand": "Samsung",
+    "availability": false
+  },
+  {
+    "name": "Product 88 Max",
+    "image": "product88.jpg",
+    "stock": 46,
+    "price": 371.15,
+    "ratings": 0.9,
+    "description": "This is a high quality product number 88",
+    "keywords": [
+      "portable",
+      "storage",
+      "computer"
+    ],
+    "category": "laptops",
+    "brand": "Microsoft",
+    "availability": false
+  },
+  {
+    "name": "Product 89 Pro",
+    "image": "product89.jpg",
+    "stock": 99,
+    "price": 437.29,
+    "ratings": 0.5,
+    "description": "This is a high quality product number 89",
+    "keywords": [
+      "speed",
+      "USB",
+      "computer"
+    ],
+    "category": "gamings",
+    "brand": "Lenovo",
+    "availability": true
+  },
+  {
+    "name": "Product 90 Plus",
+    "image": "product90.jpg",
+    "stock": 43,
+    "price": 1052.07,
+    "ratings": 2.6,
+    "description": "This is a high quality product number 90",
+    "keywords": [
+      "wireless",
+      "hardware",
+      "mouse"
+    ],
+    "category": "laptops",
+    "brand": "LogiTech",
+    "availability": true
+  },
+  {
+    "name": "Product 91 Elite",
+    "image": "product91.jpg",
+    "stock": 87,
+    "price": 1222.08,
+    "ratings": 0.2,
+    "description": "This is a high quality product number 91",
+    "keywords": [
+      "USB",
+      "RGB",
+      "hardware"
+    ],
+    "category": "laptops",
+    "brand": "Lenovo",
+    "availability": false
+  },
+  {
+    "name": "Product 92 Max",
+    "image": "product92.jpg",
+    "stock": 40,
+    "price": 957.18,
+    "ratings": 3.1,
+    "description": "This is a high quality product number 92",
+    "keywords": [
+      "external",
+      "RGB",
+      "laptop"
+    ],
+    "category": "laptops",
+    "brand": "Razer",
+    "availability": true
+  },
+  {
+    "name": "Product 93 Plus",
+    "image": "product93.jpg",
+    "stock": 100,
+    "price": 944.14,
+    "ratings": 3.1,
+    "description": "This is a high quality product number 93",
+    "keywords": [
+      "wireless",
+      "mouse",
+      "USB"
+    ],
+    "category": "laptops",
+    "brand": "CoolerMaster",
+    "availability": true
+  },
+  {
+    "name": "Product 94 Max",
+    "image": "product94.jpg",
+    "stock": 25,
+    "price": 498.48,
+    "ratings": 2.4,
+    "description": "This is a high quality product number 94",
+    "keywords": [
+      "streaming",
+      "desktop",
+      "gaming"
+    ],
+    "category": "gamings",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 95 Elite",
+    "image": "product95.jpg",
+    "stock": 6,
+    "price": 99.21,
+    "ratings": 1.0,
+    "description": "This is a high quality product number 95",
+    "keywords": [
+      "hardware",
+      "external",
+      "gaming"
+    ],
+    "category": "softwares",
+    "brand": "Anker",
+    "availability": true
+  },
+  {
+    "name": "Product 96 Plus",
+    "image": "product96.jpg",
+    "stock": 48,
+    "price": 1434.18,
+    "ratings": 4.1,
+    "description": "This is a high quality product number 96",
+    "keywords": [
+      "streaming",
+      "gaming",
+      "hardware"
+    ],
+    "category": "softwares",
+    "brand": "Razer",
+    "availability": false
+  },
+  {
+    "name": "Product 97 Elite",
+    "image": "product97.jpg",
+    "stock": 58,
+    "price": 387.12,
+    "ratings": 4.3,
+    "description": "This is a high quality product number 97",
+    "keywords": [
+      "USB",
+      "computer",
+      "streaming"
+    ],
+    "category": "softwares",
+    "brand": "HP",
+    "availability": true
+  },
+  {
+    "name": "Product 98 Plus",
+    "image": "product98.jpg",
+    "stock": 91,
+    "price": 768.61,
+    "ratings": 1.0,
+    "description": "This is a high quality product number 98",
+    "keywords": [
+      "USB",
+      "hardware",
+      "speed"
+    ],
+    "category": "components",
+    "brand": "Microsoft",
+    "availability": true
+  },
+  {
+    "name": "Product 99 Max",
+    "image": "product99.jpg",
+    "stock": 88,
+    "price": 1212.79,
+    "ratings": 3.4,
+    "description": "This is a high quality product number 99",
+    "keywords": [
+      "external",
+      "keyboard",
+      "gaming"
+    ],
+    "category": "softwares",
+    "brand": "Acer",
+    "availability": true
+  },
+  {
+    "name": "Product 100 Max",
+    "image": "product100.jpg",
+    "stock": 7,
+    "price": 716.09,
+    "ratings": 0.7,
+    "description": "This is a high quality product number 100",
+    "keywords": [
+      "RGB",
+      "speed",
+      "laptop"
+    ],
+    "category": "computers",
+    "brand": "HyperX",
+    "availability": false
+  }
+]

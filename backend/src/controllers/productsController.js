@@ -13,9 +13,14 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
 
     const skip = (page-1)*limit
 
+    //get catoegory
+    const category = req.query.category || "";
+
+    //count all products
     const allProductCount = await Products.find();
+
     const allProducts = await Products
-                                .find()
+                                .find({category: category})
                                 .sort({updatedAt: -1})
                                 .skip(skip)
                                 .limit(limit)
