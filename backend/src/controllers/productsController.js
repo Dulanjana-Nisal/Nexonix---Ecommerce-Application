@@ -133,8 +133,6 @@ const updateProducts = asyncHaddler(async(req,res)=>{
     if(req.body.stock !== 0 || req.body.availability === true){
         req.body.availability = true
     }
-    console.log(req.body.stock)
-    console.log(req.body.availability)
     const updateProduct = await Products.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})
     res.status(statusCodes.OK).json({success: true, data: updateProduct})
 })

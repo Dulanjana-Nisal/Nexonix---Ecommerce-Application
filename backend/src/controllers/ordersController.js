@@ -1,32 +1,76 @@
 const Orders = require('../models/ordersModel');
 const asyncHaddler = require('../utils/asyncHaddler');
-const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const statusCodes = require('http-status-codes');
 
 //get all orders
-const getAllOrders = asyncHaddler(async(req,res)=>{
-    res.status(statusCodes.OK).send('Get all orders')
+const getAllOrders = asyncHaddler(async (req, res) => {
+    const { search, user, product } = req.query;
+    let queryObject = {};
+    //orders filter by serach
+    if (search) {
+        queryObject.name = { $regex: search, $options: 'i' };
+    }
+    //orders filter by users
+    if (user) {
+        queryObject.userId = user;
+    }
+    //oders filter by product
+    if(product){
+        queryObject.productId = product;
+    }
+
+    //orders paging
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * limit
+
+    //get orders
+    const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
+
+    //count all orders
+    const allOrdersCount = await Orders.find(queryObject);
+    res.status(statusCodes.OK).json({
+        success: true,
+        all_result: allOrdersCount.length,
+        page_result: allOrders.length,
+        data: allOrders,
+        page: page,
+    })
 })
 
 //create orders
-const createOrders = asyncHaddler(async(req,res)=>{
-    res.status(statusCodes.OK).send('Create orders')
+const createOrders = asyncHaddler(async (req, res) => {
+    const createOrder = await Orders.create(req.body)
+    res.status(statusCodes.CREATED).json({ success: true, data: createOrder })
 })
 
 //get single orders
-const getSingleOrders = asyncHaddler(async(req,res)=>{
-    res.status(statusCodes.OK).send('Get Single orders')
+const getSingleOrders = asyncHaddler(async (req, res) => {
+    //get order by id
+    const paremID = req.params.id;
+    const singleOrder = await Orders.findOne({_id: paremID})
+    if(!singleOrder){
+        throw new NotFoundErrorHaddler('Order not found!')
+    }
+    res.status(statusCodes.OK).json({success: true, data: singleOrder})
 })
 
 //update orders
-const updateOrders = asyncHaddler(async(req,res)=>{
-    res.status(statusCodes.OK).send('Update orders')
+const updateOrders = asyncHaddler(async (req, res) => {
+    const paremID = req.params.id; 
+        const updateOrder = await Orders.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})
+        res.status(statusCodes.OK).json({success: true, data: updateOrder})
 })
 
 //delete orders
-const deleteOrders = asyncHaddler(async(req,res)=>{
-    res.status(statusCodes.OK).send('Delete orders')
+const deleteOrders = asyncHaddler(async (req, res) => {
+    const paremID = req.params.id;
+    const deleteOrder = await Orders.findOneAndDelete({_id: paremID})
+    if(!deleteOrder){
+        throw new NotFoundErrorHaddler('Product not found!');
+    }
+    res.status(200).json({success: true, message: `${deleteOrder._id} is deleted!`})
 })
 
 module.exports = {
