@@ -101,20 +101,19 @@ const recommendProducts = asyncHaddler(async(req,res)=>{
     const productPrice = getProductDetails.price;
 
     let priceRange = 10; 
-    if(0 < productPrice < 10){
+    if(0 < productPrice && productPrice < 10){
         priceRange = 1
     }
-    if(10 < productPrice < 100){
+    if(10 < productPrice && productPrice < 100){
         priceRange = 10
     }
-    if(100 < productPrice < 1000){
+    if(100 < productPrice && productPrice < 1000){
         priceRange = 100
     }
-    if(1000 < productPrice < 10000){
+    if(1000 < productPrice && productPrice < 10000){
         priceRange = 1000
     }
-    console.log(productPrice)
-    console.log(priceRange)
+    
     const productRecomendation = await Products.find({
         category: productCategory,
         price: {
