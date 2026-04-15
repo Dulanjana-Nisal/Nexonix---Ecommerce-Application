@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const cartItemSchema = mongoose.Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Product id is required!']
+        required: [true, 'Product id is required!'],
+        unique: true
     },
     name: {
         type: String,
@@ -36,8 +37,17 @@ const CartSchema = mongoose.Schema({
     items: [cartItemSchema],
     totle_items: {
         type: Number,
-        required: [true, 'Totle items is must be add']
+        default: 0
     }
 })
 
-module.exports = mongoose.model('carts', CartSchema);
+CartSchema.pre('save', function(){
+    if(this.totle_items === 0){
+        return this.totle_items = this.items[0].quantity;
+    }
+    else{
+        return this.totle_items =this.totle_items+ this.items[0].quantity;
+    }
+})
+
+module.exports = mongoose.model('carts', CartSchema); 
