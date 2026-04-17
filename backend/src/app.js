@@ -7,6 +7,7 @@ const users = require('./routers/usersRouters');
 const products = require('./routers/productsRouters');
 const orders = require('./routers/ordersRouters');
 const cart = require('./routers/cartRouters');
+const notifications = require('./routers/notificationRouters');
 
 const express = require('express');
 const app = express(); 
@@ -19,6 +20,7 @@ app.use('/api/v1/user', users);
 app.use('/api/v1/products', products);
 app.use('/api/v1/orders', orders);
 app.use('/api/v1/cart', cart);
+app.use('/api/v1/notifications', notifications);
 
 //error haddlers
 app.use(errorHaddlerMiddleware)

@@ -1,8 +1,8 @@
 const express = require('express');
-const { getAllOrders, createOrders, getSingleOrders, updateOrders, deleteOrders} = require('../controllers/ordersController');
+const { getAllNotifications, addNotifications, getSingleNotification, updateNotification, deleteNotification} = require('../controllers/notificationController');
 const router = express.Router()
 
-router.route('/').get(getAllOrders).post(createOrders);
-router.route('/:id').get(getSingleOrders).patch(updateOrders).delete(deleteOrders);
+router.route('/').get(getAllNotifications).post(addNotifications);
+router.route('/:id').get(getSingleNotification).patch(updateNotification).delete(deleteNotification);
 
 module.exports = router
