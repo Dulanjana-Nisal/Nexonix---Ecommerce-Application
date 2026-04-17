@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 const cartItemSchema = mongoose.Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Product id is required!'],
-        unique: true
+        required: [true, 'Product id is required!']
     },
     name: {
         type: String,
         required: [true, 'Item name is required!'],
-        minLength: [3, 'Item name must be more than 3 letters!']
+        minLength: [3, 'Item name must be more than 3 letters!'] 
     },
     quantity: {
         type: Number,
@@ -41,13 +40,8 @@ const CartSchema = mongoose.Schema({
     }
 })
 
-CartSchema.pre('save', function(){
-    if(this.totle_items === 0){
-        return this.totle_items = this.items[0].quantity;
-    }
-    else{
-        return this.totle_items =this.totle_items+ this.items[0].quantity;
-    }
+CartSchema.pre('findOneAndUpdate', function(){
+   
 })
 
-module.exports = mongoose.model('carts', CartSchema); 
+module.exports = mongoose.model('carts', CartSchema);  

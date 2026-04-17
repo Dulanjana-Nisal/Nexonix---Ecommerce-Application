@@ -1,4 +1,4 @@
-const Cart = require('../models/cartModel');
+const Cart = require('../models/cartModel')
 const asyncHaddler = require('../utils/asyncHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
@@ -37,24 +37,28 @@ const getAllCartItems = asyncHaddler(async (req, res) => {
 const createCartItems = asyncHaddler(async (req, res) => {
     //check cart is already create
     const itemCart = await Cart.findOne({userId: req.body.userId})
-    console.log(itemCart) 
-    let cartObject = {}
+    //check product is already exsist
+    const checkProducts = await Cart.findOne({userId:req.body.userId,  "items.productId": req.body.items.productId})
+    let result = Cart
     if(itemCart){
-        if(req.body.items[0].productId == itemCart.items[0].productId){
-            throw new BadrequestErrorHaddler('Product is already exist in cart!')
+        if(checkProducts){
+            throw new BadrequestErrorHaddler('Product already in cart!')
         }
-        cartObject = {
-            userId: req.body.userId,
-            $push: req.body.items,
-            totle_items: itemCart.totle_items + req.body.items[0].quantity
-        }
-        await Cart.updateOne(cartObject)
+        result =  result.updateOne(
+            {userId: req.body.userId},
+            {
+                $push: {
+                    items: req.body.items
+                },
+            }
+        )
     }
     else{
-        cartObject = req.body
-         await Cart.create(cartObject)
+        result = result.create(req.body)
     }
-    res.status(statusCodes.CREATED).json({success: true, message: 'Cart Created!'})
+    const createCart = await result;
+    res.status(statusCodes.CREATED).json({success: true, message: createCart})
+
 })
 
 //get single Cart items
