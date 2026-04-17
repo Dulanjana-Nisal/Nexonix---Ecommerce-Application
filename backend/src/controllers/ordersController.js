@@ -59,8 +59,8 @@ const getSingleOrders = asyncHaddler(async (req, res) => {
 //update orders
 const updateOrders = asyncHaddler(async (req, res) => {
     const paremID = req.params.id; 
-        const updateOrder = await Orders.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})
-        res.status(statusCodes.OK).json({success: true, data: updateOrder})
+    const updateOrder = await Orders.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})
+    res.status(statusCodes.OK).json({success: true, data: updateOrder})
 })
 
 //delete orders
