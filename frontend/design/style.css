@@ -13,6 +13,7 @@
 }
 .header .header-top{
     width: 90%;
+    height: 60px;
     margin: auto;
     display: flex;
     column-gap: 30px;
@@ -20,13 +21,17 @@
     justify-content: space-between;
     align-items: center;
 }
-.header .header-top .header-top-left{
-    width: auto;
+.header .header-top .header-top-left img{
+    width: 180px;
+    cursor: pointer;
+}
+.header .header-top .header-top-center{
+    width: 100%;
+    position: relative;
 }
 .header .header-top .header-top-center .search-box{
     width: 100%;
     display: flex;
-    position: relative;
 }
 .header .header-top .header-top-center .search-box input{
     width: 100%;
@@ -47,6 +52,51 @@
     background-color: #2B38D1;
     color: #fff;
     border-radius: 0 10px 10px 0;
+    transition: 0.25s;
+}
+.header .header-top .header-top-center .search-box button:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.header .header-top .header-top-center .result-box{
+    position: absolute;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 100%;
+    background-color: #fff;
+    z-index: 5;
+    display: none;
+}
+.header .header-top .header-top-center .result-box .result{
+    border-bottom: 1px solid #d9dedf;
+    padding: 15px 10px;
+    transition: 0.25s;
+}
+.header .header-top .header-top-center .result-box .result:hover{
+    background-color: #F1F5F6;
+    cursor: pointer;
+}
+.header .header-top .header-top-center .result-box .result h3{
+    font-size: 15px;
+    color: #2B38D1;
+}
+.header .header-top .header-top-center .result-box .result p{
+    font-size: 14px;
+    color: #2B38D1;
+}
+.header .header-top .header-top-center .result-box .result-btn button{
+    width: 100%;
+    padding:8px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    background-color: #2B38D1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.25s;
+}
+.header .header-top .header-top-center .result-box .result-btn button:hover{
+    opacity: 0.8;
+    cursor: pointer;
 }
 .header .header-top .header-top-right{
     margin-left: 10px;
