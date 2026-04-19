@@ -13,7 +13,8 @@
 }
 .header .header-top{
     width: 90%;
-    height: 60px;
+    padding: 15px 0;
+    height: fit-content;
     margin: auto;
     display: flex;
     column-gap: 30px;
