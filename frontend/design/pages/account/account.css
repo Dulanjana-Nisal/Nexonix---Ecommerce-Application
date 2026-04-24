@@ -1,0 +1,147 @@
+.account-container{
+    min-height: 70vh;
+}
+.account-container .container-header{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 50px 0;
+}
+.account-container .container-header h1{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.account-container .container-header p{
+    font-size: 14px;
+    font-weight: 600;
+}
+.account-container .container-header span{
+    color: rgb(109, 107, 107);
+}
+.account-container .container-header span:hover{
+    color: #2B38D1;
+    cursor: pointer;
+}
+.account-container .container-body{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    column-gap: 50px;
+    justify-content: space-between;
+}
+.account-container .container-body .signin-container,
+.account-container .container-body .signup-container{
+    width: 100%;
+    height: fit-content;
+    padding: 20px 30px 30px 30px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.account-container .container-body .signin-container .signin-header,
+.account-container .container-body .signup-container .signup-header{
+    border-bottom: 1px solid #d9dedf;
+    padding: 15px 0;
+}
+.account-container .container-body .signin-container .signin-header p,
+.account-container .container-body .signup-container .signup-header p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.account-container .container-body .signin-container .signin-form form div,
+.account-container .container-body .signup-container .signup-form form div{
+    margin: 25px 0;
+}
+.account-container .container-body .signin-container .signin-form form div input,
+.account-container .container-body .signup-container .signup-form form div input{
+    width: 100%;
+    padding: 15px;
+    padding-left: 25px;
+    border: none;
+    outline: none;
+    background-color: #F1F5F6;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.account-container .container-body .signin-container .signin-form form div label,
+.account-container .container-body .signup-container .signup-form form div label{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(109, 107, 107);
+}
+.account-container .container-body .signin-container .signin-form form div span,
+.account-container .container-body .signup-container .signup-form form div span{
+    font-size: 18px;
+    font-weight: 800;
+    color: #DD3842;
+}
+.account-container .container-body .signin-container .signin-form form .password,
+.account-container .container-body .signup-container .signup-form form .password{
+    position: relative;
+}
+.account-container .container-body .signin-container .signin-form form .password img,
+.account-container .container-body .signup-container .signup-form form .password img{
+    width: 25px;
+    position: absolute; 
+    right: 20px;
+    top: 55%;
+    z-index: 5;
+}
+.account-container .container-body .signin-container .signin-form form .password img:hover,
+.account-container .container-body .signup-container .signup-form form .password img:hover{
+    cursor: pointer;
+}
+.account-container .container-body .signin-container .signin-form form .button,
+.account-container .container-body .signup-container .signup-form form .button{
+    width: fit-content;
+    padding: 15px 60px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #2B38D1;
+    border: 2px solid #2B38D1;
+    border-radius: 30px;
+    transition: 0.25s;
+}
+.account-container .container-body .signin-container .signin-form form .button:hover,
+.account-container .container-body .signup-container .signup-form form .button:hover{
+    background-color: #fff;
+    color: #2B38D1;
+    cursor: pointer;
+}
+.account-container .container-body .signin-container .signin-form form .messages,
+.account-container .container-body .signup-container .signup-form form .messages{
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    display: none;
+}
+.account-container .container-body .close{
+    display: none;
+}
+.account-container .container-body .error{
+    color: #DD3842
+}
+.account-container .container-body .success{
+    color: #008A00;
+}
+
+
+
+
+
+
+@media(max-width: 880px){
+    .account-container .container-body .signin-container,
+    .account-container .container-body .signup-container{
+        padding: 20px 20px 30px 20px;
+    }
+}
+@media(max-width: 700px){
+    .account-container .container-body {
+        display: block;
+    }
+}
