@@ -467,6 +467,17 @@
 .search-container .container-body{
     width: 100%;
 }
+.search-container .container-body .body-head{
+    padding: 15px 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+}
+.search-container .container-body .body-head h1{
+    font-size: 25px;
+    margin-left: 15px;
+}
 .search-container .container-body .body-template{
     display: grid;
     grid-template-columns: auto auto auto auto;
