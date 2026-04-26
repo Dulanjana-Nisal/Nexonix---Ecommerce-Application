@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
-    <link rel="stylesheet" href="cart.css">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
     <link rel="stylesheet" href="../../style.css">
 </head>
 
@@ -98,235 +98,79 @@
         <hr>
     </div>
     <!---------------- container ---------------->
-    <div class="cart-container">
-        <div class="cart-header">
+    <div class="checkout-container">
+        <div class="checkout-header">
             <div class="header-content">
-                <h1>Chopping Cart</h1>
-                <p><span>Home /</span> Shopping Cart</p>
+                <h1>Checkout</h1>
+                <p><span>Home /</span> Checkout</p>
             </div>
         </div>
-        <div class="cart-body">
-            <div class="cart-details">
-                <div class="details-head">
-                    <p class="product">Product</p>
-                    <p class="price">Price</p>
-                    <p class="quantity">Quantity</p>
-                    <p class="subtotal">Subtotal</p>
-                    <p></p>
-                </div>
-                <div class="details-cards">
-                    <div class="card">
-                        <div class="card-product product">
-                            <div class="thumb">
-                                <input type="checkbox" checked>
-                                <img src="../../images/card-image.png" alt="">
+        <div class="checkout-body">
+            <div class="checkout-details">
+                <div class="details-card">
+                    <h1>Billing Details</h1>
+                    <form>
+                        <div class="name box">
+                            <div class="first-name">
+                                <label>First Name</label>
+                                <input type="text">
                             </div>
-                            <div class="name">
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
+                            <div class="last-name">
+                                <label>Last Name</label>
+                                <input type="text">
                             </div>
                         </div>
-                        <div class="card-price price">
-                            <p>$234.34</p>
+                        <div class="address-1 box">
+                            <label>Address 1</label>
+                            <input type="text">
                         </div>
-                        <div class="card-quantity quantity">
-                            <button class="plus">+</button>
-                            <p>1</p>
-                            <button class="min">−</button>
+                        <div class="address-2 box">
+                            <label>Address 2</label>
+                            <input type="text">
                         </div>
-                        <div class="card-subtotal subtotal">
-                            <p>$234.34</p>
+                        <div class="city box">
+                            <label>City Name</label>
+                            <input type="text">
                         </div>
-                        <button class="delete">✕</button>
-                    </div>
-                    <div class="card">
-                        <div class="card-product product">
-                            <div class="thumb">
-                                <input type="checkbox" checked>
-                                <img src="../../images/card-image.png" alt="">
-                            </div>
-                            <div class="name">
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                            </div>
+                        <div class="zipcode box">
+                            <label>Zip Code</label>
+                            <input type="text">
                         </div>
-                        <div class="card-price price">
-                            <p>$234.34</p>
+                        <div class="phone box">
+                            <label>Phone Number</label>
+                            <input type="number">
                         </div>
-                        <div class="card-quantity quantity">
-                            <button class="plus">+</button>
-                            <p>1</p>
-                            <button class="min">−</button>
+                        <div class="email box">
+                            <label>Email Address</label>
+                            <input type="email">
                         </div>
-                        <div class="card-subtotal subtotal">
-                            <p>$234.34</p>
-                        </div>
-                        <button class="delete">✕</button>
-                    </div>
-                    <div class="card">
-                        <div class="card-product product">
-                            <div class="thumb">
-                                <input type="checkbox" checked>
-                                <img src="../../images/card-image.png" alt="">
-                            </div>
-                            <div class="name">
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                            </div>
-                        </div>
-                        <div class="card-price price">
-                            <p>$234.34</p>
-                        </div>
-                        <div class="card-quantity quantity">
-                            <button class="plus">+</button>
-                            <p>1</p>
-                            <button class="min">−</button>
-                        </div>
-                        <div class="card-subtotal subtotal">
-                            <p>$234.34</p>
-                        </div>
-                        <button class="delete">✕</button>
-                    </div>
-                    <div class="card">
-                        <div class="card-product product">
-                            <div class="thumb">
-                                <input type="checkbox" checked>
-                                <img src="../../images/card-image.png" alt="">
-                            </div>
-                            <div class="name">
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                            </div>
-                        </div>
-                        <div class="card-price price">
-                            <p>$234.34</p>
-                        </div>
-                        <div class="card-quantity quantity">
-                            <button class="plus">+</button>
-                            <p>1</p>
-                            <button class="min">−</button>
-                        </div>
-                        <div class="card-subtotal subtotal">
-                            <p>$234.34</p>
-                        </div>
-                        <button class="delete">✕</button>
-                    </div>
-                    <div class="card">
-                        <div class="card-product product">
-                            <div class="thumb">
-                                <input type="checkbox" checked>
-                                <img src="../../images/card-image.png" alt="">
-                            </div>
-                            <div class="name">
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                            </div>
-                        </div>
-                        <div class="card-price price">
-                            <p>$234.34</p>
-                        </div>
-                        <div class="card-quantity quantity">
-                            <button class="plus">+</button>
-                            <p>1</p>
-                            <button class="min">−</button>
-                        </div>
-                        <div class="card-subtotal subtotal">
-                            <p>$234.34</p>
-                        </div>
-                        <button class="delete">✕</button>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-details-responsive">
-                <div class="card">
-                    <div class="image">
-                        <input type="checkbox" checked>
-                        <img src="../../images/card-image.png" alt="">
-                    </div>
-                    <div class="card-details">
-                        <div class="name">
-                            <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                            <button>✕</button>
-                        </div>
-                        <div class="price">
-                            <p>Price: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                        <div class="quantity">
-                            <div class="quentity-header">
-                                <p>Quantity: </p>
-                            </div>
-                            <div class="quentity-body">
-                                <button class="plus">+</button>
-                                <p>1</p>
-                                <button class="min">−</button>
-                            </div>
-                        </div>
-                        <div class="subtotal">
-                            <p>Subtotal: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image">
-                        <input type="checkbox" checked>
-                        <img src="../../images/card-image.png" alt="">
-                    </div>
-                    <div class="card-details">
-                        <div class="name">
-                            <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                            <button>✕</button>
-                        </div>
-                        <div class="price">
-                            <p>Price: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                        <div class="quantity">
-                            <div class="quentity-header">
-                                <p>Quantity: </p>
-                            </div>
-                            <div class="quentity-body">
-                                <button class="plus">+</button>
-                                <p>1</p>
-                                <button class="min">−</button>
-                            </div>
-                        </div>
-                        <div class="subtotal">
-                            <p>Subtotal: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image">
-                        <input type="checkbox" checked>
-                        <img src="../../images/card-image.png" alt="">
-                    </div>
-                    <div class="card-details">
-                        <div class="name">
-                            <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                            <button>✕</button>
-                        </div>
-                        <div class="price">
-                            <p>Price: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                        <div class="quantity">
-                            <div class="quentity-header">
-                                <p>Quantity: </p>
-                            </div>
-                            <div class="quentity-body">
-                                <button class="plus">+</button>
-                                <p>1</p>
-                                <button class="min">−</button>
-                            </div>
-                        </div>
-                        <div class="subtotal">
-                            <p>Subtotal: </p>
-                            <h3>$234.44</h3>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="total-card">
                 <div class="total-head">
-                    <h1>Cart Totals</h1>
+                    <h1>Your Order</h1>
+                </div>
+                <div class="total-product info">
+                    <div class="product-card">
+                        <img src="../../images/card-image.png" alt="">
+                        <p>Lenovo Legion 7i Gen 9 Laptop</p>
+                         <span>✕ 2</span>
+                    </div>
+                    <div class="product-card">
+                        <img src="../../images/card-image.png" alt="">
+                        <p>Lenovo Legion 7i Gen 9 Laptop</p>
+                         <span>✕ 2</span>
+                    </div>
+                    <div class="product-card">
+                        <img src="../../images/card-image.png" alt="">
+                        <p>Lenovo Legion 7i Gen 9 Laptop</p>
+                         <span>✕ 2</span>
+                    </div>
+                </div>
+                <div class="total-method info">
+                    <h3>Method</h3>
+                    <p>Cash on Delivery</p>
                 </div>
                 <div class="total-subtotal info">
                     <h3>Subtotal</h3>
@@ -340,7 +184,9 @@
                     <h3>Total</h3>
                     <p><span>$302.34</span></p>
                 </div>
-                <button>Proceed To Checkout</button>
+                <div class="button">
+                    <button>Place Order</button>
+                </div>
             </div>
         </div>
     </div>
