@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: start;
+}
+
+/* ------------------ Navbar styles ------------------ */
+.container .sidebar {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    border-right: 1px solid #d8dbdccd;
+}
+
+.container .sidebar .sidebar-header {
+    background-color: #fff;
+    padding: 30px;
+}
+
+.container .sidebar .sidebar-header img {
+    width: 150px;
+    margin: auto;
+}
+
+.container .sidebar .top .sidebar-header .logo-letter {
+    display: none;
+    width: 40px;
+}
+
+.container .sidebar .sidebar-body ul li {
+    list-style-type: none;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.container .sidebar .sidebar-body ul li:hover {
+    background-color: #F1F5F6;
+    cursor: pointer;
+}
+
+.container .sidebar .sidebar-body ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.container .sidebar .sidebar-body ul li i {
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.container .sidebar .bottom {
+    padding: 10px 15px;
+
+}
+
+.container .sidebar .sidebar-footer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    column-gap: 15px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+}
+
+.container .sidebar .sidebar-footer img {
+    width: 40px;
+    border: 1px solid #d8dbdccd;
+    border-radius: 50%;
+}
+
+.container .sidebar .sidebar-footer .footer-right p,
+.container .sidebar .bottom .responsive-footer .prodile-box .footer-right p {
+    font-size: 12px;
+    font-weight: 400;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container .sidebar .sidebar-footer .footer-right h3,
+.container .sidebar .bottom .responsive-footer .prodile-box .footer-right h3 {
+    font-size: 15px;
+}
+
+.container .sidebar .sidebar-footer button,
+.container .sidebar .bottom .responsive-footer .prodile-box button {
+    border-radius: 30px;
+    width: 100%;
+    padding: 8px 0;
+    color: #fff;
+    border: 1px solid #DD3842;
+    background-color: #DD3842;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    transition: 0.25s;
+}
+
+.container .sidebar .sidebar-footer button:hover,
+.container .sidebar .bottom .responsive-footer .prodile-box button:hover {
+    background-color: #fff;
+    color: #DD3842;
+    cursor: pointer;
+}
+
+.container .sidebar .bottom .responsive-footer {
+    display: none;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.container .sidebar .bottom .responsive-footer img {
+    width: 40px;
+    border: 1px solid #d8dbdccd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.container .sidebar .bottom .responsive-footer .prodile-box {
+    position: absolute;
+    background-color: #fff;
+    bottom: 30px;
+    left: 70px;
+    padding: 15px;
+    border-radius: 10px;
+    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: none;
+}
+
+/* ------------------ Section Style ------------------ */
+.sections {
+    width: 90%;
+}
+
+/* Header top */
+.section-header {
+    padding: 20px 5%;
+    height: fit-content;
+    display: flex;
+    column-gap: 30px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 260px;
+    background-color: #fff;
+}
+
+.section-header .header-top-left h1 {
+    font-size: 20px;
+    width: fit-content;
+}
+
+.section-header .header-top-left h1 span {
+    color: #2B38D1;
+}
+
+.section-header .header-top-right {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 30px;
+}
+
+.section-header .header-top-right .orders {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.section-header .header-top-right .store {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.section-header .header-top-right .store button {
+    width: fit-content;
+    padding: 8px 15px;
+    border: 1px solid #2B38D1;
+    border-radius: 30px;
+    background-color: #2B38D1;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.section-header .header-top-right .store i {
+    display: none;
+}
+
+.section-header .header-top-right .store i p {
+    border: 1px solid #2B38D1;
+}
+
+.section-header .header-top-right .store button:hover {
+    background-color: #fff;
+    color: #2B38D1;
+    cursor: pointer;
+}
+
+.section-header .header-top-right .cart {
+    display: flex;
+    column-gap: 5px;
+    position: relative;
+}
+
+.section-header .header-top-right .cart i {
+    font-size: 23px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.25s;
+}
+
+.section-header .header-top-right .cart i:hover {
+    background-color: #F1F5F6;
+    cursor: pointer;
+}
+
+.section-header .header-top-right .cart p {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #DD3842;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 50%;
+}
+
+/* Dashboard section style */
+.container .sections .sections-body {
+    width: 100%;
+    background-color: #F1F5F6;
+    min-height: 100vh;
+}
+
+.container .sections .sections-body .dashboard-section {
+    padding-top: 120px;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-header {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-header p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: auto auto auto auto;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .box {
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .box i {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .box .details {
+    text-align: start;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .box .details h1 {
+    font-size: 25px;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .box .details p {
+    color: rgb(109, 107, 107);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .user-count i {
+    color: #008A00;
+    background-color: #008A0027;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .product-count i {
+    color: #FFB800;
+    background-color: #FFB80027;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .order-count i {
+    color: #2B38D1;
+    background-color: #2B38D127;
+}
+
+.container .sections .sections-body .dashboard-section .dashboard-body .order-status i {
+    color: #DD3842;
+    background-color: #DD384227;
+}
+
+/* -------------------------------------------------- */
+
+
+/* -------------------------------------------------- */
+
+
+
+
+/* -------------------Responcive Design ------------------- */
+
+@media(max-width: 1210px) {
+    .container .sections .sections-body .dashboard-section .dashboard-body {
+        grid-template-columns: auto auto auto;
+    }
+}
+@media(max-width: 970px) {
+    .container .sections .sections-body .dashboard-section .dashboard-body {
+        grid-template-columns: auto auto;
+    }
+}
+@media(max-width: 900px) {
+    .container .sidebar {
+        width: 80px;
+    }
+    .container .sidebar .top .sidebar-header .main-logo {
+        display: none;
+    }
+    .container .sidebar .top .sidebar-header .logo-letter {
+        display: block;
+    }
+    .container .sidebar .sidebar-header {
+        padding: 30px 0;
+    }
+    .container .sidebar .sidebar-body ul li a {
+        display: none;
+    }
+    .container .sidebar .bottom .sidebar-footer {
+        display: none;
+    }
+    .container .sidebar .bottom .responsive-footer {
+        display: flex;
+        justify-content: center;
+    }
+    .section-header {
+        left: 80px;
+        right: 0;
+    }
+}
+@media(max-width: 580px) {
+    .container .sections .sections-body .dashboard-section .dashboard-body {
+        grid-template-columns: auto;
+        text-align: center;
+    }
+    .container .sections .sections-body .dashboard-section .dashboard-header {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media(max-width: 450px) {
+    .section-header .header-top-right .store i {
+        display: block;
+    }
+    .section-header .header-top-right .store p {
+        display: none;
+    }
+    .section-header .header-top-right {
+        column-gap: 10px;
+    }
+    .section-header {
+        column-gap: 20px;
+    }
+    .container .sidebar {
+        width: 60px;
+    }
+    .section-header {
+        left: 60px;
+        right: 0;
+    }
+    .container .sidebar .sidebar-body ul li {
+        padding-left: 20px;
+    }
+    .container .sidebar .bottom .responsive-footer .prodile-box {
+        left: 50px;
+    }
+}
+
+
+
+/* -------------------------------------------------- */
