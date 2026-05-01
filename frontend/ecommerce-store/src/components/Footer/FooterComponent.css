@@ -1,0 +1,94 @@
+/* ******************* Footer styles ******************* */
+
+.footer{
+    width: 90%;
+    margin: auto;
+}
+.footer .footer-top{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 25px;
+    align-items: start;
+    justify-content: space-between;
+    padding: 50px 0 30px 0;
+    border-top: 1px solid #d9dedf;
+}
+.footer .footer-top .location .details p{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(109, 107, 107);
+    line-height: 23px;
+    margin-bottom: 5px;
+}
+.footer .footer-top .location .details span{
+    color: #2B38D1;
+    font-size: 16px;
+}
+.footer .footer-top .location .details a{
+    text-decoration: none;
+    color: rgb(109, 107, 107);
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.25s;
+}
+.footer .footer-top .location .details a:hover{
+    color: #2B38D1;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.footer .footer-top .title p{
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.footer .footer-top .details ul{
+    list-style-type: none;
+}
+.footer .footer-top .details ul li{
+    margin: 10px 0;
+}
+.footer .footer-top .details ul a{
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(109, 107, 107);
+    transition: 0.25s;
+}
+.footer .footer-top .details ul a:hover{
+    color: #2B38D1;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.footer .footer-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top: 1px solid #d9dedf;
+    z-index: 10;
+}
+.footer .footer-bottom .copyright p{
+    font-size: 14px;
+    font-weight: 500;
+}
+.footer .footer-bottom .copyright span{
+    color: #2B38D1;
+    font-weight: 600;
+    cursor: pointer;
+}
+.footer .footer-bottom .payment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+}
+.footer .footer-bottom .payment p{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(109, 107, 107);
+}
+.footer .footer-bottom .payment img{
+    height: 25px;
+}
+
+/* ************************************** */

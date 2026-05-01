@@ -1,4 +1,8 @@
 import './HeaderComponent.css'
+import main_logo from '../../assets/logo2.png'
+import Shopping_cart from '../../assets/shopping-cart.png'
+import user_profile from '../../assets/user-profile.png'
+import hamberger_menu from '../../assets/hamberger-menu.png'
 
 function HeaderComponent() {
     return (
@@ -6,7 +10,7 @@ function HeaderComponent() {
             <div class="header">
                 <div class="header-top">
                     <div class="header-top-left">
-                        <img src="./images/logo2.png" alt="logo" />
+                        <img src={main_logo} alt="logo" />
                     </div>
                     <div class="header-top-center">
                         <div class="search-box">
@@ -41,7 +45,7 @@ function HeaderComponent() {
                         </div>
                         <div class="profile">
                             <div class="profile-left">
-                                <img src="./images/user-profile.png" alt="user-profile" />
+                                <img src={user_profile} alt="user-profile" />
                             </div>
                             <div class="profile-right">
                                 <p>Login</p>
@@ -50,7 +54,7 @@ function HeaderComponent() {
                         </div>
                         <div class="cart">
                             <div class="cart-left">
-                                <img src="./images/shopping-cart.png" alt="shopping-cart" />
+                                <img src={Shopping_cart} alt="shopping-cart" />
                                 <p>0</p>
                             </div>
                             <div class="cart-right">
@@ -64,7 +68,7 @@ function HeaderComponent() {
                 <div class="header-navbar">
                     <div class="navbar-left">
                         <div class="navbar-left-selection">
-                            <img src="./images/hamberger-menu.png" alt="" />
+                            <img src={hamberger_menu} alt="" />
                             <p>Browse All Categories</p>
                         </div>
                         <div class="navbar-left-selection-box">
