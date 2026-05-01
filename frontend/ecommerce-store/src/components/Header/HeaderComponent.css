@@ -72,12 +72,17 @@
     width: 100%;
     background-color: #fff;
     z-index: 5;
-    display: none;
 }
 .header .header-top .header-top-center .result-box .result{
     border-bottom: 1px solid #d9dedf;
     padding: 15px 10px;
     transition: 0.25s;
+}
+
+.header .header-top .header-top-center .result-box .not-found{
+    padding: 15px 10px;
+    color: #2B38D1;
+    font-size: 14px;
 }
 .header .header-top .header-top-center .result-box .result:hover{
     background-color: #F1F5F6;

@@ -1,10 +1,36 @@
-import './HeaderComponent.css'
-import main_logo from '../../assets/logo2.png'
-import Shopping_cart from '../../assets/shopping-cart.png'
-import user_profile from '../../assets/user-profile.png'
-import hamberger_menu from '../../assets/hamberger-menu.png'
+import './HeaderComponent.css';
+import main_logo from '../../assets/logo2.png';
+import Shopping_cart from '../../assets/shopping-cart.png';
+import user_profile from '../../assets/user-profile.png';
+import hamberger_menu from '../../assets/hamberger-menu.png';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function HeaderComponent() {
+
+    const [searchResult,setSearchResult] = useState([]);
+    const [searchValue,setSearchValue] = useState('');
+    const [loading,setLoading] = useState(false)
+
+    // add search values to use state if have more than 1 letter
+    function searchInputValues(event){
+        const valueData = event.target.value
+        valueData.length > 1 && setSearchValue(valueData)
+        valueData.length < 1 && setSearchValue("")
+    }
+ 
+    //get Search Data
+    useEffect(()=>{
+        const fetchSearchData = async()=>{
+            setLoading(true)
+            const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchValue}&limit=5`);
+            setSearchResult(result.data.data)
+            setLoading(false)
+        }
+        fetchSearchData();
+        console.log(searchResult)
+    }, [searchValue])
+
     return (
         <>
             <div class="header">
@@ -14,30 +40,40 @@ function HeaderComponent() {
                     </div>
                     <div class="header-top-center">
                         <div class="search-box">
-                            <input type="text" placeholder="Search for products..." />
+                            <input type="text" placeholder="Search for products..." onChange={searchInputValues}/>
                             <button>Search</button>
                         </div>
-                        <div class="result-box">
-                            <div class="result">
-                                <h3>Razer BlackWidow V4 Pro</h3>
-                                <p>gamings</p>
+                        {
+                            //check have more than 1 result
+                            searchValue.length > 1 && 
+                            <div class="result-box">
+                                {
+                                    //Dsiplay loading text if search loading
+                                    loading ? 
+                                            <div class="not-found">
+                                                <h3>Loading...</h3>
+                                            </div>
+                                    :
+                                    // 0 search result desplay
+                                    searchResult.length === 0 ?
+                                            <div class="not-found">
+                                                <h3>Not Found</h3>
+                                            </div> :
+                                    // if have some result, display
+                                    searchResult.map((items)=>{
+                                        return(
+                                            <div class="result" key={items.id}>
+                                                <h3>{items.name}</h3>
+                                                <p>{items.category}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                <div class="result-btn">
+                                    <button>See all</button>
+                                </div>
                             </div>
-                            <div class="result">
-                                <h3>Razer BlackWidow V4 Pro</h3>
-                                <p>gamings</p>
-                            </div>
-                            <div class="result">
-                                <h3>Razer BlackWidow V4 Pro</h3>
-                                <p>gamings</p>
-                            </div>
-                            <div class="result">
-                                <h3>Razer BlackWidow V4 Pro</h3>
-                                <p>gamings</p>
-                            </div>
-                            <div class="result-btn">
-                                <button>See all</button>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="header-top-right">
                         <div class="orders">
