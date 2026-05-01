@@ -5,11 +5,10 @@
 }
 
 /* Banner Style */
-
 .container .banner{
     height: 70vh;
     background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0)),
-    url('./images/banner4.jpg');
+    url('../../assets/banner4.jpg');
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;

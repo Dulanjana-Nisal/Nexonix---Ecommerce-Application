@@ -1,8 +1,13 @@
-import FooterCompoennt from '../../components/Footer/FooterComponent'
-import HeaderComponent from '../../components/Header/HeaderComponent'
-import './HomePage.css'
+import FooterCompoennt from '../../components/Footer/FooterComponent';
+import HeaderComponent from '../../components/Header/HeaderComponent';
+import delivery_thumb from '../../assets/delevery-thumb.png';
+import payment_thumb from '../../assets/payment-thumb.png';
+import products_thumb from '../../assets/products-thumb.png';
+// import not_found_image from '../../assets/image-not-found.jpg';
+import './HomePage.css';
 
 function HomePage() {
+
     return (
         <>
             {/* <!---------------- Header ----------------> */}
@@ -22,7 +27,7 @@ function HomePage() {
                 <div class="info">
                     <div class="info-box">
                         <div class="box-img">
-                            <img src="./images/delevery-thumb.png" alt="info-thumb" />
+                            <img src={delivery_thumb} alt="info-thumb" />
                         </div>
                         <div class="box-data">
                             <h4>Fast Delivery</h4>
@@ -31,7 +36,7 @@ function HomePage() {
                     </div>
                     <div class="info-box">
                         <div class="box-img">
-                            <img src="./images/payment-thumb.png" alt="info-thumb" />
+                            <img src={payment_thumb} alt="info-thumb" />
                         </div>
                         <div class="box-data">
                             <h4>Safe Payment</h4>
@@ -40,7 +45,7 @@ function HomePage() {
                     </div>
                     <div class="info-box">
                         <div class="box-img">
-                            <img src="./images/products-thumb.png" alt="info-thumb" />
+                            <img src={products_thumb} alt="info-thumb" />
                         </div>
                         <div class="box-data">
                             <h4>Best Products</h4>
