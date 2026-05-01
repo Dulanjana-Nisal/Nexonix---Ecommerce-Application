@@ -3,6 +3,7 @@ const dbConnection = require('./db/server');
 const errorHaddlerMiddleware = require('./middlewares/errorHaddlerMiddleware');
 const notFoundMiddleware = require('./middlewares/notFoundMiddlewaare')
 
+const cors = require('cors');
 const users = require('./routers/usersRouters');
 const products = require('./routers/productsRouters');
 const orders = require('./routers/ordersRouters');
@@ -14,6 +15,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(cors())
 
 //routers
 app.use('/api/v1/user', users);

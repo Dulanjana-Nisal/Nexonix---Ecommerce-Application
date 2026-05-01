@@ -105,7 +105,8 @@
 .container .best-choice .best-choice-body .body-template .template-box,
 .container .laptop-section .section-grid .grid-box .box-card-row .card{
     max-width: 250px;
-    height: fit-content;
+    height: auto;
+    padding-bottom: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
     border-radius: 10px;
@@ -120,7 +121,7 @@
 .container .best-choice .best-choice-body .body-template .template-box .box-head img,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-head img{
     width: 100%;
-    height: 100%;
+    height: 200px;
     background-position: center;
     object-fit: cover;
     background-repeat: no-repeat;
@@ -197,7 +198,7 @@
     width: fit-content;
     border-radius: 30px;
     color: #DD3842;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     background-color: #DD384227;
 }
@@ -281,28 +282,28 @@
     padding-top: 30px;
 }
 .container .laptop-section .section-grid .grid-box .laptops{
-    background: url('./images/laptop-banner.png');
+    background: url('../../assets/laptop-banner.png');
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
 }
 .container .laptop-section .section-grid .grid-box .computers{
-    background: url('./images/computer-banner.png');
+    background: url('../../assets/computer-banner.png');
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
 }
 .container .laptop-section .section-grid .grid-box .headphones{
-    background: url('./images/headphones-banner.png');
+    background: url('../../assets/headphones-banner.png');
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
 }
 .container .laptop-section .section-grid .grid-box .games{
-    background: url('./images/laptop-banner.png');
+    background: url('../../assets/laptop-banner.png');
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;

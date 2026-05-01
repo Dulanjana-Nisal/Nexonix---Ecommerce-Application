@@ -59,7 +59,7 @@ function FooterCompoennt() {
                 </div>
                 <div class="footer-bottom">
                     <div class="copyright">
-                        <p>&copy;<span>Nexonix</span> all rights reserved. Develop by <span>Dulanjana Nisal</span></p>
+                        <p>&copy;<span>Nexonix</span> all rights reserved. Develop by <a href='https://github.com/Dulanjana-Nisal' target='_blank'>Dulanjana Nisal</a></p>
                     </div>
                     <div class="payment">
                         <p>Pyment Methods: </p>

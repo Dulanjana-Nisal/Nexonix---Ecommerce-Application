@@ -71,7 +71,7 @@
     font-size: 14px;
     font-weight: 500;
 }
-.footer .footer-bottom .copyright span{
+.footer .footer-bottom .copyright a{
     color: #2B38D1;
     font-weight: 600;
     cursor: pointer;
