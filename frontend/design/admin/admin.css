@@ -851,8 +851,9 @@
     color: #DD3842;
 }
 
-/* Add product box style */
-.container .sections .sections-body .product-section .product-body .add-product-box{
+/* Add product and update box style */
+.container .sections .sections-body .product-section .product-body .add-product-box,
+.container .sections .sections-body .product-section .product-body .update-product-box{
     position: fixed;
     top: 0;
     left: 0;
@@ -860,10 +861,12 @@
     height: 100vh;
     background-color: #000000d1;
     z-index: 20;
-    display: flex;
     display: none;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box{
+.container .sections .sections-body .product-section .product-body .update-product-box{
+    display: none;
+}
+.container .sections .sections-body .product-section .product-body .box{
     background-color: #fff;
     width: fit-content;
     height: fit-content;
@@ -874,39 +877,39 @@
     overflow-y: scroll;
     scroll-padding: 1px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box::-webkit-scrollbar {
+.container .sections .sections-body .product-section .product-body .box::-webkit-scrollbar {
   width: 5px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box::-webkit-scrollbar-thumb {
+.container .sections .sections-body .product-section .product-body .box::-webkit-scrollbar-thumb {
   background: #2B38D1;
   border-radius: 10px;
 }
 
-.container .sections .sections-body .product-section .product-body .add-product-box .box::-webkit-scrollbar-button{
+.container .sections .sections-body .product-section .product-body .box::-webkit-scrollbar-button{
     scrollbar-width: 1px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-header{
+.container .sections .sections-body .product-section .product-body .box .box-header{
     padding-bottom: 20px;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #d8dbdccd
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-header h1{
+.container .sections .sections-body .product-section .product-body .box .box-header h1{
     font-size: 25px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .row{
+.container .sections .sections-body .product-section .product-body .box .box-form form .row{
     margin: 15px 0;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .row label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .row label{
     font-size: 16px;
     color: rgb(109, 107, 107);
     font-weight: 600;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .name input,
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .quantity input,
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .price input,
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs input,
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .brand input{
+.container .sections .sections-body .product-section .product-body .box .box-form form .name input,
+.container .sections .sections-body .product-section .product-body .box .box-form form .quantity input,
+.container .sections .sections-body .product-section .product-body .box .box-form form .price input,
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input,
+.container .sections .sections-body .product-section .product-body .box .box-form form .brand input{
     width: 100%;
     padding: 10px;
     border: 1px solid #d8dbdccd;
@@ -918,59 +921,59 @@
     font-weight: 600;
     padding-left: 20px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .image label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .image label{
     margin-right: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .image input{
+.container .sections .sections-body .product-section .product-body .box .box-form form .image input{
     padding: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .counters{
+.container .sections .sections-body .product-section .product-body .box .box-form form .counters{
     display: flex;
     column-gap: 15px;
     align-items: center;
     justify-content: space-between;
 }
 
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .quantity input,
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .price input{
+.container .sections .sections-body .product-section .product-body .box .box-form form .quantity input,
+.container .sections .sections-body .product-section .product-body .box .box-form form .price input{
     width: 180px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings{
     display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 15px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs{
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings p{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings p{
     font-size: 16px;
     font-weight: 600;
-
-color: rgb(109, 107, 107);}
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs input{
+    color: rgb(109, 107, 107);
+}
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs input{
     display: none;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label{
     font-size: 20px;
     margin-right: 8px;
     color: #c4c6c7cd;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs label:hover{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label:hover{
     color: #FFB800;
     cursor: pointer;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs label:hover ~ label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label:hover ~ label{
     color: #FFB800;
     cursor: pointer;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .ratings .inputs input:checked ~ label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs input:checked ~ label{ 
     color: #FFB800;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .description textarea{
+.container .sections .sections-body .product-section .product-body .box .box-form form .description textarea{
     width: 100%;
     height: 100px;
     margin-top: 10px;
@@ -983,18 +986,18 @@ color: rgb(109, 107, 107);}
     outline: none;
     resize: none;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs{
     display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs input{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input{
     width: 200px;
     padding: 8px 10px;
     padding-left: 15px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs button{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs button{
     width: fit-content;
     padding: 8px 15px;
     font-size: 14px;
@@ -1004,12 +1007,12 @@ color: rgb(109, 107, 107);}
     color: #008A00;
     transition: 0.25s;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs button:hover{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs button:hover{
     color: #fff;
     background-color: #008A00;
     cursor: pointer;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .key-values{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values{
     width: 400px;
     height: fit-content;
     background-color: #2B38D127;
@@ -1019,7 +1022,7 @@ color: rgb(109, 107, 107);}
     flex-wrap: wrap;
     gap: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .key-values .values{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values{
     display: flex;
     width: fit-content;
     align-items: center;
@@ -1031,21 +1034,21 @@ color: rgb(109, 107, 107);}
     border: 1px solid #d8dbdccd;
     background-color: #F1F5F6;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .key-values .values i{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values i{
     font-size: 14px;
     font-weight: 600;
     color: #000000a9;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .key-values .values i:hover{
+.container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values i:hover{
     cursor: pointer;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .category{
+.container .sections .sections-body .product-section .product-body .box .box-form form .category{
     padding: 10px 0;
 } 
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .category label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .category label{
     margin-right: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .category select{
+.container .sections .sections-body .product-section .product-body .box .box-form form .category select{
     padding: 8px 10px;
     outline: none;
     border: 1px solid #d8dbdccd;
@@ -1053,29 +1056,29 @@ color: rgb(109, 107, 107);}
     background-color: #F1F5F6;
     font-weight: 600;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .brand label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .brand label{
     margin-right: 10px;
     width: 180px;
 } 
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .brand{
+.container .sections .sections-body .product-section .product-body .box .box-form form .brand{
     display: flex;
     align-items: center;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .availability{
+.container .sections .sections-body .product-section .product-body .box .box-form form .availability{
     padding-bottom: 10px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .availability .inputs{
+.container .sections .sections-body .product-section .product-body .box .box-form form .availability .inputs{
     margin-top: 5px;
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .availability .inputs label{
+.container .sections .sections-body .product-section .product-body .box .box-form form .availability .inputs label{
     font-size: 14px;
     color: #000;
     font-weight: 600;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .msgs{
+.container .sections .sections-body .product-section .product-body .box .box-form form .msgs{
     width: 100%;
     text-align: center;
     padding: 8px 0;
@@ -1085,14 +1088,14 @@ color: rgb(109, 107, 107);}
     background-color: #DD384227;
     display: none;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .buttons{
+.container .sections .sections-body .product-section .product-body .box .box-form form .buttons{
     padding-top: 10px;
     display: flex;
     align-items: center;
     column-gap: 20px;
     justify-content: space-around;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .buttons .close{
+.container .sections .sections-body .product-section .product-body .box .box-form form .buttons .close{
     padding: 10px;
     width: 100%;
     font-size: 14px;
@@ -1103,12 +1106,12 @@ color: rgb(109, 107, 107);}
     border-radius: 30px;
     transition: 0.25s;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .buttons .close:hover{
+.container .sections .sections-body .product-section .product-body .box .box-form form .buttons .close:hover{
     background-color: #fff;
     color: #DD3842;
     cursor: pointer;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .buttons input{
+.container .sections .sections-body .product-section .product-body .box .box-form form .buttons input{
     width: 100%;
     padding: 10px;
     border: 1px solid #2B38D1;
@@ -1119,7 +1122,7 @@ color: rgb(109, 107, 107);}
     border-radius: 30px;
     transition: 0.25s;
 }
-.container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .buttons input:hover{
+.container .sections .sections-body .product-section .product-body .box .box-form form .buttons input:hover{
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
@@ -1249,17 +1252,17 @@ color: rgb(109, 107, 107);}
     }
 }
 @media(max-width: 460px){
-    .container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .counters{
+    .container .sections .sections-body .product-section .product-body .box .box-form form .counters{
         display: block;
     }
-    .container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .counters input{
+    .container .sections .sections-body .product-section .product-body .box .box-form form .counters input{
         width: 100%;
     }
-    .container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .key-values{
+    .container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values{
         width: 100%;
         margin: 10px auto;
     }
-    .container .sections .sections-body .product-section .product-body .add-product-box .box .box-form form .keywords .inputs input{
+    .container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input{
         width: 100%;
     }
 }
