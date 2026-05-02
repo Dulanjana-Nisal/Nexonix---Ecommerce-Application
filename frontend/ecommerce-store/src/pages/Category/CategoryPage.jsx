@@ -1,0 +1,347 @@
+import FooterCompoennt from '../../components/Footer/FooterComponent';
+import HeaderComponent from '../../components/Header/HeaderComponent';
+import './CategoryPage.css';
+
+function CategoryPage() {
+    return (
+        <>
+            <HeaderComponent />
+            {/* <!---------------- container ----------------> */}
+            <div class="search-container">
+                <div class="container-grid">
+                    <div class="container-header">
+                        <div class="header-result">
+                            <p>Showing all <span>12</span> results</p>
+                        </div>
+                        <div class="header-sort">
+                            <p>Sort By: </p>
+                            <div class="select">Price Low to High ▾</div>
+                            <div class="options">
+                                <p>Latest</p>
+                                <p>Price Low to High</p>
+                                <p>Price High to Low</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-filter">
+                        <div class="filter-head">
+                            <div class="title">
+                                <h1>Filters</h1>
+                                <button>Clear All</button>
+                            </div>
+                            <div class="tags">
+                                <p>Apple</p>
+                                <p>4.3 ratings</p>
+                                <p>HP</p>
+                            </div>
+                        </div>
+                        <div class="filter-methods">
+                            <div class="method-box brand">
+                                <h3>Brands</h3>
+                                <div class="brand-box">
+                                    <input type="checkbox" checked />
+                                        <label>All</label>
+                                </div>
+                                <div class="brand-box">
+                                    <input type="checkbox" />
+                                        <label>Apple</label>
+                                </div>
+                                <div class="brand-box">
+                                    <input type="checkbox" />
+                                        <label>Asus</label>
+                                </div>
+                                <div class="brand-box">
+                                    <input type="checkbox" />
+                                        <label>Samsung</label>
+                                </div>
+                                <div class="brand-box">
+                                    <input type="checkbox" />
+                                        <label>Hp</label>
+                                </div>
+                            </div>
+                            <div class="method-box ratings">
+                                <h3>Ratings</h3>
+                                <div class="rating-box">
+                                    <input type="checkbox" />
+                                        <label>5 Stars</label>
+                                </div>
+                                <div class="rating-box">
+                                    <input type="checkbox" />
+                                        <label>4 Stars</label>
+                                </div>
+                                <div class="rating-box">
+                                    <input type="checkbox" />
+                                        <label>3 Stars</label>
+                                </div>
+                                <div class="rating-box">
+                                    <input type="checkbox" />
+                                        <label>2 Stars</label>
+                                </div>
+                                <div class="rating-box">
+                                    <input type="checkbox" />
+                                        <label>1 Star</label>
+                                </div>
+                            </div>
+                            <div class="method-box price-range">
+                                <div class="range-head">
+                                    <h3>Price </h3>
+                                </div>
+                                <div class="range-select">
+                                    <div class="min-price">
+                                        <label>Min Price $</label>
+                                        <input type="number" placeholder="0" />
+                                    </div>
+                                    <div class="max-price">
+                                        <label>Max Price $</label>
+                                        <input type="number" placeholder="100 000" />
+                                    </div>
+                                </div>
+                                <div class="range-values">
+                                    <p>Price <span>$0</span> - <span>$100 000</span></p>
+                                    <button>FILTER</button>
+                                </div>
+                            </div>
+                            <div class="method-box availability">
+                                <h3>Availability</h3>
+                                <div class="availability-box">
+                                    <input type="radio" id="all" value="all" name="availability" checked />
+                                        <label>All</label>
+                                </div>
+                                <div class="availability-box">
+                                    <input type="radio" id="in" value="in" name="availability" />
+                                        <label>In Stock</label>
+                                </div>
+                                <div class="availability-box">
+                                    <input type="radio" id="out" value="out" name="availability" />
+                                        <label>Out Stock</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-body">
+                        <div class="body-head">
+                            <h1>Category Name</h1>
+                        </div>
+                        <div class="body-template">
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-box">
+                                <div class="box-head">
+                                    <img src="../../images/card-image.png" alt="product-img" />
+                                </div>
+                                <div class="box-body">
+                                    <div class="name">
+                                        <p>Lenovo Legion 7i Gen 9 Laptopenovo Legion 7i Gen 9 Laptoenovo Legion 7i Gen 9
+                                            Laptoenovo Legion 7i Gen 9 Lapto</p>
+                                    </div>
+                                    <div class="ratings">
+                                        <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
+                                    </div>
+                                    <div class="price">
+                                        <p>$34.54</p>
+                                        <div class="availability">
+                                            <p class="in-stock">In Stock</p>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <button>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body-buttons">
+                            <button class="pre">‹ Previous</button>
+                            <p>1 of 10</p>
+                            <button class="next">Next ›</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <FooterCompoennt />
+        </>
+    )
+}
+
+export default CategoryPage;

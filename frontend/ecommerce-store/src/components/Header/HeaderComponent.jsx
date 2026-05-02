@@ -120,22 +120,22 @@ function HeaderComponent() {
                             toggleHamberger && 
                             <div class="navbar-left-selection-box">
                                 <ul>
-                                    <li><a href="#">Computers</a></li>
-                                    <li><a href="#">Laptops</a></li>
-                                    <li><a href="#">Components</a></li>
-                                    <li><a href="#">Gamings</a></li>
-                                    <li><a href="#">Softwares</a></li>
+                                    <Link to="/products/computers"><li>Computers</li></Link>
+                                    <Link to="/products/laptops"><li>Laptops</li></Link>
+                                    <Link to="/products/components"><li>Components</li></Link>
+                                    <Link to="/products/gamings"><li>Gamings</li></Link>
+                                    <Link to="/products/softwares"><li>Softwares</li></Link>
                                 </ul>
                             </div>
                         }
                     </div>
                     <div class="navbar-right">
                         <ul>
-                            <li><a href="#">Computers</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Components</a></li>
-                            <li><a href="#">Gamings</a></li>
-                            <li><a href="#">Softwares</a></li>
+                            <li><Link to="/products/computers">Computers</Link></li>
+                            <li><Link to="/products/laptops">Laptops</Link></li>
+                            <li><Link to="/products/components">Components</Link></li>
+                            <li><Link to="/products/gamings">Gamings</Link></li>
+                            <li><Link to="/products/softwares">Softwares</Link></li>
                         </ul>
                     </div>
                 </div>
