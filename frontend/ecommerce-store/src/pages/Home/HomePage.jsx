@@ -6,6 +6,7 @@ import products_thumb from '../../assets/products-thumb.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
 
@@ -101,10 +102,12 @@ function HomePage() {
                                         ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                     }
                                     return(
-                                        <div class="template-box" key={items.id}>
-                                            <div class="box-head">
-                                                <img src={items.image} alt="product-img" />
-                                            </div>
+                                        <div class="template-box" key={items._id}>
+                                            <Link to={`/details/${items._id}`} style={{textDecoration: "none"}}>
+                                                <div class="box-head">
+                                                    <img src={items.image} alt="product-img" />
+                                                </div>
+                                            </Link>
                                             <div class="box-body">
                                                 <div class="name">
                                                     <p>{items.name}</p>
@@ -166,10 +169,12 @@ function HomePage() {
                                             ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                         }
                                         return(
-                                            <div class="card" key={items.id}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
+                                            <div class="card" key={items._id}>
+                                                <Link to={`/details/${items._id}`} style={{textDecoration: "none"}}>
+                                                    <div class="box-head">
+                                                        <img src={items.image} alt="product-img" />
+                                                    </div>
+                                                </Link>
                                                 <div class="box-body">
                                                     <div class="name">
                                                         <p>{items.name}</p>
@@ -231,10 +236,12 @@ function HomePage() {
                                             ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                         }
                                         return(
-                                            <div class="card" key={items.id}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
+                                            <div class="card" key={items._id}>
+                                                <Link to={`/details/${items._id}`} style={{textDecoration: "none"}}>
+                                                    <div class="box-head">
+                                                        <img src={items.image} alt="product-img" />
+                                                    </div>
+                                                </Link>
                                                 <div class="box-body">
                                                     <div class="name">
                                                         <p>{items.name}</p>

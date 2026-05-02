@@ -31,7 +31,6 @@ function HeaderComponent() {
             setLoading(false)
         }
         fetchSearchData();
-        console.log(searchResult)
     }, [searchValue])
 
     return (
@@ -61,7 +60,7 @@ function HeaderComponent() {
                                                 <h3>Loading...</h3>
                                             </div>
                                     :
-                                    // 0 search result desplay
+                                    // Search not found display
                                     searchResult.length === 0 ?
                                             <div class="not-found">
                                                 <h3>Not Found</h3>
@@ -69,10 +68,12 @@ function HeaderComponent() {
                                     // if have some result, display
                                     searchResult.map((items)=>{
                                         return(
-                                            <div class="result" key={items.id}>
-                                                <h3>{items.name}</h3>
-                                                <p>{items.category}</p>
-                                            </div>
+                                            <Link to={`/details/${items._id}`} style={{textDecoration: "none"}} key={items._id}>
+                                                <div class="result">
+                                                    <h3>{items.name}</h3>
+                                                    <p>{items.category}</p>
+                                                </div>
+                                            </Link>
                                         )
                                     })
                                 }
