@@ -10,13 +10,15 @@ function HeaderComponent() {
 
     const [searchResult,setSearchResult] = useState([]);
     const [searchValue,setSearchValue] = useState('');
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(false);
+    const [toggleHamberger,setToggleHamberger] = useState(false);
 
     // add search values to use state if have more than 1 letter
     function searchInputValues(event){
         const valueData = event.target.value
         valueData.length > 1 && setSearchValue(valueData)
         valueData.length < 1 && setSearchValue("")
+        setToggleHamberger(false)
     }
  
     //get Search Data
@@ -103,19 +105,22 @@ function HeaderComponent() {
                 <hr />
                 <div class="header-navbar">
                     <div class="navbar-left">
-                        <div class="navbar-left-selection">
-                            <img src={hamberger_menu} alt="" />
+                        <div class="navbar-left-selection" onClick={()=>{toggleHamberger ? setToggleHamberger(false) : setToggleHamberger(true)}}>
+                            <img src={hamberger_menu} alt=""/>
                             <p>Browse All Categories</p>
                         </div>
-                        <div class="navbar-left-selection-box">
-                            <ul>
-                                <li><a href="#">Computers</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Components</a></li>
-                                <li><a href="#">Gamings</a></li>
-                                <li><a href="#">Softwares</a></li>
-                            </ul>
-                        </div>
+                        {
+                            toggleHamberger && 
+                            <div class="navbar-left-selection-box">
+                                <ul>
+                                    <li><a href="#">Computers</a></li>
+                                    <li><a href="#">Laptops</a></li>
+                                    <li><a href="#">Components</a></li>
+                                    <li><a href="#">Gamings</a></li>
+                                    <li><a href="#">Softwares</a></li>
+                                </ul>
+                            </div>
+                        }
                     </div>
                     <div class="navbar-right">
                         <ul>

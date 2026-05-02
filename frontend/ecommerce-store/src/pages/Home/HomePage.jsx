@@ -3,7 +3,6 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import delivery_thumb from '../../assets/delevery-thumb.png';
 import payment_thumb from '../../assets/payment-thumb.png';
 import products_thumb from '../../assets/products-thumb.png';
-import not_found_image from '../../assets/image-not-found.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import './HomePage.css';
