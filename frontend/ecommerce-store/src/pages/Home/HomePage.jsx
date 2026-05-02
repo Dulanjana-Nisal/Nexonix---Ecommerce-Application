@@ -104,7 +104,7 @@ function HomePage() {
                                     return(
                                         <div class="template-box" key={items.id}>
                                             <div class="box-head">
-                                                <img src={not_found_image} alt="product-img" />
+                                                <img src={items.image} alt="product-img" />
                                             </div>
                                             <div class="box-body">
                                                 <div class="name">
@@ -169,7 +169,7 @@ function HomePage() {
                                         return(
                                             <div class="card" key={items.id}>
                                                 <div class="box-head">
-                                                    <img src={not_found_image} alt="product-img" />
+                                                    <img src={items.image} alt="product-img" />
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="name">
@@ -234,7 +234,7 @@ function HomePage() {
                                         return(
                                             <div class="card" key={items.id}>
                                                 <div class="box-head">
-                                                    <img src={not_found_image} alt="product-img" />
+                                                    <img src={items.image} alt="product-img" />
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="name">
