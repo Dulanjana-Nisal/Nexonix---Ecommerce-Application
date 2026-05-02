@@ -3,8 +3,12 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './DetailsPage.css';
 import user_profile from '../../assets/user-profile-image.png';
 import resize_image from '../../assets/resize-image.svg';
+import { useState } from 'react';
 
 function DetailsPage() {
+
+    const [] = useState([])
+
     return (
         <>
             <HeaderComponent />
