@@ -5,6 +5,7 @@ import user_profile from '../../assets/user-profile.png';
 import hamberger_menu from '../../assets/hamberger-menu.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function HeaderComponent() {
 
@@ -38,7 +39,9 @@ function HeaderComponent() {
             <div class="header">
                 <div class="header-top">
                     <div class="header-top-left">
-                        <img src={main_logo} alt="logo" />
+                        <Link to='/'>
+                            <img src={main_logo} alt="logo" />
+                        </Link>
                     </div>
                     <div class="header-top-center">
                         <div class="search-box">
@@ -81,15 +84,17 @@ function HeaderComponent() {
                         <div class="orders">
                             <p>Orders</p>
                         </div>
-                        <div class="profile">
-                            <div class="profile-left">
-                                <img src={user_profile} alt="user-profile" />
+                        <Link to='/account' style={{textDecoration: "none", color: "#000"}}>
+                            <div class="profile">
+                                <div class="profile-left">
+                                    <img src={user_profile} alt="user-profile" />
+                                </div>
+                                <div class="profile-right">
+                                    <p>Login</p>
+                                    <h3>Account</h3>
+                                </div>
                             </div>
-                            <div class="profile-right">
-                                <p>Login</p>
-                                <h3>Account</h3>
-                            </div>
-                        </div>
+                        </Link>
                         <div class="cart">
                             <div class="cart-left">
                                 <img src={Shopping_cart} alt="shopping-cart" />

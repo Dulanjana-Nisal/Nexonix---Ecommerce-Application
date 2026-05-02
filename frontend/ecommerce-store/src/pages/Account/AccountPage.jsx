@@ -1,8 +1,11 @@
+import FooterCompoennt from '../../components/Footer/FooterComponent';
+import HeaderComponent from '../../components/Header/HeaderComponent';
 import './AccountPage.css';
 
 function AccountPage() {
     return (
         <>
+            <HeaderComponent />
             {/* <!---------------- container ----------------> */}
             <div class="account-container">
                 <div class="container-header">
@@ -29,7 +32,7 @@ function AccountPage() {
                                 <div class="messages">
                                     <p class="success">Success Message</p>
                                 </div>
-                                <input type="submit" class="button" value="Sign In"> /</input>
+                                <input type="submit" class="button" value="Sign In" />
                             </form>
                         </div>
                     </div>
@@ -62,6 +65,7 @@ function AccountPage() {
                     </div>
                 </div>
             </div>
+            <FooterCompoennt />
         </>
     )
 }
