@@ -81,9 +81,11 @@ function HeaderComponent() {
                         }
                     </div>
                     <div class="header-top-right">
-                        <div class="orders">
-                            <p>Orders</p>
-                        </div>
+                        <Link to='/orders' style={{textDecoration: "none", color: "#000"}}>
+                            <div class="orders">
+                                <p>Orders</p>
+                            </div>
+                        </Link>
                         <Link to='/account' style={{textDecoration: "none", color: "#000"}}>
                             <div class="profile">
                                 <div class="profile-left">
