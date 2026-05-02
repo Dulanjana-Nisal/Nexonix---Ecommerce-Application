@@ -46,7 +46,9 @@ function HeaderComponent() {
                     <div class="header-top-center">
                         <div class="search-box">
                             <input type="text" placeholder="Search for products..." onChange={searchInputValues}/>
-                            <button>Search</button>
+                            <Link to='/search'>
+                                <button>Search</button>
+                            </Link>
                         </div>
                         {
                             //check have more than 1 result
@@ -75,7 +77,9 @@ function HeaderComponent() {
                                     })
                                 }
                                 <div class="result-btn">
-                                    <button>See all</button>
+                                    <Link to='/search'>
+                                        <button>See all</button>
+                                    </Link>
                                 </div>
                             </div>
                         }
@@ -97,16 +101,18 @@ function HeaderComponent() {
                                 </div>
                             </div>
                         </Link>
-                        <div class="cart">
-                            <div class="cart-left">
-                                <img src={Shopping_cart} alt="shopping-cart" />
-                                <p>0</p>
+                        <Link to='/cart' style={{textDecoration: "none", color: "#000"}}>
+                            <div class="cart">
+                                <div class="cart-left">
+                                    <img src={Shopping_cart} alt="shopping-cart" />
+                                    <p>0</p>
+                                </div>
+                                <div class="cart-right">
+                                    <p>Your Cart</p>
+                                    <h3>$0.00</h3>
+                                </div>
                             </div>
-                            <div class="cart-right">
-                                <p>Your Cart</p>
-                                <h3>$0.00</h3>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <hr />

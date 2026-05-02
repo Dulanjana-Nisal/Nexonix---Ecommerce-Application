@@ -4,6 +4,8 @@ import HomePage from './pages/Home/HomePage'
 import AccountPage from './pages/Account/AccountPage'
 import OrdersPage from './pages/Orders/OrdersPage'
 import CategoryPage from './pages/Category/CategoryPage'
+import CartPage from './pages/Cart/CartPage'
+import SearchPage from './pages/Search/SearchPage'
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Route path='/account' element={<AccountPage />} />
       <Route path='/orders' element={<OrdersPage />} />
       <Route path='/products/:category' element={<CategoryPage />} />
+      <Route path='/cart' element={<CartPage />} />
+      <Route path='/search' element={<SearchPage />} />
     </Routes>
   )
 }
