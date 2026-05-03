@@ -68,7 +68,7 @@ function HeaderComponent() {
                                     // if have some result, display
                                     searchResult.map((items)=>{
                                         return(
-                                            <Link to={`/details/${items._id}`} style={{textDecoration: "none"}} key={items._id}>
+                                            <Link to={`/details/${items._id}`} style={{textDecoration: "none"}} key={items._id} onClick={()=>{setSearchValue("")}}>
                                                 <div class="result">
                                                     <h3>{items.name}</h3>
                                                     <p>{items.category}</p>
