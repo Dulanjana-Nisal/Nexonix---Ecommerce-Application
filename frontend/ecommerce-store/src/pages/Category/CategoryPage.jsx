@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CategoryPage.css';
 
 function CategoryPage() {
+
+    const [] = useState([])
+
     return (
         <>
             <HeaderComponent />
