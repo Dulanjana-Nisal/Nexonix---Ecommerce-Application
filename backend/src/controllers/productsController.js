@@ -23,6 +23,7 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
         queryObject.category = category;
 
     }
+    
     //product filter by availability
     if(availability){
         queryObject.availability = availability==='false' ? false : true;

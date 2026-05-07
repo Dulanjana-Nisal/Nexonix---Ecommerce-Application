@@ -65,7 +65,7 @@
     right: 0;
     z-index: 5;
     width: 200px;
-    display: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .search-container .container-header .header-sort .options p{
     padding: 10px 15px;

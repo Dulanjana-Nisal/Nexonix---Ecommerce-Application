@@ -65,7 +65,6 @@
     right: 0;
     z-index: 5;
     width: 200px;
-    display: none;
 }
 .search-container .container-header .header-sort .options p{
     padding: 10px 15px;
