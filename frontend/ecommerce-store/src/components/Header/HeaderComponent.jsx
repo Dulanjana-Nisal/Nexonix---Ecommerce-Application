@@ -3,7 +3,7 @@ import main_logo from '../../assets/logo2.png';
 import Shopping_cart from '../../assets/shopping-cart.png';
 import user_profile from '../../assets/user-profile.png';
 import hamberger_menu from '../../assets/hamberger-menu.png';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,9 @@ function HeaderComponent() {
     const [searchValue,setSearchValue] = useState('');
     const [loading,setLoading] = useState(false);
     const [toggleHamberger,setToggleHamberger] = useState(false);
+
+    //get infor from search result box
+    const searchResultBox = useRef()
 
     // add search values to use state if have more than 1 letter
     function searchInputValues(event){
@@ -31,7 +34,21 @@ function HeaderComponent() {
             setLoading(false)
         }
         fetchSearchData();
-    }, [searchValue])
+    }, [searchValue,searchResultBox])
+
+    //hide search box
+    function hideSearchBox(){
+        if(searchResultBox.current){
+            searchResultBox.current.style.display = "none"
+        }
+    }
+
+    //display search box
+    function displaySearchBox(){
+        if(searchResultBox.current){
+            searchResultBox.current.style.display = "block"
+        }
+    }
 
     return (
         <>
@@ -39,20 +56,20 @@ function HeaderComponent() {
                 <div class="header-top">
                     <div class="header-top-left">
                         <Link to='/'>
-                            <img src={main_logo} alt="logo" />
+                            <img src={main_logo} alt="logo"  onClick={() => hideSearchBox()}/>
                         </Link>
                     </div>
                     <div class="header-top-center">
-                        <div class="search-box">
-                            <input type="text" placeholder="Search for products..." onChange={searchInputValues}/>
-                            <Link to='/search'>
-                                <button>Search</button>
-                            </Link>
+                        <div class="search-box" >
+                            <input type="text" placeholder="Search for products..." onChange={searchInputValues} onClick={() => displaySearchBox()}/>
+                                <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox()}>
+                                    <button>Search</button>
+                                </Link>
                         </div>
                         {
                             //check have more than 1 result
                             searchValue.length > 1 && 
-                            <div class="result-box">
+                            <div class="result-box" ref={searchResultBox}>
                                 {
                                     //Dsiplay loading text if search loading
                                     loading ? 
@@ -78,7 +95,7 @@ function HeaderComponent() {
                                     })
                                 }
                                 <div class="result-btn">
-                                    <Link to='/search'>
+                                    <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox()}>
                                         <button>See all</button>
                                     </Link>
                                 </div>
@@ -117,7 +134,7 @@ function HeaderComponent() {
                     </div>
                 </div>
                 <hr />
-                <div class="header-navbar">
+                <div class="header-navbar"  onClick={() => hideSearchBox()}>
                     <div class="navbar-left">
                         <div class="navbar-left-selection" onClick={()=>{toggleHamberger ? setToggleHamberger(false) : setToggleHamberger(true)}}>
                             <img src={hamberger_menu} alt=""/>
