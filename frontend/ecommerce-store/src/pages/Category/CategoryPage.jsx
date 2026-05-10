@@ -17,7 +17,6 @@ function CategoryPage() {
         maxPrice: 100000,
         minPrice: 0
     })
-
     const [filterTags,setFilterTags] = useState({
         brand: undefined,
         rr: undefined,
@@ -111,6 +110,7 @@ function CategoryPage() {
     function brandsFilter(){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("brand", event.target.id);
+        newQuery.set("page", 1)
         setFilterTags({
             ...filterTags,
             brand: event.target.id
@@ -122,12 +122,14 @@ function CategoryPage() {
             })
         }
         setQueryData(newQuery);
+        
     }
 
     ///filter by ratings
     function ratingsFilter(){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("rr", event.target.id);
+        newQuery.set("page", 1)
         setFilterTags({
             ...filterTags,
             rr: event.target.id
@@ -145,6 +147,7 @@ function CategoryPage() {
     function submitPriceValue(){
         const updateQery = new URLSearchParams(queryData);
         updateQery.set("pr", `${priceValues.minPrice}-${priceValues.maxPrice}`)
+        updateQery.set("page", 1)
         setQueryData(updateQery)
 
         setFilterTags({
@@ -157,6 +160,7 @@ function CategoryPage() {
     function filterByAvailability(){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("availability", event.target.id)
+        newQuery.set("page", 1)
         setQueryData(newQuery);
 
         setFilterTags({
