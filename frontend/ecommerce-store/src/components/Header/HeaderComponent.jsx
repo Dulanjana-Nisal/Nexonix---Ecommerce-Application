@@ -6,6 +6,7 @@ import hamberger_menu from '../../assets/hamberger-menu.png';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { displaySearchBox, hideSearchBox } from '../../utils/Buttons';
 
 function HeaderComponent() {
 
@@ -36,33 +37,19 @@ function HeaderComponent() {
         fetchSearchData();
     }, [searchValue,searchResultBox])
 
-    //hide search box
-    function hideSearchBox(){
-        if(searchResultBox.current){
-            searchResultBox.current.style.display = "none"
-        }
-    }
-
-    //display search box
-    function displaySearchBox(){
-        if(searchResultBox.current){
-            searchResultBox.current.style.display = "block"
-        }
-    }
-
     return (
         <>
             <div class="header">
                 <div class="header-top">
                     <div class="header-top-left">
                         <Link to='/'>
-                            <img src={main_logo} alt="logo"  onClick={() => hideSearchBox()}/>
+                            <img src={main_logo} alt="logo"  onClick={() => hideSearchBox(searchResultBox)}/>
                         </Link>
                     </div>
                     <div class="header-top-center">
                         <div class="search-box" >
-                            <input type="text" placeholder="Search for products..." onChange={searchInputValues} onClick={() => displaySearchBox()}/>
-                                <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox()}>
+                            <input type="text" placeholder="Search for products..." onChange={searchInputValues} onClick={() => displaySearchBox(searchResultBox)}/>
+                                <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox(searchResultBox)}>
                                     <button>Search</button>
                                 </Link>
                         </div>
@@ -134,7 +121,7 @@ function HeaderComponent() {
                     </div>
                 </div>
                 <hr />
-                <div class="header-navbar"  onClick={() => hideSearchBox()}>
+                <div class="header-navbar"  onClick={()=>hideSearchBox(searchResultBox)}>
                     <div class="navbar-left">
                         <div class="navbar-left-selection" onClick={()=>{toggleHamberger ? setToggleHamberger(false) : setToggleHamberger(true)}}>
                             <img src={hamberger_menu} alt=""/>
