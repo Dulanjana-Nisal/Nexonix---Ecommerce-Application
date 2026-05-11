@@ -118,10 +118,6 @@
     text-align: center;
     font-size: 15px;
     font-weight: 600;
-    display: none;
-}
-.account-container .container-body .close{
-    display: none;
 }
 .account-container .container-body .error{
     color: #DD3842
