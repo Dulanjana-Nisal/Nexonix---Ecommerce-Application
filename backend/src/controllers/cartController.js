@@ -36,7 +36,8 @@ const getAllCartItems = asyncHaddler(async (req, res) => {
 //create Cart items
 const createCartItems = asyncHaddler(async (req, res) => {
     //check cart is already create
-    const itemCart = await Cart.findOne({userId: req.body.userId})
+    req.body.userId = req.user._id;
+    const itemCart = await Cart.findOne({userId: req.user._id})
     //check product is already exsist
     const checkProducts = await Cart.findOne({userId:req.body.userId,  "items.productId": req.body.items.productId})
     let result = Cart
@@ -45,7 +46,7 @@ const createCartItems = asyncHaddler(async (req, res) => {
             throw new BadrequestErrorHaddler('Product already in cart!')
         }
         result =  result.updateOne(
-            {userId: req.body.userId},
+            {userId: req.user._id},
             {
                 $push: {
                     items: req.body.items

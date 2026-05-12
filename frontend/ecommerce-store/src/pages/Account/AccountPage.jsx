@@ -3,8 +3,8 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import open_eye from '../../assets/open-eye.png';
 import close_eye from '../../assets/close-eye.png';
 import './AccountPage.css';
-import axios from 'axios';
 import { useState } from 'react';
+import api from '../../auth/auth';
 
 function AccountPage() {
 
@@ -14,6 +14,32 @@ function AccountPage() {
     const [password,setPassword] = useState("");
     const [togglePass,setTogglePass] = useState(true);
     const [messages,setMessages] = useState({})
+    const [loginmessages,setLoginMessages] = useState({})
+
+    //login states
+    const [loginEmail,setLoginEmail] = useState("")
+    const [loginPassword,setLoginPassword] = useState("")
+
+    //user Login
+    const loginFrom = async(e)=>{
+        e.preventDefault();
+
+        try{
+            const login = await api.post('http://localhost:5000/api/v1/user/signin', {
+                "email": loginEmail,
+                "password": loginPassword,
+            })
+            localStorage.setItem('token', login.data.token)
+            console.log(login)
+        }
+        catch(err){
+            setLoginMessages(err.response.data)
+            setTimeout(()=>{
+                setLoginMessages(false)
+            }, 3000)
+        }
+
+    }
 
     //user Register
     const registerForm = async (e)=>{
@@ -21,23 +47,25 @@ function AccountPage() {
         e.preventDefault()
 
         try{
-            await axios.post('http://localhost:5000/api/v1/user/signup', {
+            await api.post('http://localhost:5000/api/v1/user/signup', {
                 "name": name,
                 "email": email,
                 "password": password,
             })
+
             setMessages({
                 success: true,
                 message: "Register Success!"
             })
-            
+
             setName("");
             setEmail("");
             setPassword("");
 
             setTimeout(()=>{
                 setMessages(false)
-            }, 3000)
+
+            }, 2000)
         }
         catch(err){
             setMessages(err.response.data)
@@ -46,7 +74,6 @@ function AccountPage() {
             }, 3000)
         }
     }
-    console.log(messages)
 
     //See password toggle button
     function toggleSeePassword(){
@@ -68,14 +95,14 @@ function AccountPage() {
                             <p>Sign In</p>
                         </div>
                         <div class="signin-form">
-                            <form>
+                            <form onSubmit={loginFrom}>
                                 <div class="email">
                                     <label>Email Address <span>*</span></label><br />
-                                    <input type="text" />
+                                    <input type="text" value={loginEmail} onChange={() => {setLoginEmail(event.target.value)}}/>
                                 </div>
                                 <div class="password">
                                     <label>Password <span>*</span></label><br />
-                                    <input type="password" />
+                                    <input type={togglePass ? "password" : "text"} value={loginPassword} onChange={() => {setLoginPassword(event.target.value)}}/>
                                      {
                                         togglePass ?
                                         <img src={close_eye} class="open" alt="" onClick={() => toggleSeePassword()}/>
@@ -84,9 +111,9 @@ function AccountPage() {
                                     }
                                 </div>
                                 {
-                                    messages.length > 1 &&
+                                    loginmessages &&
                                     <div class="messages">
-                                        <p class={messages.success === true ? "success" : "error"}>{messages.message}</p>
+                                        <p class={loginmessages.success === true ? "success" : "error"}>{loginmessages.message}</p>
                                     </div>
                                 }
                                 <input type="submit" class="button" value="Sign In" />
