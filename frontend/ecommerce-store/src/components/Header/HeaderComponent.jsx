@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { displaySearchBox, hideSearchBox } from '../../utils/Buttons';
+import api from '../../services/auth';
 
 function HeaderComponent() {
 
@@ -14,9 +15,19 @@ function HeaderComponent() {
     const [searchValue,setSearchValue] = useState('');
     const [loading,setLoading] = useState(false);
     const [toggleHamberger,setToggleHamberger] = useState(false);
+    const [cartCount,setCartCount] = useState(0)
 
     //get infor from search result box
     const searchResultBox = useRef()
+
+    //get cart items count
+    useEffect(()=>{
+        const fetchCartItemCount = async ()=>{
+            const result = await api.get('/cart')
+            setCartCount(result.data.data[0].items.length)
+        }
+        fetchCartItemCount();
+    }, [])
 
     // add search values to use state if have more than 1 letter
     function searchInputValues(event){
@@ -110,7 +121,7 @@ function HeaderComponent() {
                             <div class="cart">
                                 <div class="cart-left">
                                     <img src={Shopping_cart} alt="shopping-cart" />
-                                    <p>0</p>
+                                    <p>{cartCount}</p>
                                 </div>
                                 <div class="cart-right">
                                     <p>Your Cart</p>

@@ -18,6 +18,10 @@ const cartItemSchema = mongoose.Schema({
         type: Boolean,
         required: [true, 'Availability is required!']
     },
+    stock: {
+        type: Number,
+        required: [true, 'Stock Count is required!']
+    },
     price: {
         type: Number,
         required: [true, 'Item price is required!']

@@ -4,7 +4,8 @@ import open_eye from '../../assets/open-eye.png';
 import close_eye from '../../assets/close-eye.png';
 import './AccountPage.css';
 import { useState } from 'react';
-import api from '../../auth/auth';
+import api from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
 
 function AccountPage() {
 
@@ -19,6 +20,7 @@ function AccountPage() {
     //login states
     const [loginEmail,setLoginEmail] = useState("")
     const [loginPassword,setLoginPassword] = useState("")
+    const navigate = useNavigate();
 
     //user Login
     const loginFrom = async(e)=>{
@@ -30,7 +32,10 @@ function AccountPage() {
                 "password": loginPassword,
             })
             localStorage.setItem('token', login.data.token)
-            console.log(login)
+            setLoginMessages(login.data.data)
+            setTimeout(()=>{
+                navigate('/')
+            }, 2000)
         }
         catch(err){
             setLoginMessages(err.response.data)

@@ -8,7 +8,7 @@ const statusCodes = require('http-status-codes');
 const getAllCartItems = asyncHaddler(async (req, res) => {
     const { availability } = req.query;
 
-    let queryObject = {};
+    let queryObject = {userId: req.user._id};
     //Cart items filter by product
      if(availability){
         queryObject.availability = availability==='false' ? false : true;

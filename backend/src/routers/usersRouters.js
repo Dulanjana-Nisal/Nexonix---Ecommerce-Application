@@ -4,7 +4,7 @@ const authenticationMiddleware = require('../middlewares/authenticationMiddlewar
 const router = express.Router()
 
 router.route('/signup').post(userSignup);
-router.route('/signin').post(authenticationMiddleware, userSignin);
+router.route('/signin').post(userSignin);
 router.route('/:id').delete(deleteUsers);
 
 module.exports = router

@@ -7,6 +7,7 @@ import close_btn_image from '../../assets/close-btn.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import api from '../../services/auth';
 
 function DetailsPage() {
 
@@ -37,6 +38,26 @@ function DetailsPage() {
         fetchProductDetails();
         window.scrollTo(top)
     }, [productId])
+
+    //add product in to cart
+    const addProductToCart = async ()=>{
+        try{
+            const addCart = await api.post('/cart',{
+                items: {
+                    productId: producatDetails._id,
+                    name: producatDetails.name,
+                    image: producatDetails.image,
+                    quantity: quantity,
+                    price: producatDetails.price,
+                    availability: producatDetails.availability
+                }
+            })
+            console.log(addCart.data)
+        }
+        catch(err){
+            console.log(err.response)
+        }
+    }
 
     let ratings;
     if(producatDetails.ratings === 5){
@@ -108,7 +129,7 @@ function DetailsPage() {
                             <p>{producatDetails.description}</p>
                         </div>
                         <div class="product-buttons row">
-                            <button class="cart">Add To Cart</button>
+                            <button class="cart" onClick={() => addProductToCart()}>Add To Cart</button>
                             <button class="buy">Buy Now</button>
                         </div>
                         <div class="product-more row">
@@ -151,7 +172,6 @@ function DetailsPage() {
                                     <div class="tags">
                                         {
                                             producatKeywords.map((items)=>{
-                                                console.log(producatKeywords)
                                                 return(
                                                     <p>{items}</p>
                                                 )
