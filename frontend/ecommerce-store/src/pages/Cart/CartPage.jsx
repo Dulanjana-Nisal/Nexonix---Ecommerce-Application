@@ -30,8 +30,7 @@ function CartPage() {
             cartItemsData.map((items)=>
                 items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
             )
-        )
-        
+        )    
     }
     // Add Quantity
     function addQnt(itemId,itemQnt){
