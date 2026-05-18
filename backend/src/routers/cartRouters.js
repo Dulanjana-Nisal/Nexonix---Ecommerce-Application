@@ -4,6 +4,6 @@ const { getAllCartItems, createCartItems, getSingleCartItem, updateCartItems, de
 const router = express.Router()
 
 router.route('/').get(authenticationMiddleware, getAllCartItems).post(authenticationMiddleware, createCartItems);
-router.route('/:id').get(getSingleCartItem).patch(updateCartItems).delete(deleteCartItems);
+router.route('/:id').get(getSingleCartItem).patch(updateCartItems).delete(authenticationMiddleware, deleteCartItems);
 
 module.exports = router

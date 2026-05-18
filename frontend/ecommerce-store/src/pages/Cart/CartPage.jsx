@@ -1,37 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CartPage.css';
-import { useEffect } from 'react';
+import {Link} from 'react-router-dom'
 import api from '../../services/auth';
 
-function CartPage() {
+function CartPage() {    
+    //use States
+    const [cartItemsData, setCartItemsData] = useState([])
 
-    //use states
-    const [cartItemsData,setCartItemsData] = useState([])
-    const [quantity,setQuantity] = useState(1);
-
-    useEffect(()=>{
-        const fetchCartData = async()=>{
-            try{
+    //Fetch cart item data
+    useEffect(() => {
+        const fetchCartData = async () => {
+            try {
                 const result = await api.get('/cart');
                 setCartItemsData(result.data.data[0].items)
             }
-            catch(err){
+            catch (err) {
                 setCartItemsData(err.response.data)
             }
         }
         fetchCartData();
     }, [])
 
-    //qunt selection
-    function addQnt(){
-        const sum = quantity +1
-        quantity == cartItemsData.stock ? setQuantity(cartItemsData.stock) : setQuantity(sum)
+    // Min Quantity
+    function minQnt(itemId,itemQnt){
+        let total = itemQnt - 1
+        setCartItemsData(
+            cartItemsData.map((items)=>
+                items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
+            )
+        )
+        
     }
-    function minQnt(){
-        const sum = quantity -1
-        quantity === 1 ? setQuantity(1) : setQuantity(sum)
+    // Add Quantity
+    function addQnt(itemId,itemQnt){
+        let total = itemQnt + 1
+        setCartItemsData(
+            cartItemsData.map((items)=>
+                items._id === itemId ? {...items, quantity: total} : items
+            )
+        )
+    }
+
+    //delete cart item 
+    const deleteCartItem = async (itemId) =>{
+        try{
+            await api.delete(`/cart/${itemId}`)
+            console.log('Deleted')
+        }
+        catch(err){
+            console.log(err.response.data)
+        }
+        console.log(itemId)
     }
 
     return (
@@ -42,7 +63,7 @@ function CartPage() {
                 <div class="cart-header">
                     <div class="header-content">
                         <h1>Chopping Cart</h1>
-                        <p><span>Home /</span> Shopping Cart</p>
+                        <p><span><Link to="/" style={{textDecoration: "none", color: "#8f9293"}}>Home</Link> /</span> Shopping Cart</p>
                     </div>
                 </div>
                 <div class="cart-body">
@@ -76,14 +97,14 @@ function CartPage() {
                                                 <p>${items.price}</p>
                                             </div>
                                             <div class="card-quantity quantity">
-                                                <button class="plus" onClick={minQnt}>−</button>
+                                                <button class="plus" onClick={() => minQnt(items._id,items.quantity)}>−</button>
                                                 <p>{items.quantity}</p>
-                                                <button class="min" onClick={addQnt}>+</button>
+                                                <button class="min" onClick={() => addQnt(items._id,items.quantity)}>+</button>
                                             </div>
                                             <div class="card-subtotal subtotal">
-                                                <p>${(items.price * Number(quantity)).toFixed(2)}</p>
+                                                <p>${(items.price * Number(items.quantity)).toFixed(2)}</p>
                                             </div>
-                                            <button class="delete">✕</button>
+                                            <button class="delete" onClick={() => deleteCartItem(items._id)}>✕</button>
                                         </div>
                                     )
                                 })

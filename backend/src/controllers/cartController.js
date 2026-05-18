@@ -83,11 +83,26 @@ const updateCartItems = asyncHaddler(async (req, res) => {
 //delete Cart items
 const deleteCartItems = asyncHaddler(async (req, res) => {
     const paremID = req.params.id;
-    const deleteCartItem = await Cart.findOneAndDelete({items: [{_id: paremID}]})
+    const userID = req.user._id;
+
+    const user = await Cart.findOne({userId: userID})
+    const findProduct = user.items.find(item=>item.productId == paremID)
+    console.log(findProduct)
+    const deleteCartItem = await Cart.updateOne(
+        {userId: userID},
+            {
+                $pull: {
+                    items: {productId: paremID}
+                }
+            }
+    )
     if(!deleteCartItem){
+        throw new BadrequestErrorHaddler('Delete Item Faild!');
+    }
+    if(!findProduct){
         throw new NotFoundErrorHaddler('Product not found!');
     }
-    res.status(200).json({success: true, message: `${deleteCartItem._id} is deleted!`})
+    res.status(200).json({success: true, message: "Item Deleted"})
 })
 
 module.exports = {
@@ -96,4 +111,4 @@ module.exports = {
     getSingleCartItem,
     updateCartItems,
     deleteCartItems
-}
+} 
