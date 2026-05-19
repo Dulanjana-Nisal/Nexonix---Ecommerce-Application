@@ -23,6 +23,18 @@ function CartPage() {
         fetchCartData();
     }, [])
 
+    
+    //delete cart item 
+    const deleteCartItem = async (itemId) =>{
+        try{
+            await api.delete(`/cart/${itemId}`)
+            location.reload()
+        }
+        catch(err){
+            console.log(err.response.data)
+        }
+    }
+
     // Min Quantity
     function minQnt(itemId,itemQnt){
         let total = itemQnt - 1
@@ -30,7 +42,7 @@ function CartPage() {
             cartItemsData.map((items)=>
                 items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
             )
-        )    
+        )  
     }
     // Add Quantity
     function addQnt(itemId,itemQnt){
@@ -40,19 +52,6 @@ function CartPage() {
                 items._id === itemId ? {...items, quantity: total} : items
             )
         )
-    }
-
-    //delete cart item 
-    const deleteCartItem = async (itemId) =>{
-        try{
-            await api.delete(`/cart/${itemId}`)
-            console.log('Deleted')
-            location.reload()
-        }
-        catch(err){
-            console.log(err.response.data)
-        }
-        console.log(itemId)
     }
 
     return (
@@ -83,10 +82,10 @@ function CartPage() {
                                 cartItemsData.length > 0 &&
                                 cartItemsData.map((items)=>{
                                     return(
-                                        <div class="card" key={items._id}>
+                                        <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
                                                 <div class="thumb">
-                                                    <input type="checkbox" checked />
+                                                    <input type="checkbox" id={items.productId} defaultChecked={items.availability ? true : false}/>
                                                     <img src={items.image} alt="" />
                                                 </div>
                                                 <div class="name">
@@ -112,96 +111,43 @@ function CartPage() {
                         </div>
                     </div>
                     <div class="cart-details-responsive">
-                        <div class="card">
-                            <div class="image">
-                                <input type="checkbox" checked />
-                                <img src="../../images/card-image.png" alt="" />
-                            </div>
-                            <div class="card-details">
-                                <div class="name">
-                                    <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                                    <button>✕</button>
-                                </div>
-                                <div class="price">
-                                    <p>Price: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                                <div class="quantity">
-                                    <div class="quentity-header">
-                                        <p>Quantity: </p>
+                        {
+                            cartItemsData.length > 0 &&
+                            cartItemsData.map((items)=>{
+                                return(
+                                    <div class={items.availability ? "card" : "card disabel-card"}>
+                                        <div class="image">
+                                            <input type="checkbox" defaultChecked={true} />
+                                            <img src={items.image} alt="" />
+                                        </div>
+                                        <div class="card-details">
+                                            <div class="name">
+                                                <h1>{items.name}</h1>
+                                                <button onClick={() => deleteCartItem(items.productId)}>✕</button>
+                                            </div>
+                                            <div class="price">
+                                                <p>Price: </p>
+                                                <h3>${items.price}</h3>
+                                            </div>
+                                            <div class="quantity">
+                                                <div class="quentity-header">
+                                                    <p>Quantity: </p>
+                                                </div>
+                                                <div class="quentity-body">
+                                                    <button class="plus" onClick={() => minQnt(items._id,items.quantity)}>−</button>
+                                                <p>{items.quantity}</p>
+                                                <button class="min" onClick={() => addQnt(items._id,items.quantity)}>+</button>
+                                                </div>
+                                            </div>
+                                            <div class="subtotal">
+                                                <p>Subtotal: </p>
+                                                <h3>${(items.price * Number(items.quantity)).toFixed(2)}</h3>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="quentity-body">
-                                        <button class="plus">+</button>
-                                        <p>1</p>
-                                        <button class="min">−</button>
-                                    </div>
-                                </div>
-                                <div class="subtotal">
-                                    <p>Subtotal: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image">
-                                <input type="checkbox" checked />
-                                <img src="../../images/card-image.png" alt="" />
-                            </div>
-                            <div class="card-details">
-                                <div class="name">
-                                    <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                                    <button>✕</button>
-                                </div>
-                                <div class="price">
-                                    <p>Price: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                                <div class="quantity">
-                                    <div class="quentity-header">
-                                        <p>Quantity: </p>
-                                    </div>
-                                    <div class="quentity-body">
-                                        <button class="plus">+</button>
-                                        <p>1</p>
-                                        <button class="min">−</button>
-                                    </div>
-                                </div>
-                                <div class="subtotal">
-                                    <p>Subtotal: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image">
-                                <input type="checkbox" checked />
-                                <img src="../../images/card-image.png" alt="" />
-                            </div>
-                            <div class="card-details">
-                                <div class="name">
-                                    <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                                    <button>✕</button>
-                                </div>
-                                <div class="price">
-                                    <p>Price: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                                <div class="quantity">
-                                    <div class="quentity-header">
-                                        <p>Quantity: </p>
-                                    </div>
-                                    <div class="quentity-body">
-                                        <button class="plus">+</button>
-                                        <p>1</p>
-                                        <button class="min">−</button>
-                                    </div>
-                                </div>
-                                <div class="subtotal">
-                                    <p>Subtotal: </p>
-                                    <h3>$234.44</h3>
-                                </div>
-                            </div>
-                        </div>
+                                )
+                            })
+                        }
                     </div>
                     {
                         cartItemsData.length > 0 &&
@@ -211,7 +157,7 @@ function CartPage() {
                             </div>
                             <div class="total-subtotal info">
                                 <h3>Subtotal</h3>
-                                <p>$289.34</p>
+                                <p>${}</p>
                             </div>
                             <div class="total-shipping info">
                                 <h3>Shipping</h3>
@@ -219,7 +165,7 @@ function CartPage() {
                             </div>
                             <div class="total-total info">
                                 <h3>Total</h3>
-                                <p><span>$302.34</span></p>
+                                <p><span>${Number() + 20}</span></p>
                             </div>
                             <button>Proceed To Checkout</button>
                         </div>

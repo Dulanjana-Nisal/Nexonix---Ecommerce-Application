@@ -79,6 +79,13 @@
     align-items: center;
     justify-content: space-between;
 }
+.cart-container .cart-body .disabel-card{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.cart-container .cart-body .disabel-card input{
+    display: none;
+}
 .cart-container .cart-body .cart-details .details-cards .card .card-product{
     display: flex;
     align-items: center;
