@@ -47,6 +47,7 @@ function CartPage() {
         try{
             await api.delete(`/cart/${itemId}`)
             console.log('Deleted')
+            location.reload()
         }
         catch(err){
             console.log(err.response.data)
@@ -103,7 +104,7 @@ function CartPage() {
                                             <div class="card-subtotal subtotal">
                                                 <p>${(items.price * Number(items.quantity)).toFixed(2)}</p>
                                             </div>
-                                            <button class="delete" onClick={() => deleteCartItem(items._id)}>✕</button>
+                                            <button class="delete" onClick={() => deleteCartItem(items.productId)}>✕</button>
                                         </div>
                                     )
                                 })

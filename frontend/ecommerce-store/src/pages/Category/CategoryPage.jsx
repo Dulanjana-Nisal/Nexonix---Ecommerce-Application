@@ -4,6 +4,7 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CategoryPage.css';
 import axios from 'axios';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { addCartItems } from '../../api/addCartItems';
 
 function CategoryPage() {
 
@@ -366,7 +367,7 @@ function CategoryPage() {
                                                     </div>
                                                 </div>
                                                 <div class="button">
-                                                    <button>Add To Cart</button>
+                                                    <button onClick={() => addCartItems(items._id,items.name, items.image, items.quantity, items.price, items.availability)}>Add To Cart</button>
                                                 </div>
                                             </div>
                                         </div>
