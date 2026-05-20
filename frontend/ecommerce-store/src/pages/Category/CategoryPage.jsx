@@ -4,7 +4,7 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CategoryPage.css';
 import axios from 'axios';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { addCartItems } from '../../api/addCartItems';
+import { addCartItems } from '../../api/cartApi';
 
 function CategoryPage() {
 

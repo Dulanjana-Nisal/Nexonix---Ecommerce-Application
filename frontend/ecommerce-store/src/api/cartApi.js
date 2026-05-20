@@ -1,5 +1,15 @@
 import api from "../services/auth";
 
+export const fetchCartData = async (setCartItemsData) => {
+    try {
+        const result = await api.get('/cart');
+        setCartItemsData(result.data.data[0].items)
+    }
+    catch (err) {
+        setCartItemsData(err.response.data)
+    }
+}
+
 export const addCartItems = async (productId,name,image,quantity,price,availability)=>{
     try{
         const result = await api.post('/cart',
