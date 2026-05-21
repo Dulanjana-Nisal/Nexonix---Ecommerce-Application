@@ -4,19 +4,19 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CartPage.css';
 import {Link} from 'react-router-dom'
 import api from '../../services/auth';
-import { fetchCartData } from '../../api/cartApi';
+import { Cart } from '../../context/CartContext';
 
 function CartPage() {    
     //use States
-    const [cartItemsData, setCartItemsData] = useState([])
     const [selectItmes,setSelectItems] = useState([])
     const [subtotal,setSubtotal] = useState(0)
 
-    //Fetch cart item data
-    useEffect(() => {
-        fetchCartData(setCartItemsData);
-    }, []) 
+    // use context 
+    const {fetchCartData,setCartData,cartData} = Cart()
 
+    useEffect(()=>{
+        fetchCartData()
+    }, [setCartData])
     
     //delete cart item 
     const deleteCartItem = async (itemId) =>{
@@ -32,8 +32,8 @@ function CartPage() {
     // Min Quantity
     function minQnt(itemId,itemQnt){
         let total = itemQnt - 1
-        setCartItemsData(
-            cartItemsData.map((items)=>
+        setCartData(
+            cartData.map((items)=>
                 items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
             )
         )  
@@ -41,8 +41,8 @@ function CartPage() {
     // Add Quantity
     function addQnt(itemId,itemQnt){
         let total = itemQnt + 1
-        setCartItemsData(
-            cartItemsData.map((items)=>
+        setCartData(
+            cartData.map((items)=>
                 items._id === itemId ? {...items, quantity: total} : items
             )
         )
@@ -50,7 +50,7 @@ function CartPage() {
 
     //geting subtotal in cart item ( subtotal = sum( price*quantity ) )
     useEffect(()=>{
-        cartItemsData.map((items)=>{
+        cartData.map((items)=>{
             selectItmes.find(findOne => findOne.itemId === items.productId) ?
                 setSelectItems(prev=>
                     prev.map(item => 
@@ -72,7 +72,7 @@ function CartPage() {
         })
 
 
-    }, [cartItemsData])
+    }, [cartData])
 
     // calculate subtotal 
     useEffect(()=>{
@@ -114,7 +114,7 @@ function CartPage() {
                 <div class="cart-body">
                     <div class="cart-details">
                         {
-                            cartItemsData.length > 0 &&
+                            cartData.length > 0 &&
                             <div class="details-head">
                                 <p class="product">Product</p>
                                 <p class="price">Price</p>
@@ -125,8 +125,8 @@ function CartPage() {
                         }
                         <div class="details-cards">
                             {
-                                cartItemsData.length > 0 &&
-                                [...cartItemsData].reverse().map((items)=>{
+                                cartData.length > 0 &&
+                                [...cartData].reverse().map((items)=>{
                                     return(
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
@@ -158,8 +158,8 @@ function CartPage() {
                     </div>
                     <div class="cart-details-responsive">
                         {
-                            cartItemsData.length > 0 &&
-                            [...cartItemsData].reverse().map((items)=>{
+                            cartData.length > 0 &&
+                            [...cartData].reverse().map((items)=>{
                                 return(
                                     <div class={items.availability ? "card" : "card disabel-card"}>
                                         <div class="image">
@@ -196,7 +196,7 @@ function CartPage() {
                         }
                     </div>
                     {
-                        cartItemsData.length > 0 &&
+                        cartData.length > 0 &&
                         <div class="total-card">
                             <div class="total-head">
                                 <h1>Cart Totals</h1>

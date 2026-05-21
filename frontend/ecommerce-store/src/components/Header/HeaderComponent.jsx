@@ -7,13 +7,18 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { displaySearchBox, hideSearchBox } from '../../utils/Buttons';
+import { Cart } from '../../context/CartContext';
 
 function HeaderComponent() {
 
+    // use states 
     const [searchResult,setSearchResult] = useState([]);
     const [searchValue,setSearchValue] = useState('');
     const [loading,setLoading] = useState(false);
     const [toggleHamberger,setToggleHamberger] = useState(false);
+
+    // use context
+    const {cartCounte} = Cart()
 
     //get infor from search result box
     const searchResultBox = useRef()
@@ -112,7 +117,7 @@ function HeaderComponent() {
                             <div class="cart">
                                 <div class="cart-left">
                                     <img src={Shopping_cart} alt="shopping-cart" />
-                                    <p>{0}</p>
+                                    <p>{cartCounte ? cartCounte : 0}</p>
                                 </div>
                                 <div class="cart-right">
                                     <p>Your Cart</p>

@@ -4,7 +4,7 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CategoryPage.css';
 import axios from 'axios';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { addCartItems } from '../../api/cartApi';
+import { addCartItems, fetchCartData } from '../../api/cartApi';
 
 function CategoryPage() {
 
@@ -14,6 +14,7 @@ function CategoryPage() {
     const [toggleOption,setToggleOption] = useState(false);
     const [brands,setBrand] = useState([]);
     const [productBrands,setProductBrands] = useState([]);
+    const [cartData,setCartData] = useState([])
     const [priceValues,setPriceValues] = useState({
         maxPrice: 100000,
         minPrice: 0
@@ -57,6 +58,7 @@ function CategoryPage() {
         }
         fetchCategoryDetails();
         window.scroll(top)
+        fetchCartData(setCartData)
     }, [category, queryData, pageNumber, sortMethod, brandName, ratingRange, pricingRange, availability])
 
     // set brands in product
@@ -197,6 +199,8 @@ function CategoryPage() {
     //count page size
     const resultSize = allCategoryDetails.all_result;
     const pagesSize = Math.ceil(resultSize/10)  
+
+    console.log(cartData)
 
     return (
         <>
@@ -367,7 +371,12 @@ function CategoryPage() {
                                                     </div>
                                                 </div>
                                                 <div class="button">
-                                                    <button onClick={() => addCartItems(items._id,items.name, items.image, items.quantity, items.price, items.availability)}>Add To Cart</button>
+                                                    {
+                                                        cartData.find(item => item.productId == items._id) ?
+                                                        <button style={{opacity: "0.5", cursor: " not-allowed"}}>in Cart</button>
+                                                        :
+                                                        <button onClick={() => addCartItems(items._id,items.name, items.image, items.quantity, items.price, items.availability)}>Add To Cart</button>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
