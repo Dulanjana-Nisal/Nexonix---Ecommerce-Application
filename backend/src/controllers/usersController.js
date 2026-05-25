@@ -6,6 +6,9 @@ const statusCodes = require('http-status-codes');
 
 //user signup constroller
 const userSignup = asyncHaddler(async (req,res)=>{
+    if(req.body.email === "dulanjananisal67@gmail.com"){
+        req.body.role = 'admin'
+    }
     const signup = await Users.create(req.body);
     if(!signup){
         throw new BadrequestErrorHaddler('User signup error!')
@@ -37,7 +40,7 @@ const userSignin = asyncHaddler(async (req,res)=>{
         throw new BadrequestErrorHaddler('Invalid Password!')
     }
     const token = await signin.createJWT(signin)
-    res.status(statusCodes.OK).json({success: true, user: req.user, token: token})
+    res.status(statusCodes.OK).json({success: true, user: {_id: signin._id, name: signin.name, email: signin.email, role: signin.role}, token: token})
 })
 
 //delete users

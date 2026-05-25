@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // user schema
 const UserSchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: [true, 'Name is required'],
         minLength: [3, 'User name must be more than 3 letters!'],
@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
         required: [true, 'Email is required'],
         lowercase: true,
         trim: true,
-        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/,'Please use a valid email address!'],
+        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please use a valid email address!'],
         unique: [true, 'Email already exist!'],
     },
     password: {
@@ -24,25 +24,25 @@ const UserSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['user','admin'],
+        enum: ['user', 'admin'],
         default: 'user'
     }
 })
 
 //hashing password
-UserSchema.pre('save', async function(){
+UserSchema.pre('save', async function () {
     const salt = await bcrypt.genSalt(10)
     const hashpassword = await bcrypt.hash(this.password, salt)
     this.password = hashpassword;
 })
 
 //create jwt token
-UserSchema.methods.createJWT = function(userData){
-    return jwt.sign({_id: userData._id, name: userData.name, email: userData.email},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN})
+UserSchema.methods.createJWT = function (userData) {
+    return jwt.sign({ _id: userData._id, name: userData.name, email: userData.email, role: userData.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
 }
 
 //password decode
-UserSchema.methods.decodePassword = async function(userPassword){
+UserSchema.methods.decodePassword = async function (userPassword) {
     return await bcrypt.compare(userPassword, this.password)
 }
 

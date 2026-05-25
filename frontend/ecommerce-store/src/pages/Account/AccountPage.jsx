@@ -31,10 +31,24 @@ function AccountPage() {
                 "email": loginEmail,
                 "password": loginPassword,
             })
+
+            //save token
             localStorage.setItem('token', login.data.token)
-            setLoginMessages(login.data.data)
+            setLoginMessages(login)
+            console.log(login.data.role)
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(login.data.user)
+            )
+
             setTimeout(()=>{
-                navigate('/')
+                if(login.data.user.role === "admin"){
+                    navigate('/admin')
+                }
+                if(login.data.user.role === "user"){
+                    navigate('/')
+                }
             }, 2000)
         }
         catch(err){

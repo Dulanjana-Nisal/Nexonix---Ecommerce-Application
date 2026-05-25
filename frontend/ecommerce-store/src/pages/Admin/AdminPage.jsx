@@ -3,7 +3,7 @@ import './AdminPage.css'
 function AdminPage() {
     return (
         <>
-            <div class="container">
+            <div class="admin-container">
                 <div class="sidebar">
                     <div class="top">
                         <div class="sidebar-header">

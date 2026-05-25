@@ -15,7 +15,7 @@ const createAdmin = async ()=>{
 
         //admin registation
         const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash('#D123u45l#', salt);
+        const hashPassword = await bcrypt.hash("#D123u45l#", salt);
         const admin = await Users.create({
             name : "Dulanjana Nisal (Admin)",
             email:"dulanjananisal67@gmail.com",
