@@ -33,6 +33,7 @@ function CartPage() {
     function minQnt(itemId,itemQnt){
         let total = itemQnt - 1
         setCartData(
+            cartData.length > 0 && 
             cartData.map((items)=>
                 items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
             )
@@ -42,6 +43,7 @@ function CartPage() {
     function addQnt(itemId,itemQnt){
         let total = itemQnt + 1
         setCartData(
+            cartData.length > 0 && 
             cartData.map((items)=>
                 items._id === itemId ? {...items, quantity: total} : items
             )
@@ -50,6 +52,7 @@ function CartPage() {
 
     //geting subtotal in cart item ( subtotal = sum( price*quantity ) )
     useEffect(()=>{
+        cartData.length > 0 && 
         cartData.map((items)=>{
             selectItmes.find(findOne => findOne.itemId === items.productId) ?
                 setSelectItems(prev=>
@@ -77,6 +80,7 @@ function CartPage() {
     // calculate subtotal 
     useEffect(()=>{
         let total = 0
+        cartData.length > 0 && 
         selectItmes.map((items)=>{
             if(items.checked){
                 total = total + items.subtotal

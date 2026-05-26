@@ -45,6 +45,7 @@ export function CartProvider({ children }) {
 
     useEffect(()=>{
         let total = 0
+        cartData.length > 0 && 
         cartData.map((items)=>{
             total = Number(total) + Number(items.quantity)
             setCartCount(total)

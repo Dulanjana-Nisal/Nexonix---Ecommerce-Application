@@ -6,4 +6,11 @@
     box-sizing: border-box;
     font-family: "Quicksand", sans-serif;
 }
+.no-style-link,
+.no-style-link:visited,
+.no-style-link:hover,
+.no-style-link:active {
+  text-decoration: none;
+  color: inherit;
+}
 

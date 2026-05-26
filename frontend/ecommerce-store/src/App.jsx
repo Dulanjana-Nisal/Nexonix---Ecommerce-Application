@@ -19,7 +19,7 @@ function App() {
       <Route path='/cart' element={<CartPage />} />
       <Route path='/search' element={<SearchPage />} />
       <Route path='/details/:productId' element={<DetailsPage />} />
-      <Route path='/admin' element={<AdminPage />} />
+      <Route path='/admin/:path' element={<AdminPage />} />
     </Routes>
   )
 }

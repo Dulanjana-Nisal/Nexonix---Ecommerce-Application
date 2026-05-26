@@ -13,4 +13,11 @@ api.interceptors.request.use((config)=>{
     return config;
 })
 
+// logut function
+// eslint-disable-next-line react-hooks/rules-of-hooks
+export function logout(navigate){
+    localStorage.clear()
+    navigate('/')
+}
+
 export default api;
