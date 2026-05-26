@@ -9,15 +9,13 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 function AdminPage() {
 
-    //get admin data from localstorage
-    const adminData = JSON.parse(localStorage.getItem('user'))
-
-    // products states
+    // all states
     const [products,setProducts] = useState([])
     const [productData,setProductData] = useState({all_result: 0, page_result: 0})
+    const [loading,setLoading] = useState(false)
 
-    //page states
-    const [pageNo,setPageNo] = useState(1)
+    //get admin data from localstorage
+    const adminData = JSON.parse(localStorage.getItem('user'))
 
     //navigations
     const navigate = useNavigate()
@@ -28,20 +26,60 @@ function AdminPage() {
     //get query data from url
     const [queryData,setQueryData] = useSearchParams();
 
-    console.log(queryData.page)
+    //page number
+    const pageNumber = Number(queryData.get('page')) || 1
+
+    //availability
+    const availability = queryData.get('availability') || 'all'
 
     //fetch product data
     useEffect(()=>{
         const fetchAdminData = async () =>{
-            const result = await api.get(`/products?page=${pageNo}`)
+            setLoading(true)
+            const result = await api.get(`/products?page=${pageNumber}&availability=${availability}`)
             setProducts(result.data.data)
             setProductData({
                 all_result: result.data.all_result,
                 page_result: result.data.page_result
             })
+            setLoading(false)
         }
+        window.scrollTo(0, 0)
         fetchAdminData()
-    }, [])
+    }, [queryData,pageNumber,availability,path])
+
+
+    //prev page
+    function prevPage(){
+        if(pageNumber === 1){
+            newQuery.set("page", 1)
+        }
+         const newQuery = new URLSearchParams(queryData)
+         newQuery.set("page", pageNumber-1)
+         setQueryData(newQuery)
+    }
+
+    //next page
+    function nextPage(){
+        if(pageNumber === productData.page_result){
+            newQuery.set("page", pageNumber)
+        }
+        const newQuery = new URLSearchParams(queryData)
+        newQuery.set("page", pageNumber+1)
+        setQueryData(newQuery)
+    }
+
+    //change availability
+    function changeAvailability(e){
+        const newQuery = new URLSearchParams(queryData)
+        if(pageNumber !== 1){
+            newQuery.set('page', 1)
+        }
+        newQuery.set('availability', e.target.value)
+        setQueryData(newQuery)
+    }
+
+    console.log(productData)
 
     return (
         <>
@@ -546,9 +584,9 @@ function AdminPage() {
                                 <div class="product-header">
                                     <div class="header-filter">
                                         <p>Filter By</p>
-                                        <select>
-                                            <option value="in-stock" selected>Available Products</option>
-                                            <option value="out-stock">Unavailabale Products</option>
+                                        <select onChange={changeAvailability}>
+                                            <option  value="true" selected>Available Products</option>
+                                            <option value="false">Unavailabale Products</option>
                                         </select>
                                     </div>
                                     <div class="search">
@@ -581,6 +619,7 @@ function AdminPage() {
                                             </div>
                                         </div>
                                         {
+                                            loading ? <h3>Loading...</h3>:
                                             products.map((items)=>{
                                                 return(
                                                     <div class="product-box products" key={items._id}>
@@ -598,7 +637,7 @@ function AdminPage() {
                                                             <p>${items.price}</p>
                                                         </div>
                                                         <div class="availability row">
-                                                            <p class="availabale">{items.availability ? "In Stock": "Out Stock"}</p>
+                                                            <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock": "Out Stock"}</p>
                                                         </div>
                                                         <div class="buttons row">
                                                             <button class="update"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -981,9 +1020,9 @@ function AdminPage() {
                                 </div>
                                 <div class="product-footer">
                                     <div class="box-buttons">
-                                        <button class="pre">‹</button>
-                                            <p><span>{pageNo}</span> of {productData.page_result}</p>
-                                        <button class="next">›</button>
+                                        <button class="pre" onClick={() => prevPage()}>‹</button>
+                                            <p><span>{pageNumber}</span> of {productData.page_result}</p>
+                                        <button class="next" onClick={() => nextPage()}>›</button>
                                     </div>
                                 </div>
                             </div>
