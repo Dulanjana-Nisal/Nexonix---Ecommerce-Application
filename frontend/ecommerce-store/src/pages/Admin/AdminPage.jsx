@@ -30,7 +30,7 @@ function AdminPage() {
     const pageNumber = Number(queryData.get('page')) || 1
 
     //availability
-    const availability = queryData.get('availability') || 'all'
+    const availability = queryData.get('availability') || ''
 
     //fetch product data
     useEffect(()=>{
@@ -40,7 +40,7 @@ function AdminPage() {
             setProducts(result.data.data)
             setProductData({
                 all_result: result.data.all_result,
-                page_result: result.data.page_result
+                page_result: Math.ceil(result.data.all_result / 10)
             })
             setLoading(false)
         }
