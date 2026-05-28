@@ -865,10 +865,6 @@
     height: 100vh;
     background-color: #000000d1;
     z-index: 20;
-    display: none;
-}
-.admin-container .sections .sections-body .product-section .product-body .update-product-box{
-    display: none;
 }
 .admin-container .sections .sections-body .product-section .product-body .box{
     background-color: #fff;
