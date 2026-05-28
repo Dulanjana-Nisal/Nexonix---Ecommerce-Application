@@ -6,10 +6,11 @@ import user_profile from '../../assets/user-profile-image.png'
 import logo from '../../assets/logo2.png'
 import logo_letter from '../../assets/logo-image-letter.png'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import AdminProducts from './AdminProducts'
 
 function AdminPage() {
 
-    // all states
+    // basic states
     const [products,setProducts] = useState([])
     const [productData,setProductData] = useState({all_result: 0, page_result: 0})
     const [searchValue,setSearchValue] = useState('');
@@ -805,122 +806,7 @@ function AdminPage() {
                                     </div>
                                     {
                                         addProductsToggle &&
-                                        <div class="add-product-box">
-                                            <div class="box">
-                                                <div class="box-header">
-                                                    <h1>Add Product</h1>
-                                                </div>
-                                                <div class="box-form">
-                                                    <form>
-                                                        <div class="name row">
-                                                            <label>Product Name</label>
-                                                            <input type="text" />
-                                                        </div>
-                                                        <div class="image row">
-                                                            <label>Product Image</label>
-                                                            <input type="file" accept="image/*" />
-                                                        </div>
-                                                        <div class="counters">
-                                                            <div class="price row">
-                                                                <label>Product Price ($)</label><br />
-                                                                <input type="number" />
-                                                            </div>
-                                                            <div class="quantity row">
-                                                                <label>Quantity</label><br />
-                                                                <input type="number" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="ratings row">
-                                                            <p>Ratings</p>
-                                                            <div class="inputs">
-                                                                <input type="radio" id="star-4" name="star" /><label for="star-4">★</label>
-                                                                <input type="radio" id="star-3" name="star" /><label for="star-3">★</label>
-                                                                <input type="radio" id="star-5" name="star" /><label for="star-5">★</label>
-                                                                <input type="radio" id="star-2" name="star" /><label for="star-2">★</label>
-                                                                <input type="radio" id="star-1" name="star" checked /><label for="star-1" >★</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="description row">
-                                                            <label>Description</label>
-                                                            <textarea placeholder="Add description"></textarea>
-                                                        </div>
-                                                        <div class="keywords row">
-                                                            <div class="inputs">
-                                                                <label>Key words</label>
-                                                                <input type="text" />
-                                                                <button>Add</button>
-                                                            </div>
-                                                            <div class="key-values">
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                                <div class="values">
-                                                                    <p>Tech</p>
-                                                                    <i class="fa fa-close"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="category row">
-                                                            <label>Select Category</label>
-                                                            <select>
-                                                                <option>Computers</option>
-                                                                <option>Laptops</option>
-                                                                <option>Components</option>
-                                                                <option>Gamings</option>
-                                                                <option>Softwares</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="brand row">
-                                                            <label>Product Brand</label>
-                                                            <input type="text" />
-                                                        </div>
-                                                        <div class="availability row">
-                                                            <label>Select Availability</label><br />
-                                                            <div class="inputs">
-                                                                <input type="radio" name="availability" id="true" checked /><label for="true" >Available</label>
-                                                                <input type="radio" name="availability" id="false" /><label for="false">Unavaialable</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="msgs">
-                                                            <p class="error">Error Message Here!</p>
-                                                        </div>
-                                                        <div class="buttons row">
-                                                            <input type="submit" value="Add Product" />
-                                                            <button class="close" onClick={addProductsToggleButton}>Close</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <AdminProducts addProductsToggleButton={addProductsToggleButton} />
                                     }
                                     {
                                         updateProductsToggle &&

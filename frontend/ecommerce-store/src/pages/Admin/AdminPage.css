@@ -897,19 +897,19 @@
 .admin-container .sections .sections-body .product-section .product-body .box .box-header h1{
     font-size: 25px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .row{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .row{
     margin: 15px 0;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .row label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .row label{
     font-size: 16px;
     color: rgb(109, 107, 107);
     font-weight: 600;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .name input,
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .quantity input,
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .price input,
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input,
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .brand input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .name input,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .quantity input,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .price input,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs input,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .brand input{
     width: 100%;
     padding: 10px;
     border: 1px solid #d8dbdccd;
@@ -921,59 +921,59 @@
     font-weight: 600;
     padding-left: 20px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .image label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .image label{
     margin-right: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .image input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .image input{
     padding: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .counters{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .counters{
     display: flex;
     column-gap: 15px;
     align-items: center;
     justify-content: space-between;
 }
 
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .quantity input,
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .price input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .quantity input,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .price input{
     width: 180px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings{
     display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 15px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs{
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings p{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings p{
     font-size: 16px;
     font-weight: 600;
     color: rgb(109, 107, 107);
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs input{
     display: none;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs label{
     font-size: 20px;
     margin-right: 8px;
     color: #c4c6c7cd;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label:hover{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs label:hover{
     color: #FFB800;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs label:hover ~ label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs label:hover ~ label{
     color: #FFB800;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .ratings .inputs input:checked ~ label{ 
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .ratings .inputs input:checked ~ label{ 
     color: #FFB800;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .description textarea{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .description textarea{
     width: 100%;
     height: 100px;
     margin-top: 10px;
@@ -986,18 +986,18 @@
     outline: none;
     resize: none;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs{
     display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs input{
     width: 200px;
     padding: 8px 10px;
     padding-left: 15px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs button{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs button{
     width: fit-content;
     padding: 8px 15px;
     font-size: 14px;
@@ -1007,12 +1007,12 @@
     color: #008A00;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs button:hover{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs button:hover{
     color: #fff;
     background-color: #008A00;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values{
     width: 400px;
     height: fit-content;
     background-color: #2B38D127;
@@ -1022,7 +1022,7 @@
     flex-wrap: wrap;
     gap: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values .values{
     display: flex;
     width: fit-content;
     align-items: center;
@@ -1034,21 +1034,23 @@
     border: 1px solid #d8dbdccd;
     background-color: #F1F5F6;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values i{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values .values i{
     font-size: 14px;
     font-weight: 600;
     color: #000000a9;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values .values i:hover{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values .values i:hover{
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .category{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .category{
     padding: 10px 0;
 } 
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .category label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .category label,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords label{
     margin-right: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .category select{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .category select,
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords select{
     padding: 8px 10px;
     outline: none;
     border: 1px solid #d8dbdccd;
@@ -1056,29 +1058,29 @@
     background-color: #F1F5F6;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .brand label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .brand label{
     margin-right: 10px;
     width: 180px;
 } 
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .brand{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .brand{
     display: flex;
     align-items: center;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .availability{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .availability{
     padding-bottom: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .availability .inputs{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .availability .inputs{
     margin-top: 5px;
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .availability .inputs label{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .availability .inputs label{
     font-size: 14px;
     color: #000;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .msgs{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .msgs{
     width: 100%;
     text-align: center;
     padding: 8px 0;
@@ -1088,14 +1090,14 @@
     background-color: #DD384227;
     display: none;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .buttons{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons{
     padding-top: 10px;
     display: flex;
     align-items: center;
     column-gap: 20px;
     justify-content: space-around;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .buttons .close{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons .close{
     padding: 10px;
     width: 100%;
     font-size: 14px;
@@ -1106,12 +1108,12 @@
     border-radius: 30px;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .buttons .close:hover{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons .close:hover{
     background-color: #fff;
     color: #DD3842;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .buttons input{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons input{
     width: 100%;
     padding: 10px;
     border: 1px solid #2B38D1;
@@ -1122,7 +1124,7 @@
     border-radius: 30px;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .product-section .product-body .box .box-form form .buttons input:hover{
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons input:hover{
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
@@ -1289,17 +1291,17 @@
     }
 }
 @media(max-width: 460px){
-    .admin-container .sections .sections-body .product-section .product-body .box .box-form form .counters{
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .counters{
         display: block;
     }
-    .admin-container .sections .sections-body .product-section .product-body .box .box-form form .counters input{
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .counters input{
         width: 100%;
     }
-    .admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .key-values{
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values{
         width: 100%;
         margin: 10px auto;
     }
-    .admin-container .sections .sections-body .product-section .product-body .box .box-form form .keywords .inputs input{
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs input{
         width: 100%;
     }
 }
