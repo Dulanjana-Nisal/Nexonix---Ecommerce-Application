@@ -1086,9 +1086,19 @@
     padding: 8px 0;
     font-size: 14px;
     font-weight: 600;
-    color: #DD3842;
     background-color: #DD384227;
-    display: none;
+}
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .err{
+    background-color: #DD384227;
+}
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .succ{
+    background-color: #008A0027;
+}
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .msgs .error{
+    color: #DD3842;
+}
+.admin-container .sections .sections-body .product-section .product-body .box .box-form .msgs .success{
+    color: #008A00;
 }
 .admin-container .sections .sections-body .product-section .product-body .box .box-form .buttons{
     padding-top: 10px;

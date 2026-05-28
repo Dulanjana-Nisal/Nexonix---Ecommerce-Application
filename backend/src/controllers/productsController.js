@@ -64,7 +64,7 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
     }
 
     //get products
-    const allProducts = await result.skip(skip).limit(limit)
+    const allProducts = await result.skip(skip).limit(limit).sort({createdAt: -1})
 
     //count all products
     const allProductCount = await Products.find(queryObject);
