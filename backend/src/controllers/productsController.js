@@ -64,7 +64,7 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
     }
 
     //get products
-    const allProducts = await result.skip(skip).limit(limit).sort({createdAt: -1})
+    const allProducts = await result.skip(skip).limit(limit).sort({createdAt: -1, updatedAt: 1})
 
     //count all products
     const allProductCount = await Products.find(queryObject);
@@ -128,10 +128,10 @@ const recommendProducts = asyncHaddler(async(req,res)=>{
 //update products
 const updateProducts = asyncHaddler(async(req,res)=>{
     const paremID = req.params.id; 
-    if(req.body.stock === 0){
+    if(req.body.stock === 0 || req.body.availability == false){
         req.body.availability = false
     }
-    if(req.body.stock !== 0 || req.body.availability === true){
+    else if(req.body.stock !== 0 || req.body.availability === true){
         req.body.availability = true
     }
     const updateProduct = await Products.findOneAndUpdate({_id: paremID},req.body,{runValidators: true, returnDocument: 'after'})

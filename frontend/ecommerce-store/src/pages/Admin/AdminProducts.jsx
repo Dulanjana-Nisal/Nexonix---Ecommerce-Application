@@ -3,33 +3,37 @@ import api from "../../services/auth"
 import axios from "axios"
 import { useSearchParams } from "react-router-dom"
 
-function AdminProducts({path}) {
+function AdminProducts({ path }) {
 
     //products data state
     const [products, setProducts] = useState([])
+    const [productsForUpdate, setProductsForUpdate] = useState([])
     const [productData, setProductData] = useState({ all_result: 0, page_result: 0 })
-    const [searchValue, setSearchValue] = useState('');    
+    const [searchValue, setSearchValue] = useState('');
     const [updateProductsToggle, setUpdateProductsToggle] = useState(false)
     const [addProductsToggle, setAddProductsToggle] = useState(false)
+    const [selectProductId, setSelectProductId] = useState(null)
+
+    //state for re load useEffect
+    const [reloadEffect,setReloadEffect] = useState(false)
 
     // add and update product states
     const [productName, setProductName] = useState('')
     const [image, setImage] = useState(null)
     const [productStock, setProductStock] = useState(null)
     const [productPrice, setProductPrice] = useState(null)
-    const [productRatings, setProductRatings] = useState(1)
+    const [productRatings, setProductRatings] = useState(null)
     const [productDescription, setProductDescription] = useState("")
     const [keywords, setKeywords] = useState("")
     const [productKeywords, setProductKeywords] = useState([])
     const [productCategory, setProductCategory] = useState(null)
     const [productBrand, setProductBrand] = useState('')
-    const [productAvailability, setProductAvailability] = useState(true)
+    const [productAvailability, setProductAvailability] = useState(null)
 
     //base states
     const [message, setMessage] = useState(false)
     const [loading, setLoading] = useState(false)
-    
-    
+
     //get query data from url
     const [queryData, setQueryData] = useSearchParams();
 
@@ -53,23 +57,20 @@ function AdminProducts({path}) {
         }
         window.scrollTo(0, 0)
         fetchAdminData()
-    }, [queryData, pageNumber, availability, path, searchValue, addProductsToggle])
+
+    }, [queryData, pageNumber, availability, path, searchValue, reloadEffect])
 
     // add keywords
     function addKeywords() {
-        const key_id = crypto.randomUUID()
-        if (productKeywords.find(items => items.value === keywords)) {
+        if (productKeywords.find(items => items === keywords)) {
             return
         }
-        setProductKeywords((prev) => [...prev, {
-            id: key_id,
-            value: keywords
-        }])
+        setProductKeywords((prev) => [...prev, keywords])
     }
 
     // delete keywords
-    function deleteKeywords(keyId) {
-        const filterKeyList = productKeywords.filter(items => items.id !== keyId)
+    function deleteKeywords(value) {
+        const filterKeyList = productKeywords.filter(items => items !== value)
         setProductKeywords(filterKeyList)
     }
 
@@ -79,7 +80,7 @@ function AdminProducts({path}) {
         //genarate keyword list
         let keyList = []
         productKeywords.map((items) =>
-            keyList.push(items.value)
+            keyList.push(items)
         )
 
         //setup image url
@@ -89,20 +90,20 @@ function AdminProducts({path}) {
 
         try {
             // upload image to cloud
-            const uploadImage = await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData)
+            const uploadImage = image ? await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData) : null
 
             // add product
             const result = await api.post('/products', {
                 name: productName,
-                image: uploadImage.data.secure_url,
-                stock: productStock,
+                image: uploadImage && uploadImage.data.secure_url,
+                stock: Number(productStock),
                 price: productPrice,
-                ratings: productRatings,
+                ratings: productRatings || 1,
                 description: productDescription,
                 keywords: keyList,
                 category: productCategory,
                 brand: productBrand,
-                availability: productAvailability
+                availability: productAvailability 
             })
             if (result) {
                 setMessage({
@@ -111,7 +112,8 @@ function AdminProducts({path}) {
                 })
                 setTimeout(() => {
                     setMessage(false)
-                    addProductsToggleButton(false)
+                    setAddProductsToggle(false)
+                    setReloadEffect( reloadEffect ? false : true )
                 }, 2000)
             }
             setLoading(false)
@@ -131,10 +133,11 @@ function AdminProducts({path}) {
     //update products in to database
     const updateProducts = async () => {
         setLoading(true)
+
         //genarate keyword list
         let keyList = []
         productKeywords.map((items) =>
-            keyList.push(items.value)
+            keyList.push(items)
         )
 
         //setup image url
@@ -144,42 +147,54 @@ function AdminProducts({path}) {
 
         try {
             // upload image to cloud
-            const uploadImage = await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData)
+            const uploadImage = image ? await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData) : null
 
-            // add product
-            const result = await api.patch('/products', {
-                name: productName,
-                image: uploadImage.data.secure_url,
-                stock: productStock,
-                price: productPrice,
-                ratings: productRatings,
-                description: productDescription,
+            const result = await api.patch(`/products/${selectProductId}`, {
+                name: productName || productsForUpdate.name,
+                image: image ? uploadImage.data.secure_url : productsForUpdate.image,
+                stock: Number(productStock) || productsForUpdate.stock,
+                price: productPrice || productsForUpdate.price,
+                ratings: productRatings || productsForUpdate.ratings,
+                description: productDescription || productsForUpdate.description,
                 keywords: keyList,
-                category: productCategory,
-                brand: productBrand,
-                availability: productAvailability
+                category: productCategory || productsForUpdate.category,
+                brand: productBrand || productsForUpdate.brand,
+                availability: productAvailability,
             })
             if (result) {
                 setMessage({
                     status: 'success',
-                    msg: 'Product Added!'
+                    msg: 'Product Updated!'
                 })
                 setTimeout(() => {
                     setMessage(false)
-                    addProductsToggleButton(false)
-                }, 2000)
+                    setUpdateProductsToggle(false)
+                    setReloadEffect( reloadEffect ? false : true )
+                }, 1000)
             }
             setLoading(false)
         }
         catch (err) {
             setMessage({
                 status: 'error',
-                msg: err.response.data.message || 'Product Add Faild!'
+                msg: err.response || 'Product Update Faild!'
             })
             setTimeout(() => {
                 setMessage(false)
             }, 2000)
             setLoading(false)
+        }
+    }
+
+    //delete product in to database
+    const deleteProduct = async (itemId)=>{
+        try{
+            const result = await api.delete(`/products/${itemId}`)
+            console.log(result)
+            setSearchValue(" ")
+        }
+        catch(err){
+            console.log(err)
         }
     }
 
@@ -221,14 +236,28 @@ function AdminProducts({path}) {
     }
 
     // Toggle Update Product Button
-    function updateProductsToggleButton() {
-        updateProductsToggle ? setUpdateProductsToggle(false) : setUpdateProductsToggle(true)
+    const updateProductsToggleButton = async (itemsId) => { 
+
+        try {
+            const result = await api.get(`/products/${itemsId}`)
+            setProductsForUpdate(result.data.data)
+            setProductKeywords(result.data.data.keywords || [])
+            setProductAvailability(result.data.data.availability)
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+        setSelectProductId(itemsId)
+        updateProductsToggle ? setUpdateProductsToggle(false) : setUpdateProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
     }
 
     // Toggle Add Product Button
     function addProductsToggleButton() {
-        addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true)
+        addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
     }
+
+    console.log(productCategory)
 
     return (
         <>
@@ -292,8 +321,8 @@ function AdminProducts({path}) {
                                                 <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
                                             </div>
                                             <div class="buttons row">
-                                                <button class="update" onClick={updateProductsToggleButton}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
+                                                <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="delete" onClick={() => deleteProduct(items._id)}><i class="fa-solid fa-trash-can"></i></button>
                                             </div>
                                         </div>
                                     )
@@ -303,37 +332,37 @@ function AdminProducts({path}) {
                     <div class="responsive-list">
                         {
                             loading ? <h3>Loading...</h3> :
-                            products.map((items)=>{
-                                return(
-                                    <div class="product-box" key={items._id}>
-                                        <div class="left-side">
-                                            <img src={items.image} alt={items.name} />
+                                products.map((items) => {
+                                    return (
+                                        <div class="product-box" key={items._id}>
+                                            <div class="left-side">
+                                                <img src={items.image} alt={items.name} />
+                                            </div>
+                                            <div class="right-side">
+                                                <div class="name row">
+                                                    <h4>Name</h4>
+                                                    <p>{items.name}</p>
+                                                </div>
+                                                <div class="qnt row">
+                                                    <h4>Quantity</h4>
+                                                    <p>{items.stock} Products</p>
+                                                </div>
+                                                <div class="price row">
+                                                    <h4>Price</h4>
+                                                    <p>${items.price}</p>
+                                                </div>
+                                                <div class="availability row">
+                                                    <h4>Availability</h4>
+                                                    <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="right-side">
-                                            <div class="name row">
-                                                <h4>Name</h4>
-                                                <p>{items.name}</p>
-                                            </div>
-                                            <div class="qnt row">
-                                                <h4>Quantity</h4>
-                                                <p>{items.stock} Products</p>
-                                            </div>
-                                            <div class="price row">
-                                                <h4>Price</h4>
-                                                <p>${items.price}</p>
-                                            </div>
-                                            <div class="availability row">
-                                                <h4>Availability</h4>
-                                                <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                            </div>
-                                            <div class="buttons">
-                                                <button class="update" onClick={updateProductsToggleButton}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }) 
+                                    )
+                                })
                         }
                     </div>
                     {
@@ -456,116 +485,112 @@ function AdminProducts({path}) {
                         <div class="update-product-box">
                             <div class="box">
                                 <div class="box-header">
-                                    <h1>Upadate Product</h1>
+                                    <h1>Update Product</h1>
                                 </div>
                                 <div class="box-form">
-                                    <form>
-                                        <div class="name row">
-                                            <label>Product Name</label>
-                                            <input type="text" />
+                                    <div class="name row">
+                                        <label>Product Name</label>
+                                        <input type="text" defaultValue={productsForUpdate.name} onChange={(e) => setProductName(e.target.value)} />
+                                    </div>
+                                    <div class="image row">
+                                        <label>Product Image</label>
+                                        <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                                    </div>
+                                    <div class="counters">
+                                        <div class="price row">
+                                            <label>Product Price ($)</label><br />
+                                            <input type="number" defaultValue={productsForUpdate.price} onChange={(e) => setProductPrice(e.target.value)} />
                                         </div>
-                                        <div class="image row">
-                                            <label>Product Image</label>
-                                            <input type="file" accept="image/*" />
+                                        <div class="quantity row">
+                                            <label>Quantity</label><br />
+                                            <input type="number" defaultValue={productsForUpdate.stock} onChange={(e) => setProductStock(e.target.value)} />
                                         </div>
-                                        <div class="counters">
-                                            <div class="price row">
-                                                <label>Product Price ($)</label><br />
-                                                <input type="number" />
-                                            </div>
-                                            <div class="quantity row">
-                                                <label>Quantity</label><br />
-                                                <input type="number" />
-                                            </div>
+                                    </div>
+                                    <div class="ratings row">
+                                        <p>Ratings</p>
+                                        <div class="inputs">
+                                            <input type="radio" id="star-4" name="star" defaultChecked={productsForUpdate.ratings === 5} onClick={() => setProductRatings(5)} /><label for="star-4">★</label>
+                                            <input type="radio" id="star-3" name="star" defaultChecked={productsForUpdate.ratings === 4} onClick={() => setProductRatings(4)} /><label for="star-3">★</label>
+                                            <input type="radio" id="star-5" name="star" defaultChecked={productsForUpdate.ratings === 3} onClick={() => setProductRatings(3)} /><label for="star-5">★</label>
+                                            <input type="radio" id="star-2" name="star" defaultChecked={productsForUpdate.ratings === 2} onClick={() => setProductRatings(2)} /><label for="star-2">★</label>
+                                            <input type="radio" id="star-1" name="star" defaultChecked={productsForUpdate.ratings === 1} onClick={() => setProductRatings(1)} /><label for="star-1" >★</label>
                                         </div>
-                                        <div class="ratings row">
-                                            <p>Ratings</p>
-                                            <div class="inputs">
-                                                <input type="radio" id="update-star-5" name="update-star" /><label for="update-star-5">★</label>
-                                                <input type="radio" id="update-star-4" name="update-star" /><label for="update-star-4">★</label>
-                                                <input type="radio" id="update-star-3" name="update-star" /><label for="update-star-3">★</label>
-                                                <input type="radio" id="update-star-2" name="update-star" /><label for="update-star-2">★</label>
-                                                <input type="radio" id="update-star-1" name="update-star" checked /><label for="update-star-1">★</label>
-                                            </div>
-                                        </div>
-                                        <div class="description row">
-                                            <label>Description</label>
-                                            <textarea placeholder="Add description"></textarea>
-                                        </div>
-                                        <div class="keywords row">
-                                            <div class="inputs">
-                                                <label>Key words</label>
-                                                <input type="text" />
-                                                <button>Add</button>
-                                            </div>
-                                            <div class="key-values">
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                                <div class="values">
-                                                    <p>Tech</p>
-                                                    <i class="fa fa-close"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="category row">
-                                            <label>Select Category</label>
-                                            <select>
-                                                <option>Computers</option>
-                                                <option>Laptops</option>
-                                                <option>Components</option>
-                                                <option>Gamings</option>
-                                                <option>Softwares</option>
+                                    </div>
+                                    <div class="description row">
+                                        <label>Description</label>
+                                        <textarea placeholder="Add description" defaultValue={productsForUpdate.description} onChange={(e) => setProductDescription(e.target.value)}></textarea>
+                                    </div>
+                                    <div class="keywords row">
+                                        <div class="inputs" >
+                                            <label>Key words</label>
+                                            <select onClick={(e) => setKeywords((e.target.value).toLowerCase())}>
+                                                <option>Wireless</option>
+                                                <option>Gaming</option>
+                                                <option>Computer</option>
+                                                <option>Desktop</option>
+                                                <option>Laptop</option>
+                                                <option>Hardware</option>
+                                                <option> Mouse</option>
+                                                <option>Keyboard</option>
+                                                <option>RGB</option>
+                                                <option>External</option>
+                                                <option>Portable</option>
+                                                <option>Speed</option>
+                                                <option>Storage</option>
+                                                <option>Streaming</option>
+                                                <option>USB</option>
                                             </select>
+                                            <button onClick={() => addKeywords()}>Add</button>
                                         </div>
-                                        <div class="brand row">
-                                            <label>Product Brand</label>
-                                            <input type="text" />
+                                        <div class="key-values">
+                                            {
+                                                productKeywords.map((items) => {
+                                                    return (
+                                                        <div class="values" key={items}>
+                                                            <p>{items}</p>
+                                                            <i class="fa fa-close" onClick={() => deleteKeywords(items)}></i>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                        <div class="availability row">
-                                            <label>Select Availability</label><br />
-                                            <div class="inputs">
-                                                <input type="radio" name="availability" id="true" checked /><label for="true" >Available</label>
-                                                <input type="radio" name="availability" id="false" /><label for="false">Unavaialable</label>
-                                            </div>
+                                    </div>
+                                    <div class="category row">
+                                        <label>Select Category</label>
+                                        <select onClick={(e) => setProductCategory((e.target.value).toLowerCase())}>
+                                            <option>Computers</option>
+                                            <option>Laptops</option>
+                                            <option>Components</option>
+                                            <option>Gamings</option>
+                                            <option>Softwares</option>
+                                        </select>
+                                    </div>
+                                    <div class="brand row">
+                                        <label>Product Brand</label>
+                                        <input type="text" defaultValue={productsForUpdate.brand} onChange={(e) => setProductBrand(e.target.value)} />
+                                    </div>
+                                    <div class="availability row">
+                                        <label>Select Availability</label><br />
+                                        <div class="inputs">
+                                            <input type="radio" name="availability" id="true" defaultChecked={productsForUpdate.availability} onClick={() => setProductAvailability(true)} /><label for="true" >Available</label>
+                                            <input type="radio" name="availability" id="false" defaultChecked={productsForUpdate.availability === false} /><label for="false" onClick={() => setProductAvailability(false)}>Unavaialable</label>
                                         </div>
-                                        <div class="msgs">
-                                            <p class="error">Error Message Here!</p>
+                                    </div>
+                                    {
+                                        message &&
+                                        <div class={`msgs ${message.status === 'error' ? 'err' : 'succ'}`}>
+                                            <p class={message.status}>{message.msg}</p>
                                         </div>
-                                        <div class="buttons row">
-                                            <input type="submit" value="Update Product" onClick={updateProducts}/>
-                                            <button class="close" onClick={updateProductsToggleButton}>Close</button>
-                                        </div>
-                                    </form>
+                                    }
+                                    <div class="buttons row">
+                                        {
+                                            !loading ?
+                                                <input type="submit" value="Update Product" onClick={updateProducts} />
+                                                :
+                                                <input type="submit" value="Loading..." />
+                                        }
+                                        <button class="close" onClick={updateProductsToggleButton}>Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
