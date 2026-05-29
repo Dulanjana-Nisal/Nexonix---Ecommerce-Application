@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../../services/auth"
+import api from "../services/auth"
 import axios from "axios"
 import { useSearchParams } from "react-router-dom"
 
@@ -217,20 +217,20 @@ function AdminProducts({ path }) {
 
     //prev page
     function prevPage() {
+        const newQuery = new URLSearchParams(queryData)
         if (pageNumber === 1) {
             newQuery.set("page", 1)
         }
-        const newQuery = new URLSearchParams(queryData)
         newQuery.set("page", pageNumber - 1)
         setQueryData(newQuery)
     }
 
     //next page
     function nextPage() {
+        const newQuery = new URLSearchParams(queryData)
         if (pageNumber === productData.page_result) {
             newQuery.set("page", pageNumber)
         }
-        const newQuery = new URLSearchParams(queryData)
         newQuery.set("page", pageNumber + 1)
         setQueryData(newQuery)
     }
@@ -256,8 +256,6 @@ function AdminProducts({ path }) {
     function addProductsToggleButton() {
         addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
     }
-
-    console.log(productCategory)
 
     return (
         <>
