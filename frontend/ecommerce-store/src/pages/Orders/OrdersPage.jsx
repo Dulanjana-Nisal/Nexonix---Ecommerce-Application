@@ -1,8 +1,25 @@
+import { useEffect, useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './OrdersPage.css';
+import api from '../../services/auth';
 
 function OrdersPage() {
+
+    //order states
+    const [orders,setOrers] = useState([])
+
+    //fetch orders from detabase
+    useEffect(()=>{
+        const fetchOrders = async () => {
+            const result = await api.get('/orders')
+            setOrers(result.data.data)
+        }
+        fetchOrders()
+    }, [])
+
+    console.log(orders)
+
     return (
         <>
             <HeaderComponent />
