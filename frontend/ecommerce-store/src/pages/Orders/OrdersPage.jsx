@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
+import delete_img from '../../assets/delete-icon.png'
 import './OrdersPage.css';
 import api from '../../services/auth';
 
@@ -17,8 +18,6 @@ function OrdersPage() {
         }
         fetchOrders()
     }, [])
-
-    console.log(orders)
 
     return (
         <>
@@ -48,26 +47,26 @@ function OrdersPage() {
                                         <div class="card" key={items._id}>
                                             <div class="card-product product">
                                                 <div class="thumb">
-                                                    <img src="../../images/card-image.png" alt="" />
+                                                    <img src={items.image} alt="" />
                                                 </div>
                                                 <div class="name">
-                                                    <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                                    <p class="order-id">ID: 69dbab0ed4d8c035adc7624e</p>
+                                                    <p>{items.name}</p>
+                                                    <p class="order-id">ID: {items._id}</p>
                                                 </div>
                                             </div>
                                             <div class="card-date date">
-                                                <p>2026.02.12</p>
+                                                <p>{(items.createdAt).slice(0, 10)}</p>
                                             </div>
                                             <div class="card-price price">
-                                                <p>$234.34</p>
+                                                <p>${items.price}</p>
                                             </div>
                                             <div class="card-quantity quantity">
-                                                <p>1</p>
+                                                <p>{items.quantity}</p>
                                             </div>
                                             <div class="card-status status">
-                                                <p class="deliverd">Deliverd</p>
+                                                <p class={(items.status).toLowerCase()}>{items.status}</p>
                                             </div>
-                                            <button class="delete"><img src="../../images/delete-icon.png" alt="" /></button>
+                                            <button class="delete"><img src={delete_img} alt="" /></button>
                                         </div>
                                     )
                                 })
