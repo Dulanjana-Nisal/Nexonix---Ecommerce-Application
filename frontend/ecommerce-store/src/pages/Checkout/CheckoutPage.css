@@ -1,0 +1,213 @@
+
+/* ******************* container styles ******************* */
+.checkout-container{
+    min-height: 60vh;
+    background-color: #fff;
+    padding-bottom: 50px;
+}
+.checkout-container .checkout-header{
+    /* background: url('../../images/checkout-banner.jpg'); */
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+}
+.checkout-container .checkout-header .header-content{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.checkout-container .checkout-header .header-content h1{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.checkout-container .checkout-header .header-content p{
+    font-size: 14px;
+
+    font-weight: 500;
+}
+.checkout-container .checkout-header .header-content span{
+    color: rgb(109, 107, 107);
+}
+.checkout-container .checkout-body{
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    column-gap: 50px;
+    width: 90%;
+    margin: auto;
+}
+.checkout-container .checkout-body .checkout-details{
+    flex: 2;
+}
+.checkout-container .checkout-body .checkout-details .details-card{
+    padding: 30px;
+    height: fit-content;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+.checkout-container .checkout-body .checkout-details .details-card h1{
+    font-size: 25px;
+}
+.checkout-container .checkout-body .checkout-details .details-card .box{
+    margin: 20px 0;
+}
+.checkout-container .checkout-body .checkout-details .details-card div input{
+    width: 100%;
+    padding: 15px 15px 15px 20px;
+    border: none;
+    background-color: #F1F5F6;
+    outline: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.checkout-container .checkout-body .checkout-details .details-card div label{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(109, 107, 107);
+    margin-left: 10px;
+}
+.checkout-container .checkout-body .checkout-details .details-card .name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+.checkout-container .checkout-body .checkout-details .details-card .name div{
+    width: 100%;
+}
+
+
+.checkout-container .checkout-body .total-card{
+    flex: 1;
+    height: fit-content;
+    padding: 30px 0;
+    border: 1px solid #F1F5F6;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+.checkout-container .checkout-body .total-card .total-head{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d9dedf;
+}
+.checkout-container .checkout-body .total-card .total-head h1{
+    font-size: 25px;
+    font-weight: 600;
+}
+.checkout-container .checkout-body .total-card .info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 0;
+    border-bottom: 1px solid #d9dedf;
+}
+.checkout-container .checkout-body .total-card .total-head,
+.checkout-container .checkout-body .total-card .total-method,
+.checkout-container .checkout-body .total-card .total-subtotal,
+.checkout-container .checkout-body .total-card .total-shipping,
+.checkout-container .checkout-body .total-card .total-total{
+    padding: 25px 30px;
+}
+.checkout-container .checkout-body .total-card .button{
+    padding: 0 30px;
+}
+.checkout-container .checkout-body .total-card .info h3{
+    font-size: 16px;
+    font-weight: 600;
+}
+.checkout-container .checkout-body .total-card .info p{
+    font-size: 16px;
+    font-weight: 700;
+    color: #2B38D1;
+}
+.checkout-container .checkout-body .total-card .total-product{
+    display: block;
+    padding: 0;
+}
+.checkout-container .checkout-body .total-card .total-product .product-card{
+    display: flex;
+    background-color: #F1F5F6;
+    column-gap: 15px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 10px 30px;
+}
+.checkout-container .checkout-body .total-card .total-product p{
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+}
+.checkout-container .checkout-body .total-card .total-product span{
+    font-weight: 600;
+    width: 30px;
+    color: rgb(109, 107, 107);
+    border-radius: 30px;
+    font-size: 12px;
+}
+.checkout-container .checkout-body .total-card .total-product img{
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+.checkout-container .checkout-body .total-card .total-method p{
+    color: rgb(109, 107, 107);
+    font-weight: 600;
+}
+.checkout-container .checkout-body .total-card .total-total p{
+    color: #DD3842;
+    font-size: 20px;
+}
+.checkout-container .checkout-body .total-card button{
+    padding: 10px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 30px;
+    border: 1px solid #2B38D1;
+    font-size: 15px;
+    background-color: #2B38D1;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.25s;
+}
+.checkout-container .checkout-body .total-card button:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #2B38D1;
+}
+
+/* ************************************** */
+
+
+
+/* ******************* Responsive styles ******************* */
+
+@media(max-width: 1100px){
+    .checkout-container .checkout-body{
+        display: block;
+        column-gap: 0;
+    }
+    .checkout-container .checkout-body .total-card{
+        width: 100%;
+        margin-top: 50px;
+    }
+}
+@media(max-width: 460px){
+    .checkout-container .checkout-body .checkout-details .details-card .name{
+        display: block;
+    }
+    .checkout-container .checkout-body .checkout-details .details-card .name div{
+        margin: 20px 0;
+    }
+}
+
+/* ************************************** */
