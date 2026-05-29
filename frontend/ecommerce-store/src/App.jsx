@@ -7,7 +7,7 @@ import CategoryPage from './pages/Category/CategoryPage'
 import CartPage from './pages/Cart/CartPage'
 import SearchPage from './pages/Search/SearchPage'
 import DetailsPage from './pages/Details/DetailsPage'
-import AdminPage from './pages/Admin/AdminPage'
+import AdminPage from './Admin/AdminPage'
 
 function App() {
   return (
