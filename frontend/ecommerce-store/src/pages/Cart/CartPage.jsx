@@ -103,7 +103,6 @@ function CartPage() {
         :
             setSelectItems(selectItmes)
     }
-    console.log(selectItmes)
     return (
         <>
             <HeaderComponent />
