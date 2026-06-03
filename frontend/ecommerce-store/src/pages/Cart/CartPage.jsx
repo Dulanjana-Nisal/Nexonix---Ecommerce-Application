@@ -8,26 +8,9 @@ import { deleteCartItem } from '../../api/cartApi';
 import { ACTIONS } from '../../context/CartReducer';
 
 function CartPage() {    
-    //use States
-    const [selectItmes,setSelectItems] = useState([])
 
     // use context 
     const {state,dispatch} = Cart()
-
-    // select and deselect items
-    function itemSelection(e){
-        selectItmes.find(findItem => findItem.itemId === e.target.id) ?
-            setSelectItems(prev => 
-                prev.map(item => 
-                    item.itemId === e.target.id ?
-                        {...item, checked: e.target.checked}
-                    : 
-                        item
-                )
-            )
-        :
-            setSelectItems(selectItmes)
-    }
 
     //subtotal calculation
     let subTotal = 0;
@@ -66,7 +49,7 @@ function CartPage() {
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
                                                 <div class="thumb">
-                                                    <input type="checkbox" id={items.productId} onClick={itemSelection} defaultChecked={items.availability ? true : false}/>
+                                                    <input type="checkbox"  defaultChecked={items.availability ? true : false}/>
                                                     <img src={items.image} alt="" />
                                                 </div>
                                                 <div class="name">
@@ -115,9 +98,9 @@ function CartPage() {
                                                     <p>Quantity: </p>
                                                 </div>
                                                 <div class="quentity-body">
-                                                    <button class="plus">−</button>
+                                                    <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
                                                 <p>{items.quantity}</p>
-                                                <button class="min">+</button>
+                                                <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
                                                 </div>
                                             </div>
                                             <div class="subtotal">
@@ -148,7 +131,9 @@ function CartPage() {
                                 <h3>Total</h3>
                                 <p><span>${(subTotal + 20).toFixed(2)}</span></p>
                             </div>
-                            <button>Proceed To Checkout</button>
+                            <Link to='/checkout'>
+                                <button>Proceed To Checkout</button>
+                            </Link>
                         </div>
                     }
                 </div>
