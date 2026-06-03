@@ -1,5 +1,4 @@
-import api from "../services/auth"
-
+// Actions
 export const ACTIONS = {
     SET_CART: 'set-cart',
     ADD_TO_CART: 'add-to-cart',
@@ -7,14 +6,8 @@ export const ACTIONS = {
     DELETE_CART: 'delete-cart'
 }
 
-//delete cart item 
-const deleteCartItem = async (itemId) =>{
-    try{
-        await api.delete(`/cart/${itemId}`)
-    }
-    catch(err){
-        console.log(err.response.data)
-    }
+function deleteItems(state,itemsId){
+    return state.filter(items => items.productId !== itemsId)
 }
 
 export function cartReducer(state, action) {
@@ -28,7 +21,7 @@ export function cartReducer(state, action) {
             return console.log('update cart')
 
         case ACTIONS.DELETE_CART: 
-            return deleteCartItem(action.payload.id)
+            return deleteItems(state, action.payload.id)
         default:
             state
     }

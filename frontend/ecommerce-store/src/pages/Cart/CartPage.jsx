@@ -5,6 +5,7 @@ import './CartPage.css';
 import {Link} from 'react-router-dom'
 import { Cart } from '../../context/CartContext';
 import { ACTIONS } from '../../context/CartReducer';
+import { deleteCartItem } from '../../api/cartApi';
 
 function CartPage() {    
     //use States
@@ -131,13 +132,13 @@ function CartPage() {
                                             </div>
                                             <div class="card-quantity quantity">
                                                 <button class="plus">−</button>
-                                                <p>{items.quantity}</p>
+                                                <p>{items.quantity || 1}</p>
                                                 <button class="min">+</button>
                                             </div>
                                             <div class="card-subtotal subtotal">
-                                                <p>${(items.price * Number(items.quantity)).toFixed(2)}</p>
+                                                <p>${items.price}</p>
                                             </div>
-                                            <button class="delete" onClick={() => dispatch({type: ACTIONS.DELETE_CART, playload: {id: items.productId}})}>✕</button>
+                                            <button class="delete" onClick={() => deleteCartItem(items.productId, dispatch)}>✕</button>
                                         </div>
                                     )
                                 })
@@ -157,7 +158,7 @@ function CartPage() {
                                         <div class="card-details">
                                             <div class="name">
                                                 <h1>{items.name}</h1>
-                                                <button onClick={() => dispatch({type: ACTIONS.DELETE_CART, playload: {id: items.productId}})}>✕</button>
+                                                <button onClick={() => deleteCartItem(items._id, dispatch)}>✕</button>
                                             </div>
                                             <div class="price">
                                                 <p>Price: </p>

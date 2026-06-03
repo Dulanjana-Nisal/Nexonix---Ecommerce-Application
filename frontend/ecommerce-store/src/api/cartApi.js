@@ -37,3 +37,20 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
     }
 
 }
+
+// delete cart items
+export const deleteCartItem = async (itemId,dispatch) =>{
+    try{
+        await api.delete(`/cart/${itemId}`)
+        
+        dispatch({
+            type: ACTIONS.DELETE_CART,
+            payload: {
+                id: itemId
+            }
+        })
+    }
+    catch(err){
+        console.log(err.response.data)
+    }
+}
