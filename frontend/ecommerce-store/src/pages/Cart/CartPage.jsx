@@ -82,7 +82,7 @@ function CartPage() {
                                                 <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
                                             </div>
                                             <div class="card-subtotal subtotal">
-                                                <p>${items.price}</p>
+                                                <p>${(items.price * items.quantity).toFixed(2)}</p>
                                             </div>
                                             <button class="delete" onClick={() => deleteCartItem(items.productId, dispatch)}>✕</button>
                                         </div>
