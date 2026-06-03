@@ -23,7 +23,15 @@ function HeaderComponent() {
     //get infor from search result box
     const searchResultBox = useRef()
     
-    //get cart item count
+    //get cart item summery
+    let cartHeaderSummery  = {
+        count: 0,
+        fullPrice: 0
+    };
+    state.map((items) => {
+        cartHeaderSummery.count = cartHeaderSummery.count + items.quantity
+        cartHeaderSummery.fullPrice = cartHeaderSummery.fullPrice + (items.price * items.quantity)
+    })
 
     // add search values to use state if have more than 1 letter
     function searchInputValues(event){
@@ -117,11 +125,11 @@ function HeaderComponent() {
                             <div class="cart">
                                 <div class="cart-left">
                                     <img src={Shopping_cart} alt="shopping-cart" />
-                                    <p>{state.length ? state.length : 0}</p>
+                                    <p>{cartHeaderSummery.count}</p>
                                 </div>
                                 <div class="cart-right">
                                     <p>Your Cart</p>
-                                    <h3>$0.00</h3>
+                                    <h3>${(cartHeaderSummery.fullPrice).toFixed(2)}</h3>
                                 </div>
                             </div>
                         </Link>

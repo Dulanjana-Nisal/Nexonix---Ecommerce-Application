@@ -2,11 +2,13 @@
 export const ACTIONS = {
     SET_CART: 'set-cart',
     ADD_TO_CART: 'add-to-cart',
-    UPDATE_CART: 'update-cart',
+    ADD_QNT: 'add-quantity',
+    MIN_QNT: 'min-quantity',
     DELETE_CART: 'delete-cart'
 }
 
-function deleteItems(state,itemsId){
+//delete items
+function deleteItems(state, itemsId) {
     return state.filter(items => items.productId !== itemsId)
 }
 
@@ -17,10 +19,17 @@ export function cartReducer(state, action) {
         case ACTIONS.ADD_TO_CART:
             return [...state, action.payload]
 
-        case ACTIONS.UPDATE_CART:
-            return console.log('update cart')
+        case ACTIONS.ADD_QNT:
+            return state.map((items) =>
+                items.productId === action.payload.id ? { ...items, quantity: Number(items.quantity) + 1 } : items
+            )
 
-        case ACTIONS.DELETE_CART: 
+        case ACTIONS.MIN_QNT:
+            return state.map((items) =>
+                items.productId === action.payload.id ? { ...items, quantity: items.quantity <= 1 ? 1 : Number(items.quantity) - 1 } : items
+            )
+
+        case ACTIONS.DELETE_CART:
             return deleteItems(state, action.payload.id)
         default:
             state

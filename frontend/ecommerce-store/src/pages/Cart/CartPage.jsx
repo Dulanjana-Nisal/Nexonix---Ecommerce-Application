@@ -4,8 +4,8 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CartPage.css';
 import {Link} from 'react-router-dom'
 import { Cart } from '../../context/CartContext';
-import { ACTIONS } from '../../context/CartReducer';
 import { deleteCartItem } from '../../api/cartApi';
+import { ACTIONS } from '../../context/CartReducer';
 
 function CartPage() {    
     //use States
@@ -13,7 +13,7 @@ function CartPage() {
 
     // use context 
     const {state,dispatch} = Cart()
-    
+    console.log(state)
 
     // Min Quantity
     // function minQnt(itemId,itemQnt){
@@ -89,6 +89,8 @@ function CartPage() {
         :
             setSelectItems(selectItmes)
     }
+
+    console.log(state)
     return (
         <>
             <HeaderComponent />
@@ -115,7 +117,7 @@ function CartPage() {
                         <div class="details-cards">
                             {
                                 state.length > 0 &&
-                                state.map((items)=>{
+                                state.reverse().map((items)=>{
                                     return(
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
@@ -131,9 +133,9 @@ function CartPage() {
                                                 <p>${items.price}</p>
                                             </div>
                                             <div class="card-quantity quantity">
-                                                <button class="plus">−</button>
-                                                <p>{items.quantity || 1}</p>
-                                                <button class="min">+</button>
+                                                <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
+                                                <p>{items.quantity}</p>
+                                                <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
                                             </div>
                                             <div class="card-subtotal subtotal">
                                                 <p>${items.price}</p>

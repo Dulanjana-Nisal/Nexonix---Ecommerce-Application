@@ -7,9 +7,13 @@ import close_btn_image from '../../assets/close-btn.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import api from '../../services/auth';
+import { addCartItems } from '../../api/cartApi';
+import { Cart } from '../../context/CartContext';
 
 function DetailsPage() {
+
+    // load context
+    const {state,dispatch} = Cart();
 
     const [producatDetails,setProductDetails] = useState([])
     const [producatKeywords,setProducatKeywords] = useState([])
@@ -39,26 +43,6 @@ function DetailsPage() {
         window.scrollTo(top)
     }, [productId])
 
-    //add product in to cart
-    const addProductToCart = async ()=>{
-        try{
-            const addCart = await api.post('/cart',{
-                items: {
-                    productId: producatDetails._id,
-                    name: producatDetails.name,
-                    image: producatDetails.image,
-                    quantity: quantity,
-                    price: producatDetails.price,
-                    availability: producatDetails.availability
-                }
-            })
-            console.log(addCart.data)
-        }
-        catch(err){
-            console.log(err.response)
-        }
-    }
-
     let ratings;
     if(producatDetails.ratings === 5){
         ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>
@@ -71,6 +55,7 @@ function DetailsPage() {
     }if(producatDetails.ratings === 1){
         ratings = <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
     }
+    console.log(quantity)
 
     return (
         <>
@@ -129,7 +114,13 @@ function DetailsPage() {
                             <p>{producatDetails.description}</p>
                         </div>
                         <div class="product-buttons row">
-                            <button class="cart" onClick={() => addProductToCart()}>Add To Cart</button>
+                            {
+                                state.find(item => item.productId == producatDetails._id) ?
+                                    <button style={{opacity: "0.5", cursor: " not-allowed"}}>in Cart</button>
+                                :
+                                <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch)}>Add To Cart</button>
+
+                            }
                             <button class="buy">Buy Now</button>
                         </div>
                         <div class="product-more row">

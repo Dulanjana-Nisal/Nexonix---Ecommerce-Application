@@ -375,7 +375,7 @@ function CategoryPage() {
                                                         state.find(item => item.productId == items._id) ?
                                                         <button style={{opacity: "0.5", cursor: " not-allowed"}}>in Cart</button>
                                                         :
-                                                        <button onClick={() => addCartItems(items._id,items.name, items.image, items.quantity, items.price, items.availability, dispatch)}>Add To Cart</button>
+                                                        <button onClick={() => addCartItems(items._id,items.name, items.image, 1, items.price, items.availability, dispatch)}>Add To Cart</button>
                                                     }
                                                 </div>
                                             </div>
