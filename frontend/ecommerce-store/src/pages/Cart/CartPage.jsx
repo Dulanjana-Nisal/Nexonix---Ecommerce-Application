@@ -12,11 +12,7 @@ function CartPage() {
     const [subtotal,setSubtotal] = useState(0)
 
     // use context 
-    const {fetchCartData,setCartData,cartData} = Cart()
-
-    useEffect(()=>{
-        fetchCartData()
-    }, [setCartData])
+    const {state,dispatch} = Cart()
     
     //delete cart item 
     const deleteCartItem = async (itemId) =>{
@@ -32,9 +28,9 @@ function CartPage() {
     // Min Quantity
     function minQnt(itemId,itemQnt){
         let total = itemQnt - 1
-        setCartData(
-            cartData.length > 0 && 
-            cartData.map((items)=>
+        setstate(
+            state.length > 0 && 
+            state.map((items)=>
                 items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
             )
         )  
@@ -42,9 +38,9 @@ function CartPage() {
     // Add Quantity
     function addQnt(itemId,itemQnt){
         let total = itemQnt + 1
-        setCartData(
-            cartData.length > 0 && 
-            cartData.map((items)=>
+        setstate(
+            state.length > 0 && 
+            state.map((items)=>
                 items._id === itemId ? {...items, quantity: total} : items
             )
         )
@@ -52,8 +48,8 @@ function CartPage() {
 
     //geting subtotal in cart item ( subtotal = sum( price*quantity ) )
     useEffect(()=>{
-        cartData.length > 0 && 
-        cartData.map((items)=>{
+        state.length > 0 && 
+        state.map((items)=>{
             selectItmes.find(findOne => findOne.itemId === items.productId) ?
                 setSelectItems(prev=>
                     prev.map(item => 
@@ -75,12 +71,12 @@ function CartPage() {
         })
 
 
-    }, [cartData])
+    }, [state])
 
     // calculate subtotal 
     useEffect(()=>{
         let total = 0
-        cartData.length > 0 && 
+        state.length > 0 && 
         selectItmes.map((items)=>{
             if(items.checked){
                 total = total + items.subtotal
@@ -117,7 +113,7 @@ function CartPage() {
                 <div class="cart-body">
                     <div class="cart-details">
                         {
-                            cartData.length > 0 &&
+                            state &&
                             <div class="details-head">
                                 <p class="product">Product</p>
                                 <p class="price">Price</p>
@@ -128,8 +124,8 @@ function CartPage() {
                         }
                         <div class="details-cards">
                             {
-                                cartData.length > 0 &&
-                                [...cartData].reverse().map((items)=>{
+                                state &&
+                                [...state].reverse().map((items)=>{
                                     return(
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
@@ -161,8 +157,8 @@ function CartPage() {
                     </div>
                     <div class="cart-details-responsive">
                         {
-                            cartData.length > 0 &&
-                            [...cartData].reverse().map((items)=>{
+                            state &&
+                            [...state].reverse().map((items)=>{
                                 return(
                                     <div class={items.availability ? "card" : "card disabel-card"}>
                                         <div class="image">
@@ -199,7 +195,7 @@ function CartPage() {
                         }
                     </div>
                     {
-                        cartData.length > 0 &&
+                        state &&
                         <div class="total-card">
                             <div class="total-head">
                                 <h1>Cart Totals</h1>

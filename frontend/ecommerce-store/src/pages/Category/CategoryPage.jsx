@@ -4,9 +4,14 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CategoryPage.css';
 import axios from 'axios';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { addCartItems, fetchCartData } from '../../api/cartApi';
+import { fetchCartData } from '../../api/cartApi';
+import { Cart } from '../../context/CartContext';
+import { ACTIONS } from '../../context/CartReducer';
 
 function CategoryPage() {
+
+    //load context
+    const {dispatch} = Cart();
 
     //use state hooks
     const [allCategoryDetails,setAllCategoryDetails] = useState([]);
@@ -84,6 +89,21 @@ function CategoryPage() {
             setProductBrands(brandArray)
         })
     }, [brands])
+
+    //add to cart function   
+    function addToCart(id,name,image,qnt,price,availability){
+        dispatch({
+            type: ACTIONS.ADD_TO_CART,
+            playload: {
+                id: id,
+                name: name,
+                image: image,
+                quantity: qnt,
+                price: price,
+                availability: availability
+            }
+        })
+    }
     
     // go to next page
     function toNextPage(){
@@ -199,8 +219,6 @@ function CategoryPage() {
     //count page size
     const resultSize = allCategoryDetails.all_result;
     const pagesSize = Math.ceil(resultSize/10)  
-
-    console.log(cartData)
 
     return (
         <>
@@ -375,7 +393,7 @@ function CategoryPage() {
                                                         cartData.find(item => item.productId == items._id) ?
                                                         <button style={{opacity: "0.5", cursor: " not-allowed"}}>in Cart</button>
                                                         :
-                                                        <button onClick={() => addCartItems(items._id,items.name, items.image, items.quantity, items.price, items.availability)}>Add To Cart</button>
+                                                        <button onClick={() => addToCart(items._id,items.name, items.image, items.quantity, items.price, items.availability)}>Add To Cart</button>
                                                     }
                                                 </div>
                                             </div>
