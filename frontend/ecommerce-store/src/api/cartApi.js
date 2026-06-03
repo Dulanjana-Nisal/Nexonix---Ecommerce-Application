@@ -1,16 +1,17 @@
+import { ACTIONS } from "../context/CartReducer";
 import api from "../services/auth";
 
-export const fetchCartData = async (setCartItemsData) => {
-    try {
-        const result = await api.get('/cart');
-        setCartItemsData(result.data.data[0].items)
-    }
-    catch (err) {
-        setCartItemsData(err.response.data)
-    }
-}
+// export const fetchCartData = async (setCartItemsData) => {
+//     try {
+//         const result = await api.get('/cart');
+//         setCartItemsData(result.data.data[0].items)
+//     }
+//     catch (err) {
+//         setCartItemsData(err.response.data)
+//     }
+// }
 
-export const addCartItems = async (productId,name,image,quantity,price,availability)=>{
+export const addCartItems = async (productId,name,image,quantity,price,availability,dispatch)=>{
     try{
         const result = await api.post('/cart',
             {
@@ -25,7 +26,11 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
                 "totle_items": 1
             }
         )
-        console.log(result)
+        console.log(result.data)
+        dispatch({
+            type: ACTIONS.ADD_TO_CART, 
+            payload: result.data.data
+        })
     }
     catch(err){
         console.log(err)

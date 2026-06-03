@@ -33,7 +33,7 @@ const getAllCartItems = asyncHaddler(async (req, res) => {
     })
 }) 
 
-//create Cart items
+//add Cart items
 const createCartItems = asyncHaddler(async (req, res) => {
     //check cart is already create
     req.body.userId = req.user._id;
@@ -58,7 +58,7 @@ const createCartItems = asyncHaddler(async (req, res) => {
         result = result.create(req.body)
     }
     const createCart = await result;
-    res.status(statusCodes.CREATED).json({success: true, message: createCart})
+    res.status(statusCodes.CREATED).json({success: true, message: createCart, data: req.body.items})
 
 })
 

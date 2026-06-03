@@ -1,89 +1,78 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CartPage.css';
 import {Link} from 'react-router-dom'
-import api from '../../services/auth';
 import { Cart } from '../../context/CartContext';
+import { ACTIONS } from '../../context/CartReducer';
 
 function CartPage() {    
     //use States
     const [selectItmes,setSelectItems] = useState([])
-    const [subtotal,setSubtotal] = useState(0)
 
     // use context 
     const {state,dispatch} = Cart()
     
-    //delete cart item 
-    const deleteCartItem = async (itemId) =>{
-        try{
-            await api.delete(`/cart/${itemId}`)
-            location.reload()
-        }
-        catch(err){
-            console.log(err.response.data)
-        }
-    }
 
     // Min Quantity
-    function minQnt(itemId,itemQnt){
-        let total = itemQnt - 1
-        setstate(
-            state.length > 0 && 
-            state.map((items)=>
-                items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
-            )
-        )  
-    }
+    // function minQnt(itemId,itemQnt){
+    //     let total = itemQnt - 1
+    //     setstate(
+    //         state.length > 0 && 
+    //         state.map((items)=>
+    //             items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
+    //         )
+    //     )  
+    // }
     // Add Quantity
-    function addQnt(itemId,itemQnt){
-        let total = itemQnt + 1
-        setstate(
-            state.length > 0 && 
-            state.map((items)=>
-                items._id === itemId ? {...items, quantity: total} : items
-            )
-        )
-    }
+    // function addQnt(itemId,itemQnt){
+    //     let total = itemQnt + 1
+    //     setstate(
+    //         state.length > 0 && 
+    //         state.map((items)=>
+    //             items._id === itemId ? {...items, quantity: total} : items
+    //         )
+    //     )
+    // }
 
     //geting subtotal in cart item ( subtotal = sum( price*quantity ) )
-    useEffect(()=>{
-        state.length > 0 && 
-        state.map((items)=>{
-            selectItmes.find(findOne => findOne.itemId === items.productId) ?
-                setSelectItems(prev=>
-                    prev.map(item => 
-                        item.itemId === items.productId ?
-                            {...item, subtotal: Number((items.price * items.quantity).toFixed(2))}
-                        :
-                            item
-                    )
-                )
-            :
-            setSelectItems((prev)=>[
-                ...prev,
-                {
-                    itemId: items.productId,
-                    checked: items.availability ? true : false,
-                    subtotal: Number((items.price * items.quantity).toFixed(2))
-                }
-            ])
-        })
+    // useEffect(()=>{
+    //     state.length > 0 && 
+    //     state.map((items)=>{
+    //         selectItmes.find(findOne => findOne.itemId === items.productId) ?
+    //             setSelectItems(prev=>
+    //                 prev.map(item => 
+    //                     item.itemId === items.productId ?
+    //                         {...item, subtotal: Number((items.price * items.quantity).toFixed(2))}
+    //                     :
+    //                         item
+    //                 )
+    //             )
+    //         :
+    //         setSelectItems((prev)=>[
+    //             ...prev,
+    //             {
+    //                 itemId: items.productId,
+    //                 checked: items.availability ? true : false,
+    //                 subtotal: Number((items.price * items.quantity).toFixed(2))
+    //             }
+    //         ])
+    //     })
 
 
-    }, [state])
+    // }, [state])
 
     // calculate subtotal 
-    useEffect(()=>{
-        let total = 0
-        state.length > 0 && 
-        selectItmes.map((items)=>{
-            if(items.checked){
-                total = total + items.subtotal
-                setSubtotal(total)
-            }
-        })
-    }, [selectItmes])
+    // useEffect(()=>{
+    //     let total = 0
+    //     state.length > 0 && 
+    //     selectItmes.map((items)=>{
+    //         if(items.checked){
+    //             total = total + items.subtotal
+    //             setSubtotal(total)
+    //         }
+    //     })
+    // }, [selectItmes])
 
     // select and deselect items
     function itemSelection(e){
@@ -124,8 +113,8 @@ function CartPage() {
                         }
                         <div class="details-cards">
                             {
-                                state &&
-                                [...state].reverse().map((items)=>{
+                                state.length > 0 &&
+                                state.map((items)=>{
                                     return(
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
@@ -141,14 +130,14 @@ function CartPage() {
                                                 <p>${items.price}</p>
                                             </div>
                                             <div class="card-quantity quantity">
-                                                <button class="plus" onClick={() => minQnt(items._id,items.quantity)}>−</button>
+                                                <button class="plus">−</button>
                                                 <p>{items.quantity}</p>
-                                                <button class="min" onClick={() => addQnt(items._id,items.quantity)}>+</button>
+                                                <button class="min">+</button>
                                             </div>
                                             <div class="card-subtotal subtotal">
                                                 <p>${(items.price * Number(items.quantity)).toFixed(2)}</p>
                                             </div>
-                                            <button class="delete" onClick={() => deleteCartItem(items.productId)}>✕</button>
+                                            <button class="delete" onClick={() => dispatch({type: ACTIONS.DELETE_CART, playload: {id: items.productId}})}>✕</button>
                                         </div>
                                     )
                                 })
@@ -157,8 +146,8 @@ function CartPage() {
                     </div>
                     <div class="cart-details-responsive">
                         {
-                            state &&
-                            [...state].reverse().map((items)=>{
+                            state.length > 0 &&
+                            state.reverse().map((items)=>{
                                 return(
                                     <div class={items.availability ? "card" : "card disabel-card"}>
                                         <div class="image">
@@ -168,7 +157,7 @@ function CartPage() {
                                         <div class="card-details">
                                             <div class="name">
                                                 <h1>{items.name}</h1>
-                                                <button onClick={() => deleteCartItem(items.productId)}>✕</button>
+                                                <button onClick={() => dispatch({type: ACTIONS.DELETE_CART, playload: {id: items.productId}})}>✕</button>
                                             </div>
                                             <div class="price">
                                                 <p>Price: </p>
@@ -179,9 +168,9 @@ function CartPage() {
                                                     <p>Quantity: </p>
                                                 </div>
                                                 <div class="quentity-body">
-                                                    <button class="plus" onClick={() => minQnt(items._id,items.quantity)}>−</button>
+                                                    <button class="plus">−</button>
                                                 <p>{items.quantity}</p>
-                                                <button class="min" onClick={() => addQnt(items._id,items.quantity)}>+</button>
+                                                <button class="min">+</button>
                                                 </div>
                                             </div>
                                             <div class="subtotal">
@@ -202,7 +191,7 @@ function CartPage() {
                             </div>
                             <div class="total-subtotal info">
                                 <h3>Subtotal</h3>
-                                <p>${subtotal}</p>
+                                <p>$12</p>
                             </div>
                             <div class="total-shipping info">
                                 <h3>Shipping</h3>
@@ -210,7 +199,7 @@ function CartPage() {
                             </div>
                             <div class="total-total info">
                                 <h3>Total</h3>
-                                <p><span>${Number(subtotal) + 20}</span></p>
+                                <p><span>$123</span></p>
                             </div>
                             <button>Proceed To Checkout</button>
                         </div>

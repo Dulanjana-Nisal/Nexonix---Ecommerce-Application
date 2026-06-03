@@ -18,7 +18,7 @@ function HeaderComponent() {
     const [toggleHamberger,setToggleHamberger] = useState(false);
 
     // use context
-    const {cartCounte} = Cart()
+    const {state} = Cart()
 
     //get infor from search result box
     const searchResultBox = useRef()
@@ -117,7 +117,7 @@ function HeaderComponent() {
                             <div class="cart">
                                 <div class="cart-left">
                                     <img src={Shopping_cart} alt="shopping-cart" />
-                                    <p>{cartCounte ? cartCounte : 0}</p>
+                                    <p>{state.length ? state.length : 0}</p>
                                 </div>
                                 <div class="cart-right">
                                     <p>Your Cart</p>
