@@ -13,67 +13,6 @@ function CartPage() {
 
     // use context 
     const {state,dispatch} = Cart()
-    console.log(state)
-
-    // Min Quantity
-    // function minQnt(itemId,itemQnt){
-    //     let total = itemQnt - 1
-    //     setstate(
-    //         state.length > 0 && 
-    //         state.map((items)=>
-    //             items._id === itemId ? {...items, quantity: total < 1 ? 1 : total} : items
-    //         )
-    //     )  
-    // }
-    // Add Quantity
-    // function addQnt(itemId,itemQnt){
-    //     let total = itemQnt + 1
-    //     setstate(
-    //         state.length > 0 && 
-    //         state.map((items)=>
-    //             items._id === itemId ? {...items, quantity: total} : items
-    //         )
-    //     )
-    // }
-
-    //geting subtotal in cart item ( subtotal = sum( price*quantity ) )
-    // useEffect(()=>{
-    //     state.length > 0 && 
-    //     state.map((items)=>{
-    //         selectItmes.find(findOne => findOne.itemId === items.productId) ?
-    //             setSelectItems(prev=>
-    //                 prev.map(item => 
-    //                     item.itemId === items.productId ?
-    //                         {...item, subtotal: Number((items.price * items.quantity).toFixed(2))}
-    //                     :
-    //                         item
-    //                 )
-    //             )
-    //         :
-    //         setSelectItems((prev)=>[
-    //             ...prev,
-    //             {
-    //                 itemId: items.productId,
-    //                 checked: items.availability ? true : false,
-    //                 subtotal: Number((items.price * items.quantity).toFixed(2))
-    //             }
-    //         ])
-    //     })
-
-
-    // }, [state])
-
-    // calculate subtotal 
-    // useEffect(()=>{
-    //     let total = 0
-    //     state.length > 0 && 
-    //     selectItmes.map((items)=>{
-    //         if(items.checked){
-    //             total = total + items.subtotal
-    //             setSubtotal(total)
-    //         }
-    //     })
-    // }, [selectItmes])
 
     // select and deselect items
     function itemSelection(e){
@@ -90,7 +29,12 @@ function CartPage() {
             setSelectItems(selectItmes)
     }
 
-    console.log(state)
+    //subtotal calculation
+    let subTotal = 0;
+    state.map((items) => {
+        return subTotal = subTotal + (items.price * items.quantity)
+    })
+
     return (
         <>
             <HeaderComponent />
@@ -194,7 +138,7 @@ function CartPage() {
                             </div>
                             <div class="total-subtotal info">
                                 <h3>Subtotal</h3>
-                                <p>$12</p>
+                                <p>${subTotal.toFixed(2)}</p>
                             </div>
                             <div class="total-shipping info">
                                 <h3>Shipping</h3>
@@ -202,7 +146,7 @@ function CartPage() {
                             </div>
                             <div class="total-total info">
                                 <h3>Total</h3>
-                                <p><span>$123</span></p>
+                                <p><span>${(subTotal + 20).toFixed(2)}</span></p>
                             </div>
                             <button>Proceed To Checkout</button>
                         </div>
