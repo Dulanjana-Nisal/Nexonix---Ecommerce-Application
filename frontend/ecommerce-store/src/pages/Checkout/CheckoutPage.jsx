@@ -1,8 +1,19 @@
 import './CheckoutPage.css'
 import HeaderComponent from "../../components/Header/HeaderComponent";
 import FooterCompoennt from '../../components/Footer/FooterComponent';
+import { Cart } from '../../context/CartContext';
 
 function CheckoutPage() {
+
+    // use context 
+    const { state } = Cart()
+
+    //get cart item summery
+    let fullPrice = 0
+    state.map((items) => {
+        fullPrice = fullPrice + (items.price * items.quantity)
+    })
+
     return (
         <>
             <HeaderComponent />
@@ -60,21 +71,17 @@ function CheckoutPage() {
                             <h1>Your Order</h1>
                         </div>
                         <div class="total-product info">
-                            <div class="product-card">
-                                <img src="../../images/card-image.png" alt="" />
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                <span>✕ 2</span>
-                            </div>
-                            <div class="product-card">
-                                <img src="../../images/card-image.png" alt="" />
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                <span>✕ 2</span>
-                            </div>
-                            <div class="product-card">
-                                <img src="../../images/card-image.png" alt="" />
-                                <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                <span>✕ 2</span>
-                            </div>
+                            {
+                                state.map((items)=>{
+                                    return(
+                                        <div class="product-card" key={items._id}>
+                                            <img src={items.image} alt={items.name} />
+                                            <p>{items.name}</p>
+                                            <span>✕ {items.quantity}</span>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                         <div class="total-method info">
                             <h3>Method</h3>
@@ -82,7 +89,7 @@ function CheckoutPage() {
                         </div>
                         <div class="total-subtotal info">
                             <h3>Subtotal</h3>
-                            <p>$289.34</p>
+                            <p>${fullPrice.toFixed(2)}</p>
                         </div>
                         <div class="total-shipping info">
                             <h3>Shipping</h3>
@@ -90,7 +97,7 @@ function CheckoutPage() {
                         </div>
                         <div class="total-total info">
                             <h3>Total</h3>
-                            <p><span>$302.34</span></p>
+                            <p><span>${(fullPrice + 20).toFixed(2)}</span></p>
                         </div>
                         <div class="button">
                             <button>Place Order</button>
