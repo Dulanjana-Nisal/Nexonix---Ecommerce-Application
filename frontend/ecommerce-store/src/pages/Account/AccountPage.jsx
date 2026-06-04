@@ -6,8 +6,12 @@ import './AccountPage.css';
 import { useState } from 'react';
 import api, { logout } from '../../services/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { Cart } from '../../context/CartContext';
 
 function AccountPage() {
+
+    // cart context
+    const {dispatch} = Cart();
 
     //use states
     const [name,setName] = useState("");
@@ -115,14 +119,14 @@ function AccountPage() {
                     userRole === 'admin' &&
                         <div class="container-body">
                             <Link to='/admin/dashboard' class="no-style-link"><button>Go to Admin Panel</button></Link> 
-                            <button onClick={() => logout(navigate)}>Logout</button>
+                            <button onClick={() => logout(navigate,dispatch)}>Logout</button>
                         </div>
                 }
                 {
                     userRole === 'user' &&
                         <div class="container-body">
                             <h1>User Details</h1>
-                            <button onClick={() => logout(navigate)}>Logout</button>
+                            <button onClick={() => logout(navigate,dispatch)}>Logout</button>
                         </div>
                 }
                 {

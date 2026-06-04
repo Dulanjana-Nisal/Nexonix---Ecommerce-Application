@@ -55,7 +55,6 @@ function DetailsPage() {
     }if(producatDetails.ratings === 1){
         ratings = <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
     }
-    console.log(quantity)
 
     return (
         <>
@@ -121,7 +120,6 @@ function DetailsPage() {
                                 <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch)}>Add To Cart</button>
 
                             }
-                            <button class="buy">Buy Now</button>
                         </div>
                         <div class="product-more row">
                             <p>Guarantee safe & Secure checkout</p>

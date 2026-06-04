@@ -28,7 +28,7 @@ function AdminProducts({ path }) {
     const [productKeywords, setProductKeywords] = useState([])
     const [productCategory, setProductCategory] = useState(null)
     const [productBrand, setProductBrand] = useState('')
-    const [productAvailability, setProductAvailability] = useState(null)
+    const [productAvailability, setProductAvailability] = useState("")
 
     //base states
     const [message, setMessage] = useState(false)

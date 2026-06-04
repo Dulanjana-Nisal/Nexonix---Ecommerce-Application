@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ACTIONS } from '../context/CartReducer';
 
 const api = axios.create({
     baseURL: 'http://localhost:5000/api/v1'
@@ -14,9 +15,9 @@ api.interceptors.request.use((config)=>{
 })
 
 // logut function
-// eslint-disable-next-line react-hooks/rules-of-hooks
-export function logout(navigate){
+export function logout(navigate,dispatch){
     localStorage.clear()
+    dispatch({type: ACTIONS.SET_CART, payload: []})
     navigate('/')
 }
 

@@ -14,7 +14,9 @@ function CartPage() {
     //subtotal calculation
     let subTotal = 0;
     state.map((items) => {
-        return subTotal = subTotal + (items.price * items.quantity)
+        if(items.availability){
+            return subTotal = subTotal + (items.price * items.quantity)
+        }
     })
 
     return (
@@ -48,7 +50,6 @@ function CartPage() {
                                         <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
                                             <div class="card-product product">
                                                 <div class="thumb">
-                                                    <input type="checkbox"  defaultChecked={items.availability ? true : false}/>
                                                     <img src={items.image} alt="" />
                                                 </div>
                                                 <div class="name">
@@ -58,11 +59,18 @@ function CartPage() {
                                             <div class="card-price price">
                                                 <p>${items.price}</p>
                                             </div>
-                                            <div class="card-quantity quantity">
-                                                <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
-                                                <p>{items.quantity}</p>
-                                                <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
-                                            </div>
+                                            {
+                                                items.availability ?
+                                                <div class="card-quantity quantity">
+                                                    <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
+                                                    <p>{items.quantity}</p>
+                                                    <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
+                                                </div>
+                                                :
+                                                <div class="card-quantity quantity">
+                                                    <p style={{fontSize: "12px", width: "100%"}}>sold Out</p>
+                                                </div>
+                                            }
                                             <div class="card-subtotal subtotal">
                                                 <p>${(items.price * items.quantity).toFixed(2)}</p>
                                             </div>
@@ -128,11 +136,16 @@ function CartPage() {
                             </div>
                             <div class="total-total info">
                                 <h3>Total</h3>
-                                <p><span>${(subTotal + 20).toFixed(2)}</span></p>
+                                <p><span>${subTotal ? (subTotal + 20).toFixed(2) : 0}</span></p>
                             </div>
-                            <Link to='/checkout'>
-                                <button>Proceed To Checkout</button>
-                            </Link>
+                            {
+                                subTotal ?
+                                <Link to='/checkout'>
+                                    <button>Proceed To Checkout</button>
+                                </Link>
+                                :
+                                    <button>Cart is Empty</button>
+                            }
                         </div>
                     }
                 </div>

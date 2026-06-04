@@ -38,7 +38,9 @@ function CheckoutPage() {
     //get cart item summery
     let fullPrice = 0
     state.map((items) => {
-        fullPrice = fullPrice + (items.price * items.quantity)
+        if(items.availability){
+            fullPrice = fullPrice + (items.price * items.quantity)
+        }
     })
 
     //get user id form localstorage
@@ -49,6 +51,7 @@ function CheckoutPage() {
         setLoading(true)
         state.map( async (items)=>{
             try{
+                items.availability &&
                 await api.post('/orders', {
                     userId: _id,
                     firstName: orderData.firstName,
@@ -114,10 +117,6 @@ function CheckoutPage() {
                                     <label>Phone Number</label>
                                     <input type="number" onChange={(e) => setOrderData({...orderData, phoneNumber: e.target.value})}/>
                                 </div>
-                                <div class="email box">
-                                    <label>Email Address</label>
-                                    <input type="email" />
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -128,13 +127,15 @@ function CheckoutPage() {
                         <div class="total-product info">
                             {
                                 state.map((items)=>{
-                                    return(
-                                        <div class="product-card" key={items._id}>
-                                            <img src={items.image} alt={items.name} />
-                                            <p>{items.name}</p>
-                                            <span>✕ {items.quantity}</span>
-                                        </div>
-                                    )
+                                    if(items.availability){
+                                        return(
+                                            <div class="product-card" key={items._id}>
+                                                <img src={items.image} alt={items.name} />
+                                                <p>{items.name}</p>
+                                                <span>✕ {items.quantity}</span>
+                                            </div>
+                                        )
+                                    }
                                 })
                             }
                         </div>
@@ -152,7 +153,7 @@ function CheckoutPage() {
                         </div>
                         <div class="total-total info">
                             <h3>Total</h3>
-                            <p><span>${(fullPrice + 20).toFixed(2)}</span></p>
+                            <p><span>${fullPrice ? (fullPrice + 20).toFixed(2) : 0}</span></p>
                         </div>
                         <div class="button">
                             <button onClick={() => placeOrder()}>{loading ? "Processing..." : "Place Order"}</button>

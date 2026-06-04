@@ -6,8 +6,13 @@ import logo_letter from '../assets/logo-image-letter.png'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import AdminProducts from './AdminProducts'
 import { useEffect, useState } from 'react'
+import { ACTIONS } from '../context/CartReducer'
+import { Cart } from '../context/CartContext'
 
 function AdminPage() {
+
+    //load context
+    const {dispatch} = Cart()
 
     //products states
     const [productData, setProductData] = useState(null)
@@ -30,7 +35,14 @@ function AdminPage() {
         fetchProductData()
     }, [])
 
-    console.log(productData)
+    //refesh reducer
+    const fetchCartData = async () =>{
+        const result = await api.get('/cart')
+        dispatch({
+            type: ACTIONS.SET_CART,
+            payload: result.data.data[0].items
+        })
+    }
 
     return (
         <>
@@ -85,7 +97,7 @@ function AdminPage() {
                                 <p>0</p>
                             </div>
                             <div class="store">
-                                <Link to='/' class="no-style-link">
+                                <Link to='/' class="no-style-link" onClick={() => fetchCartData()}>
                                     <button><i class="fa-solid fa-store"></i>
                                         <p>Go to Store</p>
                                     </button>
