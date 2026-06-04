@@ -6,14 +6,17 @@ const statusCodes = require('http-status-codes');
 //get all orders
 const getAllOrders = asyncHaddler(async (req, res) => {
     const { search, user, product } = req.query;
-    let queryObject = {};
+    let queryObject = {userId: req.user._id};
+
+    //orders filter by users
+    if(req.user.role === 'admin'){
+        if (user) {
+            queryObject.userId = user;
+        }
+    }
     //orders filter by serach
     if (search) {
         queryObject.name = { $regex: search, $options: 'i' };
-    }
-    //orders filter by users
-    if (user) {
-        queryObject.userId = user;
     }
     //oders filter by product
     if(product){

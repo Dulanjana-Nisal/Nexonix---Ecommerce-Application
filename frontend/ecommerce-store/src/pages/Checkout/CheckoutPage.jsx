@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/auth';
 import { useState } from 'react';
 import { ACTIONS } from '../../context/CartReducer';
+import { deleteCartItem } from '../../api/cartApi';
 
 function CheckoutPage() {
 
@@ -64,7 +65,7 @@ function CheckoutPage() {
                     quantity: items.quantity,
                     totle_price: fullPrice.toFixed(2)
                 })
-                dispatch({type: ACTIONS.DELETE_CART, payload: {id: items.productId}})
+                deleteCartItem(items.productId, dispatch)
                 updateProductQuntity(items.productId, items.quantity)
             }
             catch(err){

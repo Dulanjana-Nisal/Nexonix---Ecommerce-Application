@@ -39,7 +39,7 @@ const createCartItems = asyncHaddler(async (req, res) => {
     req.body.userId = req.user._id;
     const itemCart = await Cart.findOne({userId: req.user._id})
     //check product is already exsist
-    const checkProducts = await Cart.findOne({userId:req.body.userId,  "items.productId": req.body.items.productId})
+    const checkProducts = await Cart.findOne({userId: req.body.userId,  "items.productId": req.body.items.productId})
     let result = Cart
     if(itemCart){
         if(checkProducts){

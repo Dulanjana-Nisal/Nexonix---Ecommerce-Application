@@ -13,8 +13,7 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
                     "quantity": quantity,
                     "price": price,
                     "availability": availability
-                },
-                "totle_items": 1
+                }
             }
         )
         console.log(result.data)
@@ -24,7 +23,7 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
         })
     }
     catch(err){
-        console.log(err)
+        console.log(err.response)
     }
 
 }
