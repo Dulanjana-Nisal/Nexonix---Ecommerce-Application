@@ -8,16 +8,27 @@ import api from '../../services/auth';
 function OrdersPage() {
 
     //order states
-    const [orders,setOrers] = useState([])
+    const [orders,setOrders] = useState([])
 
     //fetch orders from detabase
     useEffect(()=>{
         const fetchOrders = async () => {
             const result = await api.get('/orders')
-            setOrers(result.data.data)
+            setOrders(result.data.data)
         }
         fetchOrders()
     }, [])
+
+    //calcle order function
+    const cancleOrder = async (orderID) => {
+        try{
+            await api.delete(`/orders/${orderID}`)
+            setOrders(orders.filter(items => items._id !== orderID))
+        }
+        catch(err){
+            console.log(err.response)
+        }
+    }
 
     return (
         <>
@@ -66,7 +77,7 @@ function OrdersPage() {
                                             <div class="card-status status">
                                                 <p class={(items.status).toLowerCase()}>{items.status}</p>
                                             </div>
-                                            <button class="delete"><img src={delete_img} alt="" /></button>
+                                            <button class="delete" onClick={() => cancleOrder(items._id)}><img src={delete_img} alt="" /></button>
                                         </div>
                                     )
                                 })
@@ -79,28 +90,28 @@ function OrdersPage() {
                                 return(
                                     <div class="card" key={items._id}>
                                         <div class="image">
-                                            <img src="../../images/card-image.png" alt="" />
+                                            <img src={items.image} alt="" />
                                         </div>
                                         <div class="card-details">
                                             <div class="name">
-                                                <h1>Lenovo Legion 7i Gen 9 Laptop</h1>
-                                                <button><img src="../../images/delete-icon.png" alt="" /></button>
+                                                <h1>{items.name}</h1>
+                                                <button><img src={delete_img} alt="" /></button>
                                             </div>
                                             <div class="price">
                                                 <p>Price: </p>
-                                                <h3>$234.44</h3>
+                                                <h3>${items.price}</h3>
                                             </div>
                                             <div class="quantity">
                                                 <div class="quentity-header">
                                                     <p>Quantity: </p>
                                                 </div>
                                                 <div class="quentity-body">
-                                                    <p>1</p>
+                                                    <p>{items.quantity}</p>
                                                 </div>
                                             </div>
                                             <div class="subtotal">
                                                 <p>Subtotal: </p>
-                                                <h3>$234.44</h3>
+                                                <h3>${(items.quantity * items.price).toFixed(2)}</h3>
                                             </div>
                                         </div>
                                     </div>

@@ -5,7 +5,6 @@ import { Cart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import api from '../../services/auth';
 import { useState } from 'react';
-import { ACTIONS } from '../../context/CartReducer';
 import { deleteCartItem } from '../../api/cartApi';
 
 function CheckoutPage() {

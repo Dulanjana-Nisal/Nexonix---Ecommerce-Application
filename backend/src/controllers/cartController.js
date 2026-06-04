@@ -87,7 +87,6 @@ const deleteCartItems = asyncHaddler(async (req, res) => {
 
     const user = await Cart.findOne({userId: userID})
     const findProduct = user.items.find(item=>item.productId == paremID)
-    console.log(findProduct)
     const deleteCartItem = await Cart.updateOne(
         {userId: userID},
             {
