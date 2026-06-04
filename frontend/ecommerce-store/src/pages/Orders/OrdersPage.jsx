@@ -50,8 +50,8 @@ function OrdersPage() {
                                                     <img src={items.image} alt="" />
                                                 </div>
                                                 <div class="name">
-                                                    <p>{items.name}</p>
-                                                    <p class="order-id">ID: {items._id}</p>
+                                                    <p>{items.productName}</p>
+                                                    <p class="order-id">OID: {items._id}</p>
                                                 </div>
                                             </div>
                                             <div class="card-date date">

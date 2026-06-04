@@ -2,11 +2,38 @@ import './CheckoutPage.css'
 import HeaderComponent from "../../components/Header/HeaderComponent";
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import { Cart } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
+import api from '../../services/auth';
+import { useState } from 'react';
+import { ACTIONS } from '../../context/CartReducer';
 
 function CheckoutPage() {
 
     // use context 
-    const { state } = Cart()
+    const { state,dispatch } = Cart()
+
+    //chekout states
+    const [loading,setLoading] = useState(false)
+    const [orderData,setOrderData] = useState({
+        firstName: '',
+        lastName: '',
+        address: '',
+        zipCode: '',
+        phoneNumber: '',
+        method: 'cash-on-delivery'
+    })
+
+    //update prduct quaantity
+    const updateProductQuntity = async (productId, qnt) => {
+        const result = await api.get(`/products/${productId}`)
+        console.log(result.data.data.stock)
+        try{
+            await api.patch(`/products/${productId}`, {stock: result.data.data.stock - qnt})
+        }
+        catch(err){
+            console.log(err.response)
+        }
+    }
 
     //get cart item summery
     let fullPrice = 0
@@ -14,6 +41,38 @@ function CheckoutPage() {
         fullPrice = fullPrice + (items.price * items.quantity)
     })
 
+    //get user id form localstorage
+    const {_id} = JSON.parse(localStorage.getItem("user"))
+
+    //place order to database
+    const placeOrder =  () => {
+        setLoading(true)
+        state.map( async (items)=>{
+            try{
+                await api.post('/orders', {
+                    userId: _id,
+                    firstName: orderData.firstName,
+                    lastName:   orderData.lastName,
+                    address: orderData.address,
+                    zipCode: orderData.zipCode,
+                    phoneNumber: orderData.phoneNumber,
+                    method: orderData.method,
+                    productId: items.productId,
+                    productName: items.name,
+                    price: items.price,
+                    image: items.image,
+                    quantity: items.quantity,
+                    totle_price: fullPrice.toFixed(2)
+                })
+                dispatch({type: ACTIONS.DELETE_CART, payload: {id: items.productId}})
+                updateProductQuntity(items.productId, items.quantity)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            setLoading(false)
+        })
+    }
     return (
         <>
             <HeaderComponent />
@@ -21,7 +80,7 @@ function CheckoutPage() {
                 <div class="checkout-header">
                     <div class="header-content">
                         <h1>Checkout</h1>
-                        <p><span>Home /</span> Checkout</p>
+                        <p><span><Link to='/' class="no-style-link">Home</Link> /</span> Checkout</p>
                     </div>
                 </div>
                 <div class="checkout-body">
@@ -32,20 +91,16 @@ function CheckoutPage() {
                                 <div class="name box">
                                     <div class="first-name">
                                         <label>First Name</label>
-                                        <input type="text" />
+                                        <input type="text" onChange={(e) => setOrderData({...orderData, firstName: e.target.value})}/>
                                     </div>
                                     <div class="last-name">
                                         <label>Last Name</label>
-                                        <input type="text" />
+                                        <input type="text" onChange={(e) => setOrderData({...orderData, lastName: e.target.value})}/>
                                     </div>
                                 </div>
-                                <div class="address-1 box">
-                                    <label>Address 1</label>
-                                    <input type="text" />
-                                </div>
-                                <div class="address-2 box">
-                                    <label>Address 2</label>
-                                    <input type="text" />
+                                <div class="address box">
+                                    <label>Address</label>
+                                    <input type="text" onChange={(e) => setOrderData({...orderData, address: e.target.value})}/>
                                 </div>
                                 <div class="city box">
                                     <label>City Name</label>
@@ -53,11 +108,11 @@ function CheckoutPage() {
                                 </div>
                                 <div class="zipcode box">
                                     <label>Zip Code</label>
-                                    <input type="text" />
+                                    <input type="text" onChange={(e) => setOrderData({...orderData, zipCode: e.target.value})}/>
                                 </div>
                                 <div class="phone box">
                                     <label>Phone Number</label>
-                                    <input type="number" />
+                                    <input type="number" onChange={(e) => setOrderData({...orderData, phoneNumber: e.target.value})}/>
                                 </div>
                                 <div class="email box">
                                     <label>Email Address</label>
@@ -100,7 +155,7 @@ function CheckoutPage() {
                             <p><span>${(fullPrice + 20).toFixed(2)}</span></p>
                         </div>
                         <div class="button">
-                            <button>Place Order</button>
+                            <button onClick={() => placeOrder()}>{loading ? "Processing..." : "Place Order"}</button>
                         </div>
                     </div>
                 </div>
