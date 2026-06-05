@@ -7,6 +7,7 @@ import { useState } from 'react';
 import api, { logout } from '../../services/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { Cart } from '../../context/CartContext';
+import { ACTIONS } from '../../context/CartReducer';
 
 function AccountPage() {
 
@@ -26,6 +27,15 @@ function AccountPage() {
     const [loginPassword,setLoginPassword] = useState("")
     const navigate = useNavigate();
 
+    //fetch cart data
+    const fetchCartData = async () =>{
+        const result = await api.get('/cart')
+        dispatch({
+            type: ACTIONS.SET_CART,
+            payload: result.data.data[0].items
+        })
+    }
+
     //user Login
     const loginFrom = async(e)=>{
         e.preventDefault();
@@ -36,10 +46,12 @@ function AccountPage() {
                 "password": loginPassword,
             })
 
+            // call fetch caart data function
+            fetchCartData()
+
             //save token
             localStorage.setItem('token', login.data.token)
             setLoginMessages(login)
-            console.log(login.data.role)
 
             localStorage.setItem(
                 "user",
@@ -75,6 +87,9 @@ function AccountPage() {
                 "email": email,
                 "password": password,
             })
+
+            // call fetch cart data function
+            fetchCartData()
 
             setMessages({
                 success: true,

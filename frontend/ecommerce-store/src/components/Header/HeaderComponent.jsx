@@ -20,6 +20,9 @@ function HeaderComponent() {
     // use context
     const {state} = Cart()
 
+    //load localstorage
+    const {email} = JSON.parse(localStorage.getItem("user")) ?JSON.parse(localStorage.getItem("user")) :""
+
     //get infor from search result box
     const searchResultBox = useRef()
     
@@ -89,8 +92,13 @@ function HeaderComponent() {
                                         return(
                                             <Link to={`/details/${items._id}`} style={{textDecoration: "none"}} key={items._id} onClick={()=>{setSearchValue("")}}>
                                                 <div class="result">
-                                                    <h3>{items.name}</h3>
-                                                    <p>{items.category}</p>
+                                                    <div className="left-side">
+                                                        <h3>{items.name}</h3>
+                                                        <p>{items.category}</p>
+                                                    </div>
+                                                    <div className="right-side">
+                                                        <img src={items.image} alt="" />
+                                                    </div>
                                                 </div>
                                             </Link>
                                         )
@@ -116,8 +124,8 @@ function HeaderComponent() {
                                     <img src={user_profile} alt="user-profile" />
                                 </div>
                                 <div class="profile-right">
-                                    <p>Login</p>
-                                    <h3>Account</h3>
+                                    <p>{email ? "Loged" : "Login"}</p>
+                                    <h3>{email ? email : "Account"}</h3>
                                 </div>
                             </div>
                         </Link>

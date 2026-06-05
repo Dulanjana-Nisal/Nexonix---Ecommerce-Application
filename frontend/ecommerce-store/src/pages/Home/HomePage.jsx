@@ -7,9 +7,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import './HomePage.css';
 import { Link } from 'react-router-dom';
+import ProductComponent from '../../components/Product/ProductComponent';
+import { Cart } from '../../context/CartContext';
 
 function HomePage() {
 
+    //use context
+    const {state,dispatch} = Cart();
+
+    //states
     const [bestChoiceProduct,setBestChoiceProduct] = useState([]);
     const [laptopProducts,setLaptopProducts] = useState([]);
     const [computerProducts,setComputerProducts] = useState([]);
@@ -102,30 +108,7 @@ function HomePage() {
                                         ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                     }
                                     return(
-                                        <div class="template-box" key={items._id}>
-                                            <Link to={`/details/${items._id}`} style={{textDecoration: "none"}}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
-                                            </Link>
-                                            <div class="box-body">
-                                                <div class="name">
-                                                    <p>{items.name}</p>
-                                                </div>
-                                                <div class="ratings">                                                    
-                                                    {ratings}<span>( 50 )</span>
-                                                </div>
-                                                <div class="price">
-                                                    <p>${items.price}</p>
-                                                    <div class="availability">
-                                                        <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="button">
-                                                    <button>Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductComponent items={items} ratings={ratings} state={state} dispatch={dispatch} />
                                     )
                                 })
                             }
