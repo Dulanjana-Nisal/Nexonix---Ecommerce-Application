@@ -202,6 +202,15 @@ function CategoryPage() {
     const resultSize = allCategoryDetails.all_result;
     const pagesSize = Math.ceil(resultSize/10)  
 
+    // display ratings
+    const ratingsQuery = {
+        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>,
+        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>,
+        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+    }
+
     return (
         <>
             <HeaderComponent />
@@ -338,20 +347,8 @@ function CategoryPage() {
                         <div class="body-template">
                             {
                                 categoryData.map((items)=>{
-                                    let ratings;
-                                    if(items.ratings === 5){
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>
-                                    }if(items.ratings === 4){
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>
-                                    }if(items.ratings === 3){
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    }if(items.ratings === 2){
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    }if(items.ratings === 1){
-                                        ratings = <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    }
                                     return(
-                                        <ProductComponent items={items} ratings={ratings} state={state} dispatch={dispatch} />
+                                        <ProductComponent items={items} ratings={ratingsQuery[items.ratings]} state={state} dispatch={dispatch} />
                                     )
                                 })
                             }

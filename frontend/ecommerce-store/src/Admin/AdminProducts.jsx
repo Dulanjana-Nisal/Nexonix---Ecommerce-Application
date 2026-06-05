@@ -152,14 +152,14 @@ function AdminProducts({ path }) {
             const result = await api.patch(`/products/${selectProductId}`, {
                 name: productName || productsForUpdate.name,
                 image: image ? uploadImage.data.secure_url : productsForUpdate.image,
-                stock: Number(productStock) || productsForUpdate.stock,
+                stock: productStock || productsForUpdate.stock,
                 price: productPrice || productsForUpdate.price,
                 ratings: productRatings || productsForUpdate.ratings,
                 description: productDescription || productsForUpdate.description,
                 keywords: keyList,
                 category: productCategory || productsForUpdate.category,
                 brand: productBrand || productsForUpdate.brand,
-                availability: productAvailability,
+                availability: productStock == 0 ? false : productAvailability,
             })
             if (result) {
                 setMessage({
@@ -256,6 +256,8 @@ function AdminProducts({ path }) {
     function addProductsToggleButton() {
         addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
     }
+
+    console.log(productStock)
 
     return (
         <>
