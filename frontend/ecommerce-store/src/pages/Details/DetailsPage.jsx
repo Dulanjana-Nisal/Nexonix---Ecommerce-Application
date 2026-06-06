@@ -16,6 +16,7 @@ function DetailsPage() {
     const {state,dispatch} = Cart();
 
     const [producatDetails,setProductDetails] = useState([])
+    const [productRecomendation,setProductRecomendation] = useState([])
     const [producatKeywords,setProducatKeywords] = useState([])
     const [fullScreen,setFullScreen] = useState(false)
     const [quantity,setQuantity] = useState(1);
@@ -34,26 +35,27 @@ function DetailsPage() {
     const {productId} = useParams(); 
 
     useEffect(()=>{
-        const fetchProductDetails = async ()=>{
-            const result = await axios.get(`http://localhost:5000/api/v1/products/${productId}`);
-            setProductDetails(result.data.data)
-            setProducatKeywords(result.data.data.keywords)
+        const fetchAllData = async() => {
+            const [products,recommendations] = await Promise.all([
+                axios.get(`http://localhost:5000/api/v1/products/${productId}`),
+                axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`)
+            ])
+            setProductDetails(products.data.data)
+            setProducatKeywords(products.data.data.keywords)
+            setProductRecomendation(recommendations.data.data)
+
         }
-        fetchProductDetails();
-        window.scrollTo(top)
+        fetchAllData()
+        window.scrollTo({top: 0, behavior: 'smooth'})
     }, [productId])
 
-    let ratings;
-    if(producatDetails.ratings === 5){
-        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>
-    }if(producatDetails.ratings === 4){
-        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>
-    }if(producatDetails.ratings === 3){
-        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-    }if(producatDetails.ratings === 2){
-        ratings = <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-    }if(producatDetails.ratings === 1){
-        ratings = <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
+    // display ratings
+    const ratingsQuery = {
+        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>,
+        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>,
+        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
     }
 
     return (
@@ -88,7 +90,7 @@ function DetailsPage() {
                                 <h4 class={producatDetails.availability ? "in-stock" : "out-stock"}>{producatDetails.availability ? "In Stock" : "Out Stock"}</h4>
                             </div>
                             <div class="review">
-                                {ratings}
+                                {ratingsQuery[producatDetails.ratings]}
                             </div>
                             <div class="brand">
                                 <p>Brand: </p>
@@ -150,7 +152,7 @@ function DetailsPage() {
                                 </div>
                                 <div class="ratings row">
                                     <h3>Ratings: </h3>
-                                    {ratings}
+                                    {ratingsQuery[producatDetails.ratings]}
                                 </div>
                                 <div class="description row">
                                     <h3>Product description: </h3>
@@ -368,182 +370,34 @@ function DetailsPage() {
                                 <p>Related Products</p>
                             </div>
                             <div class="box-card-row">
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
+                                {
+                                    productRecomendation.map((items)=>{
+                                        return(
+                                            <div class="card" key={items._id}>
+                                                <div class="box-head">
+                                                    <img src={items.image} alt={items.name} />
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="name">
+                                                        <p>{items.name}</p>
+                                                    </div>
+                                                    <div class="ratings">
+                                                        {ratingsQuery[items.ratings]}
+                                                    </div>
+                                                    <div class="price">
+                                                        <p>$34.54</p>
+                                                        <div class="availability">
+                                                            <p class="in-stock">In Stock</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="button">
+                                                        <button>Add To Cart</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="box-head">
-                                        <img src="../../images/card-image.png" alt="product-img" />
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="name">
-                                            <p>Lenovo Legion 7i Gen 9 Laptop</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p><span>( 50 )</span>
-                                        </div>
-                                        <div class="price">
-                                            <p>$34.54</p>
-                                            <div class="availability">
-                                                <p class="in-stock">In Stock</p>
-                                            </div>
-                                        </div>
-                                        <div class="button">
-                                            <button>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                        )
+                                    })
+                                }
                                 <div class="btns">
                                     <button class="left">‹</button>
                                     <button class="right">›</button>
