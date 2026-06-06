@@ -13,30 +13,30 @@ import { Cart } from '../../context/CartContext';
 function DetailsPage() {
 
     // load context
-    const {state,dispatch} = Cart();
+    const { state, dispatch } = Cart();
 
-    const [producatDetails,setProductDetails] = useState([])
-    const [productRecomendation,setProductRecomendation] = useState([])
-    const [producatKeywords,setProducatKeywords] = useState([])
-    const [fullScreen,setFullScreen] = useState(false)
-    const [quantity,setQuantity] = useState(1);
-    const [option,setOption] = useState(false)
+    const [producatDetails, setProductDetails] = useState([])
+    const [productRecomendation, setProductRecomendation] = useState([])
+    const [producatKeywords, setProducatKeywords] = useState([])
+    const [fullScreen, setFullScreen] = useState(false)
+    const [quantity, setQuantity] = useState(1);
+    const [option, setOption] = useState(false)
 
-    function addQnt(){
-        const sum = quantity +1
+    function addQnt() {
+        const sum = quantity + 1
         quantity == producatDetails.stock ? setQuantity(producatDetails.stock) : setQuantity(sum)
     }
-    function minQnt(){
-        const sum = quantity -1
+    function minQnt() {
+        const sum = quantity - 1
         quantity === 1 ? setQuantity(1) : setQuantity(sum)
     }
 
     //get product id form url
-    const {productId} = useParams(); 
+    const { productId } = useParams();
 
-    useEffect(()=>{
-        const fetchAllData = async() => {
-            const [products,recommendations] = await Promise.all([
+    useEffect(() => {
+        const fetchAllData = async () => {
+            const [products, recommendations] = await Promise.all([
                 axios.get(`http://localhost:5000/api/v1/products/${productId}`),
                 axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`)
             ])
@@ -46,7 +46,7 @@ function DetailsPage() {
 
         }
         fetchAllData()
-        window.scrollTo({top: 0, behavior: 'smooth'})
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [productId])
 
     // display ratings
@@ -64,18 +64,18 @@ function DetailsPage() {
             {/* <!---------------- container ----------------> */}
             <div class="details-container">
                 <div class="container-header">
-                    <p><Link to="/" style={{textDecoration: "none"}}><span>Home</span></Link> / <Link to={`/products/${producatDetails.category}`} style={{textDecoration: "none"}}><span>{producatDetails.category}</span></Link> / {producatDetails.name}</p>
+                    <p><Link to="/" style={{ textDecoration: "none" }}><span>Home</span></Link> / <Link to={`/products/${producatDetails.category}`} style={{ textDecoration: "none" }}><span>{producatDetails.category}</span></Link> / {producatDetails.name}</p>
                 </div>
                 <div class="container-product">
                     <div class="product-image">
                         <div class="thumb-image">
                             <img src={producatDetails.image} alt="product-image" />
-                            <button  onClick={()=>{setFullScreen(true)}}><img src={resize_image} alt=""/></button>
+                            <button onClick={() => { setFullScreen(true) }}><img src={resize_image} alt="" /></button>
                         </div>
                         {
                             fullScreen &&
                             <div class="full-image">
-                                <button class="close"><img src={close_btn_image} alt="" onClick={()=>{setFullScreen(false)}}/></button>
+                                <button class="close"><img src={close_btn_image} alt="" onClick={() => { setFullScreen(false) }} /></button>
                                 <img src={producatDetails.image} alt="" />
                             </div>
                         }
@@ -106,9 +106,9 @@ function DetailsPage() {
                                 <p>Quantity: </p>
                             </div>
                             <div class="qnt-counter">
-                                <button class="min" onClick={()=>minQnt()}>−</button>
+                                <button class="min" onClick={() => minQnt()}>−</button>
                                 <p>{quantity}</p>
-                                <button class="plus" onClick={()=>addQnt()}>+</button>
+                                <button class="plus" onClick={() => addQnt()}>+</button>
                             </div>
                         </div>
                         <div class="product-description row">
@@ -117,9 +117,9 @@ function DetailsPage() {
                         <div class="product-buttons row">
                             {
                                 state.find(item => item.productId == producatDetails._id) ?
-                                    <button style={{opacity: "0.5", cursor: " not-allowed"}}>in Cart</button>
-                                :
-                                <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch)}>Add To Cart</button>
+                                    <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
+                                    :
+                                    <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch)}>Add To Cart</button>
 
                             }
                         </div>
@@ -131,16 +131,16 @@ function DetailsPage() {
                 </div>
                 <div class="container-options">
                     <div class="option-header">
-                        <div class={!option ? "description selected" : "description"} onClick={()=>{setOption(false)}}>
+                        <div class={!option ? "description selected" : "description"} onClick={() => { setOption(false) }}>
                             <p>Description</p>
                         </div>
-                        <div class={option ? "reviews selected" : "reviews"} onClick={()=>{setOption(true)}}>
+                        <div class={option ? "reviews selected" : "reviews"} onClick={() => { setOption(true) }}>
                             <p>Reviews</p>
                         </div>
                     </div>
                     <div class="option-body">
                         {
-                            !option &&  
+                            !option &&
                             <div class="description-body">
                                 <div class="name row">
                                     <h3>Product Name: </h3>
@@ -162,8 +162,8 @@ function DetailsPage() {
                                     <h3>Keywords: </h3>
                                     <div class="tags">
                                         {
-                                            producatKeywords.map((items)=>{
-                                                return(
+                                            producatKeywords.map((items) => {
+                                                return (
                                                     <p>{items}</p>
                                                 )
                                             })
@@ -371,12 +371,14 @@ function DetailsPage() {
                             </div>
                             <div class="box-card-row">
                                 {
-                                    productRecomendation.map((items)=>{
-                                        return(
+                                    productRecomendation.map((items) => {
+                                        return (
                                             <div class="card" key={items._id}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt={items.name} />
-                                                </div>
+                                                <Link to={`/details/${items._id}`}>
+                                                    <div class="box-head">
+                                                        <img src={items.image} alt="product-img" />
+                                                    </div>
+                                                </Link>
                                                 <div class="box-body">
                                                     <div class="name">
                                                         <p>{items.name}</p>
@@ -385,13 +387,18 @@ function DetailsPage() {
                                                         {ratingsQuery[items.ratings]}
                                                     </div>
                                                     <div class="price">
-                                                        <p>$34.54</p>
+                                                        <p>${items.price}</p>
                                                         <div class="availability">
-                                                            <p class="in-stock">In Stock</p>
+                                                            <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
                                                         </div>
                                                     </div>
                                                     <div class="button">
-                                                        <button>Add To Cart</button>
+                                                        {
+                                                            state.find(item => item.productId == items._id) ?
+                                                                <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
+                                                                :
+                                                                <button onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch)}>Add To Cart</button>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
