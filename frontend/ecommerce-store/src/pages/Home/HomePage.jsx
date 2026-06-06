@@ -1,14 +1,13 @@
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
-import delivery_thumb from '../../assets/delevery-thumb.png';
-import payment_thumb from '../../assets/payment-thumb.png';
-import products_thumb from '../../assets/products-thumb.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import './HomePage.css';
 import { Link } from 'react-router-dom';
 import ProductComponent from '../../components/Product/ProductComponent';
 import { Cart } from '../../context/CartContext';
+import Banner from './Banner';
+import Info from './Info';
 
 function HomePage() {
 
@@ -48,44 +47,9 @@ function HomePage() {
             {/* ---------------- container ---------------- */}
             <div class="container">
                 {/* <!-- Banner --> */}
-                <div class="banner">
-                    <div class="banner-info">
-                        <h1>Alienware Aurora R15 Gaming Desktop</h1>
-                        <p>The Alienware Aurora R15 is a high-performance gaming desktop with an Intel Core i9 processor, NVIDIA
-                            RTX 4090 graphics, and tool-less chassis for easy upgrades.</p>
-                        <button>Shop Now</button>
-                    </div>
-                </div>
+                <Banner />
                 {/* <!-- Info --> */}
-                <div class="info">
-                    <div class="info-box">
-                        <div class="box-img">
-                            <img src={delivery_thumb} alt="info-thumb" />
-                        </div>
-                        <div class="box-data">
-                            <h4>Fast Delivery</h4>
-                            <p>Deliver in 24 Hours max!</p>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <div class="box-img">
-                            <img src={payment_thumb} alt="info-thumb" />
-                        </div>
-                        <div class="box-data">
-                            <h4>Safe Payment</h4>
-                            <p>100% Secure Payment</p>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <div class="box-img">
-                            <img src={products_thumb} alt="info-thumb" />
-                        </div>
-                        <div class="box-data">
-                            <h4>Best Products</h4>
-                            <p>Selling Top Rated Products</p>
-                        </div>
-                    </div>
-                </div>
+                <Info />
                 {/* <!-- best choice Section --> */}
                 <div class="best-choice">
                     <div class="best-choice-head">
