@@ -11,7 +11,7 @@ import { Cart } from '../../context/CartContext';
 
 function HeaderComponent() {
 
-    // use states 
+    // use states for header
     const [searchResult,setSearchResult] = useState([]);
     const [searchValue,setSearchValue] = useState('');
     const [loading,setLoading] = useState(false);
@@ -21,20 +21,19 @@ function HeaderComponent() {
     const {state} = Cart()
 
     //load localstorage
-    const {email} = JSON.parse(localStorage.getItem("user")) ?JSON.parse(localStorage.getItem("user")) :""
+    const user = JSON.parse(localStorage.getItem("user") || "null")
+    const email = user?.email
 
     //get infor from search result box
     const searchResultBox = useRef()
     
     //get cart item summery
-    let cartHeaderSummery  = {
-        count: 0,
-        fullPrice: 0
-    };
-    state.map((items) => {
-        cartHeaderSummery.count = cartHeaderSummery.count + items.quantity
-        cartHeaderSummery.fullPrice = cartHeaderSummery.fullPrice + (items.price * items.quantity)
-    })
+    let cartHeaderSummery  = state.reduce((acc,items)=>{
+        acc.count += items.quantity;
+        acc.fullPrice += items.price * items.quantity;
+        return acc;
+    },
+    {count: 0,fullPrice: 0})
 
     // add search values to use state if have more than 1 letter
     function searchInputValues(event){
@@ -48,12 +47,20 @@ function HeaderComponent() {
     useEffect(()=>{
         const fetchSearchData = async()=>{
             setLoading(true)
-            const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchValue}&limit=5`);
-            setSearchResult(result.data.data)
-            setLoading(false)
+            try{
+                const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchValue}&limit=5`);
+                setSearchResult(result.data.data)
+            }
+            catch(err){
+                console.log(err.response)
+                setSearchResult([])
+            }
+            finally{
+                setLoading(false)
+            }
         }
         fetchSearchData();
-    }, [searchValue,searchResultBox])
+    }, [searchValue])
 
     return (
         <>
@@ -67,7 +74,7 @@ function HeaderComponent() {
                     <div class="header-top-center">
                         <div class="search-box" >
                             <input type="text" placeholder="Search for products..." onChange={searchInputValues} onClick={() => displaySearchBox(searchResultBox)}/>
-                                <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox(searchResultBox)}>
+                                <Link to={searchValue ? `/search?search=${searchValue}` : '#'} onClick={() => hideSearchBox(searchResultBox)}>
                                     <button>Search</button>
                                 </Link>
                         </div>
@@ -92,11 +99,11 @@ function HeaderComponent() {
                                         return(
                                             <Link to={`/details/${items._id}`} style={{textDecoration: "none"}} key={items._id} onClick={()=>{setSearchValue("")}}>
                                                 <div class="result">
-                                                    <div className="left-side">
+                                                    <div class="left-side">
                                                         <h3>{items.name}</h3>
                                                         <p>{items.category}</p>
                                                     </div>
-                                                    <div className="right-side">
+                                                    <div class="right-side">
                                                         <img src={items.image} alt="" />
                                                     </div>
                                                 </div>
@@ -105,7 +112,7 @@ function HeaderComponent() {
                                     })
                                 }
                                 <div class="result-btn">
-                                    <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox()}>
+                                    <Link to={!searchValue ? '' : `/search?search=${searchValue}`} onClick={() => hideSearchBox(searchResultBox)}>
                                         <button>See all</button>
                                     </Link>
                                 </div>
@@ -146,7 +153,7 @@ function HeaderComponent() {
                 <hr />
                 <div class="header-navbar"  onClick={()=>hideSearchBox(searchResultBox)}>
                     <div class="navbar-left">
-                        <div class="navbar-left-selection" onClick={()=>{toggleHamberger ? setToggleHamberger(false) : setToggleHamberger(true)}}>
+                        <div class="navbar-left-selection" onClick={()=>setToggleHamberger(prev => !prev)}>
                             <img src={hamberger_menu} alt=""/>
                             <p>Browse All Categories</p>
                         </div>
