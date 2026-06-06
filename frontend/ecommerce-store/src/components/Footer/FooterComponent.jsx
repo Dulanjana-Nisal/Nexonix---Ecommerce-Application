@@ -1,4 +1,5 @@
 import './FooterComponent.css'
+import { Link } from 'react-router-dom';
 
 function FooterCompoennt() {
     return (
@@ -38,8 +39,8 @@ function FooterCompoennt() {
                         </div>
                         <div class="details">
                             <ul>
-                                <li><a href="#">Order Traking</a></li>
-                                <li><a href="#">Your Cart</a></li>
+                                <li><Link to='/orders'>Order Traking</Link></li>
+                                <li><Link to="/cart">Your Cart</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -49,10 +50,10 @@ function FooterCompoennt() {
                         </div>
                         <div class="details">
                             <ul>
-                                <li><a href="#">All Products</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">computers</a></li>
-                                <li><a href="#">Softwares</a></li>
+                                <li><Link to="/">All Products</Link></li>
+                                <li><Link to="/products/laptops">Laptops</Link></li>
+                                <li><Link to="/products/computers">Computers</Link></li>
+                                <li><Link to="/products/softwares">Softwares</Link></li>
                             </ul>
                         </div>
                     </div>
