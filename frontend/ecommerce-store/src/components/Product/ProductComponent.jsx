@@ -1,8 +1,13 @@
 import { addCartItems } from '../../api/cartApi';
+import { Cart } from '../../context/CartContext';
 import './ProductComponent.css'
 import { Link } from 'react-router-dom';
 
-function ProductComponent({ items, ratings,state,dispatch }) {
+function ProductComponent({ items, ratings }) {
+
+    //use context
+    const {state,dispatch} = Cart();
+
     return (
         <>
             <div class="template-box" key={items._id}>
