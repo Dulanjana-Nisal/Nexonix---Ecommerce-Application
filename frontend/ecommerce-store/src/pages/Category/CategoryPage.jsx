@@ -52,37 +52,45 @@ function CategoryPage() {
 
     useEffect(()=>{
         const fetchCategoryDetails = async ()=>{
-            const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
-            setAllCategoryDetails(result.data)
-            setCategoryData(result.data.data)
-            setToggleOption(false)
+            try{
+                const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
+                setAllCategoryDetails(result.data)
+                setCategoryData(result.data.data)
+                setToggleOption(false)
+            }
+            catch(err){
+                console.log(err)
+            }
         }
         fetchCategoryDetails();
-        window.scroll(top)
+        window.scroll({ top: 0, behavior: 'smooth'})
     }, [category, queryData, pageNumber, sortMethod, brandName, ratingRange, pricingRange, availability])
 
     // set brands in product
     useEffect(()=>{
         const fetchBrands = async ()=>{
-            const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}`);
-            setBrand(result.data.data)
-            setFilterTags({})
-            setPriceValues({
-                maxPrice: 100000,
-                minPrice: 0,
-            })
+            try{
+                const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}`);
+                setBrand(result.data.data)
+                setFilterTags({})
+                setPriceValues({
+                    maxPrice: 100000,
+                    minPrice: 0,
+                })
+            }
+            catch(err){
+                console.log(err)
+            }
         }
         fetchBrands();
     }, [category])
 
     useEffect(()=>{
-        var brandArray = [];
-        brands.map((items)=>{
-            if(!brandArray.includes(items.brand)){
-                brandArray.push(items.brand)
-            }
-            setProductBrands(brandArray)
-        })
+        const renderBrand = ()=>{
+            const uniqueBrands = [...new Set(brands.map(item => item.brand))];
+            setProductBrands(uniqueBrands);
+        }
+        renderBrand()
     }, [brands])
     
     // go to next page
@@ -110,7 +118,7 @@ function CategoryPage() {
     }
 
     //filter by brand
-    function brandsFilter(){
+    function brandsFilter(event){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("brand", event.target.id);
         newQuery.set("page", 1)
@@ -118,7 +126,7 @@ function CategoryPage() {
             ...filterTags,
             brand: event.target.id
         })
-        if(event.target.id === 'undifind'){
+        if(event.target.id === 'undefined'){
             setFilterTags({
                 ...filterTags,
                 brand: undefined
@@ -129,7 +137,7 @@ function CategoryPage() {
     }
 
     ///filter by ratings
-    function ratingsFilter(){
+    function ratingsFilter(event){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("rr", event.target.id);
         newQuery.set("page", 1)
@@ -160,7 +168,7 @@ function CategoryPage() {
     }
 
     //filter by availability
-    function filterByAvailability(){
+    function filterByAvailability(event){
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("availability", event.target.id)
         newQuery.set("page", 1)
