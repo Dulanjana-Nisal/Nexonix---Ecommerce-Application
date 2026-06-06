@@ -21,7 +21,7 @@ const ReviewSchema = mongoose.Schema(
             minLength: [0, 'Rating not be less than 0'],
             maxLength: [5, 'Rating not be more than 5']
         }
-    }, {timestaamps: true}
+    }, {timestamps: true}
 )
 
 module.exports = mongoose.model('Reviews', ReviewSchema);

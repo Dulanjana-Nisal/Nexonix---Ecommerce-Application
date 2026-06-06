@@ -3,8 +3,18 @@ const asyncHaddler = require('../utils/asyncHaddler');
 
 // get all reviews
 const getAllReviews = asyncHaddler(async (req,res) => {
-    const getAllReviews = res.status(200).json({success: true, messaage: 'Get all rewiews!'})
-    console.log(getAllReviews)
+    const getAllReviews = await Reviews.find({})
+    res.status(200).json({success: true, data: getAllReviews})
 })
 
-module.exports = getAllReviews;
+//post reviews
+const postReviews = asyncHaddler(async (req,res) => {
+    req.body.userId = req.user._id
+    const postReview = await Reviews.create(req.body)
+    res.status(201).json({success: true, message: 'Review Created!', data: postReview})
+})
+
+module.exports = {
+    getAllReviews,
+    postReviews
+};
