@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Cart } from '../../context/CartContext';
 import ProductComponent from '../../components/Product/ProductComponent';
+import CategoryHeader from './CategoryHeader';
 
 function CategoryPage() {
 
@@ -217,23 +218,7 @@ function CategoryPage() {
             {/* <!---------------- container ----------------> */}
             <div class="search-container">
                 <div class="container-grid">
-                    <div class="container-header">
-                        <div class="header-result">
-                            <p>Showing all <span>{allCategoryDetails.all_result}</span> results</p>
-                        </div>
-                        <div class="header-sort">
-                            <p>Sort By: </p>
-                            <div class="select" onClick={()=>{setToggleOption(!toggleOption ? true : false)}}>{label} ▾</div>
-                            {
-                                toggleOption &&
-                                    <div class="options">
-                                        <p onClick={()=>sortProducts('latest')}>Latest</p>
-                                        <p onClick={()=>sortProducts('low_to_high')}>Price Low to High</p>
-                                        <p onClick={()=>sortProducts('high_to_low')}>Price High to Low</p>
-                                    </div>
-                            }
-                        </div>
-                    </div>
+                    <CategoryHeader allCategoryDetails={allCategoryDetails} setToggleOption={setToggleOption} toggleOption={toggleOption} label={label} sortProducts={sortProducts} />
                     <div class="container-filter">
                         <div class="filter-head">
                             <div class="title">
