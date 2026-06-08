@@ -9,8 +9,13 @@ import SearchPage from './pages/Search/SearchPage'
 import DetailsPage from './pages/Details/DetailsPage'
 import AdminPage from './Admin/AdminPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
+import { Cart } from './context/CartContext'
 
 function App() {
+
+  //load context
+  const {user} = Cart()
+
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
@@ -20,7 +25,10 @@ function App() {
       <Route path='/cart' element={<CartPage />} />
       <Route path='/search' element={<SearchPage />} />
       <Route path='/details/:productId' element={<DetailsPage />} />
-      <Route path='/admin/:path' element={<AdminPage />} />
+      {
+        user?.role === 'admin' &&
+        <Route path='/admin/:path' element={<AdminPage />} />
+      }
       <Route path='/checkout' element={<CheckoutPage />} />
     </Routes>
   )

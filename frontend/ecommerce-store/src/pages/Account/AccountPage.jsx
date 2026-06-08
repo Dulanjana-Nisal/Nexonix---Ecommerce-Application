@@ -12,7 +12,7 @@ import { ACTIONS } from '../../context/CartReducer';
 function AccountPage() {
 
     // cart context
-    const {dispatch} = Cart();
+    const {dispatch,user} = Cart();
 
     //use states
     const [name,setName] = useState("");
@@ -117,9 +117,6 @@ function AccountPage() {
     function toggleSeePassword(){
         togglePass ? setTogglePass(false) : setTogglePass(true)
     }
-
-    //get user role form localstoarage
-    const userRole = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).role
     
     return (
         <>
@@ -131,21 +128,21 @@ function AccountPage() {
                     <p><span>Home /</span> My Account</p>
                 </div>
                 {
-                    userRole === 'admin' &&
+                    user?.role === 'admin' &&
                         <div class="container-body">
                             <Link to='/admin/dashboard' class="no-style-link"><button>Go to Admin Panel</button></Link> 
                             <button onClick={() => logout(navigate,dispatch)}>Logout</button>
                         </div>
                 }
                 {
-                    userRole === 'user' &&
+                    user?.role === 'user' &&
                         <div class="container-body">
                             <h1>User Details</h1>
                             <button onClick={() => logout(navigate,dispatch)}>Logout</button>
                         </div>
                 }
                 {
-                    !userRole &&
+                    !user &&
                     <div class="container-body">
                         <div class="signin-container">
                             <div class="signin-header">

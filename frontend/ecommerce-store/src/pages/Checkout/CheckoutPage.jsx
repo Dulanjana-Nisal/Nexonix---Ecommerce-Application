@@ -10,7 +10,7 @@ import { deleteCartItem } from '../../api/cartApi';
 function CheckoutPage() {
 
     // use context 
-    const { state,dispatch } = Cart()
+    const { state,dispatch,user } = Cart()
 
     //chekout states
     const [loading,setLoading] = useState(false)
@@ -43,9 +43,6 @@ function CheckoutPage() {
         }
     })
 
-    //get user id form localstorage
-    const {_id} = JSON.parse(localStorage.getItem("user"))
-
     //place order to database
     const placeOrder =  () => {
         setLoading(true)
@@ -53,7 +50,7 @@ function CheckoutPage() {
             try{
                 items.availability &&
                 await api.post('/orders', {
-                    userId: _id,
+                    userId: user._id,
                     firstName: orderData.firstName,
                     lastName:   orderData.lastName,
                     address: orderData.address,

@@ -10,6 +10,9 @@ export default function CartProvider({children}){
 
     //use reducers
     const [state, dispatch] = useReducer(cartReducer, [])
+
+    //load user
+    const user = JSON.parse(localStorage.getItem('user') || 'null')
     
     //fetch cart data
     useEffect(()=>{
@@ -24,7 +27,7 @@ export default function CartProvider({children}){
     }, [])
     
     return (
-        <CartContext.Provider value={{state,dispatch}}>
+        <CartContext.Provider value={{state,dispatch,user}}>
             {children}
         </CartContext.Provider>
     )

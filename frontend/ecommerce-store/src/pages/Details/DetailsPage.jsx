@@ -14,13 +14,10 @@ import api from '../../services/auth';
 function DetailsPage() {
 
     // load context
-    const { state, dispatch } = Cart();
+    const { state, dispatch,user } = Cart();
 
     //get product id form url
     const { productId } = useParams();
-
-    //load localstorage
-    const user = JSON.parse(localStorage.getItem("user") || "null")
 
     //use states
     const [producatDetails, setProductDetails] = useState([])
