@@ -27,9 +27,12 @@ const getAllReviews = asyncHaddler(async (req,res) => {
 
     //fetch reviews in db
     const allReviews = await Reviews.find(querySelectore).skip(skip).limit(limit).sort({createdAt: -1})
+    const allreviewsCount = await Reviews.find(querySelectore)
+
     res.status(200).json({
         success: true,
-        all_result: allReviews.length,
+        limit: limit,
+        all_result: allreviewsCount.length,
         data: allReviews,
         page: page,
     })

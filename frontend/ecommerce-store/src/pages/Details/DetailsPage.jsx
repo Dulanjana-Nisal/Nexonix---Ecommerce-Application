@@ -22,17 +22,18 @@ function DetailsPage() {
     //load localstorage
     const user = JSON.parse(localStorage.getItem("user") || "null")
 
-    // use states
+    //use states
     const [producatDetails, setProductDetails] = useState([])
     const [productRecomendation, setProductRecomendation] = useState([])
     const [producatKeywords, setProducatKeywords] = useState([])
     const [reviews, setReviews] = useState([])
-    const [reviewsCount, setReviewsCount] = useState(0)
+    const [reviewsResult, setReviewsResult] = useState(0)
     const [fullScreen, setFullScreen] = useState(false)
     const [quantity, setQuantity] = useState(1);
     const [option, setOption] = useState(false)
     const [addReviews,setAddReviews] = useState({productId: productId})
     const [refesh,setRefesh] = useState(false)
+    const [page,setPage] = useState(1)
 
     function addQnt() {
         const sum = quantity + 1
@@ -58,25 +59,27 @@ function DetailsPage() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [productId])
 
+    //fetch reviews data
     useEffect(() => {
         const fetchReviews = async () => {
             try{
-                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}`)
+                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&page=${page}`)
                 setReviews(result.data.data)
-                setReviewsCount(result.data.all_result)
+                setReviewsResult(result.data)
             }
             catch(err){
                 console.log(err.response)
             }
         }
         fetchReviews();
-    }, [productId,refesh])
+    }, [productId,refesh,page])
 
     //submit reviews
     const submitReviews = async (e)=>{
         e.preventDefault();
         try{
             await api.post('/reviews', addReviews)
+            setAddReviews({})
         }
         catch(err){
             console.log(err.response)
@@ -92,6 +95,9 @@ function DetailsPage() {
         2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; </p>,
         1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; </p>,
     }
+
+    //calculate result limit page
+    const limitResult = Math.ceil(reviewsResult.all_result / reviewsResult.limit)
 
     return (
         <>
@@ -125,7 +131,7 @@ function DetailsPage() {
                                 <h4 class={producatDetails.availability ? "in-stock" : "out-stock"}>{producatDetails.availability ? "In Stock" : "Out Stock"}</h4>
                             </div>
                             <div class="review">
-                                {ratingsQuery[producatDetails.ratings]}<span>( {reviewsCount} Reviews )</span>
+                                {ratingsQuery[producatDetails.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
                             </div>
                             <div class="brand">
                                 <p>Brand: </p>
@@ -264,7 +270,7 @@ function DetailsPage() {
                                     </div>
                                     <div class="box-body">
                                         <div class="title">
-                                            <p>{reviewsCount} Reviews for "<span>{producatDetails.name}</span>"</p>
+                                            <p>{reviewsResult.all_result} Reviews for "<span>{producatDetails.name}</span>"</p>
                                         </div>
                                         {
                                             reviews.length > 0 &&
@@ -296,9 +302,15 @@ function DetailsPage() {
                                     {
                                         reviews.length > 0 &&
                                         <div class="box-buttons">
-                                            <button class="pre">‹</button>
-                                            <p><span>1</span> of 2</p>
-                                            <button class="next">›</button>
+                                            {
+                                                page !== 1 &&
+                                                <button class="pre" onClick={() => setPage(prev => prev - 1 )}>‹</button>
+                                            }
+                                            <p><span>{reviewsResult.page}</span> of {limitResult || 1}</p>
+                                            {
+                                                limitResult !== page &&
+                                                <button class="next" onClick={() => setPage(prev => prev + 1 )}>›</button>
+                                            }
                                         </div>
                                     }
                                 </div>
@@ -360,7 +372,7 @@ function DetailsPage() {
                                                         <p>{items.name}</p>
                                                     </div>
                                                     <div class="ratings">
-                                                        {ratingsQuery[items.ratings]}
+                                                        {ratingsQuery[items.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
                                                     </div>
                                                     <div class="price">
                                                         <p>${items.price}</p>

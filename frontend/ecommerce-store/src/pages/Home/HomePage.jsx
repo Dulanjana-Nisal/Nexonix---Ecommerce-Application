@@ -36,15 +36,6 @@ function HomePage() {
         fetchAllDaata();
     }, [])
 
-    // display ratings
-    const ratingsQuery = {
-        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>,
-        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>,
-        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-    }
-
     return (
         <>
             {/* <!---------------- Header ----------------> */}
@@ -65,7 +56,7 @@ function HomePage() {
                             {
                                 bestChoiceProduct.map((items) => {
                                     return (
-                                        <ProductComponent items={items} ratings={ratingsQuery[items.ratings]} key={items._id} />
+                                        <ProductComponent items={items} ratings={items.ratings} key={items._id} />
                                     )
                                 })
                             }

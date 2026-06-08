@@ -1,16 +1,6 @@
 import ProductComponent from "../../components/Product/ProductComponent";
 
 function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNextPage}) {
-
-    // display ratings
-    const ratingsQuery = {
-        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>,
-        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>,
-        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-    }
-
     return (
         <>
             <div class="container-body">
@@ -21,7 +11,7 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                     {
                         categoryData.map((items) => {
                             return (
-                                <ProductComponent items={items} ratings={ratingsQuery[items.ratings]} />
+                                <ProductComponent items={items} ratings={items.ratings} />
                             )
                         })
                     }

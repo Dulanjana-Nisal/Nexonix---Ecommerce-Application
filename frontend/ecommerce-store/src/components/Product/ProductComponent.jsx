@@ -1,12 +1,35 @@
+import { useEffect, useState } from 'react';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
 import './ProductComponent.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function ProductComponent({ items, ratings }) {
 
     //use context
     const {state,dispatch} = Cart();
+
+    //use states
+    const [reviews,setReviews] = useState([])
+
+    //fetch review data
+    useEffect(()=>{
+        const fetchReviewData = async () =>{
+            const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${items._id}`)
+            setReviews(result.data)
+        }
+        fetchReviewData()
+    }, [items])
+
+    // display ratings
+    const ratingsQuery = {
+        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>,
+        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>,
+        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>,
+        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>,
+        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>,
+    }
 
     return (
         <>
@@ -21,7 +44,7 @@ function ProductComponent({ items, ratings }) {
                         <p>{items.name}</p>
                     </div>
                     <div class="ratings">
-                        {ratings}
+                        {ratingsQuery[ratings]}<span>( {reviews.all_result} Reviews )</span>
                     </div>
                     <div class="price">
                         <p>${items.price}</p>
