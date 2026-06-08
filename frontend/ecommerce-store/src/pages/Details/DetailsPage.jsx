@@ -9,18 +9,30 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
+import api from '../../services/auth';
 
 function DetailsPage() {
 
     // load context
     const { state, dispatch } = Cart();
 
+    //get product id form url
+    const { productId } = useParams();
+
+    //load localstorage
+    const user = JSON.parse(localStorage.getItem("user") || "null")
+
+    // use states
     const [producatDetails, setProductDetails] = useState([])
     const [productRecomendation, setProductRecomendation] = useState([])
     const [producatKeywords, setProducatKeywords] = useState([])
+    const [reviews, setReviews] = useState([])
+    const [reviewsCount, setReviewsCount] = useState(0)
     const [fullScreen, setFullScreen] = useState(false)
     const [quantity, setQuantity] = useState(1);
     const [option, setOption] = useState(false)
+    const [addReviews,setAddReviews] = useState({productId: productId})
+    const [refesh,setRefesh] = useState(false)
 
     function addQnt() {
         const sum = quantity + 1
@@ -31,31 +43,54 @@ function DetailsPage() {
         quantity === 1 ? setQuantity(1) : setQuantity(sum)
     }
 
-    //get product id form url
-    const { productId } = useParams();
-
+    // fetch all data
     useEffect(() => {
         const fetchAllData = async () => {
             const [products, recommendations] = await Promise.all([
                 axios.get(`http://localhost:5000/api/v1/products/${productId}`),
-                axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`)
+                axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
             ])
             setProductDetails(products.data.data)
             setProducatKeywords(products.data.data.keywords)
             setProductRecomendation(recommendations.data.data)
-
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [productId])
 
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try{
+                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}`)
+                setReviews(result.data.data)
+                setReviewsCount(result.data.all_result)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+        }
+        fetchReviews();
+    }, [productId,refesh])
+
+    //submit reviews
+    const submitReviews = async (e)=>{
+        e.preventDefault();
+        try{
+            await api.post('/reviews', addReviews)
+        }
+        catch(err){
+            console.log(err.response)
+        }
+        setRefesh(prev => !prev)
+    }
+
     // display ratings
     const ratingsQuery = {
-        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>,
-        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>,
-        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
-        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>,
+        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; </p>,
+        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; </p>,
+        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; </p>,
+        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; </p>,
+        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; </p>,
     }
 
     return (
@@ -90,7 +125,7 @@ function DetailsPage() {
                                 <h4 class={producatDetails.availability ? "in-stock" : "out-stock"}>{producatDetails.availability ? "In Stock" : "Out Stock"}</h4>
                             </div>
                             <div class="review">
-                                {ratingsQuery[producatDetails.ratings]}
+                                {ratingsQuery[producatDetails.ratings]}<span>( {reviewsCount} Reviews )</span>
                             </div>
                             <div class="brand">
                                 <p>Brand: </p>
@@ -229,133 +264,74 @@ function DetailsPage() {
                                     </div>
                                     <div class="box-body">
                                         <div class="title">
-                                            <p>3 Reviews for "<span>Lenovo Legion 7i Gen 9 Laptop</span>"</p>
+                                            <p>{reviewsCount} Reviews for "<span>{producatDetails.name}</span>"</p>
                                         </div>
-                                        <div class="reviews">
-                                            <div class="user-review">
-                                                <div class="profile-image">
-                                                    <img src={user_profile} alt="user-profile" />
-                                                </div>
-                                                <div class="profile-data">
-                                                    <div class="name">
-                                                        <h3>Admin</h3>
-                                                        <p>2026.02.01</p>
+                                        {
+                                            reviews.length > 0 &&
+                                            reviews.map((items)=>{
+                                                return(
+                                                    <div class="reviews" key={items._id}>
+                                                        <div class="user-review">
+                                                            <div class="profile-image">
+                                                                <img src={user_profile} alt="user-profile" />
+                                                            </div>
+                                                            <div class="profile-data">
+                                                                <div class="name">
+                                                                    <h3>{items.userName}</h3>
+                                                                    <p>{(items.createdAt).slice(0, 10)}</p>
+                                                                </div>
+                                                                <div class="stars">
+                                                                    {ratingsQuery[items.ratings]}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-comment">
+                                                            <p>{items.message}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="stars">
-                                                        <p class="four">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="user-comment">
-                                                <p>I love Apple products so it’s no surprise that I love this iPad, but BOY am I
-                                                    happy! I’ve never owned an iPad…but I’ve always wanted one and this one is
-                                                    perfect. From what I can tell, the only different really between the Air and Pro
-                                                    is the refresh rate, and honestly I can’t really tell a difference with what I
-                                                    use it for.</p>
-                                            </div>
-                                        </div>
-                                        <div class="reviews">
-                                            <div class="user-review">
-                                                <div class="profile-image">
-                                                    <img src={user_profile} alt="user-profile" />
-                                                </div>
-                                                <div class="profile-data">
-                                                    <div class="name">
-                                                        <h3>Admin</h3>
-                                                        <p>2026.02.01</p>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <p class="four">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="user-comment">
-                                                <p>I love Apple products so it’s no surprise that I love this iPad, but BOY am I
-                                                    happy! I’ve never owned an iPad…but I’ve always wanted one and this one is
-                                                    perfect. From what I can tell, the only different really between the Air and Pro
-                                                    is the refresh rate, and honestly I can’t really tell a difference with what I
-                                                    use it for.</p>
-                                            </div>
-                                        </div>
-                                        <div class="reviews">
-                                            <div class="user-review">
-                                                <div class="profile-image">
-                                                    <img src={user_profile} alt="user-profile" />
-                                                </div>
-                                                <div class="profile-data">
-                                                    <div class="name">
-                                                        <h3>Admin</h3>
-                                                        <p>2026.02.01</p>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <p class="four">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="user-comment">
-                                                <p>I love Apple products so it’s no surprise that I love this iPad, but BOY am I
-                                                    happy! I’ve never owned an iPad…but I’ve always wanted one and this one is
-                                                    perfect. From what I can tell, the only different really between the Air and Pro
-                                                    is the refresh rate, and honestly I can’t really tell a difference with what I
-                                                    use it for.</p>
-                                            </div>
-                                        </div>
-                                        <div class="reviews">
-                                            <div class="user-review">
-                                                <div class="profile-image">
-                                                    <img src={user_profile} alt="user-profile" />
-                                                </div>
-                                                <div class="profile-data">
-                                                    <div class="name">
-                                                        <h3>Admin</h3>
-                                                        <p>2026.02.01</p>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <p class="four">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="user-comment">
-                                                <p>I love Apple products so it’s no surprise that I love this iPad, but BOY am I
-                                                    happy! I’ve never owned an iPad…but I’ve always wanted one and this one is
-                                                    perfect. From what I can tell, the only different really between the Air and Pro
-                                                    is the refresh rate, and honestly I can’t really tell a difference with what I
-                                                    use it for.</p>
-                                            </div>
-                                        </div>
+                                                )
+                                            })
+                                        }
                                     </div>
-                                    <div class="box-buttons">
-                                        <button class="pre">‹</button>
-                                        <p><span>1</span> of 2</p>
-                                        <button class="next">›</button>
-                                    </div>
+                                    {
+                                        reviews.length > 0 &&
+                                        <div class="box-buttons">
+                                            <button class="pre">‹</button>
+                                            <p><span>1</span> of 2</p>
+                                            <button class="next">›</button>
+                                        </div>
+                                    }
                                 </div>
                                 <div class="add-reviews">
                                     <div class="add-review-head">
                                         <h3>Add a Review</h3>
                                     </div>
                                     <div class="add-review-content">
-                                        <div class="loged-content">
-                                            <form>
-                                                <div class="star-count">
-                                                    <div class="label">
-                                                        <h4>Your Ratings <span>*</span></h4>
+                                        {
+                                            user ?
+                                            <div class="loged-content">
+                                                <form onSubmit={submitReviews}>
+                                                    <div class="star-count">
+                                                        <div class="label">
+                                                            <h4>Your Ratings <span>*</span></h4>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            <input type="radio" name="rating" id="5-star" onClick={() => setAddReviews({...addReviews, ratings: 5})} /><label for="5-star">★</label>
+                                                            <input type="radio" name="rating" id="4-star" onClick={() => setAddReviews({...addReviews, ratings: 4})} /><label for="4-star">★</label>
+                                                            <input type="radio" name="rating" id="3-star" onClick={() => setAddReviews({...addReviews, ratings: 3})} /><label for="3-star">★</label>
+                                                            <input type="radio" name="rating" id="2-star" onClick={() => setAddReviews({...addReviews, ratings: 2})} /><label for="2-star">★</label>
+                                                            <input type="radio" name="rating" id="1-star" onClick={() => setAddReviews({...addReviews, ratings: 1})} /><label for="1-star">★</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="ratings">
-                                                        <input type="radio" name="rating" id="5-star" /><label for="5-star">★</label>
-                                                        <input type="radio" name="rating" id="4-star" /><label for="4-star">★</label>
-                                                        <input type="radio" name="rating" id="3-star" /><label for="3-star">★</label>
-                                                        <input type="radio" name="rating" id="2-star" /><label for="2-star">★</label>
-                                                        <input type="radio" name="rating" id="1-star" /><label for="1-star">★</label>
-                                                    </div>
-                                                </div>
-                                                <textarea name="review" placeholder="Write Your Review Here..."></textarea><br />
-                                                <input type="submit" value="Submit" class="submit-btn" />
-                                            </form>
-                                        </div>
-                                        <div class="nunloged-content">
-                                            <p>You must <span>Login</span> in to Add reviews.</p>
-                                        </div>
+                                                    <textarea name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({...addReviews, message: e.target.value})}></textarea><br />
+                                                    <input type="submit" value="Submit" class="submit-btn"/>
+                                                </form>
+                                            </div>
+                                            :
+                                            <div class="nunloged-content">
+                                                <p>You must <span><Link to="/account" class="no-style-link">Login</Link></span> in to Add reviews.</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

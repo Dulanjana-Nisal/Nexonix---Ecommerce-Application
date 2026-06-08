@@ -22,7 +22,7 @@ const getAllReviews = asyncHaddler(async (req,res) => {
 
     //product paging
     const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
+    const limit = Number(req.query.limit) || 5;
     const skip = (page-1)*limit
 
     //fetch reviews in db
@@ -38,6 +38,7 @@ const getAllReviews = asyncHaddler(async (req,res) => {
 //post reviews
 const postReviews = asyncHaddler(async (req,res) => {
     req.body.userId = req.user._id
+    req.body.userName = req.user.name
     const postReview = await Reviews.create(req.body)
     res.status(201).json({success: true, message: 'Review Created!', data: postReview})
 })

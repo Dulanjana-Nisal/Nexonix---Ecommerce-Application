@@ -10,6 +10,10 @@ const ReviewSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: [true, 'User id is required!']
         },
+        userName: {
+            type: String,
+            require: [true, 'User name is required!']
+        },
         message: {
             type: String,
             required: [true, 'Message is required!'],

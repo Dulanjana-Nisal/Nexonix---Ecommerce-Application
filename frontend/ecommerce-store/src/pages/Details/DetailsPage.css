@@ -559,9 +559,6 @@
 }
 
 /* nunloged review */
-.details-container .container-options .option-body  .reviews-body .add-reviews .add-review-content .nunloged-content{
-    display: none;
-} 
 .details-container .container-options .option-body  .reviews-body .add-reviews .add-review-content .nunloged-content p{
     font-size: 14px;
     color: rgb(109, 107, 107);
