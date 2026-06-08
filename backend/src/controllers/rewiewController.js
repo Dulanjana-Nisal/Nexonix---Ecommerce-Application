@@ -1,6 +1,7 @@
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const Reviews = require('../models/reviewsModel');
 const asyncHaddler = require('../utils/asyncHaddler');
+const statusCodes = require('http-status-codes');
 
 // get all reviews
 const getAllReviews = asyncHaddler(async (req,res) => {
@@ -29,7 +30,7 @@ const getAllReviews = asyncHaddler(async (req,res) => {
     const allReviews = await Reviews.find(querySelectore).skip(skip).limit(limit).sort({createdAt: -1})
     const allreviewsCount = await Reviews.find(querySelectore)
 
-    res.status(200).json({
+    res.status(statusCodes.OK).json({
         success: true,
         limit: limit,
         all_result: allreviewsCount.length,
@@ -43,7 +44,7 @@ const postReviews = asyncHaddler(async (req,res) => {
     req.body.userId = req.user._id
     req.body.userName = req.user.name
     const postReview = await Reviews.create(req.body)
-    res.status(201).json({success: true, message: 'Review Created!', data: postReview})
+    res.status(statusCodes.CREATED).json({success: true, message: 'Review Created!', data: postReview})
 })
 
 // delete review
@@ -54,7 +55,7 @@ const deleteReview = asyncHaddler( async (req,res) => {
     if(!deleteOne){
         throw new NotFoundErrorHaddler('Product not found!');
     }
-    res.status(200).json({success: true, message: 'Review Deleted!', data: deleteOne})
+    res.status(statusCodes.OK).json({success: true, message: 'Review Deleted!', data: deleteOne})
 })
 
 module.exports = {
