@@ -1,4 +1,4 @@
-.container .best-choice .best-choice-body .body-template{
+.body-template{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     column-gap: 25px;
@@ -6,8 +6,16 @@
     justify-content: start;
     margin-top: 30px;
 }
-.container .best-choice .best-choice-body .body-template .template-box,
-.container .laptop-section .section-grid .grid-box .box-card-row .card{
+.search-container .container-body .body-template{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 25px;
+    row-gap: 35px;
+    justify-content: start;
+    margin-top: 30px;
+}
+.template-box,
+.card{
     max-width: 240px;
     padding-bottom: 30px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -15,15 +23,15 @@
     border-radius: 15px;
     position: relative;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-head,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-head{
+.template-box .box-head,
+.card .box-head{
     width: 100%;
     height: 210px;
     padding: 10px 10px 0 10px;
     overflow: hidden;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-head img,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-head img{
+.template-box .box-head img,
+.card .box-head img{
     width: 100%;
     height: 100%;
     background-position: center;
@@ -33,18 +41,18 @@
     border-radius: 10px 10px 0 0;
     transition: 0.55s;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-head img:hover,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-head img:hover{
+.template-box .box-head img:hover,
+.card .box-head img:hover{
     transform: scale(110%);
     cursor: pointer;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body{
+.template-box .box-body,
+.card .box-body{
     height: 150px;
     padding: 15px;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .name p,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .name p{
+.template-box .box-body .name p,
+.card .box-body .name p{
     font-size: 15px;
     font-weight: 700;
     display: -webkit-box;
@@ -53,37 +61,37 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .ratings,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .ratings{
+.template-box .box-body .ratings,
+.card .box-body .ratings{
     color: #FFB800;
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .ratings span,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .ratings span{
+.template-box .box-body .ratings span,
+.card .box-body .ratings span{
     color: #b6bcbd;
     font-weight: 600;
     font-size: 14px;
     margin-left: 10px;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .price,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price{
+.template-box .box-body .price,
+.card .box-body .price{
     position: relative;
     width: 100%;
     padding: 25px 0;
     text-align: center;
     z-index: 10;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .price hr,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price hr{
+.template-box .box-body .price hr,
+.card .box-body .price hr{
     width: 100%;
     z-index: 0;
     opacity: 0.4;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .price p ,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price p{
+.template-box .box-body .price p ,
+.card .box-body .price p{
     bottom: 50%;
     left: 50%;
     position: absolute;
@@ -91,20 +99,20 @@
     transform: translate(-50%,50%);
     font-size: 20px;
     border-radius: 30px;
-    color: #9ea3a3;
+    color: #888c8c;
     font-weight: 600;
     width: fit-content;
     margin: auto;
     background-color: #fff;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .availability,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability{
+.template-box .box-body .availability,
+.card .box-body .availability{
     position: absolute;
     top: 0;
     left: 0;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .availability .in-stock,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability .in-stock{
+.template-box .box-body .availability .in-stock,
+.card .box-body .availability .in-stock{
     padding: 4px 10px;
     width: fit-content;
     color: #fff;
@@ -112,8 +120,8 @@
     font-weight: 600;
     background-color: #008A00;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .availability .out-stock,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability .out-stock{
+.template-box .box-body .availability .out-stock,
+.card .box-body .availability .out-stock{
     padding: 4px 10px;
     width: fit-content;
     color: #fff;
@@ -121,8 +129,8 @@
     font-weight: 600;
     background-color: #DD3842;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .button button,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .button button{
+.template-box .box-body .button button,
+.card .box-body .button button{
     position: absolute;
     width: 100%;
     left: 0;
@@ -136,8 +144,8 @@
     background-color: #2B38D1;
     transition: 0.25s;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .button .cart-btn:hover,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .button .cart-btn:hover{
+.template-box .box-body .button .cart-btn:hover,
+.card .box-body .button .cart-btn:hover{
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;

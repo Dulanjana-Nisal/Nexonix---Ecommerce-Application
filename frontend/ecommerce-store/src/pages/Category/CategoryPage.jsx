@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
-import './CategoryPage.css';
 import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
 import CategoryHeader from './CategoryHeader';

@@ -3,7 +3,8 @@ import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './SearchPage.css';
 import axios from 'axios';
-import { Link,useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import ProductComponent from '../../components/Product/ProductComponent';
 
 function SearchPage() {
     //use state hooks
@@ -330,56 +331,21 @@ function SearchPage() {
                         <div class="body-template">
                             {
                                 categoryData.map((items) => {
-                                    let ratings;
-                                    if (items.ratings === 5) {
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; <span>( 50 Reviews )</span></p>
-                                    } if (items.ratings === 4) {
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; <span>( 50 Reviews )</span></p>
-                                    } if (items.ratings === 3) {
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    } if (items.ratings === 2) {
-                                        ratings = <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    } if (items.ratings === 1) {
-                                        ratings = <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; <span>( 50 Reviews )</span></p>
-                                    }
                                     return (
-                                        <div class="template-box" key={items._id}>
-                                            <Link to={`/details/${items._id}`}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
-                                            </Link>
-                                            <div class="box-body">
-                                                <div class="name">
-                                                    <p>{items.name}</p>
-                                                </div>
-                                                <div class="ratings">
-                                                    {ratings}
-                                                </div>
-                                                <div class="price">
-                                                    <p>${items.price}</p>
-                                                    <div class="availability">
-                                                        <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="button">
-                                                    <button>Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductComponent items={items} ratings={items.ratings} />
                                     )
                                 })
                             }
                         </div>
-                        <div class="body-buttons">
+                        <div class="box-buttons">
                             {
                                 pageNumber > 1 &&
-                                <button class="pre" onClick={() => toPrePage()}>‹ Previous</button>
+                                <button class="pre" onClick={() => toPrePage()}>‹</button>
                             }
-                            <p>{pageNumber} of {pagesSize}</p>
+                            <p><span>{pageNumber}</span> of {pagesSize}</p>
                             {
                                 pagesSize != pageNumber &&
-                                <button class="next" onClick={() => toNextPage()}>Next ›</button>
+                                <button class="next" onClick={() => toNextPage()}>›</button>
                             }
                         </div>
                     </div>

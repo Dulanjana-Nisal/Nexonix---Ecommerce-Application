@@ -16,15 +16,15 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                         })
                     }
                 </div>
-                <div class="body-buttons">
+                <div class="box-buttons">
                     {
                         pageNumber > 1 &&
-                        <button class="pre" onClick={() => toPrePage()}>‹ Previous</button>
+                        <button class="prv" onClick={() => toPrePage()}>‹</button>
                     }
-                    <p>{pageNumber} of {pagesSize}</p>
+                    <p><span>{pageNumber}</span> of {pagesSize}</p>
                     {
                         pagesSize != pageNumber &&
-                        <button class="next" onClick={() => toNextPage()}>Next ›</button>
+                        <button class="next" onClick={() => toNextPage()}>›</button>
                     }
                 </div>
             </div>

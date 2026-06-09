@@ -49,6 +49,7 @@
 .order-container .order-body .order-details .product{
     width: 360px;
     text-align: center;
+    column-gap: 10px;
 }
 .order-container .order-body .order-details .details-cards .card .card-product{
     display: flex;
@@ -63,10 +64,11 @@
 }
 .order-container .order-body .order-details .details-cards .card .card-product .thumb img{
     width: 120px;
+    height: 100px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    object-fit: cover;
+    object-fit: contain;
 }
 .order-container .order-body .order-details .details-cards .card .card-product .name{
     text-align: left;
@@ -108,6 +110,11 @@
 .order-container .order-body .order-details .quantity{
     width: fit-content;
     text-align: center;
+}
+.order-container .order-body .order-details .details-cards .card{
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
 }
 .order-container .order-body .order-details .details-cards .card .card-quantity{
     display: flex;

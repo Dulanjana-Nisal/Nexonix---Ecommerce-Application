@@ -200,151 +200,43 @@
     cursor: pointer;
 }
 
-
-
 /* Container BODY */
 .search-container .container-body{
     width: 100%;
 }
-.search-container .container-body .body-template{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    row-gap: 20px;
-    column-gap: 10px;
-    justify-content: space-between;
-}
-.search-container .container-body .body-template .template-box{
-    max-width: 250px;
-    height: fit-content;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.search-container .container-body .body-template .template-box .box-head{
-    width: 100%;
-    height: 55%;
-    padding: 10px;
-}
-.search-container .container-body .body-template .template-box .box-head img{
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px 10px 0 0;
-    transition: 0.25s;
-}
-.search-container .container-body .body-template .template-box .box-head img:hover{
-    transform: scale(110%);
-    cursor: pointer;
-}
-.search-container .container-body .body-template .template-box .box-body{
-    padding: 15px;
-}
-.search-container .container-body .body-template .template-box .box-body .name p{
-    font-size: 15px;
-    font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 22px;
-}
-.search-container .container-body .body-template .template-box .box-body .ratings{
-    color: #FFB800;
-    font-size: 18px;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-}
-.search-container .container-body .body-template .template-box .box-body .ratings span{
-    color: #b6bcbd;
-    font-weight: 600;
-    font-size: 14px;
-    margin-left: 10px;
-}
-.search-container .container-body .body-template .template-box .box-body .price{
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
-}
-.search-container .container-body .body-template .template-box .box-body .price p{
-    font-size: 18px;
-    width: fit-content;
-    padding: 3px 10px;
-    border-radius: 30px;
-    background-color: #F1F5F6;
-    font-weight: 700;
-}
-.search-container .container-body .body-template .template-box .box-body .availability .in-stock{
-    padding: 4px 10px;
-    width: fit-content;
-    border-radius: 30px;
-    color: #008A00;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 5px 0;
-    background-color: #008a0027;
-}
-.search-container .container-body .body-template .template-box .box-body .availability{
-    margin: 10px 0;
-}
-.search-container .container-body .body-template .template-box .box-body .availability .out-stock{
-    padding: 3px 10px;
-    width: fit-content;
-    border-radius: 30px;
-    color: #DD3842;
-    font-size: 14px;
-    font-weight: 600;
-    background-color: #DD384227;
-}
-.search-container .container-body .body-template .template-box .box-body .button button{
-    width: 100%;
-    padding: 10px;
-    border-radius: 30px;
-    border: 1px solid #2B38D1;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    background-color: #2B38D1;
-    margin: 10px 0;
-    transition: 0.25s;
-}
-.search-container .container-body .body-template .template-box .box-body .button button:hover{
-    background-color: #fff;
-    color: #2B38D1;
-    cursor: pointer;
-}
-.search-container .container-body .body-buttons{
+.search-container .container-body .box-buttons{
     display: flex;
     width: 100%;
-    padding: 30px 0 20px 0;
-    margin-top: 30px;
+    padding: 30px 0 10px 0;
     justify-content: center;
     align-items: center;
 }
-.search-container .container-body .body-buttons button{
-    background: transparent;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
+.search-container .container-body .box-buttons button{
+    background: #F1F5F6;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9dedf;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    font-weight: 500;
     color: rgb(109, 107, 107);
     transition: 0.25s;
+    padding-bottom: 5px;
 }
-.search-container .container-body .body-buttons button:hover{
-    color: #2B38D1;
+.search-container .container-body .box-buttons button:hover{
+    color: #fff;
+    background-color: #2B38D1;
     cursor: pointer;
 }
-.search-container .container-body .body-buttons .pre:hover{
-    transform: translateX(-5px);
-}
-.search-container .container-body .body-buttons .next:hover{
-    transform: translateX(5px);
-}
-.search-container .container-body .body-buttons p{
+.search-container .container-body .box-buttons p{
     margin: 0 20px;
+    font-weight: 600;
+}
+.search-container .container-body .box-buttons span{
+    color: #2B38D1;
     font-weight: 600;
 }
 

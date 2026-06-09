@@ -7,7 +7,6 @@
     padding-bottom: 50px;
 }
 .cart-container .cart-header{
-    /* background: url('../../images/cart-banner.jpg'); */
     height: 180px;
     background-size: cover;
     background-position: center;
@@ -74,6 +73,9 @@
 }
 .cart-container .cart-body .cart-details .details-cards .card{
     border-bottom: 1px solid #d9dedf;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
     padding: 25px 0;
     display: flex;
     align-items: center;
@@ -100,10 +102,11 @@
 }
 .cart-container .cart-body .cart-details .details-cards .card .card-product .thumb img{
     width: 120px;
+    height: 100px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    object-fit: cover;
+    object-fit: contain;
 }
 .cart-container .cart-body .cart-details .details-cards .card .card-product .name p{
     font-size: 14px;
