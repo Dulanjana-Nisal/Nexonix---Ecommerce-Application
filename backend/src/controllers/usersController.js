@@ -3,10 +3,11 @@ const asyncHaddler = require('../utils/asyncHaddler');
 const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const statusCodes = require('http-status-codes');
+require('dotenv').config()
 
 //user signup constroller
 const userSignup = asyncHaddler(async (req,res)=>{
-    if(req.body.email === "dulanjananisal67@gmail.com"){
+    if(req.body.email === process.env.ADMIN_EMAIL){
         req.body.role = 'admin'
     }
     const signup = await Users.create(req.body);
