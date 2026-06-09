@@ -54,7 +54,7 @@ function DetailsPage() {
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [productId])
+    }, [productId,refesh])
 
     //fetch reviews data
     useEffect(() => {
@@ -74,9 +74,16 @@ function DetailsPage() {
     //submit reviews
     const submitReviews = async (e)=>{
         e.preventDefault();
+
+        //calculate new rating count
+        const avg = Number(producatDetails.ratings) || 0;
+        const count = Number(reviewsResult.all_result) || 0;
+        const newRating = Number(addReviews.ratings);
+        const newRatingCount = (avg * count + newRating) / (count + 1);
+
         try{
             await api.post('/reviews', addReviews)
-            setAddReviews({})
+            await api.patch(`/products/${productId}`, {ratings: Math.round(newRatingCount)})
         }
         catch(err){
             console.log(err.response)
@@ -332,7 +339,7 @@ function DetailsPage() {
                                                             <input type="radio" name="rating" id="1-star" onClick={() => setAddReviews({...addReviews, ratings: 1})} /><label for="1-star">★</label>
                                                         </div>
                                                     </div>
-                                                    <textarea name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({...addReviews, message: e.target.value})}></textarea><br />
+                                                    <textarea value={addReviews.message} name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({...addReviews, message: e.target.value})}></textarea><br />
                                                     <input type="submit" value="Submit" class="submit-btn"/>
                                                 </form>
                                             </div>
