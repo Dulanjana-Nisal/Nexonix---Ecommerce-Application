@@ -33,7 +33,7 @@ function ProductComponent({ items, ratings }) {
 
     return (
         <>
-            <div class="template-box" key={items._id}>
+            <div class="template-box card" key={items._id}>
                 <Link to={`/details/${items._id}`}>
                     <div class="box-head">
                         <img src={items.image} alt="product-img" />

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import ProductComponent from "../../components/Product/ProductComponent";
 
 function Sections({laptopProducts,computerProducts}) {
     return (
@@ -26,43 +26,8 @@ function Sections({laptopProducts,computerProducts}) {
                         <div class="box-card-row">
                             {
                                 laptopProducts.map((items) => {
-                                    let ratings;
-                                    if (items.ratings === 5) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-                                    } if (items.ratings === 4) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                    } if (items.ratings === 3) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
-                                    } if (items.ratings === 2) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
-                                    } if (items.ratings === 1) {
-                                        ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
-                                    }
                                     return (
-                                        <div class="card" key={items._id}>
-                                            <Link to={`/details/${items._id}`} style={{ textDecoration: "none" }}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
-                                            </Link>
-                                            <div class="box-body">
-                                                <div class="name">
-                                                    <p>{items.name}</p>
-                                                </div>
-                                                <div class="ratings">
-                                                    {ratings}<span>( 50 )</span>
-                                                </div>
-                                                <div class="price">
-                                                    <p>{items.price}</p>
-                                                    <div class="availability">
-                                                        <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="button">
-                                                    <button>Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductComponent items={items} ratings={items.ratings} key={items._id} />
                                     )
                                 })
                             }
@@ -93,43 +58,8 @@ function Sections({laptopProducts,computerProducts}) {
                         <div class="box-card-row">
                             {
                                 computerProducts.map((items) => {
-                                    let ratings;
-                                    if (items.ratings === 5) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-                                    } if (items.ratings === 4) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                    } if (items.ratings === 3) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
-                                    } if (items.ratings === 2) {
-                                        ratings = <p class="five-star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
-                                    } if (items.ratings === 1) {
-                                        ratings = <p class="five-star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
-                                    }
                                     return (
-                                        <div class="card" key={items._id}>
-                                            <Link to={`/details/${items._id}`} style={{ textDecoration: "none" }}>
-                                                <div class="box-head">
-                                                    <img src={items.image} alt="product-img" />
-                                                </div>
-                                            </Link>
-                                            <div class="box-body">
-                                                <div class="name">
-                                                    <p>{items.name}</p>
-                                                </div>
-                                                <div class="ratings">
-                                                    {ratings}<span>( 50 )</span>
-                                                </div>
-                                                <div class="price">
-                                                    <p>{items.price}</p>
-                                                    <div class="availability">
-                                                        <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="button">
-                                                    <button>Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductComponent items={items} ratings={items.ratings} key={items._id} />
                                     )
                                 })
                             }

@@ -10,6 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
 import api from '../../services/auth';
+import ProductComponent from '../../components/Product/ProductComponent';
 
 function DetailsPage() {
 
@@ -25,6 +26,7 @@ function DetailsPage() {
     const [producatKeywords, setProducatKeywords] = useState([])
     const [reviews, setReviews] = useState([])
     const [reviewsResult, setReviewsResult] = useState(0)
+    const [allReviewsData, setAllReviewsData] = useState([])
     const [fullScreen, setFullScreen] = useState(false)
     const [quantity, setQuantity] = useState(1);
     const [option, setOption] = useState(false)
@@ -32,10 +34,13 @@ function DetailsPage() {
     const [refesh,setRefesh] = useState(false)
     const [page,setPage] = useState(1)
 
+    // add quntity
     function addQnt() {
         const sum = quantity + 1
         quantity == producatDetails.stock ? setQuantity(producatDetails.stock) : setQuantity(sum)
     }
+
+    //min quantity
     function minQnt() {
         const sum = quantity - 1
         quantity === 1 ? setQuantity(1) : setQuantity(sum)
@@ -44,13 +49,15 @@ function DetailsPage() {
     // fetch all data
     useEffect(() => {
         const fetchAllData = async () => {
-            const [products, recommendations] = await Promise.all([
+            const [products, recommendations,allReviewsData] = await Promise.all([
                 axios.get(`http://localhost:5000/api/v1/products/${productId}`),
                 axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
+                axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&limit=all`),
             ])
             setProductDetails(products.data.data)
             setProducatKeywords(products.data.data.keywords)
             setProductRecomendation(recommendations.data.data)
+            setAllReviewsData(allReviewsData.data.data)
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -84,6 +91,7 @@ function DetailsPage() {
         try{
             await api.post('/reviews', addReviews)
             await api.patch(`/products/${productId}`, {ratings: Math.round(newRatingCount)})
+            setPage(1)
         }
         catch(err){
             console.log(err.response)
@@ -102,6 +110,13 @@ function DetailsPage() {
 
     //calculate result limit page
     const limitResult = Math.ceil(reviewsResult.all_result / reviewsResult.limit)
+
+    //count reviews
+    function reviewsCounter(countNumber){
+        let number = 0
+        allReviewsData.map(items => items.ratings === Number(countNumber) && number++)
+        return number
+    }
 
     return (
         <>
@@ -231,44 +246,44 @@ function DetailsPage() {
                                 <div class="review-box">
                                     <div class="box-head">
                                         <div class="total-reviews">
-                                            <h1>4.5</h1>
-                                            <p class="four">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
+                                            <h1>{(producatDetails.ratings).toFixed(1)}</h1>
+                                            {ratingsQuery[producatDetails.ratings]}
                                         </div>
                                         <div class="count-reviews">
                                             <div class="five-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
                                                 <div class="range-row">
-                                                    <div class="range"></div>
+                                                    <div class="range" style={{width: ` ${(reviewsCounter(5) /reviewsResult.all_result)*100}%`}}></div>
                                                 </div>
-                                                <p>2</p>
+                                                <p>{reviewsCounter(5)}</p>
                                             </div>
                                             <div class="four-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range"></div>
+                                                    <div class="range" style={{width: ` ${(reviewsCounter(4) /reviewsResult.all_result)*100}%`}}></div>
                                                 </div>
-                                                <p>1</p>
+                                                <p>{reviewsCounter(4)}</p>
                                             </div>
                                             <div class="three-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range"></div>
+                                                    <div class="range" style={{width: ` ${(reviewsCounter(3) /reviewsResult.all_result)*100}%`}}></div>
                                                 </div>
-                                                <p>0</p>
+                                                <p>{reviewsCounter(3)}</p>
                                             </div>
                                             <div class="two-star row">
                                                 <p class="star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range"></div>
+                                                    <div class="range" style={{width: ` ${(reviewsCounter(2) /reviewsResult.all_result)*100}%`}}></div>
                                                 </div>
-                                                <p>0</p>
+                                                <p>{reviewsCounter(2)}</p>
                                             </div>
                                             <div class="one-star row">
                                                 <p class="star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range"></div>
+                                                    <div class="range" style={{width: ` ${(reviewsCounter(1) /reviewsResult.all_result)*100}%`}}></div>
                                                 </div>
-                                                <p>0</p>
+                                                <p>{reviewsCounter(1)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -365,35 +380,7 @@ function DetailsPage() {
                                 {
                                     productRecomendation.map((items) => {
                                         return (
-                                            <div class="card" key={items._id}>
-                                                <Link to={`/details/${items._id}`}>
-                                                    <div class="box-head">
-                                                        <img src={items.image} alt="product-img" />
-                                                    </div>
-                                                </Link>
-                                                <div class="box-body">
-                                                    <div class="name">
-                                                        <p>{items.name}</p>
-                                                    </div>
-                                                    <div class="ratings">
-                                                        {ratingsQuery[items.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
-                                                    </div>
-                                                    <div class="price">
-                                                        <p>${items.price}</p>
-                                                        <div class="availability">
-                                                            <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="button">
-                                                        {
-                                                            state.find(item => item.productId == items._id) ?
-                                                                <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
-                                                                :
-                                                                <button onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch)}>Add To Cart</button>
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <ProductComponent items={items} ratings={items.ratings} key={items._id} />
                                         )
                                     })
                                 }

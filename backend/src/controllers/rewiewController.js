@@ -23,12 +23,23 @@ const getAllReviews = asyncHaddler(async (req,res) => {
 
     //product paging
     const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 5;
+    const limit = (req.query.limit) || 5;
     const skip = (page-1)*limit
 
+    if(limit == 'all'){
+        const newAllReviews = await Reviews.find(querySelectore).sort({createdAt: -1})
+
+        res.status(statusCodes.OK).json({
+        success: true,
+        all_result: newAllReviews.length,
+        data: newAllReviews,
+    })
+    }
+    
     //fetch reviews in db
-    const allReviews = await Reviews.find(querySelectore).skip(skip).limit(limit).sort({createdAt: -1})
+    const allReviews = await Reviews.find(querySelectore).skip(skip).limit(Number(limit)).sort({createdAt: -1})
     const allreviewsCount = await Reviews.find(querySelectore)
+    
 
     res.status(statusCodes.OK).json({
         success: true,
