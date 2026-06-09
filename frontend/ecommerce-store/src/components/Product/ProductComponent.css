@@ -1,36 +1,37 @@
 .container .best-choice .best-choice-body .body-template{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    gap: 25px;
+    column-gap: 25px;
+    row-gap: 35px;
     justify-content: start;
     margin-top: 30px;
 }
 .container .best-choice .best-choice-body .body-template .template-box,
 .container .laptop-section .section-grid .grid-box .box-card-row .card{
-    max-width: 250px;
-    height: auto;
-    padding-bottom: 10px;
+    max-width: 240px;
+    padding-bottom: 30px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-head,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-head{
     width: 100%;
-    height: 55%;
-    padding: 10px;
+    height: 210px;
+    padding: 10px 10px 0 10px;
+    overflow: hidden;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-head img,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-head img{
     width: 100%;
-    height: 200px;
+    height: 100%;
     background-position: center;
-    object-fit: cover;
+    object-fit: contain;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px 10px 0 0;
-    transition: 0.25s;
+    transition: 0.55s;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-head img:hover,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-head img:hover{
@@ -39,25 +40,26 @@
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body{
+    height: 150px;
     padding: 15px;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .name p,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .name p{
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 22px;
+    text-overflow: ellipsis;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .ratings,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .ratings{
     color: #FFB800;
     font-size: 18px;
-    margin: 5px 0;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .ratings span,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .ratings span{
@@ -68,58 +70,74 @@
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .price,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price{
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
+    position: relative;
+    width: 100%;
+    padding: 25px 0;
+    text-align: center;
+    z-index: 10;
+}
+.container .best-choice .best-choice-body .body-template .template-box .box-body .price hr,
+.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price hr{
+    width: 100%;
+    z-index: 0;
+    opacity: 0.4;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .price p ,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .price p{
-    font-size: 18px;
-    padding: 3px 10px;
+    bottom: 50%;
+    left: 50%;
+    position: absolute;
+    padding: 5px 10px;
+    transform: translate(-50%,50%);
+    font-size: 20px;
     border-radius: 30px;
-    background-color: #F1F5F6;
-    font-weight: 700;
+    color: #9ea3a3;
+    font-weight: 600;
+    width: fit-content;
+    margin: auto;
+    background-color: #fff;
+}
+.container .best-choice .best-choice-body .body-template .template-box .box-body .availability,
+.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .availability .in-stock,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability .in-stock{
     padding: 4px 10px;
     width: fit-content;
-    border-radius: 30px;
-    color: #008A00;
+    color: #fff;
     font-size: 12px;
     font-weight: 600;
-    margin: 5px 0;
-    background-color: #008a0027;
-}
-.container .best-choice .best-choice-body .body-template .template-box .box-body .availability,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability{
-    margin: 10px 0;
+    background-color: #008A00;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .availability .out-stock,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .availability .out-stock{
-    padding: 3px 10px;
+    padding: 4px 10px;
     width: fit-content;
-    border-radius: 30px;
-    color: #DD3842;
+    color: #fff;
     font-size: 12px;
     font-weight: 600;
-    background-color: #DD384227;
+    background-color: #DD3842;
 }
 .container .best-choice .best-choice-body .body-template .template-box .box-body .button button,
 .container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .button button{
+    position: absolute;
     width: 100%;
-    padding: 10px;
-    border-radius: 30px;
+    left: 0;
+    bottom: 0;
+    padding: 10px 0;
+    border-radius: 0 0 15px 15px;
     border: 1px solid #2B38D1;
     font-weight: 600;
     font-size: 14px;
     color: #fff;
     background-color: #2B38D1;
-    margin: 10px 0;
     transition: 0.25s;
 }
-.container .best-choice .best-choice-body .body-template .template-box .box-body .button button:hover,
-.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .button button:hover{
+.container .best-choice .best-choice-body .body-template .template-box .box-body .button .cart-btn:hover,
+.container .laptop-section .section-grid .grid-box .box-card-row .card .box-body .button .cart-btn:hover{
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
