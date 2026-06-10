@@ -4,7 +4,7 @@ import FooterCompoennt from '../../components/Footer/FooterComponent';
 import { Cart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import api from '../../services/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteCartItem } from '../../api/cartApi';
 
 function CheckoutPage() {
@@ -14,6 +14,7 @@ function CheckoutPage() {
 
     //chekout states
     const [loading,setLoading] = useState(false)
+    const [availabilityMap, setAvailabilityMap] = useState({}) 
     const [orderData,setOrderData] = useState({
         firstName: '',
         lastName: '',
@@ -26,7 +27,6 @@ function CheckoutPage() {
     //update prduct quaantity
     const updateProductQuntity = async (productId, qnt) => {
         const result = await api.get(`/products/${productId}`)
-        console.log(result.data.data.stock)
         try{
             await api.patch(`/products/${productId}`, {stock: result.data.data.stock - qnt})
         }
@@ -35,20 +35,64 @@ function CheckoutPage() {
         }
     }
 
+ // fetch availability for items in cart
+    useEffect(() => {
+        const fetchAvailability = async () => {
+            try {
+                const entries = await Promise.all(
+                    state.map(async (item) => {
+                        const res = await api.get(`/products/${item.productId}`)
+                        const product = res.data.data
+                        return [
+                            item.productId,
+                            {
+                                availability: product.availability,
+                                stock: product.stock,
+                            },
+                        ]
+                    })
+                )
+                setAvailabilityMap(Object.fromEntries(entries))
+            } catch (err) {
+                console.log('Error fetching product availability', err.response || err)
+            }
+        }
+
+        if (state.length > 0) {
+            fetchAvailability()
+        }
+    }, [state])
+
     //get cart item summery
     let fullPrice = 0
     state.map((items) => {
         if(items.availability){
-            fullPrice = fullPrice + (items.price * items.quantity)
+            fullPrice += items.price * items.quantity
         }
     })
 
     //place order to database
-    const placeOrder =  () => {
+    const placeOrder =  async () => {
         setLoading(true)
-        state.map( async (items)=>{
-            try{
-                items.availability &&
+
+        try {
+            // re-check availability from backend to avoid race conditions
+            for (const items of state) {
+                const res = await api.get(`/products/${items.productId}`)
+                const product = res.data.data
+
+                const isAvailable =
+                    product.availability && product.stock >= items.quantity
+
+                if (!isAvailable) {
+                    alert(`"${items.name}" is no longer available or out of stock.`)
+                    setLoading(false)
+                    return
+                }
+            }
+
+            // all items available -> create orders
+            for (const items of state) {
                 await api.post('/orders', {
                     userId: user._id,
                     firstName: orderData.firstName,
@@ -64,15 +108,18 @@ function CheckoutPage() {
                     quantity: items.quantity,
                     totle_price: fullPrice.toFixed(2)
                 })
+
+                await updateProductQuntity(items.productId, items.quantity)
                 deleteCartItem(items.productId, dispatch)
-                updateProductQuntity(items.productId, items.quantity)
             }
-            catch(err){
-                console.log(err.response)
-            }
+        } catch (err) {
+            console.log(err.response || err)
+        } finally {
             setLoading(false)
-        })
+        }
     }
+    
+    console.log('hellow')
     return (
         <>
             <HeaderComponent />
@@ -123,16 +170,25 @@ function CheckoutPage() {
                         </div>
                         <div class="total-product info">
                             {
-                                state.map((items)=>{
-                                    if(items.availability){
-                                        return(
+                                state.map((items)=> {
+                                    const info = availabilityMap[items.productId]
+                                    const isAvailable =
+                                        info && info.availability && info.stock >= items.quantity
+
+                                    return(
+                                        isAvailable ?
                                             <div class="product-card" key={items._id}>
                                                 <img src={items.image} alt={items.name} />
                                                 <p>{items.name}</p>
                                                 <span>✕ {items.quantity}</span>
                                             </div>
-                                        )
-                                    }
+                                        :
+                                            <div class="product-card sold-out" key={items._id}>
+                                                <img src={items.image} alt={items.name} />
+                                                <p>{items.name}</p>
+                                                <span>Sold Out</span>
+                                            </div>
+                                    )
                                 })
                             }
                         </div>

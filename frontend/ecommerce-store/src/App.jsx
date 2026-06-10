@@ -10,6 +10,7 @@ import DetailsPage from './pages/Details/DetailsPage'
 import AdminPage from './Admin/AdminPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
 import { Cart } from './context/CartContext'
+import NotFoundPage from './pages/404/NotFoundPage'
 
 function App() {
 
@@ -26,10 +27,13 @@ function App() {
       <Route path='/search' element={<SearchPage />} />
       <Route path='/details/:productId' element={<DetailsPage />} />
       {
-        user?.role === 'admin' &&
+        user?.role === 'admin' ?
         <Route path='/admin/:path' element={<AdminPage />} />
+        :
+        <Route path='*' element={<NotFoundPage />} />
       }
       <Route path='/checkout' element={<CheckoutPage />} />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
 }

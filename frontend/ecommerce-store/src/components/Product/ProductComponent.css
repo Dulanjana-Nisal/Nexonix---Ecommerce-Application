@@ -20,7 +20,7 @@
     padding-bottom: 30px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 10px;
     position: relative;
 }
 .template-box .box-head,
@@ -135,8 +135,8 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    padding: 10px 0;
-    border-radius: 0 0 15px 15px;
+    padding: 12px 0;
+    border-radius: 0 0 10px 10px;
     border: 1px solid #2B38D1;
     font-weight: 600;
     font-size: 14px;
