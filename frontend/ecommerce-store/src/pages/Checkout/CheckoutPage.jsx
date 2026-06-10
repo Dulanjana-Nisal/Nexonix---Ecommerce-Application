@@ -119,7 +119,6 @@ function CheckoutPage() {
         }
     }
     
-    console.log('hellow')
     return (
         <>
             <HeaderComponent />
