@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { Cart } from '../../context/CartContext';
 import { ACTIONS } from '../../context/CartReducer';
 import ProfilePage from './ProfilePage';
+import AccountSignin from './AccountSignin';
+import AccountSignup from './AccountSignup';
 
 function AccountPage() {
 
@@ -19,7 +21,6 @@ function AccountPage() {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const [togglePass,setTogglePass] = useState(true);
     const [messages,setMessages] = useState({})
     const [loginmessages,setLoginMessages] = useState({})
 
@@ -113,11 +114,6 @@ function AccountPage() {
             }, 1000)
         }
     }
-
-    //See password toggle button
-    function toggleSeePassword(){
-        togglePass ? setTogglePass(prev => !prev) : setTogglePass(prev => !prev)
-    }
     
     return (
         <>
@@ -138,70 +134,9 @@ function AccountPage() {
                 {
                     !user &&
                     <div class="container-body">
-                        <div class="signin-container">
-                            <div class="signin-header">
-                                <p>Sign In</p>
-                            </div>
-                            <div class="signin-form">
-                                <form onSubmit={loginFrom}>
-                                    <div class="email">
-                                        <label>Email Address <span>*</span></label><br />
-                                        <input type="text" value={loginEmail} onChange={() => {setLoginEmail(event.target.value)}}/>
-                                    </div>
-                                    <div class="password">
-                                        <label>Password <span>*</span></label><br />
-                                        <input type={togglePass ? "password" : "text"} value={loginPassword} onChange={() => {setLoginPassword(event.target.value)}}/>
-                                        {
-                                            togglePass ?
-                                            <img src={close_eye} class="open" alt="" onClick={() => toggleSeePassword()}/>
-                                            :
-                                            <img src={open_eye} class="close" alt="" onClick={() => toggleSeePassword()}/>
-                                        }
-                                    </div>
-                                    {
-                                        loginmessages &&
-                                        <div class="messages">
-                                            <p class={loginmessages.success === true ? "success" : "error"}>{loginmessages.message}</p>
-                                        </div>
-                                    }
-                                    <input type="submit" class="button" value="Sign In" />
-                                </form>
-                            </div>
-                        </div>
-                        <div class="signup-container">
-                            <div class="signup-header">
-                                <p>Sign Up</p>
-                            </div>
-                            <div class="signup-form">
-                                <form onSubmit={registerForm}>
-                                    <div class="name">
-                                        <label>Your Name <span>*</span></label><br />
-                                        <input type="text" value={name} onChange={() => {setName(event.target.value)}}/>
-                                    </div>
-                                    <div class="email">
-                                        <label>Email Address <span>*</span></label><br />
-                                        <input type="email" value={email} onChange={() => {setEmail(event.target.value)}}/>
-                                    </div>
-                                    <div class="password">
-                                        <label>Password <span>*</span></label><br />
-                                        <input type={togglePass ? "password" : "text"} value={password} onChange={() => {setPassword(event.target.value)}}/>
-                                        {
-                                            togglePass ?
-                                            <img src={close_eye} class="open" alt="" onClick={() => toggleSeePassword()}/>
-                                            :
-                                            <img src={open_eye} class="close" alt="" onClick={() => toggleSeePassword()}/>
-                                        }
-                                    </div>
-                                    {
-                                        messages  &&
-                                        <div class="messages">
-                                            <p class={messages.success === true ? "success" : "error"}>{messages.message}</p>
-                                        </div>
-                                    }
-                                    <input type="submit" class="button" value="Sign Up" />
-                                </form>
-                            </div>
-                        </div>
+                        <AccountSignin loginFrom={loginFrom} loginEmail={loginEmail} setLoginEmail={setLoginEmail} loginPassword={loginPassword} setLoginPassword={setLoginPassword} loginmessages={loginmessages} close_eye={close_eye} open_eye={open_eye} />
+
+                        <AccountSignup registerForm={registerForm} setName={setName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} close_eye={close_eye} open_eye={open_eye} messages={messages} />
                     </div>
                 }
             </div>
