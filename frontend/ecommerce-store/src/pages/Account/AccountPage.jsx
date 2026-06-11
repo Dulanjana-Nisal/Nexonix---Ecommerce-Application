@@ -11,6 +11,7 @@ import { ACTIONS } from '../../context/CartReducer';
 import ProfilePage from './ProfilePage';
 import AccountSignin from './AccountSignin';
 import AccountSignup from './AccountSignup';
+import MessagesComponent from '../../components/Messages/MessagesComonent';
 
 function AccountPage() {
 
@@ -140,6 +141,7 @@ function AccountPage() {
                     </div>
                 }
             </div>
+            <MessagesComponent />
             <FooterCompoennt />
         </>
     )
