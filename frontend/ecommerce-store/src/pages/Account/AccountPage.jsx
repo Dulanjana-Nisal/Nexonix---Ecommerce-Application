@@ -4,10 +4,11 @@ import open_eye from '../../assets/open-eye.png';
 import close_eye from '../../assets/close-eye.png';
 import './AccountPage.css';
 import { useState } from 'react';
-import api, { logout } from '../../services/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import api from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
 import { Cart } from '../../context/CartContext';
 import { ACTIONS } from '../../context/CartReducer';
+import ProfilePage from './ProfilePage';
 
 function AccountPage() {
 
@@ -115,7 +116,7 @@ function AccountPage() {
 
     //See password toggle button
     function toggleSeePassword(){
-        togglePass ? setTogglePass(false) : setTogglePass(true)
+        togglePass ? setTogglePass(prev => !prev) : setTogglePass(prev => !prev)
     }
     
     return (
@@ -123,23 +124,16 @@ function AccountPage() {
             <HeaderComponent />
             {/* <!---------------- container ----------------> */}
             <div class="account-container">
-                <div class="container-header">
-                    <h1>My Account</h1>
-                    <p><span>Home /</span> My Account</p>
-                </div>
                 {
-                    user?.role === 'admin' &&
-                        <div class="container-body">
-                            <Link to='/admin/dashboard' class="no-style-link"><button>Go to Admin Panel</button></Link> 
-                            <button onClick={() => logout(navigate,dispatch)}>Logout</button>
-                        </div>
+                    !user &&
+                    <div class="container-header">
+                        <h1>My Account</h1>
+                        <p><span>Home /</span> My Account</p>
+                    </div>
                 }
                 {
-                    user?.role === 'user' &&
-                        <div class="container-body">
-                            <h1>User Details</h1>
-                            <button onClick={() => logout(navigate,dispatch)}>Logout</button>
-                        </div>
+                    user &&
+                        <ProfilePage navigate={navigate} dispatch={dispatch} user={user} />
                 }
                 {
                     !user &&

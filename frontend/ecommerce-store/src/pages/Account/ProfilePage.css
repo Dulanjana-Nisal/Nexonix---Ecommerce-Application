@@ -1,0 +1,54 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+    margin-top: 50px;
+}
+.profile-container .profile-header{
+    text-align: center;
+}
+.profile-container .profile-header img{
+    width: 150px;
+    border: 1px solid rgba(109, 107, 107, 0.215);
+    height: 150px;
+    border-radius: 50%;
+}
+.profile-container .profile-header h1{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 5px 0;
+}
+.profile-container .profile-header p{
+    font-weight: 600;
+    color: rgba(109, 107, 107, 0.704);
+    font-size: 15px;
+}
+.profile-container .container-body button{
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: 0.25s;
+}
+.profile-container .container-body button:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.profile-container .container-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+}
+.profile-container .container-body .logout{
+    border: 1px solid #DD3842;
+    background-color: #DD3842;
+}
+.profile-container .container-body .admin-panel{
+    background-color: #2B38D1;
+    border: 1px solid #2B38D1;
+}

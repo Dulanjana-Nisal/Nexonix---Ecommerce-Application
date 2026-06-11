@@ -18,7 +18,7 @@ api.interceptors.request.use((config)=>{
 export function logout(navigate,dispatch){
     localStorage.clear()
     dispatch({type: ACTIONS.SET_CART, payload: []})
-    navigate('/')
+    navigate('/account')
 }
 
 export default api;
