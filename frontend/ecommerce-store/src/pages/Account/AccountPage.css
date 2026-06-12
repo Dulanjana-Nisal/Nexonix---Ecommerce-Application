@@ -120,10 +120,14 @@
     font-weight: 600;
 }
 .account-container .container-body .error{
-    color: #DD3842
+    color: #DD3842;
+    background-color: transparent;
+    border: none;
 }
 .account-container .container-body .success{
     color: #008A00;
+    background-color: transparent;
+    border: none;
 }
 
 

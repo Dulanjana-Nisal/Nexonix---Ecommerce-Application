@@ -73,7 +73,7 @@ function AccountPage() {
             setLoginMessages(err.response.data)
             setTimeout(()=>{
                 setLoginMessages(false)
-            }, 1000)
+            }, 1500)
         }
 
     }
@@ -111,7 +111,7 @@ function AccountPage() {
             setMessages(err.response.data)
             setTimeout(()=>{
                 setMessages(false)
-            }, 1000)
+            }, 1500)
         }
     }
     
@@ -136,7 +136,7 @@ function AccountPage() {
                     <div class="container-body">
                         <AccountSignin loginFrom={loginFrom} loginEmail={loginEmail} setLoginEmail={setLoginEmail} loginPassword={loginPassword} setLoginPassword={setLoginPassword} loginmessages={loginmessages} close_eye={close_eye} open_eye={open_eye} />
 
-                        <AccountSignup registerForm={registerForm} setName={setName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} close_eye={close_eye} open_eye={open_eye} messages={messages} />
+                        <AccountSignup registerForm={registerForm} name={name} setName={setName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} close_eye={close_eye} open_eye={open_eye} messages={messages} />
                     </div>
                 }
             </div>
