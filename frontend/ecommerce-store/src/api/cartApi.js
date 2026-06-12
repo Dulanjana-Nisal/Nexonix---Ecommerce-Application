@@ -2,7 +2,7 @@ import { ACTIONS } from "../context/CartReducer";
 import api from "../services/auth";
 
 // Add to cart
-export const addCartItems = async (productId,name,image,quantity,price,availability,dispatch)=>{
+export const addCartItems = async (productId,name,image,quantity,price,availability,dispatch,setupMessage)=>{
     try{
         const result = await api.post('/cart',
             {
@@ -16,14 +16,17 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
                 }
             }
         )
-        console.log(result.data)
+        setupMessage("success","Item Added to Cart ✅")
         dispatch({
             type: ACTIONS.ADD_TO_CART, 
             payload: result.data.data
         })
     }
     catch(err){
-        console.log(err.response)
+        console.log(err.response.data)
+        if(err.response.data.message === "Cannot read properties of undefined (reading 'split')"){
+            setupMessage("error","Please Signup or Signin!")
+        }
     }
 
 }

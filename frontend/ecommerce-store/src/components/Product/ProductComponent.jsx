@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
+import { Message } from '../../context/MessagesContext';
 import './ProductComponent.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -9,6 +10,7 @@ function ProductComponent({ items, ratings }) {
 
     //use context
     const {state,dispatch} = Cart();
+    const {setupMessage} = Message()
 
     //use states
     const [reviews,setReviews] = useState([])
@@ -58,7 +60,7 @@ function ProductComponent({ items, ratings }) {
                             state.find(item => item.productId == items._id) ?
                                 <button style={{ opacity: "0.5", cursor: " not-allowed" }}>In Cart</button>
                                 :
-                                <button class='cart-btn' onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch)}>Add To Cart </button>
+                                <button class='cart-btn' onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch,setupMessage)}>Add To Cart </button>
                         }
                     </div>
                 </div>

@@ -2,15 +2,20 @@ import './CheckoutPage.css'
 import HeaderComponent from "../../components/Header/HeaderComponent";
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import { Cart } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/auth';
 import { useEffect, useState } from 'react';
 import { deleteCartItem } from '../../api/cartApi';
+import { Message } from '../../context/MessagesContext';
 
 function CheckoutPage() {
 
     // use context 
     const { state,dispatch,user } = Cart()
+    const {setupMessage} = Message();
+
+    
+    const navigate = useNavigate();
 
     //chekout states
     const [loading,setLoading] = useState(false)
@@ -85,7 +90,7 @@ function CheckoutPage() {
                     product.availability && product.stock >= items.quantity
 
                 if (!isAvailable) {
-                    alert(`"${items.name}" is no longer available or out of stock.`)
+                    setupMessage('error', `"${items.name}" is no longer available or out of stock.`)
                     setLoading(false)
                     return
                 }
@@ -112,7 +117,14 @@ function CheckoutPage() {
                 await updateProductQuntity(items.productId, items.quantity)
                 deleteCartItem(items.productId, dispatch)
             }
+            setTimeout(()=>{
+                navigate('/orders')
+            }, 1000)
+            setupMessage('success', "Order Placed!")
         } catch (err) {
+            if(err){
+                setupMessage('error', 'Product Checkout Error!')
+            }
             console.log(err.response || err)
         } finally {
             setLoading(false)

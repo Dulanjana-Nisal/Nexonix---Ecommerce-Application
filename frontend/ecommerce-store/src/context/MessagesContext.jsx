@@ -5,15 +5,23 @@ const MessageContext = createContext()
 
 export default function MessageProvider({children}){
 
-    const [message,setMessage] = useState("")
-    const [status,setStatus] = useState("success")
+    const [message,setMessage] = useState(null)
+
+    function setupMessage(msgStatus,msgMessage){
+        setMessage({status: msgStatus, message: msgMessage})
+
+        setTimeout(()=>{
+            setMessage(null)
+        }, 3000)
+    }
 
     return(
-        <MessageContext.Provider value={{setStatus, setMessage}}>
+        <MessageContext.Provider value={{setupMessage}}>
             {children}
+
             {
                 message &&
-                <MessagesComponent message={message} status={status} />
+                <MessagesComponent message={message.message} status={message.status} />
             }
 
         </MessageContext.Provider>

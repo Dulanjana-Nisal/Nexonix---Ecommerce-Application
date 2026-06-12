@@ -8,12 +8,13 @@
     justify-content: space-between;
     column-gap: 20px;
     padding: 8px 15px;
-    border-radius: 30px;
+    border-radius: 10px;
+    z-index: 20;
 }
 
  /* ----- success ----- */
 .success{
-    background-color: #008a0027;
+    background-color: #008a00;
     border: 1px solid #008a0043;
 }
 .success .left-side{
@@ -23,7 +24,7 @@
 
  /* ----- error ----- */
 .error{
-    background-color: #DD384227;
+    background-color: #dd3843;
     border: 1px solid #DD384243;
 }
 .error .left-side{
@@ -39,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #fff;
 }
 .messages-container .left-side i{
     font-size: 16px;
@@ -47,23 +49,5 @@
 .messages-container .center-side p{
     font-size: 16px;
     font-weight: 600;
-}
-.messages-container .right-side{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.25s;
-}
-.messages-container .right-side i{
-    font-size: 12px;
-    margin-top: 1px;
-    color: #000000a7;
-}
-.messages-container .right-side:hover{
-    background-color: #fff;
-    cursor: pointer;
-    color: #000;
+    color: #fff;
 }

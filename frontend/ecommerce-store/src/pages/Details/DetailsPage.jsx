@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
+import { Message } from '../../context/MessagesContext';
 import api from '../../services/auth';
 import ProductComponent from '../../components/Product/ProductComponent';
 
@@ -16,6 +17,7 @@ function DetailsPage() {
 
     // load context
     const { state, dispatch,user } = Cart();
+    const {setupMessage} = Message();
 
     //get product id form url
     const { productId } = useParams();
@@ -179,7 +181,7 @@ function DetailsPage() {
                                 state.find(item => item.productId == producatDetails._id) ?
                                     <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
                                     :
-                                    <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch)}>Add To Cart</button>
+                                    <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch,setupMessage)}>Add To Cart</button>
 
                             }
                         </div>
