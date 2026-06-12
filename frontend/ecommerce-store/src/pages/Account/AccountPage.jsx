@@ -43,7 +43,7 @@ function AccountPage() {
         e.preventDefault();
 
         try{
-            const login = await api.post('http://localhost:5000/api/v1/user/signin', {
+            const login = await api.post('http://localhost:5000/api/v1/account/signin', {
                 "email": loginEmail,
                 "password": loginPassword,
             })
@@ -67,7 +67,7 @@ function AccountPage() {
                 if(login.data.user.role === "user"){
                     navigate('/')
                 }
-            }, 1000)
+            }, 1600)
         }
         catch(err){
             setLoginMessages(err.response.data)
@@ -84,7 +84,7 @@ function AccountPage() {
         e.preventDefault()
 
         try{
-            await api.post('http://localhost:5000/api/v1/user/signup', {
+            await api.post('http://localhost:5000/api/v1/account/signup', {
                 "name": name,
                 "email": email,
                 "password": password,

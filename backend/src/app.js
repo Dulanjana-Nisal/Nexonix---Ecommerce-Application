@@ -4,7 +4,7 @@ const errorHaddlerMiddleware = require('./middlewares/errorHaddlerMiddleware');
 const notFoundMiddleware = require('./middlewares/notFoundMiddlewaare')
 
 const cors = require('cors');
-const users = require('./routers/usersRouters');
+const users = require('./routers/accountsRouters');
 const products = require('./routers/productsRouters');
 const orders = require('./routers/ordersRouters');
 const cart = require('./routers/cartRouters');
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors())
 
 //routers
-app.use('/api/v1/user', users);
+app.use('/api/v1/account', users);
 app.use('/api/v1/products', products);
 app.use('/api/v1/orders', orders);
 app.use('/api/v1/cart', cart);
