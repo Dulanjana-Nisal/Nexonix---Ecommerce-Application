@@ -4,11 +4,11 @@ import user_profile from '../assets/user-profile-image.png'
 import logo from '../assets/logo2.png'
 import logo_letter from '../assets/logo-image-letter.png'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import AdminProducts from './AdminProducts'
 import { useEffect, useState } from 'react'
 import { ACTIONS } from '../context/CartReducer'
 import { Cart } from '../context/CartContext'
 import Dashboard from './pages/Dashboard/Dashboard'
+import Products from './pages/Products/Products'
 
 function AdminPage() {
 
@@ -510,7 +510,7 @@ function AdminPage() {
                         {/* <!-- product Section --> */}
                         {
                             path === 'products' &&
-                            <AdminProducts path={path}/>
+                            <Products path={path}/>
                         }
                     </div>
                 </div>
