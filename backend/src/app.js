@@ -4,12 +4,13 @@ const errorHaddlerMiddleware = require('./middlewares/errorHaddlerMiddleware');
 const notFoundMiddleware = require('./middlewares/notFoundMiddlewaare')
 
 const cors = require('cors');
-const users = require('./routers/accountsRouters');
+const accounts = require('./routers/accountsRouters');
 const products = require('./routers/productsRouters');
 const orders = require('./routers/ordersRouters');
 const cart = require('./routers/cartRouters');
 const review = require('./routers/rewiewRouter')
 const notifications = require('./routers/notificationRouters');
+const users = require('./routers/usersRouter');
 
 const express = require('express');
 const app = express(); 
@@ -19,12 +20,13 @@ app.use(express.json());
 app.use(cors())
 
 //routers
-app.use('/api/v1/account', users);
+app.use('/api/v1/account', accounts);
 app.use('/api/v1/products', products);
 app.use('/api/v1/orders', orders);
 app.use('/api/v1/cart', cart);
 app.use('/api/v1/notifications', notifications);
 app.use('/api/v1/reviews', review);
+app.use('/api/v1/users', users);
 
 //error haddlers
 app.use(errorHaddlerMiddleware)
