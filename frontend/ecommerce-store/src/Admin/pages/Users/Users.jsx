@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import api from '../../../services/auth'
 import { Message } from '../../../context/MessagesContext';
 import { useSearchParams } from 'react-router-dom';
+import UserUpdate from './UserUpdate';
 
 function Users() {
 
@@ -14,6 +15,7 @@ function Users() {
     // users states
     const [users, setUsers] = useState([])
     const [toggleDetails, setToggleDetails] = useState(false)
+    const [allResultCount, setAllResultCount] = useState(1)
     const [updateUsersToggle, setUpdateUsersToggle] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const [fullDetails, setFullDetails] = useState({})
@@ -27,29 +29,33 @@ function Users() {
     //user filters
     const userFilter = queryData.get('role') || ""
 
+    //users search
+    const searchUsers = queryData.get('search') || ""
+
     // fetch all users data
     useEffect(() => {
         const fetchUsersData = async () => {
-            const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}`)
+            const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}&search=${searchUsers}`)
             setUsers(result.data.data)
+            setAllResultCount(result.data.all_result)
         }
         fetchUsersData();
-    }, [pageNumber,userFilter])
+    }, [pageNumber,userFilter,setupMessage,searchUsers])
 
     //search users function 
-    const searchUsers = async () => {
+    const searchUsersByKeyword = async () => {
+        const newQuery = new URLSearchParams(queryData)
         if (searchValue.length < 2) {
-            setupMessage('error', 'Please Enter more than 2 values for search...')
+            setupMessage('error', 'Please Enter more than 1 values for search...')
+            newQuery.set("search", "")
+            setQueryData(newQuery)
             return
         }
-        try {
-            const result = await api.get(`/users?search=${searchValue}`)
-            setUsers(result.data.data)
-        }
-        catch (err) {
-            console.log(err.response)
-        }
+        newQuery.set("search", searchValue)
+        setQueryData(newQuery)
     }
+
+    console.log('hellow')
 
     //toggle user full details box
     const toggleFullDetailsBox = (itemId) => {
@@ -108,7 +114,7 @@ function Users() {
                     </div>
                     <div class="search">
                         <input type="text" placeholder="Search Users" onChange={(e) => setSearchValue(e.target.value)} />
-                        <button onClick={() => searchUsers()}><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button onClick={() => searchUsersByKeyword()}><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
                 <div class="user-body">
@@ -143,7 +149,7 @@ function Users() {
                                             }
                                             {
                                                 items.role !== 'admin' &&
-                                                <button class="update" onClick={() => setUpdateUsersToggle(prev => !prev)}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
                                             }
                                             {
                                                 items.role !== 'admin' &&
@@ -157,42 +163,8 @@ function Users() {
                         }
                     </div>
                     {
-                        updateUsersToggle &&
-                        <div class="update-user-box">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h1>Update User</h1>
-                                </div>
-                                <div class="box-form">
-                                    <div class="name row">
-                                        <label>User Name</label>
-                                        <input type="text"/>
-                                    </div>
-                                    <div class="category row">
-                                        <label>Select Role</label>
-                                        <select>
-                                            <option>Admin</option>
-                                            <option>User</option>
-                                        </select>
-                                    </div>
-                                    {/* {
-                                        message &&
-                                        <div class={`msgs ${message.status === 'error' ? 'err' : 'succ'}`}>
-                                            <p class={message.status}>{message.msg}</p>
-                                        </div>
-                                    } */}
-                                    <div class="buttons row">
-                                        <input type="submit" value="Update users" />
-                                        {/* {
-                                                <input type="submit" value="Update Product" onClick={updateProducts} />
-                                                :
-                                                <input type="submit" value="Loading..." />
-                                        } */}
-                                        <button class="close" onClick={() => setUpdateUsersToggle(prev => !prev)}>Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        updateUsersToggle.toggle &&
+                        <UserUpdate setUpdateUsersToggle={setUpdateUsersToggle} updateUsersToggle={updateUsersToggle} setupMessage={setupMessage} />
                     }
                     <div class="user-list-responsive">
                         {/* map here */}
@@ -256,9 +228,15 @@ function Users() {
                 </div>
                 <div class="user-footer">
                     <div class="box-buttons">
-                        <button class="pre" onClick={() => prevPage()}>‹</button>
-                        <p><span>{pageNumber}</span> of 2</p>
-                        <button class="next" onClick={() => nextPage()}>›</button>
+                        {
+                            pageNumber !== 1 &&
+                            <button class="pre" onClick={() => prevPage()}>‹</button>
+                        }
+                        <p><span>{pageNumber}</span> of {Math.ceil(allResultCount /10)}</p>
+                        {
+                            (Math.ceil(allResultCount /10)) > pageNumber &&
+                            <button class="next" onClick={() => nextPage()}>›</button>
+                        }
                     </div>
                 </div>
             </div>

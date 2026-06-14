@@ -350,24 +350,22 @@
     background-color: #F1F5F6;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs{
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .alert{
     width: 100%;
     text-align: center;
     padding: 8px 0;
     font-size: 14px;
     font-weight: 600;
-    background-color: #DD384227;
+    background-color: #fff;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form p{
+    background-color: #fff;
+    border: none;
 }
 .admin-container .sections .sections-body .user-section .user-body .box .box-form .err{
-    background-color: #DD384227;
-}
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .succ{
-    background-color: #008A0027;
-}
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs .error{
     color: #DD3842;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs .success{
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .success{
     color: #008A00;
 }
 .admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons{

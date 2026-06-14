@@ -40,6 +40,9 @@ const updateUsers = asyncHaddler(async(req,res)=>{
     if(req.user.role !== "admin"){
         throw new UnauthorizedErrorHaddler('Not authorized')
     }
+    if(!req.body.name || req.body.name === "" || !req.body.role || req.body.role === ""){
+        throw new BadrequestErrorHaddler('Update values are Empty')
+    }
     const updateUser = await Users.findOneAndUpdate({_id: userId}, req.body,{runValidators: true, returnDocument: 'after'})
 
     if(!updateUser){
