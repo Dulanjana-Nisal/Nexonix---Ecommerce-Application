@@ -10,6 +10,7 @@ import { Cart } from '../context/CartContext'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Products from './pages/Products/Products'
 import Users from './pages/Users/Users'
+import Orders from './pages/Orders/Orders'
 
 function AdminPage() {
 
@@ -122,6 +123,11 @@ function AdminPage() {
                         {
                             path === 'products' &&
                             <Products path={path}/>
+                        }
+                        {/* <!-- Orders Section --> */}
+                        {
+                            path === 'orders' &&
+                            <Orders path={path}/>
                         }
                     </div>
                 </div>

@@ -11,11 +11,13 @@ import { ACTIONS } from '../../context/CartReducer';
 import ProfilePage from './ProfilePage';
 import AccountSignin from './AccountSignin';
 import AccountSignup from './AccountSignup';
+import { Message } from '../../context/MessagesContext';
 
 function AccountPage() {
 
     // cart context
     const {dispatch,user} = Cart();
+    const {setupMessage} = Message();
 
     //use states
     const [name,setName] = useState("");
@@ -98,6 +100,8 @@ function AccountPage() {
                 success: true,
                 message: "Register Success!"
             })
+
+            setupMessage("success", "Register Success now you can login")
 
             setName("");
             setEmail("");
