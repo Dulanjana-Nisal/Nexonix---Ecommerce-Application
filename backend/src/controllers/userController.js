@@ -6,13 +6,18 @@ const asyncHaddler = require('../utils/asyncHaddler')
 
 //get all users data
 const getAllUsers = asyncHaddler(async(req,res) => {
-    const {search} = req.query
+    const {search,role} = req.query
 
     const querySelectore = {}
 
     if(search){
         querySelectore.name = { $regex:search, $options: 'i' };
     }
+
+    if(role){
+        querySelectore.role = role
+    }
+
     //product paging
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
