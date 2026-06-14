@@ -66,6 +66,7 @@ function AccountPage() {
                 }
                 if(login.data.user.role === "user"){
                     navigate('/')
+                    location.reload()
                 }
             }, 1600)
         }
