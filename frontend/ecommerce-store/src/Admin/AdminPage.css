@@ -599,46 +599,6 @@
     cursor: pointer;
 }
 
-/* box buttons */
-.admin-container .sections .sections-body .product-section .product-footer .box-buttons{
-    display: flex;
-    width: 100%;
-    padding: 30px 0 10px 0;
-    justify-content: center;
-    align-items: center;
-}
-.admin-container .sections .sections-body .product-section .product-footer .box-buttons button{
-    background: #F1F5F6;
-    display: flex;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #d9dedf;
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-    font-weight: 500;
-    color: rgb(109, 107, 107);
-    transition: 0.25s;
-    padding-bottom: 5px;
-}
-.admin-container .sections .sections-body .product-section .product-footer .box-buttons button:hover{
-    color: #fff;
-    background-color: #2B38D1;
-    cursor: pointer;
-}
-.admin-container .sections .sections-body .product-section .product-footer .box-buttons p{
-    margin: 0 20px;
-    font-weight: 600;
-}
-.admin-container .sections .sections-body .product-section .product-footer .box-buttons span{
-    color: #2B38D1;
-    font-weight: 600;
-}
-
-
-
-
 /* -------------------------------------------------- */
 
 

@@ -63,6 +63,7 @@
 }
 .admin-container .sections .sections-body .user-section .user-body{
     margin-top: 30px;
+    min-height: 60vh;
 }
 .admin-container .sections .sections-body .user-section .user-body .user-list{
     display: flex;
@@ -94,6 +95,7 @@
     border-radius: 10px;
     padding: 10px 0;
     transition: 0.25s;
+    padding-right: 10px;
 }
 .admin-container .sections .sections-body .user-section .user-body .user-list .user-box p{
     font-size: 14px;
@@ -144,12 +146,22 @@
     border-radius: 50%;
     border: 1px solid #DD384227;
 }
-.admin-container .sections .sections-body .user-section .user-body .delete-btn{
+.admin-container .sections .sections-body .user-section .user-body .delete-btn,
+.admin-container .sections .sections-body .user-section .user-body .update{
     background-color: transparent;
     border: none;
     transition: 0.25s;
-    margin-right: 10px;
     border-radius: 50%;
+}
+.admin-container .sections .sections-body .user-section .user-body .update{
+    width: 30px;
+    height: 30px;
+    color: #2B38D1;
+}
+.admin-container .sections .sections-body .user-section .user-body .update:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #2B38D1;
 }
 .admin-container .sections .sections-body .user-section .user-body .delete-btn:hover{
     cursor: pointer;
@@ -253,3 +265,188 @@
     font-weight: 500;
     margin-top: 5px;
 }
+/* Add product and update box style */
+.admin-container .sections .sections-body .user-section .user-body .update-user-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000d1;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-container .sections .sections-body .user-section .user-body .box{
+    background-color: #fff;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-padding: 1px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar {
+  width: 5px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-thumb {
+  background: #2B38D1;
+  border-radius: 10px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-button{
+    scrollbar-width: 1px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-header{
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #d8dbdccd
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-header h1{
+    font-size: 25px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .row{
+    margin: 15px 0;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .row label{
+    font-size: 16px;
+    color: rgb(109, 107, 107);
+    font-weight: 600;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-header{
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #d8dbdccd
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-header h1{
+    font-size: 25px;
+}
+.admin-container .sections .sections-body .user-section .user-body .update-user-box .name input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d8dbdccd;
+    border-radius: 30px;
+    outline: none;
+    background-color: #F1F5F6;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category{
+    padding: 10px 0;
+} 
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category label{
+    margin-right: 10px;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category select{
+    padding: 8px 10px;
+    outline: none;
+    border: 1px solid #d8dbdccd;
+    font-size: 14px;
+    background-color: #F1F5F6;
+    font-weight: 600;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs{
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #DD384227;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .err{
+    background-color: #DD384227;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .succ{
+    background-color: #008A0027;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs .error{
+    color: #DD3842;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .msgs .success{
+    color: #008A00;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons{
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    justify-content: space-around;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close{
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #DD3842;
+    color: #fff;
+    background-color: #DD3842;
+    border-radius: 30px;
+    transition: 0.25s;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close:hover{
+    background-color: #fff;
+    color: #DD3842;
+    cursor: pointer;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #2B38D1;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #2B38D1;
+    color: #fff;
+    border-radius: 30px;
+    transition: 0.25s;
+}
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input:hover{
+    background-color: #fff;
+    color: #2B38D1;
+    cursor: pointer;
+}
+
+
+/* box buttons */
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons{
+    display: flex;
+    width: 100%;
+    padding: 30px 0 10px 0;
+    justify-content: center;
+    align-items: center;
+}
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons button{
+    background: #F1F5F6;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9dedf;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    font-weight: 500;
+    color: rgb(109, 107, 107);
+    transition: 0.25s;
+    padding-bottom: 5px;
+}
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons button:hover{
+    color: #fff;
+    background-color: #2B38D1;
+    cursor: pointer;
+}
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons p{
+    margin: 0 20px;
+    font-weight: 600;
+}
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons span{
+    color: #2B38D1;
+    font-weight: 600;
+}
+
+
+

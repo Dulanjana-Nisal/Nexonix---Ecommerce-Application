@@ -23,8 +23,9 @@ const getAllUsers = asyncHaddler(async(req,res) => {
     const limit = Number(req.query.limit) || 10;
     const skip = (page-1)*limit
 
+    const usersCount = await Users.find(querySelectore, {password: 0})
     const allUsers = await Users.find(querySelectore, {password: 0}).skip(skip).limit(limit)
-    res.status(200).json({success: true,page: page, data: allUsers})
+    res.status(200).json({success: true,page: page, all_result: usersCount.length, data: allUsers})
 })
 
 //udpate users

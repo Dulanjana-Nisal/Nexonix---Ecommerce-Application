@@ -4,68 +4,94 @@ import delete_img from '../../../assets/delete-icon.png'
 import { useEffect, useState } from 'react';
 import api from '../../../services/auth'
 import { Message } from '../../../context/MessagesContext';
+import { useSearchParams } from 'react-router-dom';
 
 function Users() {
 
     //load context
-    const {setupMessage} = Message()
+    const { setupMessage } = Message()
 
     // users states
-    const [users,setUsers] = useState([])
-    const [toggleDetails,setToggleDetails] = useState(false)
-    const [searchValue,setSearchValue] = useState("")
-    const [fullDetails,setFullDetails] = useState({})
+    const [users, setUsers] = useState([])
+    const [toggleDetails, setToggleDetails] = useState(false)
+    const [updateUsersToggle, setUpdateUsersToggle] = useState(false)
+    const [searchValue, setSearchValue] = useState("")
+    const [fullDetails, setFullDetails] = useState({})
+
+    //get query data from url
+    const [queryData, setQueryData] = useSearchParams();
+
+    //page number
+    const pageNumber = Number(queryData.get('page')) || 1
+
+    //user filters
+    const userFilter = queryData.get('role') || ""
 
     // fetch all users data
-    useEffect(()=>{
-        const fetchUsersData = async ()=>{
-            const result = await api.get('/users')
+    useEffect(() => {
+        const fetchUsersData = async () => {
+            const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}`)
             setUsers(result.data.data)
         }
         fetchUsersData();
-    }, [])
+    }, [pageNumber,userFilter])
 
     //search users function 
-    const searchUsers = async() => {
-        if(searchValue.length < 2){
+    const searchUsers = async () => {
+        if (searchValue.length < 2) {
             setupMessage('error', 'Please Enter more than 2 values for search...')
             return
         }
-        try{
+        try {
             const result = await api.get(`/users?search=${searchValue}`)
             setUsers(result.data.data)
         }
-        catch(err){
+        catch (err) {
             console.log(err.response)
         }
     }
 
     //toggle user full details box
-    const  toggleFullDetailsBox = (itemId) => {
+    const toggleFullDetailsBox = (itemId) => {
         setToggleDetails(prev => !prev)
-        
+
         const details = users.find(item => item._id === itemId)
         setFullDetails(details)
     }
 
     //filter users
-    const filterUsers = (filterValue)=>{
-        const fetchUsersByRole = async ()=>{
-            const result = await api.get(`/users?role=${filterValue}`)
-            setUsers(result.data.data)
-        }
-        fetchUsersByRole();
+    const filterUsers = (filterValue) => {
+        const newQuery = new URLSearchParams(queryData)
+        newQuery.set("role", filterValue)
+        setQueryData(newQuery)
     }
 
     // detele users
-    const deleteUser = async(userId) => {
-        try{
+    const deleteUser = async (userId) => {
+        try {
             await api.delete(`users/${userId}`)
-            setupMessage('success','User Delete success!')
-        }catch(err){
+            setupMessage('success', 'User Delete success!')
+        } catch (err) {
             console.log(err.response)
-            setupMessage('error','User Delete Error!')
+            setupMessage('error', 'User Delete Error!')
         }
+    }
+
+    //prev page
+    const prevPage = () => {
+        const newQuery = new URLSearchParams(queryData)
+        if (pageNumber === 1) {
+            newQuery.set("page", 1)
+        }
+        newQuery.set("page", pageNumber - 1)
+        setQueryData(newQuery)
+    }
+
+    //next page
+    const nextPage = () => {
+        const newQuery = new URLSearchParams(queryData)
+        newQuery.set("page", pageNumber + 1)
+        setQueryData(newQuery)
     }
 
     return (
@@ -74,14 +100,14 @@ function Users() {
                 <div class="user-header">
                     <div class="header-filter">
                         <p>Filter By</p>
-                        <select  onClick={(e) => filterUsers(e.target.value)}>
+                        <select onClick={(e) => filterUsers(e.target.value)}>
                             <option value="">All</option>
                             <option value="admin">Admins</option>
                             <option value="user">Users</option>
                         </select>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="Search Users"  onChange={(e) => setSearchValue(e.target.value)}/>
+                        <input type="text" placeholder="Search Users" onChange={(e) => setSearchValue(e.target.value)} />
                         <button onClick={() => searchUsers()}><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -95,10 +121,10 @@ function Users() {
                         </div>
                         {
                             users.length > 0 &&
-                            users.map((items)=>{
-                                return(
-                                    <div class="user-box" key={items._id} onClick={() => toggleFullDetailsBox(items._id)}>
-                                        <div class="name">
+                            users.map((items) => {
+                                return (
+                                    <div class="user-box" key={items._id}>
+                                        <div class="name" onClick={() => toggleFullDetailsBox(items._id)}>
                                             <img src={user_profile_image} alt="prodile-image" class="user-image" />
                                             <p>{items.name}</p>
                                         </div>
@@ -111,21 +137,65 @@ function Users() {
                                         <div class="buttons">
                                             {
                                                 items.role === 'admin' ?
-                                                <button class="order-btn admin">Admin</button>
-                                                :
-                                                <button class="order-btn orders">All Orders</button>
+                                                    <button class="order-btn admin">Admin</button>
+                                                    :
+                                                    <button class="order-btn orders">All Orders</button>
                                             }
                                             {
-                                                items.role !=='admin' &&
-                                                <button class="delete-btn"><img src={delete_img} alt="" onClick={() => deleteUser(items._id)}/></button>
+                                                items.role !== 'admin' &&
+                                                <button class="update" onClick={() => setUpdateUsersToggle(prev => !prev)}><i class="fa-solid fa-pen-to-square"></i></button>
                                             }
+                                            {
+                                                items.role !== 'admin' &&
+                                                <button class="delete-btn"><img src={delete_img} alt="" onClick={() => deleteUser(items._id)} /></button>
+                                            }
+
                                         </div>
                                     </div>
                                 )
                             })
                         }
                     </div>
+                    {
+                        updateUsersToggle &&
+                        <div class="update-user-box">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h1>Update User</h1>
+                                </div>
+                                <div class="box-form">
+                                    <div class="name row">
+                                        <label>User Name</label>
+                                        <input type="text"/>
+                                    </div>
+                                    <div class="category row">
+                                        <label>Select Role</label>
+                                        <select>
+                                            <option>Admin</option>
+                                            <option>User</option>
+                                        </select>
+                                    </div>
+                                    {/* {
+                                        message &&
+                                        <div class={`msgs ${message.status === 'error' ? 'err' : 'succ'}`}>
+                                            <p class={message.status}>{message.msg}</p>
+                                        </div>
+                                    } */}
+                                    <div class="buttons row">
+                                        <input type="submit" value="Update users" />
+                                        {/* {
+                                                <input type="submit" value="Update Product" onClick={updateProducts} />
+                                                :
+                                                <input type="submit" value="Loading..." />
+                                        } */}
+                                        <button class="close" onClick={() => setUpdateUsersToggle(prev => !prev)}>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                     <div class="user-list-responsive">
+                        {/* map here */}
                         <div class="user-box">
                             <div class="left-side">
                                 <img src="../images/user-profile-image.png" alt="" />
@@ -148,195 +218,6 @@ function Users() {
                                     <div class="btns">
                                         <button class="order-btn">All Orders</button>
                                         <button class="delete-btn"><img src={delete_img}
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
-                                            alt="" /></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src="../images/delete-icon.png"
                                             alt="" /></button>
                                     </div>
                                 </div>
@@ -372,6 +253,13 @@ function Users() {
                             </div>
                         </div>
                     }
+                </div>
+                <div class="user-footer">
+                    <div class="box-buttons">
+                        <button class="pre" onClick={() => prevPage()}>‹</button>
+                        <p><span>{pageNumber}</span> of 2</p>
+                        <button class="next" onClick={() => nextPage()}>›</button>
+                    </div>
                 </div>
             </div>
         </>
