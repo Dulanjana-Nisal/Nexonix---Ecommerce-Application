@@ -1,8 +1,27 @@
+import { useEffect, useState } from 'react';
 import './Orders.css';
+import api from '../../../services/auth';
 
 function Orders() {
 
-    
+    // orders states
+    const [orders,setOrders] = useState([])
+
+    // orders use effescts
+    useEffect(()=>{
+        const fetchOrderData = async()=>{
+            try{
+                const result = await api.get('/orders/all')
+                setOrders(result.data.data)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+        }
+        fetchOrderData();
+    }, [])
+
+    console.log(orders)
 
     return (
         <>

@@ -2,17 +2,16 @@ const Orders = require('../models/ordersModel');
 const asyncHaddler = require('../utils/asyncHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const statusCodes = require('http-status-codes');
+const UnauthorizedErrorHaddler = require('../errors/UnauthorizedErrorHaddler');
 
-//get all orders
-const getAllOrders = asyncHaddler(async (req, res) => {
+//get orders
+const getOrders = asyncHaddler(async (req, res) => {
     const { search, user, product } = req.query;
     let queryObject = {userId: req.user._id};
 
     //orders filter by users
-    if(req.user.role === 'admin'){
-        if (user) {
-            queryObject.userId = user;
-        }
+    if (req.user.role === 'admin' && user) {
+          queryObject.userId = user;
     }
     //orders filter by serach
     if (search) {
@@ -41,6 +40,46 @@ const getAllOrders = asyncHaddler(async (req, res) => {
         page: page,
     })
 })
+
+// get all orders
+const getAllOrders = asyncHaddler(async (req, res) => {
+    const { search, user, product } = req.query;
+    let queryObject = {};
+
+    //orders filter by users
+    if (req.user.role === 'admin') {
+        //orders filter by serach
+        if (search) {
+            queryObject.name = { $regex: search, $options: 'i' };
+        }
+        //oders filter by product
+        if(product){
+            queryObject.productId = product;
+        }
+    
+        //orders paging
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
+        const skip = (page - 1) * limit
+    
+        //get orders
+        const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
+    
+        //count all orders
+        const allOrdersCount = await Orders.find(queryObject);
+        res.status(statusCodes.OK).json({
+            success: true,
+            all_result: allOrdersCount.length,
+            page_result: allOrders.length,
+            data: allOrders,
+            page: page,
+        })
+    }
+    if (req.user.role !== 'admin'){
+        throw new UnauthorizedErrorHaddler('Not authorized!')
+    }
+})
+
 
 //create orders
 const createOrders = asyncHaddler(async (req, res) => {
@@ -77,6 +116,7 @@ const deleteOrders = asyncHaddler(async (req, res) => {
 })
 
 module.exports = {
+    getOrders,
     getAllOrders,
     createOrders,
     getSingleOrders,
