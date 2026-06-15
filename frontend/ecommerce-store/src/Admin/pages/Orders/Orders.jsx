@@ -1,607 +1,254 @@
-import './Orders.css'
-import { useEffect, useState } from "react"
-import api from "../../../services/auth"
-import axios from "axios"
-import { useSearchParams } from "react-router-dom"
+import './Orders.css';
 
-function Orders({ path }) {
+function Orders() {
 
-    //products data state
-    const [products, setProducts] = useState([])
-    const [productsForUpdate, setProductsForUpdate] = useState([])
-    const [productData, setProductData] = useState({ all_result: 0, page_result: 0 })
-    const [searchValue, setSearchValue] = useState('');
-    const [updateProductsToggle, setUpdateProductsToggle] = useState(false)
-    const [addProductsToggle, setAddProductsToggle] = useState(false)
-    const [selectProductId, setSelectProductId] = useState(null)
-
-    //state for re load useEffect
-    const [reloadEffect,setReloadEffect] = useState(false)
-
-    // add and update product states
-    const [productName, setProductName] = useState('')
-    const [image, setImage] = useState(null)
-    const [productStock, setProductStock] = useState(null)
-    const [productPrice, setProductPrice] = useState(null)
-    const [productRatings, setProductRatings] = useState(null)
-    const [productDescription, setProductDescription] = useState("")
-    const [keywords, setKeywords] = useState("")
-    const [productKeywords, setProductKeywords] = useState([])
-    const [productCategory, setProductCategory] = useState(null)
-    const [productBrand, setProductBrand] = useState('')
-    const [productAvailability, setProductAvailability] = useState("")
-
-    //base states
-    const [message, setMessage] = useState(false)
-    const [loading, setLoading] = useState(false)
-
-    //get query data from url
-    const [queryData, setQueryData] = useSearchParams();
-
-    //page number
-    const pageNumber = Number(queryData.get('page')) || 1
-
-    //availability
-    const availability = queryData.get('availability') || ''
-
-    //fetch product data
-    useEffect(() => {
-        const fetchAdminData = async () => {
-            setLoading(true)
-            const result = await api.get(`/products?page=${pageNumber}&availability=${availability}&search=${searchValue}`)
-            setProducts(result.data.data)
-            setProductData({
-                all_result: result.data.all_result,
-                page_result: Math.ceil(result.data.all_result / 10)
-            })
-            setLoading(false)
-        }
-        window.scrollTo(0, 0)
-        fetchAdminData()
-
-    }, [queryData, pageNumber, availability, path, searchValue, reloadEffect])
-
-    // add keywords
-    function addKeywords() {
-        if (productKeywords.find(items => items === keywords)) {
-            return
-        }
-        setProductKeywords((prev) => [...prev, keywords])
-    }
-
-    // delete keywords
-    function deleteKeywords(value) {
-        const filterKeyList = productKeywords.filter(items => items !== value)
-        setProductKeywords(filterKeyList)
-    }
-
-    //Add products in to database
-    const addProducts = async () => {
-        setLoading(true)
-        //genarate keyword list
-        let keyList = []
-        productKeywords.map((items) =>
-            keyList.push(items)
-        )
-
-        //setup image url
-        const formData = new FormData();
-        formData.append('file', image)
-        formData.append('upload_preset', 'whats88b')
-
-        try {
-            // upload image to cloud
-            const uploadImage = image ? await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData) : null
-
-            // add product
-            const result = await api.post('/products', {
-                name: productName,
-                image: uploadImage && uploadImage.data.secure_url,
-                stock: Number(productStock),
-                price: productPrice,
-                ratings: productRatings || 1,
-                description: productDescription,
-                keywords: keyList,
-                category: productCategory,
-                brand: productBrand,
-                availability: productAvailability 
-            })
-            if (result) {
-                setMessage({
-                    status: 'success',
-                    msg: 'Product Added!'
-                })
-                setTimeout(() => {
-                    setMessage(false)
-                    setAddProductsToggle(false)
-                    setReloadEffect( reloadEffect ? false : true )
-                }, 2000)
-            }
-            setLoading(false)
-        }
-        catch (err) {
-            setMessage({
-                status: 'error',
-                msg: err.response.data.message || 'Product Add Faild!'
-            })
-            setTimeout(() => {
-                setMessage(false)
-            }, 2000)
-            setLoading(false)
-        }
-    }
-
-    //update products in to database
-    const updateProducts = async () => {
-        setLoading(true)
-
-        //genarate keyword list
-        let keyList = []
-        productKeywords.map((items) =>
-            keyList.push(items)
-        )
-
-        //setup image url
-        const formData = new FormData();
-        formData.append('file', image)
-        formData.append('upload_preset', 'whats88b')
-
-        try {
-            // upload image to cloud
-            const uploadImage = image ? await axios.post('https://api.cloudinary.com/v1_1/dl5kmfcae/image/upload', formData) : null
-
-            const result = await api.patch(`/products/${selectProductId}`, {
-                name: productName || productsForUpdate.name,
-                image: image ? uploadImage.data.secure_url : productsForUpdate.image,
-                stock: productStock || productsForUpdate.stock,
-                price: productPrice || productsForUpdate.price,
-                ratings: productRatings || productsForUpdate.ratings,
-                description: productDescription || productsForUpdate.description,
-                keywords: keyList,
-                category: productCategory || productsForUpdate.category,
-                brand: productBrand || productsForUpdate.brand,
-                availability: productStock == 0 ? false : productAvailability,
-            })
-            if (result) {
-                setMessage({
-                    status: 'success',
-                    msg: 'Product Updated!'
-                })
-                setTimeout(() => {
-                    setMessage(false)
-                    setUpdateProductsToggle(false)
-                    setReloadEffect( reloadEffect ? false : true )
-                }, 1000)
-            }
-            setLoading(false)
-        }
-        catch (err) {
-            setMessage({
-                status: 'error',
-                msg: err.response || 'Product Update Faild!'
-            })
-            setTimeout(() => {
-                setMessage(false)
-            }, 2000)
-            setLoading(false)
-        }
-    }
-
-    //delete product in to database
-    const deleteProduct = async (itemId)=>{
-        try{
-            const result = await api.delete(`/products/${itemId}`)
-            console.log(result)
-            setSearchValue(" ")
-        }
-        catch(err){
-            console.log(err)
-        }
-    }
-
-    // add search values to use state if have more than 1 letter
-    function searchInputValues(event) {
-        const valueData = event.target.value
-        valueData.length > 1 && setSearchValue(valueData)
-        valueData.length < 1 && setSearchValue("")
-    }
-
-    //change availability
-    function changeAvailability(e) {
-        const newQuery = new URLSearchParams(queryData)
-        if (pageNumber !== 1) {
-            newQuery.set('page', 1)
-        }
-        newQuery.set('availability', e.target.value)
-        setQueryData(newQuery)
-    }
-
-    //prev page
-    function prevPage() {
-        const newQuery = new URLSearchParams(queryData)
-        if (pageNumber === 1) {
-            newQuery.set("page", 1)
-        }
-        newQuery.set("page", pageNumber - 1)
-        setQueryData(newQuery)
-    }
-
-    //next page
-    function nextPage() {
-        const newQuery = new URLSearchParams(queryData)
-        if (pageNumber === productData.page_result) {
-            newQuery.set("page", pageNumber)
-        }
-        newQuery.set("page", pageNumber + 1)
-        setQueryData(newQuery)
-    }
-
-    // Toggle Update Product Button
-    const updateProductsToggleButton = async (itemsId) => { 
-
-        try {
-            const result = await api.get(`/products/${itemsId}`)
-            setProductsForUpdate(result.data.data)
-            setProductKeywords(result.data.data.keywords || [])
-            setProductAvailability(result.data.data.availability)
-        }
-        catch (err) {
-            console.log(err)
-        }
-
-        setSelectProductId(itemsId)
-        updateProductsToggle ? setUpdateProductsToggle(false) : setUpdateProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
-    }
-
-    // Toggle Add Product Button
-    function addProductsToggleButton() {
-        addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
-    }
-
-    console.log(productStock)
+    
 
     return (
         <>
-            <div class="product-section">
-                <div class="product-header">
-                    <div class="header-filter">
-                        <p>Filter By</p>
-                        <select onChange={changeAvailability}>
-                            <option value="true" selected={availability === true}>Available Products</option>
-                            <option value="false" selected={availability === false}>Unavailabale Products</option>
-                        </select>
+            <div class="orders-container">
+                <div class="orders-container-header">
+                    <div class="header-top">
+                        <div class="status-box">
+                            <div class="box-thumb total">
+                                <svg class="total" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+                            </div>
+                            <div class="box-details">
+                                <p>Total Orders</p>
+                                <h1>30</h1>
+                            </div>
+                        </div>
+                        <div class="status-box">
+                            <div class="box-thumb pending">
+                                <svg class="pending" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div class="box-details">
+                                <p>Pending Orders</p>
+                                <h1>10</h1>
+                            </div>
+                        </div>
+                        <div class="status-box">
+                            <div class="box-thumb processing">
+                                <svg class="processing" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                            </div>
+                            <div class="box-details">
+                                <p>Processing Orders</p>
+                                <h1>50</h1>
+                            </div>
+                        </div>
+                        <div class="status-box">
+                            <div class="box-thumb completed">
+                                <svg class="completed" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <div class="box-details">
+                                <p>Completed Orders</p>
+                                <h1>72</h1>
+                            </div>
+                        </div>
+                        <div class="status-box">
+                            <div class="box-thumb cancelled">
+                                <svg class="cancelled" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            </div>
+                            <div class="box-details">
+                                <p>Cancelled Orders</p>
+                                <h1>23</h1>
+                            </div>
+                        </div>
                     </div>
-                    <div class="search">
-                        <input type="text" placeholder="Search Products" onChange={searchInputValues} />
-                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                    <div class="header-create-btn">
-                        <button onClick={addProductsToggleButton}><i class="fa-solid fa-plus"></i>
-                            <p>Add Product</p>
-                        </button>
+                    <div class="header-bottom">
+                        <div class="header-filter">
+                            <p>Filter By</p>
+                            <select>
+                                <option>---- Status ----</option>
+                                <option>Delivered</option>
+                                <option>Processing</option>
+                                <option>Shipped</option>
+                                <option>Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="search">
+                            <input type="text" placeholder="Search Orders"/>
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="product-body">
-                    <div class="product-list">
-                        <div class="product-box header">
-                            <div class="name row">
-                                <p>Product</p>
+                <div class="orders-container-body">
+                    <div class="order-list-container">
+                        <div class="list-header-row">
+                            <div class="order">
+                                <p>Order</p>
                             </div>
-                            <div class="qnt row">
+                            <div class="user">
+                                <p>User</p>
+                            </div>
+                            <div class="qunatity">
                                 <p>Qunatity</p>
                             </div>
-                            <div class="price row">
+                            <div class="price">
                                 <p>Price</p>
                             </div>
-                            <div class="availability row">
-                                <p>Availability</p>
+                            <div class="status">
+                                <p>Status</p>
                             </div>
-                            <div class="buttons row">
-
+                            <div class="actions">
+                                <p>Actions</p>
                             </div>
                         </div>
-                        {
-                            loading ? <h3>Loading...</h3> :
-                                products.map((items) => {
-                                    return (
-                                        <div class="product-box products" key={items._id}>
-                                            <div class="name row">
-                                                <div class="image"><img src={items.image} alt="" /></div>
-                                                <div class="details">
-                                                    <h4>{items.name}</h4>
-                                                    <p>ID: {items._id}</p>
-                                                </div>
-                                            </div>
-                                            <div class="qnt row">
-                                                <p>{items.stock} Products</p>
-                                            </div>
-                                            <div class="price row">
-                                                <p>${items.price}</p>
-                                            </div>
-                                            <div class="availability row">
-                                                <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                            </div>
-                                            <div class="buttons row">
-                                                <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                <button class="delete" onClick={() => deleteProduct(items._id)}><i class="fa-solid fa-trash-can"></i></button>
+                        <div class="list-body-row">
+                            <div class="row-card">
+                                <div class="order row">
+                                    <div class="order-thumb">
+                                        <img src="https://otc.lk/wp-content/uploads/2026/03/1-24-scaled.jpg" alt="product-image" />
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>Product Name here</h4>
+                                        <p>#OID: 123456</p>
+                                    </div>
+                                </div>
+                                <div class="user row">
+                                    <h4>Dulanjana Nisal</h4>
+                                    <p>dulanjana@gmail.com</p>
+                                </div>
+                                <div class="quantity row">
+                                    <h4>2</h4>
+                                </div>
+                                <div class="price row">
+                                    <h4>$121.99</h4>
+                                </div>
+                                <div class="status row">
+                                    <p class='processing'>Processing</p>
+                                </div>
+                                <div class="actions row">
+                                    <button title='View and Update' class='view'>
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    </button>
+                                    <button title='Delete' class='delete'>
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-details">
+                                <div class="order-details row">
+                                    <div class="details-header">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                                        <p>ORDER DETAILS</p>
+                                    </div>
+                                    <div class="details-body">
+                                        <div>
+                                            <h4>Order ID</h4>
+                                            <p>#OID: 123456</p>
+                                        </div>
+                                        <div>
+                                            <h4>Order ID</h4>
+                                            <p>#OID: 123456</p>
+                                        </div>
+                                        <div>
+                                            <h4>Product</h4>
+                                            <p>Product Name</p>
+                                        </div>
+                                        <div>
+                                            <h4>Quantity</h4>
+                                            <p>2</p>
+                                        </div>
+                                        <div>
+                                            <h4>Unit Price</h4>
+                                            <p>$20.99</p>
+                                        </div>
+                                        <div>
+                                            <h4>Status</h4>
+                                            <div class="status-box">
+                                                <p class='status deleverd'>Pending</p>
+                                                {/* <select>
+                                                    <option>Delivered</option>
+                                                    <option>Processing</option>
+                                                    <option>Shipped</option>
+                                                    <option>Cancelled</option>
+                                                </select> */}
+                                                <button title='Edit' class='edit'>
+                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                                </button>
                                             </div>
                                         </div>
-                                    )
-                                })
-                        }
+                                        <div>
+                                            <h4>Order Date</h4>
+                                            <p>2026.02.12</p>
+                                        </div>
+                                        <div>
+                                            <h4>Order Time</h4>
+                                            <p>10:30 AM</p>
+                                        </div>
+                                    </div>
+                                    <div class="details-footer">
+                                        <button class='update'>Update</button>
+                                        <button class='close'>Close</button>
+                                    </div>
+                                </div>
+                                <div class="product-details row">
+                                    <div class="details-header">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                        <p>PRODUCT IMAGE</p>
+                                    </div>
+                                    <div class="details-body">
+                                        <img src="https://otc.lk/wp-content/uploads/2026/03/1-24-scaled.jpg" alt="product-image" />
+                                    </div>
+                                </div>
+                                <div class="customer-details row">
+                                    <div class="details-header">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                        <p>CUSTOMER INFORMATION</p>
+                                    </div>
+                                    <div class="details-body">
+                                        <div>
+                                            <h4>Name</h4>
+                                            <p>Dulanjana</p>
+                                        </div>
+                                        <div>
+                                            <h4>Email</h4>
+                                            <p>#OID: 123456</p>
+                                        </div>
+                                        <div>
+                                            <h4>Phone</h4>
+                                            <p>Product Name</p>
+                                        </div>
+                                        <div>
+                                            <h4>Address</h4>
+                                            <p>2</p>
+                                        </div>
+                                        <div>
+                                            <h4>City</h4>
+                                            <p>$20.99</p>
+                                        </div>
+                                        <div>
+                                            <h4>Postal Code</h4>
+                                            <p>Pending</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-details row">
+                                    <div class="details-header">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                        <p>PAYMENT INFORMATION</p>
+                                    </div>
+                                    <div class="details-body">
+                                        <div>
+                                            <h4>Payment Method</h4>
+                                            <p>Dulanjana</p>
+                                        </div>
+                                        <div>
+                                            <h4>Payment Status</h4>
+                                            <p class='payment-status no-paid'>None Paid</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="responsive-list">
-                        {
-                            loading ? <h3>Loading...</h3> :
-                                products.map((items) => {
-                                    return (
-                                        <div class="product-box" key={items._id}>
-                                            <div class="left-side">
-                                                <img src={items.image} alt={items.name} />
-                                            </div>
-                                            <div class="right-side">
-                                                <div class="name row">
-                                                    <h4>Name</h4>
-                                                    <p>{items.name}</p>
-                                                </div>
-                                                <div class="qnt row">
-                                                    <h4>Quantity</h4>
-                                                    <p>{items.stock} Products</p>
-                                                </div>
-                                                <div class="price row">
-                                                    <h4>Price</h4>
-                                                    <p>${items.price}</p>
-                                                </div>
-                                                <div class="availability row">
-                                                    <h4>Availability</h4>
-                                                    <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                </div>
-                                                <div class="buttons">
-                                                    <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                        }
-                    </div>
-                    {
-                        addProductsToggle &&
-                        <div class="add-product-box">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h1>Add Product</h1>
-                                </div>
-                                <div class="box-form">
-                                    <div class="name row">
-                                        <label>Product Name</label>
-                                        <input type="text" onChange={(e) => setProductName(e.target.value)} />
-                                    </div>
-                                    <div class="image row">
-                                        <label>Product Image</label>
-                                        <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
-                                    </div>
-                                    <div class="counters">
-                                        <div class="price row">
-                                            <label>Product Price ($)</label><br />
-                                            <input type="number" onChange={(e) => setProductPrice(e.target.value)} />
-                                        </div>
-                                        <div class="quantity row">
-                                            <label>Quantity</label><br />
-                                            <input type="number" onChange={(e) => setProductStock(e.target.value)} />
-                                        </div>
-                                    </div>
-                                    <div class="ratings row">
-                                        <p>Ratings</p>
-                                        <div class="inputs">
-                                            <input type="radio" id="star-4" name="star" onClick={() => setProductRatings(5)} /><label for="star-4">★</label>
-                                            <input type="radio" id="star-3" name="star" onClick={() => setProductRatings(4)} /><label for="star-3">★</label>
-                                            <input type="radio" id="star-5" name="star" onClick={() => setProductRatings(3)} /><label for="star-5">★</label>
-                                            <input type="radio" id="star-2" name="star" onClick={() => setProductRatings(2)} /><label for="star-2">★</label>
-                                            <input type="radio" id="star-1" name="star" defaultChecked={true} onClick={() => setProductRatings(1)} /><label for="star-1" >★</label>
-                                        </div>
-                                    </div>
-                                    <div class="description row">
-                                        <label>Description</label>
-                                        <textarea placeholder="Add description" onChange={(e) => setProductDescription(e.target.value)}></textarea>
-                                    </div>
-                                    <div class="keywords row">
-                                        <div class="inputs" >
-                                            <label>Key words</label>
-                                            <select onClick={(e) => setKeywords((e.target.value).toLowerCase())}>
-                                                <option>Wireless</option>
-                                                <option>Gaming</option>
-                                                <option>Computer</option>
-                                                <option>Desktop</option>
-                                                <option>Laptop</option>
-                                                <option>Hardware</option>
-                                                <option> Mouse</option>
-                                                <option>Keyboard</option>
-                                                <option>RGB</option>
-                                                <option>External</option>
-                                                <option>Portable</option>
-                                                <option>Speed</option>
-                                                <option>Storage</option>
-                                                <option>Streaming</option>
-                                                <option>USB</option>
-                                            </select>
-                                            <button onClick={() => addKeywords()}>Add</button>
-                                        </div>
-                                        <div class="key-values">
-                                            {
-                                                productKeywords.map((items) => {
-                                                    return (
-                                                        <div class="values" key={items.id}>
-                                                            <p>{items.value}</p>
-                                                            <i class="fa fa-close" onClick={() => deleteKeywords(items.id)}></i>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div>
-                                    <div class="category row">
-                                        <label>Select Category</label>
-                                        <select onClick={(e) => setProductCategory((e.target.value).toLowerCase())}>
-                                            <option>Computers</option>
-                                            <option>Laptops</option>
-                                            <option>Components</option>
-                                            <option>Gamings</option>
-                                            <option>Softwares</option>
-                                        </select>
-                                    </div>
-                                    <div class="brand row">
-                                        <label>Product Brand</label>
-                                        <input type="text" onChange={(e) => setProductBrand(e.target.value)} />
-                                    </div>
-                                    <div class="availability row">
-                                        <label>Select Availability</label><br />
-                                        <div class="inputs">
-                                            <input type="radio" name="availability" id="true" defaultChecked={true} onClick={() => setProductAvailability(true)} /><label for="true" >Available</label>
-                                            <input type="radio" name="availability" id="false" /><label for="false" onClick={() => setProductAvailability(false)}>Unavaialable</label>
-                                        </div>
-                                    </div>
-                                    {
-                                        message &&
-                                        <div class={`msgs ${message.status === 'error' ? 'err' : 'succ'}`}>
-                                            <p class={message.status}>{message.msg}</p>
-                                        </div>
-                                    }
-                                    <div class="buttons row">
-                                        {
-                                            !loading ?
-                                                <input type="submit" value="Add Product" onClick={addProducts} />
-                                                :
-                                                <input type="submit" value="Loading..." />
-                                        }
-                                        <button class="close" onClick={addProductsToggleButton}>Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {
-                        updateProductsToggle &&
-                        <div class="update-product-box">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h1>Update Product</h1>
-                                </div>
-                                <div class="box-form">
-                                    <div class="name row">
-                                        <label>Product Name</label>
-                                        <input type="text" defaultValue={productsForUpdate.name} onChange={(e) => setProductName(e.target.value)} />
-                                    </div>
-                                    <div class="image row">
-                                        <label>Product Image</label>
-                                        <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
-                                    </div>
-                                    <div class="counters">
-                                        <div class="price row">
-                                            <label>Product Price ($)</label><br />
-                                            <input type="number" defaultValue={productsForUpdate.price} onChange={(e) => setProductPrice(e.target.value)} />
-                                        </div>
-                                        <div class="quantity row">
-                                            <label>Quantity</label><br />
-                                            <input type="number" defaultValue={productsForUpdate.stock} onChange={(e) => setProductStock(e.target.value)} />
-                                        </div>
-                                    </div>
-                                    <div class="ratings row">
-                                        <p>Ratings</p>
-                                        <div class="inputs">
-                                            <input type="radio" id="star-4" name="star" defaultChecked={productsForUpdate.ratings === 5} onClick={() => setProductRatings(5)} /><label for="star-4">★</label>
-                                            <input type="radio" id="star-3" name="star" defaultChecked={productsForUpdate.ratings === 4} onClick={() => setProductRatings(4)} /><label for="star-3">★</label>
-                                            <input type="radio" id="star-5" name="star" defaultChecked={productsForUpdate.ratings === 3} onClick={() => setProductRatings(3)} /><label for="star-5">★</label>
-                                            <input type="radio" id="star-2" name="star" defaultChecked={productsForUpdate.ratings === 2} onClick={() => setProductRatings(2)} /><label for="star-2">★</label>
-                                            <input type="radio" id="star-1" name="star" defaultChecked={productsForUpdate.ratings === 1} onClick={() => setProductRatings(1)} /><label for="star-1" >★</label>
-                                        </div>
-                                    </div>
-                                    <div class="description row">
-                                        <label>Description</label>
-                                        <textarea placeholder="Add description" defaultValue={productsForUpdate.description} onChange={(e) => setProductDescription(e.target.value)}></textarea>
-                                    </div>
-                                    <div class="keywords row">
-                                        <div class="inputs" >
-                                            <label>Key words</label>
-                                            <select onClick={(e) => setKeywords((e.target.value).toLowerCase())}>
-                                                <option>Wireless</option>
-                                                <option>Gaming</option>
-                                                <option>Computer</option>
-                                                <option>Desktop</option>
-                                                <option>Laptop</option>
-                                                <option>Hardware</option>
-                                                <option> Mouse</option>
-                                                <option>Keyboard</option>
-                                                <option>RGB</option>
-                                                <option>External</option>
-                                                <option>Portable</option>
-                                                <option>Speed</option>
-                                                <option>Storage</option>
-                                                <option>Streaming</option>
-                                                <option>USB</option>
-                                            </select>
-                                            <button onClick={() => addKeywords()}>Add</button>
-                                        </div>
-                                        <div class="key-values">
-                                            {
-                                                productKeywords.map((items) => {
-                                                    return (
-                                                        <div class="values" key={items}>
-                                                            <p>{items}</p>
-                                                            <i class="fa fa-close" onClick={() => deleteKeywords(items)}></i>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div>
-                                    <div class="category row">
-                                        <label>Select Category</label>
-                                        <select onClick={(e) => setProductCategory((e.target.value).toLowerCase())}>
-                                            <option>Computers</option>
-                                            <option>Laptops</option>
-                                            <option>Components</option>
-                                            <option>Gamings</option>
-                                            <option>Softwares</option>
-                                        </select>
-                                    </div>
-                                    <div class="brand row">
-                                        <label>Product Brand</label>
-                                        <input type="text" defaultValue={productsForUpdate.brand} onChange={(e) => setProductBrand(e.target.value)} />
-                                    </div>
-                                    <div class="availability row">
-                                        <label>Select Availability</label><br />
-                                        <div class="inputs">
-                                            <input type="radio" name="availability" id="true" defaultChecked={productsForUpdate.availability} onClick={() => setProductAvailability(true)} /><label for="true" >Available</label>
-                                            <input type="radio" name="availability" id="false" defaultChecked={productsForUpdate.availability === false} /><label for="false" onClick={() => setProductAvailability(false)}>Unavaialable</label>
-                                        </div>
-                                    </div>
-                                    {
-                                        message &&
-                                        <div class={`msgs ${message.status === 'error' ? 'err' : 'succ'}`}>
-                                            <p class={message.status}>{message.msg}</p>
-                                        </div>
-                                    }
-                                    <div class="buttons row">
-                                        {
-                                            !loading ?
-                                                <input type="submit" value="Update Product" onClick={updateProducts} />
-                                                :
-                                                <input type="submit" value="Loading..." />
-                                        }
-                                        <button class="close" onClick={updateProductsToggleButton}>Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
                 </div>
-                <div class="product-footer">
+                <div class="orders-container-footer">
                     <div class="box-buttons">
-                        <button class="pre" onClick={() => prevPage()}>‹</button>
-                        <p><span>{pageNumber}</span> of {productData.page_result}</p>
-                        <button class="next" onClick={() => nextPage()}>›</button>
+                        <button class="pre">‹</button>
+                        <p><span>1</span> of 10 </p>
+                        <button class="next">›</button>
                     </div>
                 </div>
             </div>
