@@ -6,12 +6,7 @@ const OrdersSchema = mongoose.Schema({
         required: [true, 'User id is required!'],
         ref: 'users'
     },
-    firstName: {
-        type: String,
-        required: [true, 'Name is required!'],
-        minLength: [3, 'Name must be more than 3 letters']
-    },
-    lastName: {
+    name: {
         type: String,
         required: [true, 'Name is required!'],
         minLength: [3, 'Name must be more than 3 letters']
@@ -20,6 +15,11 @@ const OrdersSchema = mongoose.Schema({
         type: String,
         required: [true, 'Address is required!'],
         minLength: [5, 'Address must be more than 5 letters']
+    },
+    city: {
+        type: String,
+        required: [true, 'City name is required!'],
+        minLength: [3, 'Address must be more than 3 letters']
     },
     zipCode: {
         type: String,
@@ -30,6 +30,13 @@ const OrdersSchema = mongoose.Schema({
         type: String,
         required: [true, 'Phone number is required!'],
         minLength: [5, 'Phone number must be more than 5 letters']
+    },
+    email: {
+        type: String,
+        required: [true, 'Email is required'],
+        lowercase: true,
+        trim: true,
+        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please use a valid email address!'],
     },
     method: {
         type: String,

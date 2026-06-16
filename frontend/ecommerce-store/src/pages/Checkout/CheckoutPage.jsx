@@ -24,8 +24,10 @@ function CheckoutPage() {
         firstName: '',
         lastName: '',
         address: '',
+        city: '',
         zipCode: '',
         phoneNumber: '',
+        email: '',
         method: 'cash-on-delivery'
     })
 
@@ -100,11 +102,12 @@ function CheckoutPage() {
             for (const items of state) {
                 await api.post('/orders', {
                     userId: user._id,
-                    firstName: orderData.firstName,
-                    lastName:   orderData.lastName,
+                    name: `${orderData.firstName} ${orderData.lastName}`,
                     address: orderData.address,
+                    city: orderData.city,
                     zipCode: orderData.zipCode,
                     phoneNumber: orderData.phoneNumber,
+                    email: orderData.email,
                     method: orderData.method,
                     productId: items.productId,
                     productName: items.name,
@@ -162,7 +165,7 @@ function CheckoutPage() {
                                 </div>
                                 <div class="city box">
                                     <label>City Name</label>
-                                    <input type="text" />
+                                    <input type="text" onChange={(e) => setOrderData({...orderData, city: e.target.value})}/>
                                 </div>
                                 <div class="zipcode box">
                                     <label>Zip Code</label>
@@ -171,6 +174,10 @@ function CheckoutPage() {
                                 <div class="phone box">
                                     <label>Phone Number</label>
                                     <input type="number" onChange={(e) => setOrderData({...orderData, phoneNumber: e.target.value})}/>
+                                </div>
+                                <div class="email box">
+                                    <label>Email Address</label>
+                                    <input type="email" onChange={(e) => setOrderData({...orderData, email: e.target.value})}/>
                                 </div>
                             </form>
                         </div>

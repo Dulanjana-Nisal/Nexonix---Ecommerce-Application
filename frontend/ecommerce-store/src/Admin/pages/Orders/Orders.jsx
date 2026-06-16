@@ -1,17 +1,27 @@
 import { useEffect, useState } from 'react';
 import './Orders.css';
 import api from '../../../services/auth';
+import { useSearchParams } from 'react-router-dom';
 
 function Orders() {
 
     // orders states
     const [orders,setOrders] = useState([])
+    const [searchValue,setSearchValue] =useState()
+
+    // get query data from url
+    const [queryData,setQueryData] = useSearchParams()
+
+    // get search value form query data
+    const searchQuery = queryData.get('searchByProduct') || ""
+    // const searchQuery = queryData.get('searchByProduct') || ""
+    // const searchQuery = queryData.get('searchByProduct') || ""
 
     // orders use effescts
-    useEffect(()=>{
+    useEffect(()=>{ 
         const fetchOrderData = async()=>{
             try{
-                const result = await api.get('/orders/all')
+                const result = await api.get(`/orders/all?`)
                 setOrders(result.data.data)
             }
             catch(err){
@@ -127,8 +137,8 @@ function Orders() {
                                                 </div>
                                             </div>
                                             <div class="user row">
-                                                <h4>{items.firstName} {items.lastName}</h4>
-                                                <p>{items.email || "dulanjana@gmail.com"}</p>
+                                                <h4>{items.name}</h4>
+                                                <p>{items.email || "Not found!"}</p>
                                             </div>
                                             <div class="quantity row">
                                                 <h4>{items.quantity}</h4>
@@ -220,7 +230,11 @@ function Orders() {
                                                 <div class="details-body">
                                                     <div>
                                                         <h4>Name</h4>
-                                                        <p>{items.firstName} {items.lastName}</p>
+                                                        <p>{items.name}</p>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Custommer Id</h4>
+                                                        <p>{items.userId}</p>
                                                     </div>
                                                     <div>
                                                         <h4>Email</h4>

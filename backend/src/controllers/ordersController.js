@@ -6,16 +6,20 @@ const UnauthorizedErrorHaddler = require('../errors/UnauthorizedErrorHaddler');
 
 //get orders
 const getOrders = asyncHaddler(async (req, res) => {
-    const { search, user, product } = req.query;
+    const { searchByUser, searchByProduct, user, product } = req.query;
     let queryObject = {userId: req.user._id};
 
     //orders filter by users
     if (req.user.role === 'admin' && user) {
           queryObject.userId = user;
     }
-    //orders filter by serach
-    if (search) {
-        queryObject.name = { $regex: search, $options: 'i' };
+    //orders filter seach by user
+    if (searchByUser) {
+        queryObject.name = { $regex: searchByUser, $options: 'i' };
+    }
+    //orders filter search by product
+    if (searchByProduct) {
+        queryObject.productName = { $regex: searchByProduct, $options: 'i' };
     }
     //oders filter by product
     if(product){
@@ -43,14 +47,23 @@ const getOrders = asyncHaddler(async (req, res) => {
 
 // get all orders
 const getAllOrders = asyncHaddler(async (req, res) => {
-    const { search, user, product } = req.query;
+    const { searchByUser, searchByProduct, serchByUserId, user, product } = req.query;
     let queryObject = {};
 
     //orders filter by users
     if (req.user.role === 'admin') {
-        //orders filter by serach
-        if (search) {
-            queryObject.name = { $regex: search, $options: 'i' };
+        
+        //orders filter seach by user
+        if (searchByUser) {
+            queryObject.name = { $regex: searchByUser, $options: 'i' };
+        }
+        //orders filter search by product
+        if (searchByProduct) {
+            queryObject.productName = { $regex: searchByProduct, $options: 'i' };
+        }
+        //orders filter search by product
+        if (serchByUserId) {
+            queryObject.userId = { $regex: serchByUserId, $options: 'i' };
         }
         //oders filter by product
         if(product){
