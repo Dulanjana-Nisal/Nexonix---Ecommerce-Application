@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    width: auto;
+    width: 100%;
     padding: 15px;
     background-color: #fff;
     column-gap: 15px;
@@ -75,171 +75,180 @@
 .orders-container .orders-container-header .header-bottom{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
+    column-gap: 30px;
     margin: 30px 0;
+    background-color: #fff;
+    padding: 20px 20px 25px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.orders-container .orders-container-header .header-bottom .header-filter{
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
+.orders-container .orders-container-header .header-bottom div{
+    width: 100%;
 }
-.orders-container .orders-container-header .header-bottom .header-filter p{
-    width: 70px;
-    font-size: 16px;
+.orders-container .orders-container-header .header-bottom div p{
+    font-size: 14px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
-.orders-container .orders-container-header .header-bottom .header-filter select{
-    padding: 5px 10px 5px 5px;
+.orders-container .orders-container-header .header-bottom div input{
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #6b728039;
     outline: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+.orders-container .orders-container-header .header-bottom div input:focus + .placeholder{
+    display: none;
+}
+.orders-container .orders-container-header .header-bottom div select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #6b728042;
     font-size: 14px;
     font-weight: 500;
-    cursor: pointer;
-    color: rgb(109, 107, 107);
-    border-radius: 8px;
-    border: 1px solid rgba(109, 107, 107, 0.36);
+    color: #6b7280;
 }
-.orders-container .orders-container-header .header-bottom .search{
+.orders-container .orders-container-header .header-bottom .buttons{
+    width: auto;
+}
+.orders-container .orders-container-header .header-bottom .buttons button{
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.orders-container .orders-container-header .header-bottom .search input{
-    padding: 10px;
-    width: 100%;
-    border-radius: 30px 0 0 30px;
-    border: 2px solid #d8dbdccd;
-    border-right: none;
-    outline: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding-left: 20px;
-}
-.orders-container .orders-container-header .header-bottom .search button{
-    width: 50px;
-    padding: 10px;
-    border-radius: 0 30px 30px 0;
+    column-gap: 10px;
+    padding: 10px 15px;
     border: 1px solid #2B38D1;
+    border-radius: 10px;
     background-color: #2B38D1;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
-    transition: 0.25s;
 }
-.orders-container .orders-container-header .header-bottom .search button:hover{
-    background-color: #fff;
-    color: #2B38D1;
+.orders-container .orders-container-header .header-bottom .buttons button:hover{
+    opacity: 0.75;
     cursor: pointer;
 }
+.orders-container .orders-container-header .header-bottom .find{
+    position: relative;
+}
+.orders-container .orders-container-header .header-bottom .search{
+    position: relative;
+}
+.orders-container .orders-container-header .header-bottom .placeholder{
+    display: flex;
+    column-gap: 8px;
+    justify-content: start;
+    color: #6b728076;
+    position: absolute;
+    top: 58%;
+    left: 5%;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.orders-container .orders-container-header .header-bottom .placeholder svg{
+    width: 18px;
+    height: 20px;
+}
+
 
 .orders-container .orders-container-body{
-    background-color: #fff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
 }
-.orders-container .orders-container-body .list-header-row{
-    display: flex;
-    align-items: center;
-    padding: 25px 0;
+.orders-container .orders-container-body .order-list-container{
+    width: 100%;
 }
-.orders-container .orders-container-body .list-header-row div{
-    width: 150px;
-    text-align: center;
-    padding: 0 15px;
+.orders-container .orders-container-body table{
+    width: 100%;
+    border-collapse: collapse
 }
-.orders-container .orders-container-body .list-header-row .order{
-    width: 280px;
-    text-align: center;
-}
-.orders-container .orders-container-body .list-header-row p{
+.orders-container .orders-container-body table thead tr{
+    height: 60px;
     font-size: 14px;
-    font-weight: 600;
     color: #6b7280;
+    background-color: #F1F5F6;
 }
-.orders-container .orders-container-body .list-body-row .row-card{
-    padding: 25px 0;
+.orders-container .orders-container-body table tbody{
+    background-color: #fff;
+}
+.orders-container .orders-container-body table tbody .list-card td{
+    padding: 15px;
+    border-top: 1px solid #6b72802c;
+}
+.orders-container .orders-container-body table tbody .list-card .order{
     display: flex;
+    align-items: center;
     column-gap: 15px;
-    align-items: center;
-    text-align: left;
-    border-top: 1px solid #6b728041;
+    padding: 15px 20px;
 }
-.orders-container .orders-container-body .list-body-row .row-card .row{
-    width: 150px;
+.orders-container .orders-container-body table tbody .list-card .quantity,
+.orders-container .orders-container-body table tbody .list-card .price,
+.orders-container .orders-container-body table tbody .list-card .status,
+.orders-container .orders-container-body table tbody .list-card .actions{
+    text-align: center;
 }
-.orders-container .orders-container-body .list-body-row .row-card .order{
-    display: flex;
-    width: 280px;
-    align-items: center;
-    justify-content: center;
-    column-gap: 10px;
-    padding-left: 15px;
-}
-.orders-container .orders-container-body .list-body-row .row-card .order .order-thumb img{
-    width: 50px;
-    height: 50px;
+.orders-container .orders-container-body .order .order-thumb img{
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     background-position: center;
 }
-.orders-container .orders-container-body .list-body-row .row-card .order .order-details{
-    text-align: left;
-}
-.orders-container .orders-container-body .list-body-row .row-card .order .order-details h4{
+.orders-container .orders-container-body .order .order-details h4{
     font-size: 15px;
     font-weight: 700;
 }
-.orders-container .orders-container-body .list-body-row .row-card .order .order-details p{
+.orders-container .orders-container-body .order .order-details p{
     font-size: 12px;
     margin-top: 5px;
     color: #6b7280;
 }
-.orders-container .orders-container-body .list-body-row .row-card .user h4{
+.orders-container .orders-container-body .user h4{
     font-size: 15px;
     font-weight: 600;
 }
-.orders-container .orders-container-body .list-body-row .row-card .user p{
+.orders-container .orders-container-body .user p{
     font-size: 12px;
     font-weight: 500;
     color: #6b7280;
     margin-top: 5px;
 }
-.orders-container .orders-container-body .list-body-row .row-card .quantity{
-    text-align: center;
-}
-.orders-container .orders-container-body .list-body-row .row-card .quantity h4,
-.orders-container .orders-container-body .list-body-row .row-card .price h4{
+.orders-container .orders-container-body .quantity h4,
+.orders-container .orders-container-body .price h4{
     font-weight: 600;
     font-size: 15px;
 }
-.orders-container .orders-container-body .list-body-row .row-card .status p{
+.orders-container .orders-container-body .status p{
     padding: 6px 10px;
     width: fit-content;
+    margin: auto;
     font-size: 14px;
     border-radius: 30px;
     font-weight: 600;
 }
-.orders-container .orders-container-body .list-body-row .row-card .status .processing{
+.orders-container .orders-container-body .status .processing{
     background-color: #8b5cf634;
     color: #8b5cf6;
 }
-.orders-container .orders-container-body .list-body-row .row-card .status .deleverd{
+.orders-container .orders-container-body .status .deleverd{
     background-color: #008a0026;
     color: #008A00;
 }
-.orders-container .orders-container-body .list-body-row .row-card .status .shipped{
+.orders-container .orders-container-body .status .shipped{
     background-color: #ffb70034;
     color: #ffb700;
 }
-.orders-container .orders-container-body .list-body-row .row-card .status .cancelled{
+.orders-container .orders-container-body .status .cancelled{
     background-color: #DD384234;
     color: #DD3842;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions{
-    display: flex;
-    align-items: center;
-    text-align: left;
-    column-gap: 10px;
-}
-.orders-container .orders-container-body .list-body-row .row-card .actions button{
+.orders-container .orders-container-body .actions button{
     width: 30px;
     height: 30px;
     padding: 5px;
@@ -248,122 +257,122 @@
     border: 1px solid #6b728054;
     font-weight: 600;
     transition: 0.25s;
+    margin-right: 10px;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions button:hover{
+.orders-container .orders-container-body .actions button:hover{
     cursor: pointer;
     opacity: 0.8;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .view{
+.orders-container .orders-container-body .actions .view{
     color: #2B38D1;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .view:hover{
+.orders-container .orders-container-body .actions .view:hover{
     background-color: #2B38D1;
     color: #Fff;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .edit{
+.orders-container .orders-container-body .actions .edit{
     color: #ffb700;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .edit:hover{
+.orders-container .orders-container-body .actions .edit:hover{
     background-color: #ffb700;
     color: #fff;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .delete{
+.orders-container .orders-container-body .actions .delete{
     color: #DD3842;
 }
-.orders-container .orders-container-body .list-body-row .row-card .actions .delete:hover{
+.orders-container .orders-container-body .actions .delete:hover{
     background-color: #DD3842;
     color: #fff;
 }
-.orders-container .orders-container-body .list-body-row .card-details{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    border-radius: 0 0 10px 10px;
-    margin-bottom: 30px;
+
+/* All detail row styles */
+.orders-container .orders-container-body table tbody tr td .card-details{
+    display: grid;  
+    grid-template-columns: 1fr 1fr;
     background-color: #F1F5F6;
     border-top: 2px solid #2b39d186;
 }
-.orders-container .orders-container-body .list-body-row .card-details .row{
+.orders-container .orders-container-body .card-details .row{
     padding: 20px 30px;
-    flex: 1 1 0;
     border-right: 1px solid #6b728041;
     border-bottom: 1px solid #6b728041;
 }
-.orders-container .orders-container-body .list-body-row .card-details .payment-details{
+.orders-container .orders-container-body .card-details .payment-details{
     border-right: none;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-header{
+.orders-container .orders-container-body .card-details .details-header{
     display: flex;
     align-items: center;
     justify-content: left;
     column-gap: 10px;
     margin-bottom: 15px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-header svg{
+.orders-container .orders-container-body .card-details .details-header svg{
     width: 14px;
     color: #6b7280;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-header p{
+.orders-container .orders-container-body .card-details .details-header p{
     font-size: 13px;
     font-weight: 700;
     color: #6b7280;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-body div{
+.orders-container .orders-container-body .card-details .details-body div{
     display: flex;
     column-gap: 15px;
     align-items: center;
     margin: 8px 0;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-body div h4{
+.orders-container .orders-container-body .card-details .details-body div h4{
     width: 120px;
     font-size: 14px;
     color: #6b728099;
     font-weight: 600;
 }
-.orders-container .orders-container-body .list-body-row .card-details .details-body div p{
+.orders-container .orders-container-body .card-details .details-body div p{
     font-size: 14px;
     font-weight: 600;
 }
-.orders-container .orders-container-body .list-body-row .card-details .product-details .details-body img{
+.orders-container .orders-container-body .card-details .product-details .details-body img{
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: contain;
     background-position: center;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status{
+.orders-container .orders-container-body .card-details .order-details .details-body .status{
     padding: 3px 8px;
     border-radius: 30px;
     font-size: 12px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .processing{
+.orders-container .orders-container-body .card-details .order-details .details-body .processing{
     background-color: #8b5cf634;
     color: #8b5cf6;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .deleverd{
+.orders-container .orders-container-body .card-details .order-details .details-body .deleverd{
     background-color: #008a0026;
     color: #008A00;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .shipped{
+.orders-container .orders-container-body .card-details .order-details .details-body .shipped{
     background-color: #ffb70034;
     color: #ffb700;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .cancelled{
+.orders-container .orders-container-body .card-details .order-details .details-body .cancelled{
     background-color: #DD384234;
     color: #DD3842;
 }
-.orders-container .orders-container-body .list-body-row .card-details .payment-details .details-body .payment-status{
+.orders-container .orders-container-body .card-details .payment-details .details-body .payment-status{
     padding: 3px 8px;
     border-radius: 30px;
     font-size: 12px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .payment-details .details-body .paid{
+.orders-container .orders-container-body .card-details .payment-details .details-body .paid{
     color: #008A00;
     background-color: #008a0026;
 }
-.orders-container .orders-container-body .list-body-row .card-details .payment-details .details-body .no-paid{
+.orders-container .orders-container-body .card-details .payment-details .details-body .no-paid{
     background-color: #DD384234;
     color: #DD3842;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box button{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box button{
     width: 20px;
     height: 20px;
     border-radius: 5px;
@@ -375,26 +384,26 @@
     align-items: center;
     justify-content: center;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box svg{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box svg{
     width: 15px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box button:hover{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box button:hover{
     cursor: pointer;
     border: 1px solid #ffb700;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box .edit{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box .edit{
     color: #ffb700;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box .edit:hover{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box .edit:hover{
     background-color: #ffb700;
     color: #fff;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-footer{
+.orders-container .orders-container-body .card-details .order-details .details-footer{
     display: flex;
     align-items: center;
     margin-top: 15px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-footer button{
+.orders-container .orders-container-body .card-details .order-details .details-footer button{
     width: fit-content;
     padding: 6px 12px;
     font-size: 12px;
@@ -404,17 +413,17 @@
     color: #fff;
     margin-right: 20px;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-footer button:hover{
+.orders-container .orders-container-body .card-details .order-details .details-footer button:hover{
     opacity: 0.7;
     cursor: pointer;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-footer .update{
+.orders-container .orders-container-body .card-details .order-details .details-footer .update{
     background-color: #2B38D1;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-footer .close{
+.orders-container .orders-container-body .card-details .order-details .details-footer .close{
     background-color: #DD3842;
 }
-.orders-container .orders-container-body .list-body-row .card-details .order-details .details-body .status-box select{
+.orders-container .orders-container-body .card-details .order-details .details-body .status-box select{
     border-radius: 10px;
     padding: 3px 6px;
     outline: none;

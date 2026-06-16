@@ -2,35 +2,55 @@ import { useEffect, useState } from 'react';
 import './Orders.css';
 import api from '../../../services/auth';
 import { useSearchParams } from 'react-router-dom';
+import { Message } from '../../../context/MessagesContext';
 
 function Orders() {
 
+    //load context
+    const { setupMessage } = Message()
+
     // orders states
-    const [orders,setOrders] = useState([])
-    const [searchValue,setSearchValue] =useState()
+    const [orders, setOrders] = useState([])
+    const [userSearchValue, setUserSearchValue] = useState("")
+    const [productSearchValue, setProductSearchValue] = useState("")
 
     // get query data from url
-    const [queryData,setQueryData] = useSearchParams()
+    const [queryData, setQueryData] = useSearchParams()
 
     // get search value form query data
-    const searchQuery = queryData.get('searchByProduct') || ""
-    // const searchQuery = queryData.get('searchByProduct') || ""
-    // const searchQuery = queryData.get('searchByProduct') || ""
+    const searchQueryByProduct = queryData.get('searchByProduct') || ""
+    const searchQueryByUserId = queryData.get('serchByUserId') || ""
 
     // orders use effescts
-    useEffect(()=>{ 
-        const fetchOrderData = async()=>{
-            try{
-                const result = await api.get(`/orders/all?`)
+    useEffect(() => {
+        const fetchOrderData = async () => {
+            try {
+                const result = await api.get(`/orders/all?searchByProduct=${searchQueryByProduct}&serchByUserId=${searchQueryByUserId}`)
                 setOrders(result.data.data)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
         }
         fetchOrderData();
-    }, [])
+    }, [searchQueryByProduct, searchQueryByUserId, queryData])
 
+    // search orders
+    const searchOrders = () => {
+        const newquery = new URLSearchParams(queryData);
+        if (userSearchValue.length > 1) {
+            newquery.set('serchByUserId', userSearchValue)
+        }
+        else if (productSearchValue.length > 1) {
+            newquery.set('searchByProduct', productSearchValue)
+        }
+        else {
+            setupMessage('error', 'Please Enter more than 1 value to search...')
+            setQueryData()
+            return
+        }
+        setQueryData(newquery)
+    }
     return (
         <>
             <div class="orders-container">
@@ -86,199 +106,228 @@ function Orders() {
                         <div class="header-filter">
                             <p>Filter By</p>
                             <select>
-                                <option>---- Status ----</option>
+                                <option>Select Status</option>
                                 <option>Delivered</option>
                                 <option>Processing</option>
                                 <option>Shipped</option>
                                 <option>Cancelled</option>
                             </select>
                         </div>
+                        <div class="find">
+                            <p>Search by User ID</p>
+                            <input type="text" onChange={(e) => setUserSearchValue(e.target.value)} />
+                            {
+                                userSearchValue === "" &&
+                                <div class="placeholder">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <p>Enter User ID</p>
+                                </div>
+                            }
+                        </div>
                         <div class="search">
-                            <input type="text" placeholder="Search Orders"/>
-                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <p>Search by Product Name</p>
+                            <input type="text" onChange={(e) => setProductSearchValue(e.target.value)} />
+                            {
+                                productSearchValue === "" &&
+                                <div class="placeholder">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 7v10l10 5V12" />
+                                        <path d="M22 7v10l-10 5V12" />
+                                        <path d="M7 4.5l10 5" />
+                                    </svg>
+                                    <p>Enter Product Name</p>
+                                </div>
+                            }
+                        </div>
+                        <div class="buttons">
+                            <button onClick={() => searchOrders()}><i class="fa-solid fa-magnifying-glass"></i>Search</button>
                         </div>
                     </div>
                 </div>
                 <div class="orders-container-body">
                     <div class="order-list-container">
-                        <div class="list-header-row">
-                            <div class="order">
-                                <p>Order</p>
-                            </div>
-                            <div class="user">
-                                <p>User</p>
-                            </div>
-                            <div class="qunatity">
-                                <p>Qunatity</p>
-                            </div>
-                            <div class="price">
-                                <p>Price</p>
-                            </div>
-                            <div class="status">
-                                <p>Status</p>
-                            </div>
-                            <div class="actions">
-                                <p>Actions</p>
-                            </div>
-                        </div>
-                        {
-                            orders.length > 0 &&
-                            orders.map((items)=>{
-                                return(
-                                    <div class="list-body-row" key={items._id}>
-                                        <div class="row-card">
-                                            <div class="order row">
-                                                <div class="order-thumb">
-                                                    <img src={items.image} alt={items.productName} />
-                                                </div>
-                                                <div class="order-details">
-                                                    <h4>{items.productName}</h4>
-                                                    <p>OID: {items._id}</p>
-                                                </div>
-                                            </div>
-                                            <div class="user row">
-                                                <h4>{items.name}</h4>
-                                                <p>{items.email || "Not found!"}</p>
-                                            </div>
-                                            <div class="quantity row">
-                                                <h4>{items.quantity}</h4>
-                                            </div>
-                                            <div class="price row">
-                                                <h4>${items.price}</h4>
-                                            </div>
-                                            <div class="status row">
-                                                <p class={(items.status).toLowerCase()}>{items.status}</p>
-                                            </div>
-                                            <div class="actions row">
-                                                <button title='View and Update' class='view'>
-                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                                </button>
-                                                {
-                                                    items.status === 'Cancelled' &&
-                                                    <button title='Delete' class='delete'>
-                                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                    </button>
-                                                }
-                                            </div>
-                                        </div>
-                                        <div class="card-details" style={{display: "none"}}>
-                                            <div class="order-details row">
-                                                <div class="details-header">
-                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                                                    <p>ORDER DETAILS</p>
-                                                </div>
-                                                <div class="details-body">
-                                                    <div>
-                                                        <h4>Order ID</h4>
-                                                        <p>{items._id}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Product</h4>
-                                                        <p>{items.productName}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Quantity</h4>
-                                                        <p>{items.quantity}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Unit Price</h4>
-                                                        <p>${items.price}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Status</h4>
-                                                        <div class="status-box">
-                                                            <p class={`status ${(items.status).toLowerCase()}`}>{items.status}</p>
-                                                            {/* <select>
-                                                                <option>Delivered</option>
-                                                                <option>Processing</option>
-                                                                <option>Shipped</option>
-                                                                <option>Cancelled</option>
-                                                            </select> */}
-                                                            <button title='Edit' class='edit'>
-                                                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                            </button>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="order">Order</th>
+                                    <th class="user">User</th>
+                                    <th class="qunatity">Qunatity</th>
+                                    <th class="price">Price</th>
+                                    <th class="status">Status</th>
+                                    <th class="actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    orders.length > 0 &&
+                                    orders.map((items) => {
+                                        return (
+                                            <>
+                                                {/* Basic info row */}
+                                                <tr class='list-card'>
+                                                    <td class="order row">
+                                                        <div class="order-thumb">
+                                                            <img src={items.image} alt={items.productName} />
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Order Date</h4>
-                                                        <p>{(items.createdAt).split("T")[0]}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Order Time</h4>
-                                                        <p>{new Date(items.createdAt).toLocaleTimeString()}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="details-footer">
-                                                    <button class='update'>Update</button>
-                                                    <button class='close'>Close</button>
-                                                </div>
-                                            </div>
-                                            <div class="product-details row">
-                                                <div class="details-header">
-                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                                                    <p>PRODUCT IMAGE</p>
-                                                </div>
-                                                <div class="details-body">
-                                                    <img src={items.image} alt={items.productName}/>
-                                                </div>
-                                            </div>
-                                            <div class="customer-details row">
-                                                <div class="details-header">
-                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                                    <p>CUSTOMER INFORMATION</p>
-                                                </div>
-                                                <div class="details-body">
-                                                    <div>
-                                                        <h4>Name</h4>
-                                                        <p>{items.name}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Custommer Id</h4>
-                                                        <p>{items.userId}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Email</h4>
-                                                        <p>{items.email || 'Email is Not Found!'}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Phone</h4>
-                                                        <p>{items.phoneNumber}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Address</h4>
-                                                        <p>{items.address}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>City</h4>
-                                                        <p>{items.address || 'Not found!'}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Postal Code</h4>
-                                                        <p>{items.zipCode}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="payment-details row">
-                                                <div class="details-header">
-                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                                    <p>PAYMENT INFORMATION</p>
-                                                </div>
-                                                <div class="details-body">
-                                                    <div>
-                                                        <h4>Payment Method</h4>
-                                                        <p>{items.method}</p>
-                                                    </div>
-                                                    <div>
-                                                        <h4>Payment Status</h4>
-                                                        <p class={items.method === 'cash-on-delivery' ? "payment-status no-paid" : "payment-status paid" }>{items.method === 'cash-on-delivery'? 'None Paid' : 'Paid'}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
+                                                        <div class="order-details">
+                                                            <h4>{items.productName}</h4>
+                                                            <p>OID: {items._id}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="user row">
+                                                        <h4>{items.name}</h4>
+                                                        <p>{items.email || "Not found!"}</p>
+                                                    </td>
+                                                    <td class="quantity row">
+                                                        <h4>{items.quantity}</h4>
+                                                    </td>
+                                                    <td class="price row">
+                                                        <h4>${items.price}</h4>
+                                                    </td>
+                                                    <td class="status row">
+                                                        <p class={(items.status).toLowerCase()}>{items.status}</p>
+                                                    </td>
+                                                    <td class="actions row">
+                                                        <button title='View and Update' class='view'>
+                                                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                        </button>
+                                                        {
+                                                            items.status === 'Cancelled' &&
+                                                            <button title='Delete' class='delete'>
+                                                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                            </button>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+                                                {/* All detail row */}
+                                                <tr class='card-details' style={{ display: 'none' }}>
+                                                    <td colSpan={7}>
+                                                        <div class='card-details'>
+                                                            <div class="order-details row">
+                                                                <div class="details-header">
+                                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                                                                    <p>ORDER DETAILS</p>
+                                                                </div>
+                                                                <div class="details-body">
+                                                                    <div>
+                                                                        <h4>Order ID</h4>
+                                                                        <p>{items._id}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Product</h4>
+                                                                        <p>{items.productName}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Quantity</h4>
+                                                                        <p>{items.quantity}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Unit Price</h4>
+                                                                        <p>${items.price}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Status</h4>
+                                                                        <div class="status-box">
+                                                                            <p class={`status ${(items.status).toLowerCase()}`}>{items.status}</p>
+                                                                            {/* <select>
+                                                                        <option>Delivered</option>
+                                                                        <option>Processing</option>
+                                                                        <option>Shipped</option>
+                                                                        <option>Cancelled</option>
+                                                                    </select> */}
+                                                                            <button title='Edit' class='edit'>
+                                                                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Order Date</h4>
+                                                                        <p>{(items.createdAt).split("T")[0]}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Order Time</h4>
+                                                                        <p>{new Date(items.createdAt).toLocaleTimeString()}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="details-footer">
+                                                                    <button class='update'>Update</button>
+                                                                    <button class='close'>Close</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-details row">
+                                                                <div class="details-header">
+                                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                                                    <p>PRODUCT IMAGE</p>
+                                                                </div>
+                                                                <div class="details-body">
+                                                                    <img src={items.image} alt={items.productName} />
+                                                                </div>
+                                                            </div>
+                                                            <div class="customer-details row">
+                                                                <div class="details-header">
+                                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                                                    <p>CUSTOMER INFORMATION</p>
+                                                                </div>
+                                                                <div class="details-body">
+                                                                    <div>
+                                                                        <h4>Name</h4>
+                                                                        <p>{items.name}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Custommer Id</h4>
+                                                                        <p>{items.userId}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Email</h4>
+                                                                        <p>{items.email || 'Email is Not Found!'}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Phone</h4>
+                                                                        <p>{items.phoneNumber}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Address</h4>
+                                                                        <p>{items.address}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>City</h4>
+                                                                        <p>{items.address || 'Not found!'}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Postal Code</h4>
+                                                                        <p>{items.zipCode}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="payment-details row">
+                                                                <div class="details-header">
+                                                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                                                    <p>PAYMENT INFORMATION</p>
+                                                                </div>
+                                                                <div class="details-body">
+                                                                    <div>
+                                                                        <h4>Payment Method</h4>
+                                                                        <p>{items.method}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4>Payment Status</h4>
+                                                                        <p class={items.method === 'cash-on-delivery' ? "payment-status no-paid" : "payment-status paid"}>{items.method === 'cash-on-delivery' ? 'None Paid' : 'Paid'}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })
+                                }
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="orders-container-footer">
