@@ -4,7 +4,7 @@ import delete_img from '../../../assets/delete-icon.png'
 import { useEffect, useState } from 'react';
 import api from '../../../services/auth'
 import { Message } from '../../../context/MessagesContext';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import UserUpdate from './UserUpdate';
 
 function Users() {
@@ -19,6 +19,9 @@ function Users() {
     const [updateUsersToggle, setUpdateUsersToggle] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const [fullDetails, setFullDetails] = useState({})
+
+    // navigations
+    const navigate = useNavigate();
 
     //get query data from url
     const [queryData, setQueryData] = useSearchParams();
@@ -145,7 +148,7 @@ function Users() {
                                                 items.role === 'admin' ?
                                                     <button class="order-btn admin">Admin</button>
                                                     :
-                                                    <button class="order-btn orders">All Orders</button>
+                                                    <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
                                             }
                                             {
                                                 items.role !== 'admin' &&

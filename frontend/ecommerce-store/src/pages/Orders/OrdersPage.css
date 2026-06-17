@@ -180,17 +180,17 @@
     color: #2B38D1;
     font-weight: 600;
 }
-.order-container .order-body .order-details .details-cards .card .card-status .deliverd{
+.order-container .order-body .order-details .details-cards .card .card-status .delivered{
     color: #008A00;
     background-color: #008A0027;
 }
 .order-container .order-body .order-details .details-cards .card .card-status .processing{
-    color: #FFB800;
-    background-color: #FFB80027;
+    background-color: #ffb70034;
+    color: #ffb700;
 }
 .order-container .order-body .order-details .details-cards .card .card-status .shipped{
-    color: #2B38D1;
-    background-color: #2B38D127;
+    background-color: #8b5cf634;
+    color: #8b5cf6;
 }
 .order-container .order-body .order-details .details-cards .card .card-status .cancelled{
     color: #DD3842;

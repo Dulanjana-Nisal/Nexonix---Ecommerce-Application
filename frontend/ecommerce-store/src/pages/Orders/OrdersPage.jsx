@@ -77,7 +77,10 @@ function OrdersPage() {
                                             <div class="card-status status">
                                                 <p class={(items.status).toLowerCase()}>{items.status}</p>
                                             </div>
-                                            <button class="delete" onClick={() => cancleOrder(items._id)}><img src={delete_img} alt="" /></button>
+                                            {
+                                                (items.status === "Cancelled" || items.status === "Processing") &&
+                                                <button class="delete" onClick={() => cancleOrder(items._id)}><img src={delete_img} alt="" /></button>
+                                            }
                                         </div>
                                     )
                                 })

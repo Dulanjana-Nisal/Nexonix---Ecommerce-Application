@@ -47,7 +47,7 @@ const getOrders = asyncHaddler(async (req, res) => {
 
 // get all orders
 const getAllOrders = asyncHaddler(async (req, res) => {
-    const { searchByProduct, serchByUserId, user, product } = req.query;
+    const { searchByProduct, serchByUserId, user, product, status } = req.query;
     let queryObject = {};
 
     //orders filter by users
@@ -64,6 +64,9 @@ const getAllOrders = asyncHaddler(async (req, res) => {
         //oders filter by product
         if(product){
             queryObject.productId = product;
+        }
+        if(status){
+            queryObject.status = status;
         }
     
         //orders paging
