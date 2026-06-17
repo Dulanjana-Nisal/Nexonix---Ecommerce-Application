@@ -47,7 +47,7 @@ const getOrders = asyncHaddler(async (req, res) => {
 
 // get all orders
 const getAllOrders = asyncHaddler(async (req, res) => {
-    const { searchByProduct, serchByUserId, user, product, status } = req.query;
+    const { searchByProduct, serchByUserId, user, product, status,limit } = req.query;
     let queryObject = {};
 
     //orders filter by users
@@ -73,15 +73,27 @@ const getAllOrders = asyncHaddler(async (req, res) => {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 10;
         const skip = (page - 1) * limit
-    
+
+        const allResult = await Orders.find({});
+        
         //get orders
         const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
-    
+        
         //count all orders
         const allOrdersCount = await Orders.find(queryObject);
+        
+        if(limit === 1){
+            return res.status(statusCodes.OK).json({
+                success: true, 
+                all_orders_result: allResult.length,
+                all_result: allOrdersCount.length,
+                data: allResult,
+            })
+        }
+
         res.status(statusCodes.OK).json({
             success: true,
-            all_result: allOrdersCount.length,
+            all_result: allOrdersCount.length, 
             page_result: allOrders.length,
             data: allOrders,
             page: page,
