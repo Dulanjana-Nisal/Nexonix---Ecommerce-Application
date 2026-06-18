@@ -2,19 +2,13 @@ const Notification = require('../models/notificationModel');
 const asyncHaddler = require('../utils/asyncHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const statusCodes = require('http-status-codes');
+const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
 
 //get all Notifications
 const getAllNotifications = asyncHaddler(async (req, res) => {
     const {type,status,limit} = req.query
 
-    const {role} = req.user
-
-    let queryObject = {};
-
-    // check role in login user
-    if(role === 'admin'){
-        queryObject.role = 'admin'
-    }
+    let queryObject = {userId: req.user._id};
 
     //filter by type
     if(type){
@@ -33,7 +27,11 @@ const getAllNotifications = asyncHaddler(async (req, res) => {
 
 //create nofidcations
 const addNotifications = asyncHaddler(async (req, res) => {
+    req.body.userId = req.user._id
     const addNotifications = await Notification.create(req.body)
+    if(!addNotifications){
+        throw new BadrequestErrorHaddler('Create notification faild!')
+    }
     res.status(statusCodes.CREATED).json({success: true, data: addNotifications})
 })
 
