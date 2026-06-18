@@ -16,23 +16,23 @@ import { Message } from '../../context/MessagesContext';
 function AccountPage() {
 
     // cart context
-    const {dispatch,user} = Cart();
-    const {setupMessage} = Message();
+    const { dispatch, user } = Cart();
+    const { setupMessage } = Message();
 
     //use states
-    const [name,setName] = useState("");
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const [messages,setMessages] = useState({})
-    const [loginmessages,setLoginMessages] = useState({})
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [messages, setMessages] = useState({})
+    const [loginmessages, setLoginMessages] = useState({})
 
     //login states
-    const [loginEmail,setLoginEmail] = useState("")
-    const [loginPassword,setLoginPassword] = useState("")
+    const [loginEmail, setLoginEmail] = useState("")
+    const [loginPassword, setLoginPassword] = useState("")
     const navigate = useNavigate();
 
     //fetch cart data
-    const fetchCartData = async () =>{
+    const fetchCartData = async () => {
         const result = await api.get('/cart')
         dispatch({
             type: ACTIONS.SET_CART,
@@ -41,10 +41,10 @@ function AccountPage() {
     }
 
     //user Login
-    const loginFrom = async(e)=>{
+    const loginFrom = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const login = await api.post('http://localhost:5000/api/v1/account/signin', {
                 "email": loginEmail,
                 "password": loginPassword,
@@ -62,19 +62,19 @@ function AccountPage() {
                 JSON.stringify(login.data.user)
             )
 
-            setTimeout(()=>{
-                if(login.data.user.role === "admin"){
+            setTimeout(() => {
+                if (login.data.user.role === "admin") {
                     navigate('/admin/dashboard')
                 }
-                if(login.data.user.role === "user"){
+                if (login.data.user.role === "user") {
                     navigate('/')
                     location.reload()
                 }
             }, 1600)
         }
-        catch(err){
+        catch (err) {
             setLoginMessages(err.response.data)
-            setTimeout(()=>{
+            setTimeout(() => {
                 setLoginMessages(false)
             }, 1500)
         }
@@ -82,12 +82,12 @@ function AccountPage() {
     }
 
     //user Register
-    const registerForm = async (e)=>{
+    const registerForm = async (e) => {
 
         e.preventDefault()
 
-        try{
-            await api.post('http://localhost:5000/api/v1/account/signup', {
+        try {
+            const registerUser = await api.post('http://localhost:5000/api/v1/account/signup', {
                 "name": name,
                 "email": email,
                 "password": password,
@@ -95,7 +95,7 @@ function AccountPage() {
 
             // call fetch cart data function
             fetchCartData()
-
+            console.log(registerUser.data)
             setMessages({
                 success: true,
                 message: "Register Success!"
@@ -103,23 +103,39 @@ function AccountPage() {
 
             setupMessage("success", "Register Success now you can login")
 
+            // post notification to admin 
+            try {
+                await api.post('notifications/',
+                    {
+                        "userId": "admin123",
+                        "type": "users",
+                        "receiver": "admin",
+                        "title": `New user registered`,
+                        "message": `A new user ${name} has registered. (User ID: ${registerUser.data.data._id})`
+                    }
+                )
+            }
+            catch (err) {
+                console.log(err.response)
+            }
+
             setName("");
             setEmail("");
             setPassword("");
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 setMessages(false)
 
             }, 1000)
         }
-        catch(err){
+        catch (err) {
             setMessages(err.response.data)
-            setTimeout(()=>{
+            setTimeout(() => {
                 setMessages(false)
             }, 1500)
         }
     }
-    
+
     return (
         <>
             <HeaderComponent />
@@ -134,7 +150,7 @@ function AccountPage() {
                 }
                 {
                     user &&
-                        <ProfilePage navigate={navigate} dispatch={dispatch} user={user} />
+                    <ProfilePage navigate={navigate} dispatch={dispatch} user={user} />
                 }
                 {
                     !user &&

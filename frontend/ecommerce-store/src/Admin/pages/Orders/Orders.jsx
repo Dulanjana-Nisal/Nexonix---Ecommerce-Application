@@ -56,16 +56,41 @@ function Orders() {
     }, [searchQueryByProduct, searchQueryByUserId, queryData, statusValue, page, relaod])
 
     // update orders
-    const updateOrders = async () => {
+    const updateOrders = async (userId) => {
+        console.log(userId)
         try {
             await api.patch(`/orders/${updateDetails.orderId}`,
                 {
                     status: updateDetails.status
                 }
             )
+
+            const orderMessage = {
+                "Delivered": `Your order ID: ${updateDetails.orderId} has been successfully delivered. We hope you enjoy your purchase! Thank you for choosing us`,
+                "Shipped": `Good news! Your order ID: ${updateDetails.orderId} has been shipped and is on its way.`,
+                "Cancelled": `Your order ID: ${updateDetails.orderId} has been cancelled. If a payment was made, the refund will be processed shortly. For assistance, please contact support`
+            }
+
+            // post notification for order placed
+            try {
+                await api.post('notifications/',
+                    {
+                        "userId": userId,
+                        "type": "orders",
+                        "receiver": "user",
+                        "title": `Order Status Update`,
+                        "message": orderMessage[updateDetails.status]
+                    }
+                )
+            }
+            catch (err) {
+                console.log(err.response)
+            }
+
             setupMessage('success', 'Order Updated!')
             setReload(prev => !prev)
         }
+        
         catch (err) {
             console.log(err.response)
             setupMessage('error', 'Update Faild!')
@@ -373,7 +398,7 @@ function Orders() {
                                                                             {
                                                                                 toggleEdit.toggle && toggleEdit.orderId === items._id &&
                                                                                 <div class="details-footer">
-                                                                                    <button class='update' onClick={() => updateOrders()}>Update</button>
+                                                                                    <button class='update' onClick={() => updateOrders(items.userId)}>Update</button>
                                                                                     <button class='close' onClick={() => setToggleEdit({ toggle: false, orderId: null })}>Close</button>
                                                                                 </div>
                                                                             }

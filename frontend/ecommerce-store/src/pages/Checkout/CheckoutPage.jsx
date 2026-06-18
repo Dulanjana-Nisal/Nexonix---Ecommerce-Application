@@ -11,16 +11,16 @@ import { Message } from '../../context/MessagesContext';
 function CheckoutPage() {
 
     // use context 
-    const { state,dispatch,user } = Cart()
-    const {setupMessage} = Message();
+    const { state, dispatch, user } = Cart()
+    const { setupMessage } = Message();
 
-    
+
     const navigate = useNavigate();
 
     //chekout states
-    const [loading,setLoading] = useState(false)
-    const [availabilityMap, setAvailabilityMap] = useState({}) 
-    const [orderData,setOrderData] = useState({
+    const [loading, setLoading] = useState(false)
+    const [availabilityMap, setAvailabilityMap] = useState({})
+    const [orderData, setOrderData] = useState({
         firstName: '',
         lastName: '',
         address: '',
@@ -34,15 +34,15 @@ function CheckoutPage() {
     //update prduct quaantity
     const updateProductQuntity = async (productId, qnt) => {
         const result = await api.get(`/products/${productId}`)
-        try{
-            await api.patch(`/products/${productId}`, {stock: result.data.data.stock - qnt})
+        try {
+            await api.patch(`/products/${productId}`, { stock: result.data.data.stock - qnt })
         }
-        catch(err){
+        catch (err) {
             console.log(err.response)
         }
     }
 
- // fetch availability for items in cart
+    // fetch availability for items in cart
     useEffect(() => {
         const fetchAvailability = async () => {
             try {
@@ -73,13 +73,13 @@ function CheckoutPage() {
     //get cart item summery
     let fullPrice = 0
     state.map((items) => {
-        if(items.availability){
+        if (items.availability) {
             fullPrice += items.price * items.quantity
         }
     })
 
     //place order to database
-    const placeOrder =  async () => {
+    const placeOrder = async () => {
         setLoading(true)
 
         try {
@@ -96,11 +96,29 @@ function CheckoutPage() {
                     setLoading(false)
                     return
                 }
+
+                // post notification if product low or out of stock
+                if ((product.stock - items.quantity) <= 5) {
+                    try {
+                        await api.post('notifications/',
+                            {
+                                "userId": "admin123",
+                                "type": "products",
+                                "receiver": "admin",
+                                "title": `${(product.stock - items.quantity) === 0 ? 'Out' : 'Low'} Stock alert`,
+                                "message": `Product ${product.name} (Product ID: ${product._id}) is ${(product.stock - items.quantity) === 0 ? 'out' : 'low'} of stock. ${(product.stock - items.quantity) !== 0 ? `only ${(product.stock - items.quantity)} in stock.` : ''}`
+                            }
+                        )
+                    }
+                    catch (err) {
+                        console.log(err.response)
+                    }
+                }
             }
 
             // all items available -> create orders
             for (const items of state) {
-                await api.post('/orders', {
+                const orderPlaced = await api.post('/orders', {
                     userId: user._id,
                     name: `${orderData.firstName} ${orderData.lastName}`,
                     address: orderData.address,
@@ -117,23 +135,42 @@ function CheckoutPage() {
                     totle_price: fullPrice.toFixed(2)
                 })
 
+                // post notification for order placed
+                try {
+                    await api.post('notifications/',
+                        {
+                            "userId": "admin123",
+                            "type": "orders",
+                            "receiver": "admin",
+                            "title": `New order received`,
+                            "message": `Order ID: ${orderPlaced.data.data._id} has been placed by ${orderData.firstName} ${orderData.lastName}.`
+                        }
+                    )
+                }
+                catch (err) {
+                    console.log(err.response)
+                }
+
                 await updateProductQuntity(items.productId, items.quantity)
                 deleteCartItem(items.productId, dispatch)
             }
-            setTimeout(()=>{
+
+            setTimeout(() => {
                 navigate('/orders')
             }, 1000)
             setupMessage('success', "Order Placed!")
+
         } catch (err) {
-            if(err){
+            if (err) {
                 setupMessage('error', 'Product Checkout Error!')
             }
             console.log(err.response || err)
+
         } finally {
             setLoading(false)
         }
     }
-    
+
     return (
         <>
             <HeaderComponent />
@@ -152,32 +189,32 @@ function CheckoutPage() {
                                 <div class="name box">
                                     <div class="first-name">
                                         <label>First Name</label>
-                                        <input type="text" onChange={(e) => setOrderData({...orderData, firstName: e.target.value})}/>
+                                        <input type="text" onChange={(e) => setOrderData({ ...orderData, firstName: e.target.value })} />
                                     </div>
                                     <div class="last-name">
                                         <label>Last Name</label>
-                                        <input type="text" onChange={(e) => setOrderData({...orderData, lastName: e.target.value})}/>
+                                        <input type="text" onChange={(e) => setOrderData({ ...orderData, lastName: e.target.value })} />
                                     </div>
                                 </div>
                                 <div class="address box">
                                     <label>Address</label>
-                                    <input type="text" onChange={(e) => setOrderData({...orderData, address: e.target.value})}/>
+                                    <input type="text" onChange={(e) => setOrderData({ ...orderData, address: e.target.value })} />
                                 </div>
                                 <div class="city box">
                                     <label>City Name</label>
-                                    <input type="text" onChange={(e) => setOrderData({...orderData, city: e.target.value})}/>
+                                    <input type="text" onChange={(e) => setOrderData({ ...orderData, city: e.target.value })} />
                                 </div>
                                 <div class="zipcode box">
                                     <label>Zip Code</label>
-                                    <input type="text" onChange={(e) => setOrderData({...orderData, zipCode: e.target.value})}/>
+                                    <input type="text" onChange={(e) => setOrderData({ ...orderData, zipCode: e.target.value })} />
                                 </div>
                                 <div class="phone box">
                                     <label>Phone Number</label>
-                                    <input type="number" onChange={(e) => setOrderData({...orderData, phoneNumber: e.target.value})}/>
+                                    <input type="number" onChange={(e) => setOrderData({ ...orderData, phoneNumber: e.target.value })} />
                                 </div>
                                 <div class="email box">
                                     <label>Email Address</label>
-                                    <input type="email" onChange={(e) => setOrderData({...orderData, email: e.target.value})}/>
+                                    <input type="email" onChange={(e) => setOrderData({ ...orderData, email: e.target.value })} />
                                 </div>
                             </form>
                         </div>
@@ -188,19 +225,19 @@ function CheckoutPage() {
                         </div>
                         <div class="total-product info">
                             {
-                                state.map((items)=> {
+                                state.map((items) => {
                                     const info = availabilityMap[items.productId]
                                     const isAvailable =
                                         info && info.availability && info.stock >= items.quantity
 
-                                    return(
+                                    return (
                                         isAvailable ?
                                             <div class="product-card" key={items._id}>
                                                 <img src={items.image} alt={items.name} />
                                                 <p>{items.name}</p>
                                                 <span>✕ {items.quantity}</span>
                                             </div>
-                                        :
+                                            :
                                             <div class="product-card sold-out" key={items._id}>
                                                 <img src={items.image} alt={items.name} />
                                                 <p>{items.name}</p>
