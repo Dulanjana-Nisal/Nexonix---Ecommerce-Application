@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Products from './pages/Products/Products'
 import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
+import Notifications from './pages/Notifications/Notifications'
 
 function AdminPage() {
 
@@ -128,6 +129,11 @@ function AdminPage() {
                         {
                             path === 'orders' &&
                             <Orders path={path}/>
+                        }
+                        {/* <!-- Notifications Section --> */}
+                        {
+                            path === 'notifications' &&
+                            <Notifications path={path}/>
                         }
                     </div>
                 </div>

@@ -6,7 +6,15 @@ const statusCodes = require('http-status-codes');
 //get all Notifications
 const getAllNotifications = asyncHaddler(async (req, res) => {
     const {type,status,limit} = req.query
+
+    const {role} = req.user
+
     let queryObject = {};
+
+    // check role in login user
+    if(role === 'admin'){
+        queryObject.role = 'admin'
+    }
 
     //filter by type
     if(type){
@@ -43,7 +51,9 @@ const getSingleNotification = asyncHaddler(async (req, res) => {
 //update notification
 const updateNotification = asyncHaddler(async (req, res) => {
     const paramID = req.params.id 
+
     const updateNotification = await Notification.findOneAndUpdate({_id: paramID}, req.body, {runValidators: true, returnDocument: 'after'})
+
     if(!updateNotification){
         throw new NotFoundErrorHaddler('Notification not found!');
     }
