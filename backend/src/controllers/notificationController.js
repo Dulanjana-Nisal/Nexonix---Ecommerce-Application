@@ -6,7 +6,7 @@ const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
 
 //get all Notifications
 const getAllNotifications = asyncHaddler(async (req, res) => {
-    const {type,status,limit} = req.query
+    const {type,status,limit,adminRole} = req.query
 
     let queryObject = {userId: req.user._id};
 
@@ -20,14 +20,35 @@ const getAllNotifications = asyncHaddler(async (req, res) => {
         queryObject.isread = status == 'false' ? false : true
     }
 
+    // get all notification
+    const allNotifications = await Notification.find({})
+
+    // get admin notification
+    if(req.user.role === 'admin'){
+        queryObject = {
+            receiver: 'admin'
+        }
+    }
+
+    // get user notifications
+    if(req.user.role === 'user'){
+        queryObject = {
+            receiver: 'user',
+            userId: req.user._id
+        }
+    }
+
     const notificationLimit = limit || 10;
     const getAllNotification = await Notification.find(queryObject).limit(notificationLimit) 
-    res.status(statusCodes.OK).json({success: true, notification_count: getAllNotification.length, data: getAllNotification})
+    res.status(statusCodes.OK).json({
+        success: true, 
+        notification_count: getAllNotification.length, 
+        data: getAllNotification
+    })
 })
 
 //create nofidcations
 const addNotifications = asyncHaddler(async (req, res) => {
-    req.body.userId = req.user._id
     const addNotifications = await Notification.create(req.body)
     if(!addNotifications){
         throw new BadrequestErrorHaddler('Create notification faild!')
