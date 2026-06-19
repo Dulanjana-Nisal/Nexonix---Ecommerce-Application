@@ -201,6 +201,12 @@
   margin-right: 5px;
 }
 
+.read-dot{
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+}
+
 .unread-dot.hidden {
   background: transparent;
 }
@@ -255,7 +261,8 @@
 }
 
 .notif-desc {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
   margin: 5px 0;
   color: var(--text-secondary);
 }
@@ -301,23 +308,24 @@
 
 .notif-right .actions-box .read{
   border-radius: 10px 10px 0 0 ;
-  background: #d1fae5;
+  background-color: #fff;
   color: #059669;
+  border-bottom: 1px solid #6b728049;
 }
 
 .notif-right .actions-box .read:hover{
-  background-color: #fff;
+  background: #d1fae5;
 }
 
 .notif-right .actions-box .delete{
   border: none;
   border-radius: 0 0 10px 10px;
-  background-color: #fee2e2;
+  background-color: #fff;
   color: #dc2626;
 }
 
 .notif-right .actions-box .delete:hover{
-  background-color: #fff;
+  background-color: #fee2e2;
 }
 
 .badge-pill {
