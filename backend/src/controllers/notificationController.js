@@ -54,6 +54,47 @@ const getNotifications = asyncHaddler(async (req, res) => {
     })
 })
 
+//get All Notifications
+const getAllNotifications = asyncHaddler(async (req, res) => {
+    const {type,status} = req.query
+
+    let queryObject = {userId: req.user._id};
+    
+    // get admin notification
+    if(req.user.role === 'admin'){
+        queryObject = {
+            receiver: 'admin'
+        }
+    }
+
+    // get user notifications
+    if(req.user.role === 'user'){
+        queryObject = {
+            receiver: 'user',
+            userId: req.user._id
+        }
+    }
+
+    //filter by type
+    if(type){
+        queryObject.type = type
+    }
+
+    //filter by status
+    if(status){
+        queryObject.isread = status == 'false' ? false : true
+    }
+
+    // get all notification data from db
+    const getAllNotification = await Notification.find(queryObject).sort({createdAt: -1})
+
+    res.status(statusCodes.OK).json({
+        success: true, 
+        notification_count: getAllNotification.length, 
+        data: getAllNotification,
+    })
+})
+
 //create nofidcations
 const addNotifications = asyncHaddler(async (req, res) => {
     const addNotifications = await Notification.create(req.body)
@@ -98,6 +139,7 @@ const deleteNotification = asyncHaddler(async (req, res) => {
 
 module.exports = {
     getNotifications,
+    getAllNotifications,
     addNotifications,
     getSingleNotification,
     updateNotification,
