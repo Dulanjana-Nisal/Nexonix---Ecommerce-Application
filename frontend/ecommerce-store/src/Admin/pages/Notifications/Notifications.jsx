@@ -178,6 +178,10 @@ function NotificationsPage() {
                             <button class={`tab-btn ${type === 'users' && 'active'}`} onClick={() => filterByType('users')}>Users</button>
                             <button class={`tab-btn ${type === 'products' && 'active'}`} onClick={() => filterByType('products')}>Products</button>
                             <div class="tab-actions">
+                                <button class="btn-primary" onClick={() => location.reload()}>
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
+                                    Refesh
+                                </button>
                                 <button class="btn-primary" onClick={() => updateAllNotifications()}>
                                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                     Mark all as read

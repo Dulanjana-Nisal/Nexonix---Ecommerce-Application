@@ -12,11 +12,13 @@ import Products from './pages/Products/Products'
 import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
 import NotificationsPage from './pages/Notifications/Notifications'
+import { Notifications } from './Context/NotificationContext'
 
 function AdminPage() {
 
     //load context
     const {dispatch} = Cart()
+    const {notifiState} = Notifications() || {}
 
     //products states
     const [productData, setProductData] = useState(null)
@@ -98,7 +100,7 @@ function AdminPage() {
                         <div class="header-top-right">
                             <div class="cart">
                                 <i class="fa-solid fa-bell"></i>
-                                <p>0</p>
+                                <p>{notifiState.length}</p>
                             </div>
                             <div class="store">
                                 <Link to='/' class="no-style-link" onClick={() => fetchCartData()}>
