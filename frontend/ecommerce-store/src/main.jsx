@@ -8,12 +8,12 @@ import NotifiContext from './Admin/Context/NotificationContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
+        <NotifiContext>
     <CartProvider>
       <MessageProvider>
-        <NotifiContext>
           <App />
-        </NotifiContext>
       </MessageProvider>
     </CartProvider>
+        </NotifiContext>
   </BrowserRouter>,
 )

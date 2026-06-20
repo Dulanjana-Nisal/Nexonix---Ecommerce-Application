@@ -12,12 +12,15 @@ import ProfilePage from './ProfilePage';
 import AccountSignin from './AccountSignin';
 import AccountSignup from './AccountSignup';
 import { Message } from '../../context/MessagesContext';
+import { Notifications } from '../../Admin/Context/NotificationContext';
+import { NOTIFI_ACTIONS } from '../../Admin/Context/NotificationReduce';
 
 function AccountPage() {
 
     // cart context
     const { dispatch, user } = Cart();
     const { setupMessage } = Message();
+    const { notifiDispatch } = Notifications() || {};
 
     //use states
     const [name, setName] = useState("");
@@ -114,6 +117,12 @@ function AccountPage() {
                         "message": `A new user ${name} has registered. (User ID: ${registerUser.data.data._id})`
                     }
                 )
+                //update context
+                const getAllNotifi = await api.get('/notifications/all')
+                notifiDispatch({
+                    type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS,
+                    payload: getAllNotifi.data.data
+                })
             }
             catch (err) {
                 console.log(err.response)

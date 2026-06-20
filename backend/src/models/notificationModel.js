@@ -7,7 +7,7 @@ const NotifictionSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['orders','products','users'],
+        enum: ['orders','products','users','deletes'],
         required: [true, 'Notification must have type']
     },
     receiver: {

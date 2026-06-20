@@ -4,14 +4,19 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import delete_img from '../../assets/delete-icon.png'
 import './OrdersPage.css';
 import api from '../../services/auth';
+import { Notifications } from '../../Admin/Context/NotificationContext';
+import { NOTIFI_ACTIONS } from '../../Admin/Context/NotificationReduce';
 
 function OrdersPage() {
 
+    // load  context 
+    const { notifiDispatch } = Notifications() || {};
+
     //order states
-    const [orders,setOrders] = useState([])
+    const [orders, setOrders] = useState([])
 
     //fetch orders from detabase
-    useEffect(()=>{
+    useEffect(() => {
         const fetchOrders = async () => {
             const result = await api.get('/orders')
             setOrders(result.data.data)
@@ -20,12 +25,38 @@ function OrdersPage() {
     }, [])
 
     //calcle order function
-    const cancleOrder = async (orderID) => {
-        try{
+    const cancleOrder = async (orderID,userName,userID,orderStatus) => {
+        try {
             await api.delete(`/orders/${orderID}`)
             setOrders(orders.filter(items => items._id !== orderID))
+
+            if(orderStatus === 'Processing'){
+                try {
+                    await api.post('notifications/',
+                        {
+                            "userId": "admin123",
+                            "type": "deletes",
+                            "receiver": "admin",
+                            "title": `Order Deletion Notification`,
+                            "message": `Order ID: ${orderID} belonging to ${userName} (user ID: ${userID}) has been permanently removed..`
+                        }
+                    )
+                    const postResult = await api.get('/notifications/all');
+
+                    // create notification in context
+                    notifiDispatch(
+                        {
+                            type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS,
+                            payload: postResult.data.data
+                        }
+                    )
+                }
+                catch (err) {
+                    console.log(err.response)
+                }
+            }
         }
-        catch(err){
+        catch (err) {
             console.log(err.response)
         }
     }
@@ -53,8 +84,8 @@ function OrdersPage() {
                         </div>
                         <div class="details-cards">
                             {
-                                orders.map((items)=>{
-                                    return(
+                                orders.map((items) => {
+                                    return (
                                         <div class="card" key={items._id}>
                                             <div class="card-product product">
                                                 <div class="thumb">
@@ -79,7 +110,7 @@ function OrdersPage() {
                                             </div>
                                             {
                                                 (items.status === "Cancelled" || items.status === "Processing") &&
-                                                <button class="delete" onClick={() => cancleOrder(items._id)}><img src={delete_img} alt="" /></button>
+                                                <button class="delete" onClick={() => cancleOrder(items._id,items.name,items.userId,items.status)}><img src={delete_img} alt="" /></button>
                                             }
                                         </div>
                                     )
@@ -89,8 +120,8 @@ function OrdersPage() {
                     </div>
                     <div class="order-details-responsive">
                         {
-                            orders.map((items)=>{
-                                return(
+                            orders.map((items) => {
+                                return (
                                     <div class="card" key={items._id}>
                                         <div class="image">
                                             <img src={items.image} alt="" />

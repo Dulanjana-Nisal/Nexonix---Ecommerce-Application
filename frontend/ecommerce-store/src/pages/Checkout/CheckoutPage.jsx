@@ -7,12 +7,15 @@ import api from '../../services/auth';
 import { useEffect, useState } from 'react';
 import { deleteCartItem } from '../../api/cartApi';
 import { Message } from '../../context/MessagesContext';
+import { Notifications } from '../../Admin/Context/NotificationContext';
+import { NOTIFI_ACTIONS } from '../../Admin/Context/NotificationReduce';
 
 function CheckoutPage() {
 
-    // use context 
+    // load  context 
     const { state, dispatch, user } = Cart()
     const { setupMessage } = Message();
+    const { notifiDispatch } = Notifications() || {};
 
 
     const navigate = useNavigate();
@@ -109,6 +112,15 @@ function CheckoutPage() {
                                 "message": `Product ${product.name} (Product ID: ${product._id}) is ${(product.stock - items.quantity) === 0 ? 'out' : 'low'} of stock. ${(product.stock - items.quantity) !== 0 ? `only ${(product.stock - items.quantity)} in stock.` : ''}`
                             }
                         )
+                        const getAllNotifi = await api.get('/notifications/all')
+
+                        // create notification in context
+                        notifiDispatch(
+                            {
+                                type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS,
+                                payload: getAllNotifi.data.data
+                            }
+                        )
                     }
                     catch (err) {
                         console.log(err.response)
@@ -144,6 +156,14 @@ function CheckoutPage() {
                             "receiver": "admin",
                             "title": `New order received`,
                             "message": `Order ID: ${orderPlaced.data.data._id} has been placed by ${orderData.firstName} ${orderData.lastName}.`
+                        }
+                    )
+                    const getAllNotifi = await api.get('/notifications/all')
+                    // create notification in context
+                    notifiDispatch(
+                        {
+                            type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS,
+                            payload: getAllNotifi.data.data
                         }
                     )
                 }
