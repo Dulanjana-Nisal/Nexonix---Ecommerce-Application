@@ -100,7 +100,10 @@ function AdminPage() {
                         <div class="header-top-right">
                             <div class="cart">
                                 <i class="fa-solid fa-bell"></i>
-                                <p>{notifiState.length}</p>
+                                {
+                                    (notifiState.filter(items => !items.isread)).length !== 0 &&
+                                    <p>{(notifiState.filter(items => !items.isread)).length}</p>
+                                }
                             </div>
                             <div class="store">
                                 <Link to='/' class="no-style-link" onClick={() => fetchCartData()}>

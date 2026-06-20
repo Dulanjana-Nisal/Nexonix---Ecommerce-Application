@@ -3,6 +3,7 @@ import './Orders.css';
 import api from '../../../services/auth';
 import { useSearchParams } from 'react-router-dom';
 import { Message } from '../../../context/MessagesContext';
+import LoadingComponent from '../../Components/Loading/LoadingComponent';
 
 function Orders() {
 
@@ -269,13 +270,7 @@ function Orders() {
                 </div>
                 {
                     loading ?
-                    <div class="loading-container">
-                        <div class="loader">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
+                    <LoadingComponent />
                     :
                     <div class="orders-container-body">
                         <div class="order-list-container">
