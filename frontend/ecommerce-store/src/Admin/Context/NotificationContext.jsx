@@ -20,8 +20,7 @@ export default function NotifiContext({children}){
         } 
         fetchNotificationData()  
     }, [])
-    
-    console.log(notifiState)
+
     return(
         <NotificationContext.Provider value={{notifiState,notifiDispatch}} >
             {children}

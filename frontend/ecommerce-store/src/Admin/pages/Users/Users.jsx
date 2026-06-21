@@ -6,6 +6,7 @@ import api from '../../../services/auth'
 import { Message } from '../../../context/MessagesContext';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import UserUpdate from './UserUpdate';
+import LoadingComponent from '../../Components/Loading/LoadingComponent';
 
 function Users() {
 
@@ -19,6 +20,7 @@ function Users() {
     const [updateUsersToggle, setUpdateUsersToggle] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const [fullDetails, setFullDetails] = useState({})
+    const [loading, setLoading] = useState(false)
 
     // navigations
     const navigate = useNavigate();
@@ -38,9 +40,19 @@ function Users() {
     // fetch all users data
     useEffect(() => {
         const fetchUsersData = async () => {
-            const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}&search=${searchUsers}`)
-            setUsers(result.data.data)
-            setAllResultCount(result.data.all_result)
+            setLoading(true)
+            try{
+                const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}&search=${searchUsers}`)
+                setUsers(result.data.data)
+                setAllResultCount(result.data.all_result)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            finally{
+                setLoading(false)
+            }
+            
         }
         fetchUsersData();
     }, [pageNumber,userFilter,setupMessage,searchUsers])
@@ -121,50 +133,54 @@ function Users() {
                     </div>
                 </div>
                 <div class="user-body">
-                    <div class="user-list">
-                        <div class="list-header">
-                            <p>Name</p>
-                            <p>Email</p>
-                            <p>Id</p>
-                            <p>Orders</p>
-                        </div>
-                        {
-                            users.length > 0 &&
-                            users.map((items) => {
-                                return (
-                                    <div class="user-box" key={items._id}>
-                                        <div class="name" onClick={() => toggleFullDetailsBox(items._id)}>
-                                            <img src={user_profile_image} alt="prodile-image" class="user-image" />
-                                            <p>{items.name}</p>
-                                        </div>
-                                        <div>
-                                            <p>{items.email}</p>
-                                        </div>
-                                        <div>
-                                            <p>{items._id}</p>
-                                        </div>
-                                        <div class="buttons">
-                                            {
-                                                items.role === 'admin' ?
-                                                    <button class="order-btn admin">Admin</button>
-                                                    :
-                                                    <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
-                                            }
-                                            {
-                                                items.role !== 'admin' &&
-                                                <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
-                                            }
-                                            {
-                                                items.role !== 'admin' &&
-                                                <button class="delete-btn"><img src={delete_img} alt="" onClick={() => deleteUser(items._id)} /></button>
-                                            }
+                    {
+                        loading ? <LoadingComponent />
+                        :
+                        <div class="user-list">
+                            <div class="list-header">
+                                <p>Name</p>
+                                <p>Email</p>
+                                <p>Id</p>
+                                <p>Orders</p>
+                            </div>
+                            {
+                                users.length > 0 &&
+                                users.map((items) => {
+                                    return (
+                                        <div class="user-box" key={items._id}>
+                                            <div class="name" onClick={() => toggleFullDetailsBox(items._id)}>
+                                                <img src={user_profile_image} alt="prodile-image" class="user-image" />
+                                                <p>{items.name}</p>
+                                            </div>
+                                            <div>
+                                                <p>{items.email}</p>
+                                            </div>
+                                            <div>
+                                                <p>{items._id}</p>
+                                            </div>
+                                            <div class="buttons">
+                                                {
+                                                    items.role === 'admin' ?
+                                                        <button class="order-btn admin">Admin</button>
+                                                        :
+                                                        <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
+                                                }
+                                                {
+                                                    items.role !== 'admin' &&
+                                                    <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                }
+                                                {
+                                                    items.role !== 'admin' &&
+                                                    <button class="delete-btn"><img src={delete_img} alt="" onClick={() => deleteUser(items._id)} /></button>
+                                                }
 
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    }
                     {
                         updateUsersToggle.toggle &&
                         <UserUpdate setUpdateUsersToggle={setUpdateUsersToggle} updateUsersToggle={updateUsersToggle} setupMessage={setupMessage} />

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import api from "../../../services/auth"
 import axios from "axios"
 import { useSearchParams } from "react-router-dom"
+import LoadingComponent from '../../Components/Loading/LoadingComponent'
 
 function Products({ path }) {
 
@@ -48,21 +49,28 @@ function Products({ path }) {
     useEffect(() => {
         const fetchAdminData = async () => {
             setLoading(true)
-            const result = await api.get(`/products?page=${pageNumber}&availability=${availability}&search=${searchValue}`)
-            setProducts(result.data.data)
-            setProductData({
-                all_result: result.data.all_result,
-                page_result: Math.ceil(result.data.all_result / 10)
-            })
-            setLoading(false)
+            try{
+                const result = await api.get(`/products?page=${pageNumber}&availability=${availability}&search=${searchValue}`)
+                setProducts(result.data.data)
+                setProductData({
+                    all_result: result.data.all_result,
+                    page_result: Math.ceil(result.data.all_result / 10)
+                })
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            finally{
+                setLoading(false)
+            }
         }
-        window.scrollTo(0, 0)
+        window.scroll({ top: 0, behavior: 'smooth'})
         fetchAdminData()
 
     }, [queryData, pageNumber, availability, path, searchValue, reloadEffect])
 
     // add keywords
-    function addKeywords() {
+    const addKeywords = () => {
         if (productKeywords.find(items => items === keywords)) {
             return
         }
@@ -70,7 +78,7 @@ function Products({ path }) {
     }
 
     // delete keywords
-    function deleteKeywords(value) {
+    const deleteKeywords = (value) => {
         const filterKeyList = productKeywords.filter(items => items !== value)
         setProductKeywords(filterKeyList)
     }
@@ -200,14 +208,14 @@ function Products({ path }) {
     }
 
     // add search values to use state if have more than 1 letter
-    function searchInputValues(event) {
+    const searchInputValues = (event) => {
         const valueData = event.target.value
         valueData.length > 1 && setSearchValue(valueData)
         valueData.length < 1 && setSearchValue("")
     }
 
     //change availability
-    function changeAvailability(e) {
+    const changeAvailability = (e) => {
         const newQuery = new URLSearchParams(queryData)
         if (pageNumber !== 1) {
             newQuery.set('page', 1)
@@ -217,7 +225,7 @@ function Products({ path }) {
     }
 
     //prev page
-    function prevPage() {
+    const prevPage = () => {
         const newQuery = new URLSearchParams(queryData)
         if (pageNumber === 1) {
             newQuery.set("page", 1)
@@ -227,7 +235,7 @@ function Products({ path }) {
     }
 
     //next page
-    function nextPage() {
+    const nextPage = () => {
         const newQuery = new URLSearchParams(queryData)
         if (pageNumber === productData.page_result) {
             newQuery.set("page", pageNumber)
@@ -254,11 +262,9 @@ function Products({ path }) {
     }
 
     // Toggle Add Product Button
-    function addProductsToggleButton() {
+    const addProductsToggleButton = () => {
         addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect( reloadEffect ? false : true)
     }
-
-    console.log(productStock)
 
     return (
         <>
@@ -301,7 +307,7 @@ function Products({ path }) {
                             </div>
                         </div>
                         {
-                            loading ? <h3>Loading...</h3> :
+                            loading ? <LoadingComponent /> :
                                 products.map((items) => {
                                     return (
                                         <div class="product-box products" key={items._id}>

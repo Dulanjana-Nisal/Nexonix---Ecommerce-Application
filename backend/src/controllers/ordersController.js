@@ -77,7 +77,7 @@ const getAllOrders = asyncHaddler(async (req, res) => {
         const allResult = await Orders.find({});
         
         //get orders
-        const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
+        const allOrders = await Orders.find(queryObject).skip(skip).limit(limit).sort({createdAt: -1})
         
         //count all orders
         const allOrdersCount = await Orders.find(queryObject);

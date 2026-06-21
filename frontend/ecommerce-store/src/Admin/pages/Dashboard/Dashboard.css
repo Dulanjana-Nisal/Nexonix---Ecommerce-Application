@@ -29,10 +29,10 @@
     background-color: #fff;
 }
 
-.admin-container .sections .sections-body .dashboard-section .dashboard-body .box i {
+.admin-container .sections .sections-body .dashboard-section .dashboard-body .box svg {
+    width: 40px;
+    height: 40px;
     padding: 10px;
-    width: 50px;
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,22 +54,37 @@
     font-size: 14px;
 }
 
-.admin-container .sections .sections-body .dashboard-section .dashboard-body .user-count i {
+.admin-container .sections .sections-body .dashboard-section .dashboard-body .user-count svg {
     color: #008A00;
     background-color: #008A0027;
 }
 
-.admin-container .sections .sections-body .dashboard-section .dashboard-body .product-count i {
+.admin-container .sections .sections-body .dashboard-section .dashboard-body .product-count svg {
     color: #FFB800;
     background-color: #FFB80027;
 }
 
-.admin-container .sections .sections-body .dashboard-section .dashboard-body .order-count i {
+.admin-container .sections .sections-body .dashboard-section .dashboard-body .order-count svg {
     color: #2B38D1;
     background-color: #2B38D127;
 }
 
-.admin-container .sections .sections-body .dashboard-section .dashboard-body .order-status i {
+.admin-container .sections .sections-body .dashboard-section .dashboard-body .order-status svg {
     color: #DD3842;
     background-color: #DD384227;
+}
+
+/* Responsive Design */
+
+@media(max-width: 1156px){
+    .admin-container .sections .sections-body .dashboard-section .dashboard-body{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+
+@media(max-width: 540px){
+    .admin-container .sections .sections-body .dashboard-section .dashboard-body{
+        grid-template-columns: auto;
+    }
 }

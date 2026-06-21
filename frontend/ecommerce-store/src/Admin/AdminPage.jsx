@@ -21,7 +21,10 @@ function AdminPage() {
     const {notifiState} = Notifications() || {}
 
     //products states
-    const [productData, setProductData] = useState(null)
+    const [productData, setProductData] = useState([])
+    const [ordersData, setOrdersData] = useState([])
+    const [userData, setUserData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     //get admin data from localstorage
     const adminData = JSON.parse(localStorage.getItem('user'))
@@ -35,8 +38,24 @@ function AdminPage() {
     //fetch product data
     useEffect(() => {
         const fetchProductData = async () => {
-            const result = await api.get(`/products`)
-            setProductData(result.data.all_result)
+            setLoading(true)
+            try{
+                const [productResult,ordersResult,usersResult] = await Promise.all([
+                    api.get(`/products`),
+                    api.get(`/orders/all?limit=1`),
+                    api.get('/users')
+                ]);
+
+                setProductData(productResult.data.all_result);
+                setOrdersData(ordersResult.data.data);
+                setUserData(usersResult.data.all_result);
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            finally{
+                setLoading(false)
+            }
         }
         fetchProductData()
     }, [])
@@ -50,6 +69,10 @@ function AdminPage() {
         })
     }
 
+    console.log(productData)
+    console.log(ordersData)
+    console.log(userData)
+
     return (
         <>
             <div class="admin-container">
@@ -61,11 +84,36 @@ function AdminPage() {
                         </div>
                         <div class="sidebar-body">
                             <ul>
-                                <Link to="/admin/dashboard" class="no-style-link"><li class={path === "dashboard" && "select"}><i class="fa-solid fa-table"></i>Dashboard</li></Link>
-                                <Link to="/admin/users" class="no-style-link"><li class={path === "users" && "select"}><i class="fa-solid fa-user"></i>Users</li></Link>
-                                <Link to="/admin/products" class="no-style-link"><li class={path === "products" && "select"}><i class="fa-solid fa-box"></i>Products</li></Link>
-                                <Link to="/admin/orders" class="no-style-link"><li class={path === "orders" && "select"}><i class="fa-solid fa-cube"></i>Orders</li></Link>
-                                <Link to="/admin/notifications" class="no-style-link"><li class={path === "notifications" && "select"}><i class="fa-solid fa-envelope"></i>Notifications</li></Link>
+                                <Link to="/admin/dashboard" class="no-style-link">
+                                    <li class={path === "dashboard" && "select"}>
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                        <p>Dashboard</p>
+                                    </li>
+                                </Link>
+                                <Link to="/admin/users" class="no-style-link">
+                                    <li class={path === "users" && "select"}>
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+                                        <p>Users</p>
+                                    </li>
+                                </Link>
+                                <Link to="/admin/products" class="no-style-link">
+                                    <li class={path === "products" && "select"}>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                        <p>Products</p>
+                                    </li>
+                                </Link>
+                                <Link to="/admin/orders" class="no-style-link">
+                                    <li class={path === "orders" && "select"}>
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                                        <p>Orders</p>
+                                    </li>
+                                </Link>
+                                <Link to="/admin/notifications" class="no-style-link">
+                                    <li class={path === "notifications" && "select"}>
+                                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                                        <p>Notifications</p>
+                                    </li>
+                                </Link>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +125,10 @@ function AdminPage() {
                                     <h3>{adminData.role}</h3>
                                     <p>{adminData.email}</p>
                                 </div>
-                                <button class="log-out" onClick={() => logout(navigate)}>Log Out</button>
+                                <button class="log-out" onClick={() => logout(navigate)}>
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
+                                    Log Out
+                                </button>
                             </div>
                         </div>
                         <div class="sidebar-footer">
@@ -88,7 +139,10 @@ function AdminPage() {
                                 <h3>{adminData.role}</h3>
                                 <p>{adminData.email}</p>
                             </div>
-                            <button class="log-out" onClick={() => logout(navigate)}>Log Out</button>
+                            <button class="log-out" onClick={() => logout(navigate)}>
+                                Log Out
+                                <svg width="20" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
+                                </button>
                         </div>
                     </div>
                 </div>
@@ -99,7 +153,7 @@ function AdminPage() {
                         </div>
                         <div class="header-top-right">
                             <div class="cart">
-                                <i class="fa-solid fa-bell"></i>
+                                <svg width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                                 {
                                     (notifiState.filter(items => !items.isread)).length !== 0 &&
                                     <p>{(notifiState.filter(items => !items.isread)).length}</p>
@@ -107,8 +161,9 @@ function AdminPage() {
                             </div>
                             <div class="store">
                                 <Link to='/' class="no-style-link" onClick={() => fetchCartData()}>
-                                    <button><i class="fa-solid fa-store"></i>
+                                    <button>
                                         <p>Go to Store</p>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                     </button>
                                 </Link>
                             </div>
@@ -118,7 +173,7 @@ function AdminPage() {
                         {/* <!-- Dashboard Section --> */}
                         {
                             path === 'dashboard' &&
-                            <Dashboard adminData={adminData} productData={productData} />
+                            <Dashboard adminData={adminData} productData={productData} ordersData={ordersData} userData={userData} loading={loading} />
                         }
                         {/* <!-- Users Section --> */}
                         {

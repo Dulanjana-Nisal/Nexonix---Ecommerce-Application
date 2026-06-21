@@ -307,9 +307,15 @@ function NotificationsPage() {
                 {/* page footer */}
                 <div class="page-footer">
                     <div class="box-buttons">
-                        <button class="pre" onClick={() => preButton()}>‹</button>
+                        {
+                            page > 1 &&
+                            <button class="pre" onClick={() => preButton()}>‹</button>
+                        }
                         <p><span>{1}</span> of 2 </p>
-                        <button class="next" onClick={() => nextButton()}>›</button>
+                        {
+                            page < Math.ceil(notifiState.length /10) &&
+                            <button class="next" onClick={() => nextButton()}>›</button>
+                        }
                     </div>
                 </div>
             </div>

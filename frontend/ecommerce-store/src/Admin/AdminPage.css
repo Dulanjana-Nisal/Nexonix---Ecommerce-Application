@@ -33,6 +33,9 @@
 }
 
 .admin-container .sidebar .sidebar-body ul li {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
     list-style-type: none;
     padding: 15px 30px;
     font-size: 15px;
@@ -101,7 +104,11 @@
 
 .admin-container .sidebar .sidebar-footer button,
 .admin-container .sidebar .bottom .responsive-footer .prodile-box button {
-    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    border-radius: 10px;
     width: 100%;
     padding: 8px 0;
     color: #fff;
@@ -201,9 +208,13 @@
 
 .section-header .header-top-right .store button {
     width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
     padding: 8px 15px;
     border: 1px solid #2B38D1;
-    border-radius: 30px;
+    border-radius: 10px;
     background-color: #2B38D1;
     color: #fff;
     font-size: 14px;
@@ -252,11 +263,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
+    top: -2px;
+    right: -3px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    padding-bottom: 1px;
     background-color: #DD3842;
     font-weight: 600;
     color: #fff;
@@ -608,7 +620,39 @@
 
 
 /* -------------------Responcive Design ------------------- */
-
+@media(max-width: 1156px){
+    .admin-container .sidebar{
+        width: 80px;
+    }
+    .sections{
+        width: 100%;
+        margin-left: 80px;
+    }
+    .admin-container .sidebar .top .sidebar-header .main-logo {
+        display: none;
+    }
+    .admin-container .sidebar .top .sidebar-header .logo-letter {
+        display: block;
+    }
+    .admin-container .sidebar .sidebar-header{
+        padding: 30px 0;
+    }
+    .admin-container .sidebar .sidebar-body ul li p {
+        display: none;
+    }
+    .admin-container .sidebar .bottom .sidebar-footer {
+        display: none;
+    }
+    .admin-container .sidebar .bottom .responsive-footer {
+        display: flex;
+        justify-content: center;
+    }
+    .section-header {
+        left: 80px;
+        right: 0;
+    }
+}
+/* 
 @media(max-width: 1210px) {
     .admin-container .sections .sections-body .dashboard-section .dashboard-body {
         grid-template-columns: auto auto auto;
@@ -823,4 +867,4 @@
         padding-right: 15px;
     }
 }
-/* -------------------------------------------------- */
+-------------------------------------------------- */
