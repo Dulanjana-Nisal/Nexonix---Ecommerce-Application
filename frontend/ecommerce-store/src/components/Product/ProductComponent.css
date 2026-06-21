@@ -49,7 +49,10 @@
 .template-box .box-body,
 .card .box-body{
     height: 150px;
-    padding: 15px;
+}
+.template-box .box-body .name p,
+.card .box-body .name p{
+    padding: 0;
 }
 .template-box .box-body .name p,
 .card .box-body .name p{
@@ -66,6 +69,7 @@
     color: #FFB800;
     font-size: 18px;
     display: flex;
+    column-gap: 5px;
     align-items: center;
     justify-content: center;
 }
@@ -74,7 +78,6 @@
     color: #b6bcbd;
     font-weight: 600;
     font-size: 14px;
-    margin-left: 10px;
 }
 .template-box .box-body .price,
 .card .box-body .price{
@@ -99,7 +102,7 @@
     transform: translate(-50%,50%);
     font-size: 20px;
     border-radius: 30px;
-    color: #888c8c;
+    color: #b3122c;
     font-weight: 600;
     width: fit-content;
     margin: auto;
@@ -132,17 +135,26 @@
 .template-box .box-body .button button,
 .card .box-body .button button{
     position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    padding: 12px 0;
-    border-radius: 0 0 10px 10px;
+    width: 90%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    bottom: 3%;
+    padding: 10px 0;
+    border-radius: 10px;
     border: 1px solid #2B38D1;
     font-weight: 600;
     font-size: 14px;
     color: #fff;
     background-color: #2B38D1;
     transition: 0.25s;
+}
+.template-box .box-body .button button svg,
+.card .box-body .button button svg{
+    width: 15px;
+    height: 15px;
 }
 .template-box .box-body .button .cart-btn:hover,
 .card .box-body .button .cart-btn:hover{
