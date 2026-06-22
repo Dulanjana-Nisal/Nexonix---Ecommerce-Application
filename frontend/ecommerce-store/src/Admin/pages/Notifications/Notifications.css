@@ -346,7 +346,7 @@
   z-index: 0;
 }
 
-.card {
+.notifi-card {
   max-width: 100%;
   background: var(--white);
   border: 1px solid var(--border);
@@ -355,7 +355,7 @@
   z-index: 0;
 }
 
-.card h3 {
+.notifi-card h3 {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 14px;

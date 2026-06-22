@@ -1,6 +1,10 @@
 /* ******************* Footer styles ******************* */
 
 .footer{
+    width: 100%;
+    background-color: #0a0d18;
+}
+.footer-container{
     width: 90%;
     margin: auto;
 }
@@ -12,11 +16,12 @@
     justify-content: space-between;
     padding: 50px 0 30px 0;
     border-top: 1px solid #d9dedf;
+    color: #fff;
 }
 .footer .footer-top .location .details p{
     font-size: 14px;
     font-weight: 600;
-    color: rgb(109, 107, 107);
+    color: #9296b3;
     line-height: 23px;
     margin-bottom: 5px;
 }
@@ -26,7 +31,7 @@
 }
 .footer .footer-top .location .details a{
     text-decoration: none;
-    color: rgb(109, 107, 107);
+    color: #9296b3;
     font-weight: 600;
     font-size: 14px;
     transition: 0.25s;
@@ -51,7 +56,7 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
-    color: rgb(109, 107, 107);
+    color: #9296b3;
     transition: 0.25s;
 }
 .footer .footer-top .details ul a:hover{
@@ -64,12 +69,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    border-top: 1px solid #d9dedf;
+    border-top: 1px solid #d9dedf53;
     z-index: 10;
 }
 .footer .footer-bottom .copyright p{
     font-size: 14px;
     font-weight: 500;
+    color: #9296b3;
 }
 .footer .footer-bottom .copyright a{
     color: #2B38D1;
@@ -85,7 +91,7 @@
 .footer .footer-bottom .payment p{
     font-size: 14px;
     font-weight: 500;
-    color: rgb(109, 107, 107);
+    color: #9296b3;
 }
 .footer .footer-bottom .payment img{
     height: 25px;

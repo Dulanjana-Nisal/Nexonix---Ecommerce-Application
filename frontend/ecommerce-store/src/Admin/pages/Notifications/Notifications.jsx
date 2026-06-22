@@ -257,7 +257,7 @@ function NotificationsPage() {
                     </div>
                     <div class="col-aside">
                         {/* <!-- Notification Summary --> */}
-                        <div class="card">
+                        <div class="notifi-card">
                             <h3>Notification Summary</h3>
                             <div class="summary-row">
                                 <div class="sr-icon all">
