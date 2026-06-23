@@ -7,6 +7,7 @@ import ProductComponent from '../../components/Product/ProductComponent';
 import Banner from './Banner';
 import Info from './Info';
 import Sections from './Sections';
+import Category from './Category';
 
 function HomePage() {
 
@@ -46,6 +47,8 @@ function HomePage() {
                 <Banner />
                 {/* <!-- Info --> */}
                 <Info />
+                {/* <!--Category Section --> */}
+                <Category />
                 {/* <!-- best choice Section --> */}
                 <div class="best-choice">
                     <div class="best-choice-head">
