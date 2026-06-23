@@ -52,11 +52,11 @@
 }
 .template-box .box-body .name p,
 .card .box-body .name p{
-    padding: 0;
+    padding: 0 20px;
 }
 .template-box .box-body .name p,
 .card .box-body .name p{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -122,6 +122,7 @@
     font-size: 12px;
     font-weight: 600;
     background-color: #008A00;
+    border-radius: 10px 0 10px 0;
 }
 .template-box .box-body .availability .out-stock,
 .card .box-body .availability .out-stock{
@@ -131,6 +132,7 @@
     font-size: 12px;
     font-weight: 600;
     background-color: #DD3842;
+    border-radius: 10px 0 10px 0;
 }
 .template-box .box-body .button button,
 .card .box-body .button button{

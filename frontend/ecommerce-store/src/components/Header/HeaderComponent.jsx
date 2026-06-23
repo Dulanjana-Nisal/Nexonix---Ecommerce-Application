@@ -4,7 +4,7 @@ import hamberger_menu from '../../assets/hamberger-menu.png';
 import logo_letter from '../../assets/logo-image-letter.png';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { displaySearchBox, hideSearchBox } from '../../utils/Buttons';
 import { Cart } from '../../context/CartContext';
 
@@ -17,14 +17,17 @@ function HeaderComponent() {
     const [toggleHamberger, setToggleHamberger] = useState(false);
 
     // use context
-    const { state } = Cart()
+    const { state } = Cart();
+
+    // get param values
+    const {category} = useParams();
 
     //load localstorage
-    const user = JSON.parse(localStorage.getItem("user") || "null")
+    const user = JSON.parse(localStorage.getItem("user") || "null");
     const email = user?.email
 
     //get infor from search result box
-    const searchResultBox = useRef()
+    const searchResultBox = useRef();
 
     //get cart item summery
     let cartHeaderSummery = state.reduce((acc, items) => {
@@ -243,31 +246,31 @@ function HeaderComponent() {
                     </div>
                     <div class="navbar-right">
                         <div class="bar-row">
-                            <Link to="/products/computers">
+                            <Link to="/products/computers" class={category === 'computers' && 'select-category'}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2.5" y="4" width="19" height="13" rx="2" /><path d="M8.5 21h7" /><path d="M12 17v4" />
                                 </svg>
                                 <p>Computers</p>
                             </Link>
-                            <Link to="/products/laptops">
+                            <Link to="/products/laptops" class={category === 'laptops' && 'select-category'}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3.5" y="4.5" width="17" height="11" rx="1.5" /><path d="M1.5 19.5h21" />
                                 </svg>
                                 <p>Laptops</p>
                             </Link>
-                            <Link to="/products/components">
+                            <Link to="/products/components" class={category === 'components' && 'select-category'}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="6" y="6" width="12" height="12" rx="2" /><rect x="9.5" y="9.5" width="5" height="5" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
                                 </svg>
                                 <p>Components</p>
                             </Link>
-                            <Link to="/products/gamings">
+                            <Link to="/products/gamings" class={category === 'gamings' && 'select-category'}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="7" width="20" height="11" rx="5.5" /><path d="M7 10.5v3M5.5 12h3" /><circle cx="16" cy="10.5" r="1" /><circle cx="18.5" cy="13" r="1" />
                                 </svg>
                                 <p>Gamings</p>
                             </Link>
-                            <Link to="/products/softwares">
+                            <Link to="/products/softwares" class={category === 'softwares' && 'select-category'}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="3.2" /><path d="M12 3v2.5M12 18.5V21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M3 12h2.5M18.5 12H21M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8" />
                                 </svg>

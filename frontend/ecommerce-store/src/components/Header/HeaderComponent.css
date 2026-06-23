@@ -279,7 +279,7 @@
 .header .header-middle .header-middle-right .cart {
     display: flex;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 8px;
 }
 
 .header .header-middle .header-middle-right .cart .cart-left {
@@ -291,11 +291,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 0;
-    right: 0;
-    width: 16px;
-    height: 16px;
-    font-size: 10px;
+    top: -2px;
+    right: -4px;
+    width: 17px;
+    height: 17px;
+    font-size: 12px;
     background-color: #DD3842;
     font-weight: 600;
     color: #fff;
@@ -399,7 +399,7 @@
     overflow-x: scroll;
     scrollbar-width: none;
 }
-.header .header-navbar .navbar-right  a {
+.header .header-navbar .navbar-right a{
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -408,6 +408,16 @@
     font-size: 14px;
     font-weight: 600;
     transition: 0.25s;
+}
+
+.header .header-navbar .navbar-right .select-category{
+    background: linear-gradient(135deg, #8050ec, #3a5df0);
+    padding: 6px 15px 7px 15px;
+    border-radius: 8px;
+    color: #fff;
+}
+.header .header-navbar .navbar-right .select-category:hover{
+    color: #fff;
 }
 
 .header .header-navbar .navbar-right svg {
