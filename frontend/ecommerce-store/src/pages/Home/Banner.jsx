@@ -38,7 +38,7 @@ function Banner() {
     useEffect(()=>{
         const intervel = setInterval(()=>{
             setScale((prev) => (prev + 1) % slides.length)
-        }, 5500)
+        }, 10000)
         return () => clearInterval(intervel)
     }, [])
     
