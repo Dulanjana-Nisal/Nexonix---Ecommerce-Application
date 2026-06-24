@@ -218,19 +218,23 @@
 }
 
 .search-container .container-body .laptops-section{
-    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/laptop-section-background.jpeg');
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/laptop-section-background.jpg');
 }
 
 .search-container .container-body .components-section{
-    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/component-section-background.jpg');
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/component-section-baackground.avif');
 }
 
 .search-container .container-body .gamings-section{
-    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/gaming-section-background.avif');
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/gaming-section-background.jpg');
 }
 
 .search-container .container-body .softwares-section{
     background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/software-section-background.jpg');
+}
+
+.search-container .container-body .search-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/search-section-background.png');
 }
 
 .search-container .container-body .body-head h1{

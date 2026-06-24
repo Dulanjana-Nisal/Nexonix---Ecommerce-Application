@@ -53,16 +53,16 @@ function SearchPage() {
     useEffect(() => {
         const fetchCategoryDetails = async () => {
             setLoading(true)
-            try{
+            try {
                 const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchKeyword}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
                 setAllCategoryDetails(result.data)
                 setCategoryData(result.data.data)
                 setToggleOption(false)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }
@@ -339,18 +339,21 @@ function SearchPage() {
                         </div>
                     </div>
                     <div class="container-body">
+                        <div class={`body-head search-section`}>
+                            <h1>Search Result</h1>
+                        </div>
                         {
                             loading ? <LoadingComponent />
-                            :
-                            <div class="body-template">
-                                {
-                                    categoryData.map((items) => {
-                                        return (
-                                            <ProductComponent items={items} ratings={items.ratings} />
-                                        )
-                                    })
-                                }
-                            </div>
+                                :
+                                <div class="body-template">
+                                    {
+                                        categoryData.map((items) => {
+                                            return (
+                                                <ProductComponent items={items} ratings={items.ratings} />
+                                            )
+                                        })
+                                    }
+                                </div>
                         }
                         <div class="box-buttons">
                             {
