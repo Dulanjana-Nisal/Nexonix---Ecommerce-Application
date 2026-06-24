@@ -3,10 +3,11 @@ const asyncHaddler = require('../utils/asyncHaddler');
 const NotFoundErrorHaddler = require('../errors/NotFoundErrorHaddler');
 const statusCodes = require('http-status-codes');
 const BadrequestErrorHaddler = require('../errors/BadrequestErrorHaddler');
+const UnauthorizedErrorHaddler = require('../errors/UnauthorizedErrorHaddler');
 
 //get Notifications
 const getNotifications = asyncHaddler(async (req, res) => {
-    const {type,status,adminRole} = req.query
+    const {type,status,adminRole, receiver} = req.query
 
     let queryObject = {userId: req.user._id};
     
@@ -15,13 +16,20 @@ const getNotifications = asyncHaddler(async (req, res) => {
         queryObject = {
             receiver: 'admin'
         }
+        if(req.query.receiver === 'user'){
+            queryObject.receiver = 'user'
+        }
     }
 
     // get user notifications
     if(req.user.role === 'user'){
+         
         queryObject = {
             receiver: 'user',
             userId: req.user._id
+        }
+        if(receiver === 'admin'){
+            throw new UnauthorizedErrorHaddler('Not authorized!')
         }
     }
 
@@ -56,7 +64,7 @@ const getNotifications = asyncHaddler(async (req, res) => {
 
 //get All Notifications
 const getAllNotifications = asyncHaddler(async (req, res) => {
-    const {type,status} = req.query
+    const {type,status,receiver} = req.query
 
     let queryObject = {userId: req.user._id};
     
@@ -65,6 +73,9 @@ const getAllNotifications = asyncHaddler(async (req, res) => {
         queryObject = {
             receiver: 'admin'
         }
+        if(req.query.receiver === 'user'){
+            queryObject.receiver = 'user'
+        }
     }
 
     // get user notifications
@@ -72,6 +83,9 @@ const getAllNotifications = asyncHaddler(async (req, res) => {
         queryObject = {
             receiver: 'user',
             userId: req.user._id
+        }
+        if(receiver === 'admin'){
+            throw new UnauthorizedErrorHaddler('Not authorized!')
         }
     }
 

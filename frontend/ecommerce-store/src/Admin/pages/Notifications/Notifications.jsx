@@ -52,7 +52,7 @@ function NotificationsPage() {
     // update notifications
     const updateNotifications = async(notifiId) => {
         try{
-            const updateNotifi = await api.patch(`/notifications/${notifiId}`,
+            await api.patch(`/notifications/${notifiId}`,
                 {
                     isread: true
                 }
@@ -62,7 +62,6 @@ function NotificationsPage() {
                 type: NOTIFI_ACTIONS.UPDATE_NOTIFICATION,
                 payload: {_id: notifiId}
             })
-            console.log(updateNotifi)
         }
         catch(err){
             console.log(err.responce)
@@ -96,8 +95,7 @@ function NotificationsPage() {
     // delete notifications
     const deleteNotifications = async(notifiId) => {
         try{
-            const updateNotifi = await api.delete(`/notifications/${notifiId}`)
-            console.log(updateNotifi)
+            await api.delete(`/notifications/${notifiId}`)
 
             // update context
             notifiDispatch({
@@ -172,7 +170,7 @@ function NotificationsPage() {
     return (
         <>
             {/* <!-- Container --> */}
-            <div class="notification-container">
+            <div class="notification-container-admin">
                 {/* <!-- page body --> */}
                 <div class="page-body">
                     <div class="col-main">

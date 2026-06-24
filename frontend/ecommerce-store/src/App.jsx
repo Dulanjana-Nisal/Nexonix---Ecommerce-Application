@@ -11,6 +11,7 @@ import AdminPage from './Admin/AdminPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
 import { Cart } from './context/CartContext'
 import NotFoundPage from './pages/404/NotFoundPage'
+import NotificationsPage from './pages/Notifications/NotificationsPage'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='*' element={<NotFoundPage />} />
       }
       <Route path='/checkout' element={<CheckoutPage />} />
+      <Route path='/notifications' element={<NotificationsPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
