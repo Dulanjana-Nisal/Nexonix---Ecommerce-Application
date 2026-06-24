@@ -1,21 +1,32 @@
+import LoadingComponent from "../../components/Loading/LoadingComponent";
 import ProductComponent from "../../components/Product/ProductComponent";
 
-function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNextPage}) {
+function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNextPage,loading}) {
+
+    const capitalizeWord = (char) => {
+        if(!char) return ""
+        return char.charAt(0).toUpperCase() + char.slice(1)
+    }
+
     return (
         <>
             <div class="container-body">
-                <div class="body-head">
-                    <h1>{category}</h1>
+                <div class={`body-head ${category}-section`}>
+                    <h1>{capitalizeWord(category)}</h1>
                 </div>
-                <div class="body-template">
-                    {
-                        categoryData.map((items) => {
-                            return (
-                                <ProductComponent items={items} ratings={items.ratings} />
-                            )
-                        })
-                    }
-                </div>
+                {
+                    loading ? <LoadingComponent />
+                    :
+                    <div class="body-template">
+                        {
+                            categoryData.map((items) => {
+                                return (
+                                    <ProductComponent items={items} ratings={items.ratings} />
+                                )
+                            })
+                        }
+                    </div>
+                }
                 <div class="box-buttons">
                     {
                         pageNumber > 1 &&

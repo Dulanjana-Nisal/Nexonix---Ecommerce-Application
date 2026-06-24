@@ -15,6 +15,7 @@ function CategoryPage() {
     const [toggleOption,setToggleOption] = useState(false);
     const [brands,setBrand] = useState([]);
     const [productBrands,setProductBrands] = useState([]);
+    const [loading,setLoading] = useState(false);
     const [priceValues,setPriceValues] = useState({
         maxPrice: 100000,
         minPrice: 0
@@ -51,6 +52,7 @@ function CategoryPage() {
 
     useEffect(()=>{
         const fetchCategoryDetails = async ()=>{
+            setLoading(true)
             try{
                 const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
                 setAllCategoryDetails(result.data)
@@ -59,6 +61,9 @@ function CategoryPage() {
             }
             catch(err){
                 console.log(err)
+            }
+            finally{
+                setLoading(false)
             }
         }
         fetchCategoryDetails();
@@ -222,7 +227,8 @@ function CategoryPage() {
                     <CategoryFilter clearFilters={clearFilters} filterTags={filterTags} brandName={brandName} productBrands={productBrands} brandsFilter={brandsFilter} ratingsFilter={ratingsFilter} ratingRange={ratingRange} priceValues={priceValues} setPriceValues={setPriceValues} submitPriceValue={submitPriceValue} filterByAvailability={filterByAvailability} availability={availability} />
                     
                     {/* Category Body */}
-                    <CategoryBody category={category} categoryData={categoryData} pageNumber={pageNumber} toPrePage={toPrePage} pagesSize={pagesSize} toNextPage={toNextPage} />
+                    <CategoryBody category={category} categoryData={categoryData} pageNumber={pageNumber} toPrePage={toPrePage} pagesSize={pagesSize} toNextPage={toNextPage} loading={loading} />
+                    
                 </div>
             </div>
             <FooterCompoennt />

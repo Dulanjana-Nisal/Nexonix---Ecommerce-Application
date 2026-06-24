@@ -204,6 +204,43 @@
 .search-container .container-body{
     width: 100%;
 }
+.search-container .container-body .body-head{
+    position: relative;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.search-container .container-body .computers-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/computer-section-background.avif');
+}
+
+.search-container .container-body .laptops-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/laptop-section-background.jpeg');
+}
+
+.search-container .container-body .components-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/component-section-background.jpg');
+}
+
+.search-container .container-body .gamings-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/gaming-section-background.avif');
+}
+
+.search-container .container-body .softwares-section{
+    background-image: radial-gradient(circle at 78% 15%, rgba(24, 27, 52, 0.2) 0%, rgba(10, 13, 24, 0.85) 55%, rgba(5, 7, 13, 0.95) 100%), url('../../assets/software-section-background.jpg');
+}
+
+.search-container .container-body .body-head h1{
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    z-index: 1;
+    color: #fff;
+    transform: translateY(35%);
+}
 .search-container .container-body .box-buttons{
     display: flex;
     width: 100%;

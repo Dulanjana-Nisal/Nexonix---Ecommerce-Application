@@ -5,6 +5,7 @@ import './SearchPage.css';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import ProductComponent from '../../components/Product/ProductComponent';
+import LoadingComponent from '../../components/Loading/LoadingComponent';
 
 function SearchPage() {
     //use state hooks
@@ -13,6 +14,7 @@ function SearchPage() {
     const [toggleOption, setToggleOption] = useState(false);
     const [brands, setBrand] = useState([]);
     const [productBrands, setProductBrands] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [priceValues, setPriceValues] = useState({
         maxPrice: 100000,
         minPrice: 0
@@ -50,10 +52,19 @@ function SearchPage() {
 
     useEffect(() => {
         const fetchCategoryDetails = async () => {
-            const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchKeyword}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
-            setAllCategoryDetails(result.data)
-            setCategoryData(result.data.data)
-            setToggleOption(false)
+            setLoading(true)
+            try{
+                const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchKeyword}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
+                setAllCategoryDetails(result.data)
+                setCategoryData(result.data.data)
+                setToggleOption(false)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            finally{
+                setLoading(false)
+            }
         }
         fetchCategoryDetails();
         window.scroll(top)
@@ -328,15 +339,19 @@ function SearchPage() {
                         </div>
                     </div>
                     <div class="container-body">
-                        <div class="body-template">
-                            {
-                                categoryData.map((items) => {
-                                    return (
-                                        <ProductComponent items={items} ratings={items.ratings} />
-                                    )
-                                })
-                            }
-                        </div>
+                        {
+                            loading ? <LoadingComponent />
+                            :
+                            <div class="body-template">
+                                {
+                                    categoryData.map((items) => {
+                                        return (
+                                            <ProductComponent items={items} ratings={items.ratings} />
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
                         <div class="box-buttons">
                             {
                                 pageNumber > 1 &&
