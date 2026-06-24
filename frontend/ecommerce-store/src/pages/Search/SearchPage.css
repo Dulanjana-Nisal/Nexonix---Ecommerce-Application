@@ -287,7 +287,7 @@
         grid-template-columns: auto auto auto;
     }
 }
-@media(max-width: 1020px){
+@media(max-width: 1070px){
     .search-container .container-body .body-template{
         grid-template-columns: auto auto;
     }
@@ -318,9 +318,16 @@
         display: block;
     }
 }
-@media(max-width: 620px){
+@media(max-width: 680px){
     .search-container .container-body .body-template{
         grid-template-columns: auto auto;
+    }
+}
+@media(max-width: 550px){
+    .search-container .container-body .body-head h1{
+        width: fit-content;
+        margin: auto;
+        padding: 0;
     }
 }
 @media(max-width: 475px) and (min-width: 440px){
