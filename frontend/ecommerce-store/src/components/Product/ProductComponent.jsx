@@ -46,25 +46,24 @@ function ProductComponent({ items, ratings }) {
                         <p>{items.name}</p>
                     </div>
                     <div class="price">
-                        <hr />
                         <p>${items.price}</p>
                     </div>
                     <div class="availability">
                         <p class={items.availability ? "in-stock" : "out-stock"}>{items.availability ? "In Stock" : "Out Stock"}</p>
                     </div>
                     <div class="ratings">
-                        {ratingsQuery[ratings]}<span>({reviews.all_result} Reviews)</span>
+                        {ratingsQuery[ratings]}<span>({reviews.all_result})</span>
                     </div>
                     <div class="button">
                         {
                             state.find(item => item.productId == items._id) ?
-                                <button style={{ opacity: "0.5", cursor: " not-allowed" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <button class="in-cart" style={{ opacity: "0.5", cursor: " not-allowed" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     In Cart
                                 </button>
                                 :
                                 <button class='cart-btn' onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch, setupMessage)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6" />
                                     </svg>
                                     Add To Cart

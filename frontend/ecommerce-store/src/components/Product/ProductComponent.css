@@ -16,8 +16,7 @@
 }
 .template-box,
 .card{
-    max-width: 240px;
-    padding-bottom: 30px;
+    padding: 10px 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
     border-radius: 10px;
@@ -48,11 +47,12 @@
 }
 .template-box .box-body,
 .card .box-body{
-    height: 150px;
+    padding-bottom: 10px;
 }
 .template-box .box-body .name p,
 .card .box-body .name p{
-    padding: 0 20px;
+    margin: 10px 0;
+    height: 35px;
 }
 .template-box .box-body .name p,
 .card .box-body .name p{
@@ -66,12 +66,18 @@
 }
 .template-box .box-body .ratings,
 .card .box-body .ratings{
+    width: fit-content;
     color: #FFB800;
     font-size: 18px;
     display: flex;
     column-gap: 5px;
     align-items: center;
-    justify-content: center;
+    margin: 3px 0 10px 0;
+}
+.template-box .box-body .ratings p,
+.card .box-body .ratings p{
+    font-size: 18px;
+    color: #f5a524;
 }
 .template-box .box-body .ratings span,
 .card .box-body .ratings span{
@@ -81,31 +87,16 @@
 }
 .template-box .box-body .price,
 .card .box-body .price{
-    position: relative;
     width: 100%;
-    padding: 25px 0;
-    text-align: center;
     z-index: 10;
-}
-.template-box .box-body .price hr,
-.card .box-body .price hr{
-    width: 100%;
-    z-index: 0;
-    opacity: 0.4;
 }
 .template-box .box-body .price p ,
 .card .box-body .price p{
-    bottom: 50%;
-    left: 50%;
-    position: absolute;
-    padding: 5px 10px;
-    transform: translate(-50%,50%);
     font-size: 20px;
     border-radius: 30px;
     color: #b3122c;
-    font-weight: 600;
+    font-weight: 700;
     width: fit-content;
-    margin: auto;
     background-color: #fff;
 }
 .template-box .box-body .availability,
@@ -136,14 +127,11 @@
 }
 .template-box .box-body .button button,
 .card .box-body .button button{
-    position: absolute;
-    width: 90%;
-    left: 5%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 8px;
-    bottom: 3%;
     padding: 10px 0;
     border-radius: 10px;
     border: 1px solid #2B38D1;
@@ -163,4 +151,9 @@
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
+}
+.template-box .box-body .button .in-cart,
+.card .box-body .button .in-cart{
+    background-color: #008A00;
+    border: 1px solid #008A00;
 }
