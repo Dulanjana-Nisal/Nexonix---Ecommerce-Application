@@ -253,7 +253,7 @@ function NotificationsPage() {
                             </div>
                         }
                     </div>
-                    <div class="col-aside">
+                    <div class="col-aside-admin">
                         {/* <!-- Notification Summary --> */}
                         <div class="notifi-card">
                             <h3>Notification Summary</h3>

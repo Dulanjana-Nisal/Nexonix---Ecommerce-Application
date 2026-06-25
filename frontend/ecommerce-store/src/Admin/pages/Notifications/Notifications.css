@@ -336,7 +336,7 @@
 }
 
 /* ── RIGHT COLUMN ── */
-.col-aside {
+.col-aside-admin {
   width: 320px;
   flex-shrink: 0;
   display: flex;
