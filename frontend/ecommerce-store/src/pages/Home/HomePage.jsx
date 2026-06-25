@@ -20,7 +20,7 @@ function HomePage() {
             setLoading(true)
             try {
                 const [fetchBestChoiceProducts] = await Promise.all([
-                    axios.get('http://localhost:5000/api/v1/products?page=1'),
+                    axios.get('http://localhost:5000/api/v1/products?page=1&limit=10'),
                 ])
 
                 setBestChoiceProduct(fetchBestChoiceProducts.data.data)
