@@ -40,8 +40,9 @@ const userSignin = asyncHaddler(async (req,res)=>{
     if(!checkPass){
         throw new BadrequestErrorHaddler('Invalid Password!')
     }
+
     const token = await signin.createJWT(signin)
-    res.status(statusCodes.OK).json({success: true, user: {_id: signin._id, name: signin.name, email: signin.email, role: signin.role}, token: token})
+    res.status(statusCodes.OK).json({success: true, user: {_id: signin._id, name: signin.name, email: signin.email, role: signin.role, joined: signin.createdAt || "no date"}, token: token})
 })
 
 //delete users

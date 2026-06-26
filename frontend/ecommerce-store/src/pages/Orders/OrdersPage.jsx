@@ -18,7 +18,7 @@ function OrdersPage() {
     //fetch orders from detabase
     useEffect(() => {
         const fetchOrders = async () => {
-            const result = await api.get('/orders')
+            const result = await api.get('/orders?limit=-1')
             setOrders(result.data.data)
         }
         fetchOrders()

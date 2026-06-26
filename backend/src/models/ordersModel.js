@@ -69,6 +69,10 @@ const OrdersSchema = mongoose.Schema({
         type: Number,
         required: [true, 'Orders must have quantity']
     },
+    tax: {
+        type: Number,
+        required: [true, 'Tax Price is required!']
+    },
     totle_price: {
         type: Number,
         required: [true, 'totle_price is required!']

@@ -27,7 +27,7 @@ const UserSchema = mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     }
-})
+}, {timestamps: true})
 
 //hashing password
 UserSchema.pre('save', async function () {
@@ -38,7 +38,7 @@ UserSchema.pre('save', async function () {
 
 //create jwt token
 UserSchema.methods.createJWT = function (userData) {
-    return jwt.sign({ _id: userData._id, name: userData.name, email: userData.email, role: userData.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
+    return jwt.sign({ _id: userData._id, name: userData.name, email: userData.email, role: userData.role, joined: this.createdAt }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
 }
 
 //password decode

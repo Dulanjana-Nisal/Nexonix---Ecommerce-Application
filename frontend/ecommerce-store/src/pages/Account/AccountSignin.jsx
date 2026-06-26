@@ -10,8 +10,6 @@ function AccountSignin({loginFrom,loginEmail,setLoginEmail,loginPassword,setLogi
         togglePass ? setTogglePass(prev => !prev) : setTogglePass(prev => !prev)
     }
 
-    console.log(loginmessages.message)
-
     return (
         <>
             <div class="signin-container">

@@ -26,16 +26,20 @@ const getOrders = asyncHaddler(async (req, res) => {
         queryObject.productId = product;
     }
 
+    //count all orders
+    const allOrdersCount = await Orders.find(queryObject);
+
     //orders paging
     const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
+    let limit = Number(req.query.limit) || 10;
+    if(limit === -1){
+        limit = Number(allOrdersCount.length)
+    }    
     const skip = (page - 1) * limit
-
+    
     //get orders
     const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
 
-    //count all orders
-    const allOrdersCount = await Orders.find(queryObject);
     res.status(statusCodes.OK).json({
         success: true,
         all_result: allOrdersCount.length,

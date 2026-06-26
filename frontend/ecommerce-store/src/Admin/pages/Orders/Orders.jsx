@@ -154,13 +154,11 @@ function Orders() {
         setQueryData(newquery)
     }
 
-    console.log(allOrdersCounts)
-
     return (
         <>
             <div class="orders-container">
                 <div class="orders-container-header">
-                    <div class="header-top">
+                    <div class="header-top admin-orders">
                         <div class="status-box">
                             <div class="box-thumb total">
                                 <svg class="total" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
@@ -455,7 +453,7 @@ function Orders() {
                                                                                 </div>
                                                                                 <div>
                                                                                     <h4>Payment Status</h4>
-                                                                                    <p class={items.method === 'cash-on-delivery' ? "payment-status no-paid" : "payment-status paid"}>{items.method === 'cash-on-delivery' ? 'None Paid' : 'Paid'}</p>
+                                                                                    <p class={items.method !== 'cash-on-delivery' || items.status === 'Delivered' ? "payment-status paid" : "payment-status no-paid"}>{items.method !== 'cash-on-delivery' || items.status === 'Delivered' ? 'Paid' : 'None Paid'}</p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

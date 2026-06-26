@@ -18,7 +18,7 @@ import { NOTIFI_ACTIONS } from '../../Admin/Context/NotificationReduce';
 function AccountPage() {
 
     // cart context
-    const { dispatch, user } = Cart();
+    const { state, dispatch, user } = Cart();
     const { setupMessage } = Message();
     const { notifiDispatch } = Notifications() || {};
 
@@ -159,7 +159,7 @@ function AccountPage() {
                 }
                 {
                     user &&
-                    <ProfilePage navigate={navigate} dispatch={dispatch} user={user} />
+                    <ProfilePage navigate={navigate} dispatch={dispatch} user={user} state={state} />
                 }
                 {
                     !user &&

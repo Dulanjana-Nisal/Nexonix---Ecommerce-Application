@@ -466,10 +466,12 @@
 .menu-btn:hover {
   background: var(--bg);
 }
-.notification-container .page-footer{
+.notification-container .page-footer,
+.notification-container-admin .page-footer{
   padding-bottom: 30px;
 }
-.notification-container .box-buttons {
+.notification-container .box-buttons,
+.notification-container-admin .box-buttons {
   display: flex;
   width: 100%;
   padding: 30px 0 10px 0;
@@ -477,7 +479,8 @@
   align-items: center;
 }
 
-.notification-container .box-buttons button {
+.notification-container .box-buttons button,
+.notification-container-admin .box-buttons button {
   background: #F1F5F6;
   display: flex;
   border-radius: 50%;
@@ -493,18 +496,21 @@
   padding-bottom: 5px;
 }
 
-.notification-container .box-buttons button:hover {
+.notification-container .box-buttons button:hover,
+.notification-container-admin .box-buttons button:hover {
   color: #fff;
   background-color: #2B38D1;
   cursor: pointer;
 }
 
-.notification-container .box-buttons p {
+.notification-container .box-buttons p,
+.notification-container-admin .box-buttons p {
   margin: 0 20px;
   font-weight: 600;
 }
 
-.notification-container .box-buttons span {
+.notification-container .box-buttons span,
+.notification-container-admin .box-buttons span {
   color: #2B38D1;
   font-weight: 600;
 }

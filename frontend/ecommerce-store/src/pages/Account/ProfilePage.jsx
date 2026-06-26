@@ -1,9 +1,43 @@
 import './ProfilePage.css';
 import { Link } from 'react-router-dom';
-import { logout } from '../../services/auth';
+import api, { logout } from '../../services/auth';
 import user_profile from '../../assets/profile-avatar-transparent.png'
+import { Notifications } from '../../context/NotificationContext';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 
-function ProfilePage({ navigate, dispatch, user }) {
+function ProfilePage({ navigate, dispatch, user, state }) {
+
+    // load data from context
+    const { notifiState } = Notifications() || {};
+
+    // states
+    const [ordersDetails,setOrdersDetails] = useState([])
+
+    // useEffect
+    useEffect(()=>{
+        const fetchOrdersData = async() => {
+            try{
+                const result = await api.get(`/orders?limit=-1`)
+                setOrdersDetails(result.data.data)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+        }
+        fetchOrdersData()
+    }, [])
+
+    // Total Spent Calculation
+    const totalSpentCalculation = () => {
+        const filterOrders = ordersDetails.filter(items => items.method !== 'cash-on-delivery' || items.status === 'Delivered')
+        let totalSpent = 0
+        filterOrders.forEach((items) => {
+            totalSpent += items.price
+        })
+        return totalSpent
+    }
+
     return (
         <>
             <div class='profile-container'>
@@ -29,24 +63,24 @@ function ProfilePage({ navigate, dispatch, user }) {
                                     </div>
                                     <div class="date">
                                         <svg viewBox="0 0 24 24" fill="none" width="18" height="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                        <p>Joined on {user.createdAt || "2021.12.03"}</p>
+                                        <p>Joined on {format(new Date(user.joined), "MMMM dd, yyyy") || "2021.12.03"}</p>
                                     </div>
                                 </div>
                                 {
                                     user.role === 'admin' ?
                                         <div class="details-buttons">
-                                            <button class='admin-panel'>
+                                            <button class='admin-panel' onClick={() => navigate('/admin/dashboard')}>
                                                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                                                 <p>Go to Admin Panel</p>
                                             </button>
-                                            <button class="logout">
+                                            <button class="logout" onClick={() => logout('/',dispatch)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>
                                         </div>
                                         :
                                         <div class="details-buttons">
-                                            <button>
+                                            <button class="logout" onClick={() => logout('/',dispatch)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>
@@ -60,28 +94,34 @@ function ProfilePage({ navigate, dispatch, user }) {
                                 <h1>Quick Actions</h1>
                             </div>
                             <div class="center-section-row">
-                                <div class="section-card order-card">
-                                    <svg class="orders" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 8l-9-5-9 5 9 5 9-5z" /><path d="M3 8v8l9 5 9-5V8" /><path d="M12 13v8" />
-                                    </svg>
-                                    <h3>My Orders</h3>
-                                    <p>Viwe and Track Your Orders</p>
-                                    <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </div>
-                                <div class="section-card cart-card">
-                                    <svg class="cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6" />
-                                    </svg>
-                                    <h3>My Cart</h3>
-                                    <p>See Your Cart Items</p>
-                                    <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </div>
-                                <div class="section-card notifi-card">
-                                    <svg class="notifications" width="27" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                                    <h3>Notifictions</h3>
-                                    <p>Recent updates & alerts</p>
-                                    <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </div>
+                                <Link to="/orders" class="no-style-link">
+                                    <div class="section-card order-card">
+                                        <svg class="orders" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 8l-9-5-9 5 9 5 9-5z" /><path d="M3 8v8l9 5 9-5V8" /><path d="M12 13v8" />
+                                        </svg>
+                                        <h3>My Orders</h3>
+                                        <p>Viwe and Track Your Orders</p>
+                                        <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </Link>
+                                <Link to="/cart" class="no-style-link">
+                                    <div class="section-card cart-card">
+                                        <svg class="cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6" />
+                                        </svg>
+                                        <h3>My Cart</h3>
+                                        <p>See Your Cart Items</p>
+                                        <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </Link>
+                                <Link to="/notifications" class="no-style-link">
+                                    <div class="section-card notifi-card">
+                                        <svg class="notifications" width="27" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                                        <h3>Notifictions</h3>
+                                        <p>Recent updates & alerts</p>
+                                        <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                         {/* Role Status */}
@@ -97,7 +137,7 @@ function ProfilePage({ navigate, dispatch, user }) {
                                             <circle cx="18" cy="7" r="1.2" fill="#fff" />
                                         </svg>
                                         :
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg class="admin-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" />
                                         </svg>
                                 }
@@ -111,12 +151,22 @@ function ProfilePage({ navigate, dispatch, user }) {
                                     </p>
                                 </div>
                             </div>
-                            <button>
-                                Go to Admin Panel
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                </svg>
-                            </button>
+                            {
+                                user.role === 'admin' ? 
+                                <button onClick={() => navigate('/admin/dashboard')}>
+                                    Go to Admin Panel
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                    </svg>
+                                </button>
+                                :
+                                <button onClick={() => navigate('/')}>
+                                    Shop Now
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                    </svg>
+                                </button>
+                             }
                         </div>
                     </div>
                     {/* Container Right */}
@@ -134,7 +184,7 @@ function ProfilePage({ navigate, dispatch, user }) {
                                     </div>
                                     <div class="card-right">
                                         <p>Total Orders</p>
-                                        <h1>125</h1>
+                                        <h1>{ordersDetails.length}</h1>
                                     </div>
                                 </div>
                                 <div class="overview-card spent">
@@ -143,7 +193,7 @@ function ProfilePage({ navigate, dispatch, user }) {
                                     </div>
                                     <div class="card-right">
                                         <p>Total Spent</p>
-                                        <h1>$2,012.45</h1>
+                                        <h1>${totalSpentCalculation()}</h1>
                                     </div>
                                 </div>
                                 <div class="overview-card cart">
@@ -152,7 +202,7 @@ function ProfilePage({ navigate, dispatch, user }) {
                                     </div>
                                     <div class="card-right">
                                         <p>Cart Items</p>
-                                        <h1>5</h1>
+                                        <h1>{state.length}</h1>
                                     </div>
                                 </div>
                                 <div class="overview-card notifications">
@@ -160,8 +210,8 @@ function ProfilePage({ navigate, dispatch, user }) {
                                         <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                                     </div>
                                     <div class="card-right">
-                                        <p>Notifications</p>
-                                        <h1>5</h1>
+                                        <p>All Notifications</p>
+                                        <h1>{notifiState.length}</h1>
                                     </div>
                                 </div>
                             </div>

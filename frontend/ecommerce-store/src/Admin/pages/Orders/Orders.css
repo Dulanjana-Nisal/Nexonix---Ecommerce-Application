@@ -2,8 +2,9 @@
     max-width: 90%;
     margin: auto;
 }
-.orders-container .orders-container-header .header-top{
+.orders-container .orders-container-header .admin-orders{
     display: flex;
+    background-color: transparent;
     align-items: center;
     column-gap: 20px;
     justify-content: space-between;
@@ -70,7 +71,7 @@
     color: #000000ae;
 }
 .orders-container .orders-container-header .header-top .status-box .box-details h1{
-    font-size: 25px;
+    font-size: 25px;color: #000;
 }
 .orders-container .orders-container-header .header-bottom{
     background-color: #fff;
