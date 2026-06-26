@@ -99,8 +99,10 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                         <svg class="orders" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M21 8l-9-5-9 5 9 5 9-5z" /><path d="M3 8v8l9 5 9-5V8" /><path d="M12 13v8" />
                                         </svg>
-                                        <h3>My Orders</h3>
-                                        <p>Viwe and Track Your Orders</p>
+                                        <div class="section-card-details">
+                                            <h3>My Orders</h3>
+                                            <p>Viwe and Track Your Orders</p>
+                                        </div>
                                         <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </div>
                                 </Link>
@@ -109,17 +111,25 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                         <svg class="cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6" />
                                         </svg>
-                                        <h3>My Cart</h3>
-                                        <p>See Your Cart Items</p>
+                                        <div class="section-card-details">
+                                            <h3>My Cart</h3>
+                                            <p>See Your Cart Items</p>
+                                        </div>
                                         <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </div>
                                 </Link>
                                 <Link to="/notifications" class="no-style-link">
                                     <div class="section-card notifi-card">
                                         <svg class="notifications" width="27" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                                        <h3>Notifictions</h3>
-                                        <p>Recent updates & alerts</p>
+                                        <div class="section-card-details">
+                                            <h3>Notifictions</h3>
+                                            <p>Recent updates & alerts</p>
+                                        </div>
                                         <svg class="navigate-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                        {
+                                            (notifiState.filter(items => !items.isread)).length !== 0 &&
+                                            <p class="notifi-count">{(notifiState.filter(items => !items.isread)).length}</p>
+                                        }
                                     </div>
                                 </Link>
                             </div>

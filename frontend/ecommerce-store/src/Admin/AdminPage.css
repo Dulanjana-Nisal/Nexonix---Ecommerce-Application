@@ -222,14 +222,6 @@
     transition: 0.25s;
 }
 
-.section-header .header-top-right .store i {
-    display: none;
-}
-
-.section-header .header-top-right .store i p {
-    border: 1px solid #2B38D1;
-}
-
 .section-header .header-top-right .store button:hover {
     background-color: #fff;
     color: #2B38D1;
@@ -242,20 +234,10 @@
     position: relative;
 }
 
-.section-header .header-top-right .cart i {
-    font-size: 23px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: 0.25s;
-}
-
-.section-header .header-top-right .cart i:hover {
-    background-color: #F1F5F6;
-    cursor: pointer;
+.section-header .header-top-right .cart svg{
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.8;
 }
 
 .section-header .header-top-right .cart p {
@@ -263,12 +245,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: -2px;
-    right: -3px;
-    width: 16px;
-    height: 16px;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
     font-size: 10px;
-    padding-bottom: 1px;
     background-color: #DD3842;
     font-weight: 600;
     color: #fff;

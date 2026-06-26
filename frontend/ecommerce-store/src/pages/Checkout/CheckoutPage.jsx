@@ -45,7 +45,7 @@ function CheckoutPage() {
         }
     }
 
-    // fetch availability for items in cart
+    // fetch availability for items in cart (Genarated by AI - only this useeffect code)
     useEffect(() => {
         const fetchAvailability = async () => {
             try {
@@ -142,6 +142,7 @@ function CheckoutPage() {
                     productId: items.productId,
                     productName: items.name,
                     price: items.price,
+                    tax: 20,
                     image: items.image,
                     quantity: items.quantity,
                     totle_price: fullPrice.toFixed(2)

@@ -161,8 +161,6 @@ function NotificationsPage() {
         "products": "badge-pill warning"
     }
 
-    console.log(document.visibilityState)
-
     return (
         <>
             <HeaderComponent />
@@ -191,11 +189,11 @@ function NotificationsPage() {
                                 <button class={`tab-btn ${type === 'orders' && 'active'}`} onClick={() => filterByType('orders')}>Orders</button>
                                 <button class={`tab-btn ${type === 'products' && 'active'}`} onClick={() => filterByType('products')}>Products</button>
                                 <div class="tab-actions">
-                                    <button class="btn-primary" onClick={() => location.reload()}>
+                                    <button class="btn-primary refesh" onClick={() => location.reload()}>
                                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
                                         <p>Refesh</p>
                                     </button>
-                                    <button class="btn-primary" onClick={() => updateAllNotifications()}>
+                                    <button class="btn-primary read" onClick={() => updateAllNotifications()}>
                                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                         Mark all as read
                                     </button>

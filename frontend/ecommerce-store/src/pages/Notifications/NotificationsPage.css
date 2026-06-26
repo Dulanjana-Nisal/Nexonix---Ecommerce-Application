@@ -143,6 +143,22 @@
   gap: 10px;
 }
 
+.tab-actions .refesh{
+  background: #ede9fe;
+  color: #7c3aed;
+  border: 1px solid #7c3aed43;
+}
+
+.tab-actions .read{
+  background: #dbeafe;
+    color: #2563eb;
+    border: 1px solid #1d4ed843;
+}
+
+.tab-actions button svg{
+  stroke-width: 2.3;
+}
+
 .btn-outline {
   display: flex;
   align-items: center;
