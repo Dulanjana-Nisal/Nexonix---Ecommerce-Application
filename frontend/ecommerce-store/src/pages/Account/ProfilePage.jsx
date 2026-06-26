@@ -203,7 +203,7 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                     </div>
                                     <div class="card-right">
                                         <p>Total Spent</p>
-                                        <h1>${totalSpentCalculation()}</h1>
+                                        <h1>$ {totalSpentCalculation()}</h1>
                                     </div>
                                 </div>
                                 <div class="overview-card cart">
