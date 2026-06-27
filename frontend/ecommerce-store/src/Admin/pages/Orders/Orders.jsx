@@ -362,6 +362,14 @@ function Orders() {
                                                                                     <p>${items.price}</p>
                                                                                 </div>
                                                                                 <div>
+                                                                                    <h4>Tax Price</h4>
+                                                                                    <p>${items.tax || 0}</p>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <h4>Total Price</h4>
+                                                                                    <p>${items.price * items.quantity + (items.tax || 0)}</p>
+                                                                                </div>
+                                                                                <div>
                                                                                     <h4>Status</h4>
                                                                                     <div class="status-box">
                                                                                         <p class={`status ${(items.status).toLowerCase()}`}>{items.status}</p>

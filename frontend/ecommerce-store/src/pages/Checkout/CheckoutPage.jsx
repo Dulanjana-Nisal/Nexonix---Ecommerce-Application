@@ -31,6 +31,7 @@ function CheckoutPage() {
         zipCode: '',
         phoneNumber: '',
         email: '',
+        tax: 20,
         method: 'cash-on-delivery'
     })
 
@@ -91,8 +92,7 @@ function CheckoutPage() {
                 const res = await api.get(`/products/${items.productId}`)
                 const product = res.data.data
 
-                const isAvailable =
-                    product.availability && product.stock >= items.quantity
+                const isAvailable = product.availability && product.stock >= items.quantity                
 
                 if (!isAvailable) {
                     setupMessage('error', `"${items.name}" is no longer available or out of stock.`)
@@ -142,7 +142,7 @@ function CheckoutPage() {
                     productId: items.productId,
                     productName: items.name,
                     price: items.price,
-                    tax: 20,
+                    tax: orderData.tax,
                     image: items.image,
                     quantity: items.quantity,
                     totle_price: fullPrice.toFixed(2)
@@ -191,7 +191,7 @@ function CheckoutPage() {
             setLoading(false)
         }
     }
-
+    
     return (
         <>
             <HeaderComponent />
@@ -248,9 +248,7 @@ function CheckoutPage() {
                             {
                                 state.map((items) => {
                                     const info = availabilityMap[items.productId]
-                                    const isAvailable =
-                                        info && info.availability && info.stock >= items.quantity
-
+                                    const isAvailable = info && info.availability && info.stock >= items.quantity
                                     return (
                                         isAvailable ?
                                             <div class="product-card" key={items._id}>
@@ -278,7 +276,7 @@ function CheckoutPage() {
                         </div>
                         <div class="total-shipping info">
                             <h3>Shipping</h3>
-                            <p>$20.00</p>
+                            <p>${state.length * orderData.tax}</p>
                         </div>
                         <div class="total-total info">
                             <h3>Total</h3>

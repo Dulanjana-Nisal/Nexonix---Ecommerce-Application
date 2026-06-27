@@ -33,7 +33,7 @@ function ProfilePage({ navigate, dispatch, user, state }) {
         const filterOrders = ordersDetails.filter(items => items.method !== 'cash-on-delivery' || items.status === 'Delivered')
         let totalSpent = 0
         filterOrders.forEach((items) => {
-            totalSpent += items.price
+            totalSpent += items.price *items.quantity + (items.tax || 0)
         })
         return totalSpent
     }
