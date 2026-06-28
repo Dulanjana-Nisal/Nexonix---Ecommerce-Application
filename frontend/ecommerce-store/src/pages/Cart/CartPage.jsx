@@ -1,20 +1,21 @@
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './CartPage.css';
-import {Link} from 'react-router-dom'
+import empty_cart from '../../assets/empty-cart.svg'
+import { Link } from 'react-router-dom'
 import { Cart } from '../../context/CartContext';
 import { deleteCartItem } from '../../api/cartApi';
 import { ACTIONS } from '../../context/CartReducer';
 
-function CartPage() {    
+function CartPage() {
 
     // use context 
-    const {state,dispatch} = Cart()
+    const { state, dispatch } = Cart()
 
     //subtotal calculation
     let subTotal = 0;
     state.map((items) => {
-        if(items.availability){
+        if (items.availability) {
             return subTotal = subTotal + (items.price * items.quantity)
         }
     })
@@ -27,65 +28,86 @@ function CartPage() {
                 <div class="cart-header">
                     <div class="header-content">
                         <h1>Chopping Cart</h1>
-                        <p><span><Link to="/" style={{textDecoration: "none", color: "#8f9293"}}>Home</Link> /</span> Shopping Cart</p>
+                        <p><span><Link to="/" style={{ textDecoration: "none", color: "#8f9293" }}>Home</Link> /</span> Shopping Cart</p>
                     </div>
                 </div>
                 <div class="cart-body">
-                    <div class="cart-details">
-                        {
-                            state &&
-                            <div class="details-head">
-                                <p class="product">Product</p>
-                                <p class="price">Price</p>
-                                <p class="quantity">Quantity</p>
-                                <p class="subtotal">Subtotal</p>
-                                <p></p>
+                    {
+                        state.length === 0 ?
+                            <div class="empty-cart-container">
+                                <div class="container-top">
+                                    <img src={empty_cart} alt="emty-cart-image" />
+                                </div>
+                                <div class="container-bottom">
+                                    <h1>Your cart is empty</h1>
+                                    <p>Looks like you haven't added anything to your cart yet.</p>
+                                    <Link to='/products/computers' class="no-style-link">
+                                        <button>
+                                            Continue Shopping
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                            </svg>
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
-                        }
-                        <div class="details-cards">
-                            {
-                                state.length > 0 &&
-                                state.reverse().map((items)=>{
-                                    return(
-                                        <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
-                                            <div class="card-product product">
-                                                <div class="thumb">
-                                                    <img src={items.image} alt="" />
+                            :
+                            <div class="cart-details">
+                                {
+                                    state &&
+                                    <div class="details-head">
+                                        <p class="product">Product</p>
+                                        <p class="price">Price</p>
+                                        <p class="quantity">Quantity</p>
+                                        <p class="subtotal">Subtotal</p>
+                                        <p></p>
+                                    </div>
+                                }
+                                <div class="details-cards">
+                                    {
+                                        state.length > 0 &&
+                                        state.reverse().map((items) => {
+                                            return (
+                                                <div class={items.availability ? "card" : "card disabel-card"} key={items._id}>
+                                                    <div class="card-product product">
+                                                        <div class="thumb">
+                                                            <img src={items.image} alt="" />
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>{items.name}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-price price">
+                                                        <p>${items.price}</p>
+                                                    </div>
+                                                    {
+                                                        items.availability ?
+                                                            <div class="card-quantity quantity">
+                                                                <button class="plus" onClick={() => dispatch({ type: ACTIONS.MIN_QNT, payload: { id: items.productId } })}>−</button>
+                                                                <p>{items.quantity}</p>
+                                                                <button class="min" onClick={() => dispatch({ type: ACTIONS.ADD_QNT, payload: { id: items.productId } })}>+</button>
+                                                            </div>
+                                                            :
+                                                            <div class="card-quantity quantity">
+                                                                <p style={{ fontSize: "12px", width: "100%" }}>sold Out</p>
+                                                            </div>
+                                                    }
+                                                    <div class="card-subtotal subtotal">
+                                                        <p>${(items.price * items.quantity).toFixed(2)}</p>
+                                                    </div>
+                                                    <button class="delete" onClick={() => deleteCartItem(items.productId, dispatch)}>✕</button>
                                                 </div>
-                                                <div class="name">
-                                                    <p>{items.name}</p>
-                                                </div>
-                                            </div>
-                                            <div class="card-price price">
-                                                <p>${items.price}</p>
-                                            </div>
-                                            {
-                                                items.availability ?
-                                                <div class="card-quantity quantity">
-                                                    <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
-                                                    <p>{items.quantity}</p>
-                                                    <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
-                                                </div>
-                                                :
-                                                <div class="card-quantity quantity">
-                                                    <p style={{fontSize: "12px", width: "100%"}}>sold Out</p>
-                                                </div>
-                                            }
-                                            <div class="card-subtotal subtotal">
-                                                <p>${(items.price * items.quantity).toFixed(2)}</p>
-                                            </div>
-                                            <button class="delete" onClick={() => deleteCartItem(items.productId, dispatch)}>✕</button>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                    }
                     <div class="cart-details-responsive">
                         {
                             state.length > 0 &&
-                            state.reverse().map((items)=>{
-                                return(
+                            state.reverse().map((items) => {
+                                return (
                                     <div class={items.availability ? "card" : "card disabel-card"}>
                                         <div class="image">
                                             <input type="checkbox" defaultChecked={true} />
@@ -105,9 +127,9 @@ function CartPage() {
                                                     <p>Quantity: </p>
                                                 </div>
                                                 <div class="quentity-body">
-                                                    <button class="plus" onClick={() => dispatch({type: ACTIONS.MIN_QNT, payload: {id: items.productId}})}>−</button>
-                                                <p>{items.quantity}</p>
-                                                <button class="min" onClick={() => dispatch({type: ACTIONS.ADD_QNT, payload: {id: items.productId}})}>+</button>
+                                                    <button class="plus" onClick={() => dispatch({ type: ACTIONS.MIN_QNT, payload: { id: items.productId } })}>−</button>
+                                                    <p>{items.quantity}</p>
+                                                    <button class="min" onClick={() => dispatch({ type: ACTIONS.ADD_QNT, payload: { id: items.productId } })}>+</button>
                                                 </div>
                                             </div>
                                             <div class="subtotal">
@@ -140,12 +162,19 @@ function CartPage() {
                             </div>
                             {
                                 subTotal ?
-                                <Link to='/checkout'>
-                                    <button>Proceed To Checkout</button>
-                                </Link>
-                                :
-                                    <button>Cart is Empty</button>
+                                    <Link to='/checkout'>
+                                        <button>Proceed To Checkout</button>
+                                    </Link>
+                                    :
+                                    <button class="empty-cart-btn">Cart is Empty</button>
                             }
+                            <div class="secure-tags">
+                                <div class="label">
+                                    <svg class="w-3.5 h-3.5" fill="none" width="16" height="16" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                    <p>Secure Checkout</p>
+                                </div>
+                                <p>Your data is protected and safe with us.</p>
+                            </div>
                         </div>
                     }
                 </div>
