@@ -137,8 +137,22 @@ function DetailsPage() {
                         {
                             fullScreen &&
                             <div class="full-image">
-                                <button class="close"><img src={close_btn_image} alt="" onClick={() => { setFullScreen(false) }} /></button>
-                                <img src={producatDetails.image} alt="" />
+                                <div class="full-image-background">
+                                    <button class="close"><img src={close_btn_image} alt="" onClick={() => { setFullScreen(false) }} /></button>
+                                    <img src={producatDetails.image} alt="" />
+                                    <div class="product-details">
+                                        <div class="details-product-data">
+                                            <h2>{producatDetails.name}</h2>
+                                            <p>
+                                                {ratingsQuery[producatDetails.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
+                                            </p>
+                                        </div>
+                                        <div class="screen-data">
+                                            <h4>Full Screen Mode</h4>
+                                            <p>Zoom 100%</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>
