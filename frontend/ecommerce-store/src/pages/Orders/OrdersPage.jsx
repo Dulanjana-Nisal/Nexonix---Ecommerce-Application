@@ -89,7 +89,7 @@ function OrdersPage() {
                                 {
                                     orders.map((items) => {
                                         return (
-                                            <tr class={items.status === 'Cancelled' ? "card card-cancelled" : "card"} key={items._id}>
+                                            <tr class="card" key={items._id}>
                                                 <td class="card-product">
                                                     <div class="thumb">
                                                         <img src={items.image} alt="" />
@@ -115,13 +115,17 @@ function OrdersPage() {
                                                     <p>${items.price * items.quantity + (items.tax || 0)}</p>
                                                 </td>
                                                 <td class="card-state">
-                                                    <div class="status-menu">
-                                                        <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
                                                         {
-                                                            items.status === "Cancelled" || items.status === "Processing" &&
-                                                            <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                            items.status === "Cancelled" || items.status === "Processing" ?
+                                                            <div class="status-menu">
+                                                                <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
+                                                                <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                            </div>
+                                                            :
+                                                            <div class="status-menu">
+                                                                <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
+                                                            </div>
                                                         }
-                                                    </div>
                                                 </td>
                                             </tr>
                                         )
@@ -134,7 +138,7 @@ function OrdersPage() {
                         {
                             orders.map((items) => {
                                 return (
-                                    <div class={items.status === 'Cancelled' ? "card card-cancelled" : "card"} key={items._id} key={items._id}>
+                                    <div class="card" key={items._id} key={items._id}>
                                         <div class="image">
                                             <img src={items.image} alt="" />
                                         </div>

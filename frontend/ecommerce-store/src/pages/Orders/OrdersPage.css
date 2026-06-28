@@ -59,10 +59,6 @@
     border-top: 1px solid #6b728026;
 }
 
-.order-container .order-body .card-cancelled{
-    background-color: #dd384318;
-}
-
 .order-container .order-body .order-details table tbody .card p{
     font-size: 15px;
     font-weight: 600;
@@ -133,8 +129,8 @@
 }
 
 .order-container .order-body .order-details table tbody .card .card-state h4{
-    font-size: 14px;
-    padding: 3px 8px;
+    font-size: 12px;
+    padding: 5px 10px;
     border-radius: 30px;
 }
 
