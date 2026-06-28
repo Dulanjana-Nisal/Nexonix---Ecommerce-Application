@@ -186,13 +186,13 @@
     font-size: 14px;
     font-weight: 600;
     color: #fff;
-    background-color: #2B38D1;
-    border: 1px solid #2B38D1;
+    background-color: #2563eb;
+    border: 1px solid #2563eb;
     transition: 0.25s;
 }
 .order-container .empty-order-container .container-bottom button:hover{
     background-color: #fff;
-    color: #2B38D1;
+    color: #2563eb;
     cursor: pointer;
 }
 
