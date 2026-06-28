@@ -38,7 +38,7 @@ const getOrders = asyncHaddler(async (req, res) => {
     const skip = (page - 1) * limit
     
     //get orders
-    const allOrders = await Orders.find(queryObject).skip(skip).limit(limit)
+    const allOrders = await Orders.find(queryObject).skip(skip).limit(limit).sort({createdAt: -1})
 
     res.status(statusCodes.OK).json({
         success: true,
