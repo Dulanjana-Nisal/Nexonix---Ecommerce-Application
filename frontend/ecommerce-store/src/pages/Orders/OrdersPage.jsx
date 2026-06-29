@@ -25,7 +25,7 @@ function OrdersPage() {
         fetchOrders()
     }, [])
 
-    //calcle order function
+    // cancel order function
     const cancleOrder = async (orderID, userName, userID, orderStatus) => {
         try {
             await api.delete(`/orders/${orderID}`)

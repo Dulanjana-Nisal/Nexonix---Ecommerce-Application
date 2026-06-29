@@ -178,105 +178,103 @@ function NotificationsPage() {
                 <div class="notification-container">
                     {/* <!-- page body --> */}
                     <div class="page-body">
-                        {
-                            notifications.length === 0 ?
-                                <div class="empty-notifi-container">
-                                    <div class="container-top">
-                                        <img src={empty_notificataios} alt="emty-cart-image" />
-                                    </div>
-                                    <div class="container-bottom">
-                                        <h1>Your Notification list is empty</h1>
-                                        <p>Looks like you haven't any notifications yet.</p>
-                                        <Link to='/products/computers' class="no-style-link">
-                                            <button>
-                                                Continue Shopping
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                                </svg>
-                                            </button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            :
-                            <div class="col-main">
-                                <div class="tabs">
-                                    <button class={`tab-btn ${!type && !isRead && 'active'}`} onClick={() => filterByType('')}>All</button>
-                                    <button class={`tab-btn ${isRead === 'false' && 'active'}`} onClick={() => filterByType('unread')}>
-                                        Unread
-                                        {
-                                            (notifiState && notifiState.filter(items => !items.isread)).length !== 0 &&
-                                            <span class="tab-badge">{(notifiState && notifiState.filter(items => !items.isread)).length}</span>
-                                        }
+                        <div class="col-main">
+                            <div class="tabs">
+                                <button class={`tab-btn ${!type && !isRead && 'active'}`} onClick={() => filterByType('')}>All</button>
+                                <button class={`tab-btn ${isRead === 'false' && 'active'}`} onClick={() => filterByType('unread')}>
+                                    Unread
+                                    {
+                                        (notifiState && notifiState.filter(items => !items.isread)).length !== 0 &&
+                                        <span class="tab-badge">{(notifiState && notifiState.filter(items => !items.isread)).length}</span>
+                                    }
+                                </button>
+                                <button class={`tab-btn ${type === 'orders' && 'active'}`} onClick={() => filterByType('orders')}>Orders</button>
+                                <button class={`tab-btn ${type === 'products' && 'active'}`} onClick={() => filterByType('products')}>Products</button>
+                                <div class="tab-actions">
+                                    <button class="btn-primary refesh" onClick={() => location.reload()}>
+                                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
+                                        <p>Refesh</p>
                                     </button>
-                                    <button class={`tab-btn ${type === 'orders' && 'active'}`} onClick={() => filterByType('orders')}>Orders</button>
-                                    <button class={`tab-btn ${type === 'products' && 'active'}`} onClick={() => filterByType('products')}>Products</button>
-                                    <div class="tab-actions">
-                                        <button class="btn-primary refesh" onClick={() => location.reload()}>
-                                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
-                                            <p>Refesh</p>
-                                        </button>
-                                        <button class="btn-primary read" onClick={() => updateAllNotifications()}>
-                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                            Mark all as read
-                                        </button>
-                                    </div>
+                                    <button class="btn-primary read" onClick={() => updateAllNotifications()}>
+                                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                        Mark all as read
+                                    </button>
                                 </div>
-                                {
-                                    loading ?
-                                        <LoadingComponent />
+                            </div>
+                            {
+                                loading ?
+                                    <LoadingComponent />
+                                    :
+                                        notifications.length === 0 ?
+                                            <div class="empty-notifi-container">
+                                                <div class="container-top">
+                                                    <img src={empty_notificataios} alt="emty-cart-image" />
+                                                </div>
+                                                <div class="container-bottom">
+                                                    <h1>Your Notification list is empty</h1>
+                                                    <p>Looks like you haven't any notifications yet.</p>
+                                                    <Link to='/products/computers' class="no-style-link">
+                                                        <button>
+                                                            Continue Shopping
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                                            </svg>
+                                                        </button>
+                                                    </Link>
+                                                </div>
+                                            </div>
                                         :
-                                        <div class="notif-list">
+                                            <div class="notif-list">
 
-                                            {
-                                                notifications.length > 0 &&
-                                                notifications.map((items) => {
-                                                    return (
-                                                        <div class="notif-item" key={items._id}>
-                                                            {
-                                                                items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
-                                                            }
-                                                            {
-                                                                notificationThumb[items.type]
-                                                            }
-                                                            <div class="notif-body">
-                                                                <div class="notif-title">{items.title}</div>
-                                                                <div class="notif-desc">{items.message}</div>
-                                                                <div class="notif-time">
-                                                                    {formatDistanceToNow(new Date(items.createdAt),
-                                                                        {
-                                                                            addSuffix: true,
-                                                                        }
-                                                                    )}
+                                                {
+                                                    notifications.length > 0 &&
+                                                    notifications.map((items) => {
+                                                        return (
+                                                            <div class="notif-item" key={items._id}>
+                                                                {
+                                                                    items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
+                                                                }
+                                                                {
+                                                                    notificationThumb[items.type]
+                                                                }
+                                                                <div class="notif-body">
+                                                                    <div class="notif-title">{items.title}</div>
+                                                                    <div class="notif-desc">{items.message}</div>
+                                                                    <div class="notif-time">
+                                                                        {formatDistanceToNow(new Date(items.createdAt),
+                                                                            {
+                                                                                addSuffix: true,
+                                                                            }
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notif-right">
+                                                                    <span class={notificationTag[items.type]}>{items.type}</span>
+                                                                    <button class="menu-btn" onClick={() => setToggleDetails({ notificationId: items._id, toggle: !toggleDetails.toggle })}>
+                                                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
+                                                                    </button>
+                                                                    {
+                                                                        toggleDetails.toggle && toggleDetails.notificationId === items._id &&
+                                                                        <div class="actions-box">
+                                                                            <div class='read' onClick={() => updateNotifications(items._id)}>
+                                                                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                                                                <p >Mark as Read</p>
+                                                                            </div>
+                                                                            <div class='delete' onClick={() => deleteNotifications(items._id)}>
+                                                                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"></line><line x1="9" y1="9" x2="15" y2="15" stroke-linecap="round"></line></svg>
+                                                                                <p>Delete Notification</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
                                                                 </div>
                                                             </div>
-                                                            <div class="notif-right">
-                                                                <span class={notificationTag[items.type]}>{items.type}</span>
-                                                                <button class="menu-btn" onClick={() => setToggleDetails({ notificationId: items._id, toggle: !toggleDetails.toggle })}>
-                                                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
-                                                                </button>
-                                                                {
-                                                                    toggleDetails.toggle && toggleDetails.notificationId === items._id &&
-                                                                    <div class="actions-box">
-                                                                        <div class='read' onClick={() => updateNotifications(items._id)}>
-                                                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                                                            <p >Mark as Read</p>
-                                                                        </div>
-                                                                        <div class='delete' onClick={() => deleteNotifications(items._id)}>
-                                                                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"></line><line x1="9" y1="9" x2="15" y2="15" stroke-linecap="round"></line></svg>
-                                                                            <p>Delete Notification</p>
-                                                                        </div>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
+                                                        )
+                                                    })
+                                                }
 
-                                        </div>
-                                }
-                            </div>
-                        }
+                                            </div>
+                            }
+                        </div>
                         <div class="col-aside">
                             {/* <!-- Notification Summary --> */}
                             <div class="notifi-card">

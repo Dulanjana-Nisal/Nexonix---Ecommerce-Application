@@ -1,5 +1,7 @@
 import LoadingComponent from "../../components/Loading/LoadingComponent";
 import ProductComponent from "../../components/Product/ProductComponent";
+import empty_product from '../../assets/empty-products.svg';
+import { Link } from "react-router-dom";
 
 function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNextPage,loading}) {
 
@@ -17,15 +19,34 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                 {
                     loading ? <LoadingComponent />
                     :
-                    <div class="body-template">
-                        {
-                            categoryData.map((items) => {
-                                return (
-                                    <ProductComponent items={items} ratings={items.ratings} />
-                                )
-                            })
-                        }
-                    </div>
+                        categoryData.length === 0 ?
+                            <div class="empty-products-container">
+                                <div class="container-top">
+                                    <img src={empty_product} alt="emty-cart-image" />
+                                </div>
+                                <div class="container-bottom">
+                                    <h1>Not Product Found Here</h1>
+                                    <p>Looks like haven't any Products yet to Shop.</p>
+                                    <Link to='/' class="no-style-link">
+                                        <button>
+                                            Continue Shopping
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                            </svg>
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                        :
+                            <div class="body-template">
+                                {
+                                    categoryData.map((items) => {
+                                        return (
+                                            <ProductComponent items={items} ratings={items.ratings} />
+                                        )
+                                    })
+                                }
+                            </div>
                 }
                 <div class="box-buttons">
                     {
