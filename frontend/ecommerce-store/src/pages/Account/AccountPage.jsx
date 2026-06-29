@@ -112,7 +112,7 @@ function AccountPage() {
                 message: "Register Success!"
             })
 
-            setupMessage("success", "Register Success now you can login")
+            setupMessage("success", "Register Success", "Now you need to Signin with Signup account")
 
             // post notification to admin 
             try {

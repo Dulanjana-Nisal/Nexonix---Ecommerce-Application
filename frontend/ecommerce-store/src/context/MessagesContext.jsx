@@ -7,8 +7,8 @@ export default function MessageProvider({children}){
 
     const [message,setMessage] = useState(null)
 
-    function setupMessage(msgStatus,msgMessage){
-        setMessage({status: msgStatus, message: msgMessage})
+    function setupMessage(msgStatus,msgMessage,msgTitle){
+        setMessage({status: msgStatus, message: msgMessage, title: msgTitle})
 
         setTimeout(()=>{
             setMessage(null)
@@ -21,7 +21,7 @@ export default function MessageProvider({children}){
 
             {
                 message &&
-                <MessagesComponent message={message.message} status={message.status} />
+                <MessagesComponent message={message.message} status={message.status} title={message.title} />
             }
 
         </MessageContext.Provider>

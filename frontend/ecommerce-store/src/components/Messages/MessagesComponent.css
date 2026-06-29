@@ -1,53 +1,92 @@
-.messages-container{
+.message-container{
     width: fit-content;
+    background-color: #fff;
     position: fixed;
-    right: 30px;
-    top: 30%;
+    right: 1%;
+    top: 20%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     column-gap: 20px;
-    padding: 8px 15px;
+    padding: 15px;
     border-radius: 10px;
+    border-left: 4px solid #008A00;
     z-index: 20;
+    margin: 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.message-container .left-side .svg-border{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid #008a0041;
+}
+.message-container .left-side .svg-border svg{
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+    color: #fff;
+    background-color: #008a00;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+.message-container .middle-side h3{
+    font-size: 16px;
+    font-weight: 700;
+}
+.message-container .middle-side p{
+    font-size: 12px;
+    font-weight: 500;
+    color: #8d92ad;
+    margin-top: 5px;
+}
+.message-container .right-side svg{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #8d92ad2c;
+    transition: 0.25s;
+}
+.message-container .right-side svg:hover{
+    cursor: pointer;
+    transform: rotate(90deg);
 }
 
  /* ----- success ----- */
-.success{
-    background-color: #008a00;
-    border: 1px solid #008a0043;
+.message-container-success{
+    border-left: 4px solid #008A00;
 }
-.success .left-side{
+.message-container .left-side .svg-border-success{
+    border: 6px solid #008a0041;
+}
+.message-container .left-side .svg-border-success svg{
     background-color: #008A00;
 }
 /* --------------- */
 
- /* ----- error ----- */
-.error{
-    background-color: #dd3843;
-    border: 1px solid #DD384243;
+ /* ----- Warning ----- */
+.message-container-war{
+    border-left: 4px solid #DD3842;
 }
-.error .left-side{
+.message-container .left-side .svg-border-war{
+    border: 6px solid #DD384241;
+}
+.message-container .left-side .svg-border-war svg{
     background-color: #DD3842;
 }
 /* --------------- */
 
-.messages-container .left-side{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #fff;
+ /* ----- error ----- */
+.message-container-error{
+    border-left: 4px solid #DD3842;
 }
-.messages-container .left-side i{
-    font-size: 16px;
-    margin-top: 2px;
+.message-container .left-side .svg-border-error{
+    border: 6px solid #DD384241;
 }
-.messages-container .center-side p{
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
+.message-container .left-side .svg-border-error svg{
+    background-color: #DD3842;
 }
+
+/* --------------- */

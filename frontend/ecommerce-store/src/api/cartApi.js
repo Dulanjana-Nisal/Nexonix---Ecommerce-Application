@@ -16,7 +16,7 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
                 }
             }
         )
-        setupMessage("success","Item Added to Cart ✅")
+        setupMessage("success",name, 'Item Added to Cart')
         dispatch({
             type: ACTIONS.ADD_TO_CART, 
             payload: result.data.data
@@ -25,7 +25,7 @@ export const addCartItems = async (productId,name,image,quantity,price,availabil
     catch(err){
         console.log(err.response.data)
         if(err.response.data.message === "Cannot read properties of undefined (reading 'split')"){
-            setupMessage("error","Please Signup or Signin!")
+            setupMessage("error","You need to signup or signin to shopping","Signin or Signup!")
         }
     }
 

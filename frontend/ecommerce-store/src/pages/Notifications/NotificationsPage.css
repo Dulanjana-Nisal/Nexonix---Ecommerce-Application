@@ -37,7 +37,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .page-heading {
@@ -77,7 +76,6 @@
 /* ── PAGE BODY ── */
 .page-body {
   flex: 1;
-  overflow-y: auto;
   display: flex;
   gap: 30px;
 }
@@ -318,51 +316,60 @@
   flex-shrink: 0;
 }
 
-.notif-right .actions-box {
+/* actions box style */
+.notif-right .action-box {
   position: absolute;
   max-width: fit-content;
-  top: 40%;
-  right: -18%;
+  top: 80%;
+  right: 30px;
   z-index: 1;
   border-radius: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.notif-right .actions-box p {
+.notif-right .action-box p {
   font-size: 12px;
   font-weight: 600;
 }
 
-.notif-right .actions-box div {
-  padding: 10px 15px;
+.notif-right .action-box div {
   display: flex;
-  border-radius: 10px;
   background-color: #fff;
   column-gap: 10px;
   transition: 0.25s;
   align-items: center;
+  cursor: pointer;
 }
 
-.notif-right .actions-box .read {
+.notif-right .action-box .read{
   border-radius: 10px 10px 0 0;
-  background-color: #fff;
-  color: #059669;
-  border-bottom: 1px solid #6b728049;
+  padding: 15px 15px 10px 15px;
 }
 
-.notif-right .actions-box .read:hover {
-  background: #d1fae5;
-}
-
-.notif-right .actions-box .delete {
-  border: none;
+.notif-right .action-box .delete{
   border-radius: 0 0 10px 10px;
-  background-color: #fff;
-  color: #dc2626;
+  padding: 10px 15px 15px 15px;
 }
 
-.notif-right .actions-box .delete:hover {
-  background-color: #fee2e2;
+.notif-right .action-box .read svg{
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background: #d1fae5;
+  color: #059669;
+  border-radius: 5px;
+}
+
+.notif-right .action-box .delete svg{
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 5px;
+}
+.notif-right .action-box .delete p{
+  color: #dc2626;
 }
 
 .badge-pill {
@@ -651,6 +658,7 @@
     align-items: center;
     text-align: center;
     padding: 0 20px 25px 20px;
+    margin: 10px 0;
   }
   .notification-main-container .notif-icon{
     margin: auto;

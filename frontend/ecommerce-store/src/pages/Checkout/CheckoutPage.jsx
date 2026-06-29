@@ -95,7 +95,7 @@ function CheckoutPage() {
                 const isAvailable = product.availability && product.stock >= items.quantity
 
                 if (!isAvailable) {
-                    setupMessage('error', `"${items.name}" is no longer available or out of stock.`)
+                    setupMessage('error', `"${items.name}" is no longer available or out of stock.`, "Items is Not Available!")
                     setLoading(false)
                     return
                 }
@@ -179,11 +179,11 @@ function CheckoutPage() {
             setTimeout(() => {
                 navigate('/orders')
             }, 1000)
-            setupMessage('success', "Order Placed!")
+            setupMessage('success',"Successfully Added order to your order list", "Order Placed")
 
         } catch (err) {
             if (err) {
-                setupMessage('error', 'Product Checkout Error!')
+                setupMessage('error',"Something Wrong while checkout proceed", 'Product Checkout Error!')
             }
             console.log(err.response || err)
 

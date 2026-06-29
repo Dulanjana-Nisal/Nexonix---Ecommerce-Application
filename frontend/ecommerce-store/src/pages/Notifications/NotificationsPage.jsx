@@ -255,14 +255,14 @@ function NotificationsPage() {
                                                                     </button>
                                                                     {
                                                                         toggleDetails.toggle && toggleDetails.notificationId === items._id &&
-                                                                        <div class="actions-box">
+                                                                        <div class="action-box">
                                                                             <div class='read' onClick={() => updateNotifications(items._id)}>
                                                                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                                                                 <p >Mark as Read</p>
                                                                             </div>
                                                                             <div class='delete' onClick={() => deleteNotifications(items._id)}>
-                                                                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"></line><line x1="9" y1="9" x2="15" y2="15" stroke-linecap="round"></line></svg>
-                                                                                <p>Delete Notification</p>
+                                                                                <svg class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                                                <p>Delete</p>
                                                                             </div>
                                                                         </div>
                                                                     }

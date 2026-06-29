@@ -7,11 +7,13 @@ import api from '../../services/auth';
 import { Link } from 'react-router-dom';
 import { Notifications } from '../../Admin/Context/NotificationContext';
 import { NOTIFI_ACTIONS } from '../../Admin/Context/NotificationReduce';
+import { Message } from '../../context/MessagesContext';
 
 function OrdersPage() {
 
     // load  context 
     const { notifiDispatch } = Notifications() || {};
+        const { setupMessage } = Message();
 
     //order states
     const [orders, setOrders] = useState([])
@@ -43,6 +45,8 @@ function OrdersPage() {
                         }
                     )
                     const postResult = await api.get('/notifications/all');
+
+                    setupMessage('success',`Your order (OID: ${orderID}) is cancelled...`, "Order Cancelled")
 
                     // create notification in context
                     notifiDispatch(

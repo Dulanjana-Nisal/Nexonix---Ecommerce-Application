@@ -142,7 +142,7 @@
     background-color: #dd38432d;
 }
 .checkout-container .checkout-body .total-card .total-product .sold-out span{
-    width: fit-content;
+    min-width: fit-content;
     background-color: #DD3842;
     padding: 3px 6px;
     color: #fff;
