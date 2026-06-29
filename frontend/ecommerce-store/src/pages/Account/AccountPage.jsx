@@ -65,15 +65,23 @@ function AccountPage() {
                 JSON.stringify(login.data.user)
             )
 
-            setTimeout(() => {
+
+
+            setTimeout(async () => {
+                //update context
+                const getAllNotifi = await api.get('/notifications/all')
+                notifiDispatch({
+                    type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS,
+                    payload: getAllNotifi.data.data
+                })
                 if (login.data.user.role === "admin") {
-                    navigate('/admin/dashboard')
+                    location.reload()
                 }
                 if (login.data.user.role === "user") {
                     navigate('/')
                     location.reload()
                 }
-            }, 1600)
+            }, 1000)
         }
         catch (err) {
             setLoginMessages(err.response.data)

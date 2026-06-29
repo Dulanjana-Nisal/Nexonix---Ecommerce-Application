@@ -617,7 +617,68 @@
 }
 
 /* suggetions container */
-.details-container .container-suggetions{
+.container-suggetions{
+    width: 90%;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+}
+.container-suggetions .suggetions-header{
+    padding: 20px;
+}
+.container-suggetions .suggetions-header p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.container-suggetions .suggetions-card-row{
+    width: 90%;
+    padding: 30px 0;
+    margin: auto;
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.container-suggetions .suggetions-card-row .suggetions-card{
+    flex: 1 0 auto;
+    max-width: 230px;
+    transition: 0.5s;
+}
+.container-suggetions .suggetions-card-row .btns button{
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    padding-bottom: 3px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    opacity: 0.3;
+    font-weight: 500;
+    background-color: #2B38D1;
+    transition: 0.25s;
+}
+.container-suggetions .suggetions-card-row .btns button:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.container-suggetions .suggetions-card-row .btns .left{
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+}
+.container-suggetions .suggetions-card-row .btns .right{
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+}
+
+
+/* .details-container .container-suggetions{
     background-color: #fff;
     padding: 30px;
     width: 90%;
@@ -697,7 +758,7 @@
     top: 50%;
     right: 0;
     transform: translate(50%,-50%);
-}
+} */
 
 /* ************************************** */
 

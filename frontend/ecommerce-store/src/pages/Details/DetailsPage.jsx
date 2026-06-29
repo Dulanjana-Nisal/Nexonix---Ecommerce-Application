@@ -16,8 +16,8 @@ import ProductComponent from '../../components/Product/ProductComponent';
 function DetailsPage() {
 
     // load context
-    const { state, dispatch,user } = Cart();
-    const {setupMessage} = Message();
+    const { state, dispatch, user } = Cart();
+    const { setupMessage } = Message();
 
     //get product id form url
     const { productId } = useParams();
@@ -32,9 +32,10 @@ function DetailsPage() {
     const [fullScreen, setFullScreen] = useState(false)
     const [quantity, setQuantity] = useState(1);
     const [option, setOption] = useState(false)
-    const [addReviews,setAddReviews] = useState({productId: productId})
-    const [refesh,setRefesh] = useState(false)
-    const [page,setPage] = useState(1)
+    const [addReviews, setAddReviews] = useState({ productId: productId })
+    const [refesh, setRefesh] = useState(false)
+    const [page, setPage] = useState(1)
+    const [scrollWidth, setScrollWidth] = useState(0)
 
     // add quntity
     function addQnt() {
@@ -51,7 +52,7 @@ function DetailsPage() {
     // fetch all data
     useEffect(() => {
         const fetchAllData = async () => {
-            const [products, recommendations,allReviewsData] = await Promise.all([
+            const [products, recommendations, allReviewsData] = await Promise.all([
                 axios.get(`http://localhost:5000/api/v1/products/${productId}`),
                 axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
                 axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&limit=all`),
@@ -63,25 +64,25 @@ function DetailsPage() {
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [productId,refesh])
+    }, [productId, refesh])
 
     //fetch reviews data
     useEffect(() => {
         const fetchReviews = async () => {
-            try{
+            try {
                 const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&page=${page}`)
                 setReviews(result.data.data)
                 setReviewsResult(result.data)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
         }
         fetchReviews();
-    }, [productId,refesh,page])
+    }, [productId, refesh, page])
 
     //submit reviews
-    const submitReviews = async (e)=>{
+    const submitReviews = async (e) => {
         e.preventDefault();
 
         //calculate new rating count
@@ -90,12 +91,12 @@ function DetailsPage() {
         const newRating = Number(addReviews.ratings);
         const newRatingCount = (avg * count + newRating) / (count + 1);
 
-        try{
+        try {
             await api.post('/reviews', addReviews)
-            await api.patch(`/products/${productId}`, {ratings: Math.round(newRatingCount)})
+            await api.patch(`/products/${productId}`, { ratings: Math.round(newRatingCount) })
             setPage(1)
         }
-        catch(err){
+        catch (err) {
             console.log(err.response)
         }
         setRefesh(prev => !prev)
@@ -114,11 +115,23 @@ function DetailsPage() {
     const limitResult = Math.ceil(reviewsResult.all_result / reviewsResult.limit)
 
     //count reviews
-    function reviewsCounter(countNumber){
+    function reviewsCounter(countNumber) {
         let number = 0
         allReviewsData.map(items => items.ratings === Number(countNumber) && number++)
         return number
     }
+
+    // suggetions scroll buttons
+
+    const scrollToLeft = () =>{
+        setScrollWidth(prev => prev + 250)
+    }
+
+    const scrollToRight = () =>{
+        setScrollWidth(prev => prev - 250)
+    }
+    console.log(productRecomendation.length * 240)
+    console.log(scrollWidth)
 
     return (
         <>
@@ -195,7 +208,7 @@ function DetailsPage() {
                                 state.find(item => item.productId == producatDetails._id) ?
                                     <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
                                     :
-                                    <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch,setupMessage)}>Add To Cart</button>
+                                    <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch, setupMessage)}>Add To Cart</button>
 
                             }
                         </div>
@@ -269,35 +282,35 @@ function DetailsPage() {
                                             <div class="five-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
                                                 <div class="range-row">
-                                                    <div class="range" style={{width: ` ${(reviewsCounter(5) /reviewsResult.all_result)*100}%`}}></div>
+                                                    <div class="range" style={{ width: ` ${(reviewsCounter(5) / reviewsResult.all_result) * 100}%` }}></div>
                                                 </div>
                                                 <p>{reviewsCounter(5)}</p>
                                             </div>
                                             <div class="four-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range" style={{width: ` ${(reviewsCounter(4) /reviewsResult.all_result)*100}%`}}></div>
+                                                    <div class="range" style={{ width: ` ${(reviewsCounter(4) / reviewsResult.all_result) * 100}%` }}></div>
                                                 </div>
                                                 <p>{reviewsCounter(4)}</p>
                                             </div>
                                             <div class="three-star row">
                                                 <p class="star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range" style={{width: ` ${(reviewsCounter(3) /reviewsResult.all_result)*100}%`}}></div>
+                                                    <div class="range" style={{ width: ` ${(reviewsCounter(3) / reviewsResult.all_result) * 100}%` }}></div>
                                                 </div>
                                                 <p>{reviewsCounter(3)}</p>
                                             </div>
                                             <div class="two-star row">
                                                 <p class="star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range" style={{width: ` ${(reviewsCounter(2) /reviewsResult.all_result)*100}%`}}></div>
+                                                    <div class="range" style={{ width: ` ${(reviewsCounter(2) / reviewsResult.all_result) * 100}%` }}></div>
                                                 </div>
                                                 <p>{reviewsCounter(2)}</p>
                                             </div>
                                             <div class="one-star row">
                                                 <p class="star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
                                                 <div class="range-row">
-                                                    <div class="range" style={{width: ` ${(reviewsCounter(1) /reviewsResult.all_result)*100}%`}}></div>
+                                                    <div class="range" style={{ width: ` ${(reviewsCounter(1) / reviewsResult.all_result) * 100}%` }}></div>
                                                 </div>
                                                 <p>{reviewsCounter(1)}</p>
                                             </div>
@@ -309,8 +322,8 @@ function DetailsPage() {
                                         </div>
                                         {
                                             reviews.length > 0 &&
-                                            reviews.map((items)=>{
-                                                return(
+                                            reviews.map((items) => {
+                                                return (
                                                     <div class="reviews" key={items._id}>
                                                         <div class="user-review">
                                                             <div class="profile-image">
@@ -339,12 +352,12 @@ function DetailsPage() {
                                         <div class="box-buttons">
                                             {
                                                 page !== 1 &&
-                                                <button class="pre" onClick={() => setPage(prev => prev - 1 )}>‹</button>
+                                                <button class="pre" onClick={() => setPage(prev => prev - 1)}>‹</button>
                                             }
                                             <p><span>{reviewsResult.page}</span> of {limitResult || 1}</p>
                                             {
                                                 limitResult !== page &&
-                                                <button class="next" onClick={() => setPage(prev => prev + 1 )}>›</button>
+                                                <button class="next" onClick={() => setPage(prev => prev + 1)}>›</button>
                                             }
                                         </div>
                                     }
@@ -356,28 +369,28 @@ function DetailsPage() {
                                     <div class="add-review-content">
                                         {
                                             user ?
-                                            <div class="loged-content">
-                                                <form onSubmit={submitReviews}>
-                                                    <div class="star-count">
-                                                        <div class="label">
-                                                            <h4>Your Ratings <span>*</span></h4>
+                                                <div class="loged-content">
+                                                    <form onSubmit={submitReviews}>
+                                                        <div class="star-count">
+                                                            <div class="label">
+                                                                <h4>Your Ratings <span>*</span></h4>
+                                                            </div>
+                                                            <div class="ratings">
+                                                                <input type="radio" name="rating" id="5-star" onClick={() => setAddReviews({ ...addReviews, ratings: 5 })} /><label for="5-star">★</label>
+                                                                <input type="radio" name="rating" id="4-star" onClick={() => setAddReviews({ ...addReviews, ratings: 4 })} /><label for="4-star">★</label>
+                                                                <input type="radio" name="rating" id="3-star" onClick={() => setAddReviews({ ...addReviews, ratings: 3 })} /><label for="3-star">★</label>
+                                                                <input type="radio" name="rating" id="2-star" onClick={() => setAddReviews({ ...addReviews, ratings: 2 })} /><label for="2-star">★</label>
+                                                                <input type="radio" name="rating" id="1-star" onClick={() => setAddReviews({ ...addReviews, ratings: 1 })} /><label for="1-star">★</label>
+                                                            </div>
                                                         </div>
-                                                        <div class="ratings">
-                                                            <input type="radio" name="rating" id="5-star" onClick={() => setAddReviews({...addReviews, ratings: 5})} /><label for="5-star">★</label>
-                                                            <input type="radio" name="rating" id="4-star" onClick={() => setAddReviews({...addReviews, ratings: 4})} /><label for="4-star">★</label>
-                                                            <input type="radio" name="rating" id="3-star" onClick={() => setAddReviews({...addReviews, ratings: 3})} /><label for="3-star">★</label>
-                                                            <input type="radio" name="rating" id="2-star" onClick={() => setAddReviews({...addReviews, ratings: 2})} /><label for="2-star">★</label>
-                                                            <input type="radio" name="rating" id="1-star" onClick={() => setAddReviews({...addReviews, ratings: 1})} /><label for="1-star">★</label>
-                                                        </div>
-                                                    </div>
-                                                    <textarea value={addReviews.message} name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({...addReviews, message: e.target.value})}></textarea><br />
-                                                    <input type="submit" value="Submit" class="submit-btn"/>
-                                                </form>
-                                            </div>
-                                            :
-                                            <div class="nunloged-content">
-                                                <p>You must <span><Link to="/account" class="no-style-link">Login</Link></span> in to Add reviews.</p>
-                                            </div>
+                                                        <textarea value={addReviews.message} name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({ ...addReviews, message: e.target.value })}></textarea><br />
+                                                        <input type="submit" value="Submit" class="submit-btn" />
+                                                    </form>
+                                                </div>
+                                                :
+                                                <div class="nunloged-content">
+                                                    <p>You must <span><Link to="/account" class="no-style-link">Login</Link></span> in to Add reviews.</p>
+                                                </div>
                                         }
                                     </div>
                                 </div>
@@ -386,25 +399,29 @@ function DetailsPage() {
                     </div>
                 </div>
                 <div class="container-suggetions">
-                    <div class="section-grid">
-                        {/* <!-- suggetions --> */}
-                        <div class="grid-box">
-                            <div class="box-header">
-                                <p>Related Products</p>
-                            </div>
-                            <div class="box-card-row">
-                                {
-                                    productRecomendation.map((items) => {
-                                        return (
-                                            <ProductComponent items={items} ratings={items.ratings} key={items._id} />
-                                        )
-                                    })
-                                }
-                                <div class="btns">
-                                    <button class="left">‹</button>
-                                    <button class="right">›</button>
-                                </div>
-                            </div>
+                    {/* <!-- suggetions --> */}
+                    <div class="suggetions-header">
+                        <p>Related Products</p>
+                    </div>
+                    <div class="suggetions-card-row">
+                        {
+                            productRecomendation.map((items) => {
+                                return (
+                                    <div class="suggetions-card" style={{transform: `translateX(${scrollWidth}px)`}}>
+                                        <ProductComponent items={items} ratings={items.ratings} key={items._id} />
+                                    </div>
+                                )
+                            })
+                        }
+                        <div class="btns">
+                            {
+                                scrollWidth !== 0 &&
+                                <button class="left" onClick={() => scrollToLeft()}>‹</button>
+                            }
+                            {
+                                productRecomendation.length * 240 > -scrollWidth+240 &&
+                                <button class="right" onClick={() => scrollToRight()}>›</button>
+                            }
                         </div>
                     </div>
                 </div>
