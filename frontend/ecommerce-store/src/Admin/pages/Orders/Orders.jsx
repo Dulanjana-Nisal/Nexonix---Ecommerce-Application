@@ -14,7 +14,7 @@ function Orders() {
     const [orders, setOrders] = useState([])
     const [allOrders, setAllOrders] = useState([])
     const [allOrdersCounts, setAllOrdersCounts] = useState([])
-    const [userSearchValue, setUserSearchValue] = useState("")
+    const [orderSearchValue, setOrderSearchValue] = useState("")
     const [productSearchValue, setProductSearchValue] = useState("")
     const [toggleView, setToggleView] = useState({ toggle: false, orderId: null })
     const [toggleEdit, setToggleEdit] = useState({ toggle: false, orderId: null })
@@ -116,16 +116,16 @@ function Orders() {
     // search orders
     const searchOrders = () => {
         const newquery = new URLSearchParams(queryData);
-        if (userSearchValue.length <= 1 && productSearchValue <= 1) {
+        if (orderSearchValue.length <= 1 && productSearchValue <= 1) {
             setupMessage('error', 'Please Enter more than 1 value to search...')
             return
         }
-        if (userSearchValue.length > 1) {
-            if (userSearchValue.length !== 24) {
-                setupMessage('error', 'User ID must be 24 characters!')
+        if (orderSearchValue.length > 1) {
+            if (orderSearchValue.length !== 24) {
+                setupMessage('error', 'Order ID must be 24 characters!')
                 return
             }
-            newquery.set('serchByUserId', userSearchValue)
+            newquery.set('orderId', orderSearchValue)
             newquery.set('page', 1)
         }
         if (productSearchValue.length > 1) {
@@ -138,7 +138,7 @@ function Orders() {
     // reset button
     const resetOrders = () => {
         setQueryData({})
-        setUserSearchValue("")
+        setOrderSearchValue("")
         setProductSearchValue("")
     }
 
@@ -221,13 +221,13 @@ function Orders() {
                                 </select>
                             </div>
                             <div class="find">
-                                <p>Search by User ID</p>
-                                <input value={userSearchValue} type="text" onChange={(e) => setUserSearchValue(e.target.value)} />
+                                <p>Search by Order ID</p>
+                                <input value={orderSearchValue} type="text" onChange={(e) => setOrderSearchValue(e.target.value)} />
                                 {
-                                    userSearchValue === "" &&
+                                    orderSearchValue === "" &&
                                     <div class="placeholder">
                                         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                        <p>Enter User ID</p>
+                                        <p>Enter Order ID</p>
                                     </div>
                                 }
                             </div>
@@ -259,8 +259,8 @@ function Orders() {
                                 <p>{statusValue}</p>
                             }
                             {
-                                searchQueryByUserId &&
-                                <p>ID: {searchQueryByUserId}</p>
+                                orderId &&
+                                <p>ID: {orderId}</p>
                             }
                             {
                                 searchQueryByProduct &&

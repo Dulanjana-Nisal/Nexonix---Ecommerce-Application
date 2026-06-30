@@ -1,6 +1,7 @@
 import './Users.css';
 import user_profile_image from '../../../assets/user-profile-image.png'
 import delete_img from '../../../assets/delete-icon.png'
+import empty_user from '../../../assets/empty-users.svg'
 import { useEffect, useState } from 'react';
 import api from '../../../services/auth'
 import { Message } from '../../../context/MessagesContext';
@@ -84,7 +85,7 @@ function Users() {
     }
 
     // reset button
-    const resetOrders = () => {
+    const resetUsers = () => {
         setQueryData({})
         setUsersSearchValue("")
         setUserIdSearchValue("")
@@ -142,7 +143,6 @@ function Users() {
                             <div class="header-filter">
                                 <p>Filter By</p>
                                 <select onClick={(e) => filterUsers(e.target.value)}>
-                                    <option value="">Select Status</option>
                                     <option value="">All</option>
                                     <option value="admin">Admins</option>
                                     <option value="user">Users</option>
@@ -150,7 +150,7 @@ function Users() {
                             </div>
                             <div class="find">
                                 <p>Search by User ID</p>
-                                <input type="text" value={userIdSearchValue} type="text" onChange={(e) => setUserIdSearchValue(e.target.value)}/>
+                                <input type="text" value={userIdSearchValue} type="text" onChange={(e) => setUserIdSearchValue(e.target.value)} />
                                 {
                                     userIdSearchValue === "" &&
                                     <div class="placeholder">
@@ -165,20 +165,14 @@ function Users() {
                                 {
                                     usersSearchValue === "" &&
                                     <div class="placeholder">
-                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                            <path d="M2 7v10l10 5V12" />
-                                            <path d="M22 7v10l-10 5V12" />
-                                            <path d="M7 4.5l10 5" />
-                                        </svg>
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
                                         <p>Enter User Name</p>
                                     </div>
                                 }
                             </div>
                             <div class="buttons">
                                 <button onClick={() => searchUsers()}><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-                                <button class='reset' onClick={() => resetOrders()}><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg> Reset</button>
+                                <button class='reset' onClick={() => resetUsers()}><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg> Reset</button>
                             </div>
                         </div>
                         <div class="filter-keys">
@@ -201,58 +195,69 @@ function Users() {
                     {
                         loading ? <LoadingComponent />
                             :
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Id</th>
-                                    <th>Orders</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                users.length > 0 &&
-                                users.map((items) => {
-                                    return (
-                                        <tr class="user-box" key={items._id}>
-                                            <td class="name" onClick={() => toggleFullDetailsBox(items._id)}>
-                                                <img src={user_profile_image} alt="prodile-image" class="user-image" />
-                                                <div class="box-user-details">
-                                                    <h3>{items.name}</h3>
-                                                    <p>ID: {items._id}</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p>{items.email}</p>
-                                            </td>
-                                            <td>
-                                                <p>{items._id}</p>
-                                            </td>
-                                            <td class="buttons">
-                                                <div class="button-content">
-                                                    {
-                                                        items.role === 'admin' ?
-                                                            <button class="order-btn admin">Admin</button>
-                                                            :
-                                                            <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
-                                                    }
-                                                    {
-                                                        items.role !== 'admin' &&
-                                                        <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    }
-                                                    {
-                                                        items.role !== 'admin' &&
-                                                        <svg onClick={() => deleteUser(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                    }
-                                                </div>
-                                            </td>
+                            users.length === 0 ?
+                                <div class="admin-empty-user-container">
+                                    <div class="container-top">
+                                        <img src={empty_user} alt="emty-cart-image" />
+                                    </div>
+                                    <div class="container-bottom">
+                                        <h1>Not Users Here</h1>
+                                        <p>Looks like you haven't any users here.</p>
+                                    </div>
+                                </div>
+                                :
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Joined</th>
+                                            <th>Orders</th>
                                         </tr>
-                                    )
-                                })
-                            }
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            users.length > 0 &&
+                                            users.map((items) => {
+                                                return (
+                                                    <tr class="user-box" key={items._id}>
+                                                        <td class="name" onClick={() => toggleFullDetailsBox(items._id)}>
+                                                            <img src={user_profile_image} alt="prodile-image" class="user-image" />
+                                                            <div class="box-user-details">
+                                                                <h3>{items.name}</h3>
+                                                                <p>ID: {items._id}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <p>{items.email}</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>{(items.createdAt).slice(0, 10)}</p>
+                                                        </td>
+                                                        <td class="buttons">
+                                                            <div class="button-content">
+                                                                {
+                                                                    items.role === 'admin' ?
+                                                                        <button class="order-btn admin">Admin</button>
+                                                                        :
+                                                                        <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
+                                                                }
+                                                                {
+                                                                    items.role !== 'admin' &&
+                                                                    <button class="update" onClick={() => setUpdateUsersToggle({ toggle: !updateUsersToggle.toggle, userId: items._id })}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                                }
+                                                                {
+                                                                    items.role !== 'admin' &&
+                                                                    <svg onClick={() => deleteUser(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                                }
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
                     }
                     {
                         updateUsersToggle.toggle &&

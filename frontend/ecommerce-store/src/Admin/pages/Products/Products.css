@@ -2,39 +2,84 @@
 .admin-container .sections .sections-body .product-section .product-body{
     margin-top: 30px;
 }
-.admin-container .sections .sections-body .product-section .product-body .body-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 15px;
-}
+
+/* Filter box styles */
 .admin-container .sections .sections-body .product-section .product-header{
-    column-gap: 10px;
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 20px 20px 20px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.admin-container .sections .sections-body .product-section .product-header .search{
-    width: 50%;
+.admin-container .sections .sections-body .product-section .product-header .filter-methods{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    column-gap: 30px;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-filter{
+.admin-container .sections .sections-body .product-section .product-header .filter-methods div{
+    width: 100%;
+}
+.admin-container .sections .sections-body .product-section .product-header div p{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.admin-container .sections .sections-body .product-section .product-header div input{
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #6b728039;
+    outline: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+.admin-container .sections .sections-body .product-section .product-header div input:focus + .placeholder{
+    display: none;
+}
+.admin-container .sections .sections-body .product-section .product-header div select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #6b728039;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280a1;
+}
+.admin-container .sections .sections-body .product-section .product-header .buttons{
+    width: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     column-gap: 15px;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-filter p{
-    width: 70px;
-    font-size: 16px;
+.admin-container .sections .sections-body .product-section .product-header .buttons .reset{
+    background-color: transparent;
+    border: 1px solid #6b728045;
+    color: #000;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-filter select{
-    padding: 5px 10px 5px 5px;
-    outline: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    color: rgb(109, 107, 107);
+.admin-container .sections .sections-body .product-section .product-header .buttons .reset svg{
+    width: 16px;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-create-btn  button{
-    width: 140px;
-    padding: 8px 15px;
+.admin-container .sections .sections-body .product-section .product-header .buttons button{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    padding: 10px 15px;
+    border: 1px solid #2B38D1;
+    border-radius: 10px;
+    background-color: #2B38D1;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+.admin-container .sections .sections-body .product-section .product-header .buttons .add-product-btn{
+    min-width: fit-content;
     border: none; 
     font-size: 14px;
     font-weight: 600;
@@ -42,134 +87,159 @@
     color: #fff;
     background-color: #008A00;
     align-items: center;
+    margin-right: 15px;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-create-btn  button:hover{
-    background-color: #027702;
+.admin-container .sections .sections-body .product-section .product-header .buttons .add-product-btn p{
+    margin: 0;
+}
+.admin-container .sections .sections-body .product-section .product-header .buttons button:hover{
+    opacity: 0.75;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-header .header-create-btn  button i{
-    margin-right: 10px;
-    font-size: 16px;
+.admin-container .sections .sections-body .product-section .product-header .find{
+    position: relative;
 }
-.admin-container .sections .sections-body .product-section .product-body{
-    min-height: 60vh;
+.admin-container .sections .sections-body .product-section .product-header .search{
+    position: relative;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list{
-    margin-top: 30px;
+.admin-container .sections .sections-body .product-section .product-header .placeholder{
+    display: flex;
+    column-gap: 8px;
+    justify-content: start;
+    color: #6b72808a;
+    position: absolute;
+    top: 58%;
+    left: 5%;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box{
+.admin-container .sections .sections-body .product-section .product-header .placeholder svg{
+    width: 18px;
+    height: 20px;
+}
+.admin-container .sections .sections-body .product-section .product-header .filter-keys{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 5px 10px;
-    column-gap: 10px;
+    justify-content: start;
+    column-gap: 20px;
+    padding-top: 20px;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .header{
+.admin-container .sections .sections-body .product-section .product-header .filter-keys p{
+    display: flex;
+    align-items: end;
+    padding: 3px 10px;
+    font-size: 12px;
+    border: 1px solid #6b728030;
+    border-radius: 30px;
+    color: #6b72807d;
+}
+
+/* product body styles */
+.admin-container .sections .sections-body .product-section .product-body {
+    
+}
+.admin-container .sections .sections-body .product-section .product-body table{
+    width: 100%;
+    border-collapse: collapse
+}
+.admin-container .sections .sections-body .product-section .product-body table thead th{
     padding: 20px 0;
-    border-top: 1px solid #d8dbdccd;
-    margin-bottom: 10px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .header p{
-    font-size: 16px;
+    color: #6b7280;
     font-weight: 600;
-    color: rgb(109, 107, 107);
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .products{
-    background-color: #fff;
-    border-radius: 10px;
-    margin-bottom: 15px;
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box{
+    background-color: #Fff;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .products:hover{
-    cursor: pointer;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .row{
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box td{
+    padding: 10px;
     text-align: center;
+    border-top: 1px solid #6b728026;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .row p{
-    width: 95%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box td p{
+    font-size: 15px;
+    font-weight: 600;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .name{
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .name{
     display: flex;
-    width: 300px;
     align-items: center;
-    column-gap: 10px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .qnt,
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .price,
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .availability,
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .buttons{
-    width: 100px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .name .image img{
-    width: 80px;
-    height: 80px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    object-fit: contain;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .name .details{
+    column-gap: 15px;
+    padding-left: 25px;
     text-align: left;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .product-box .name .details p{
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .name img{
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    object-fit: contain;
+    background-position: center;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .name h4{
+    font-size: 16px;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .name p{
     font-size: 12px;
-    margin-top: 5px;
-    color: rgb(109, 107, 107);
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .qnt p{
-    font-size: 15px;
     font-weight: 500;
+    margin-top: 5px;
+    color: #6b7280;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .price p{
-    font-weight: 600;
-    color: #2B38D1;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .availability p{
-    padding: 5px 0;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 30px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .availability .availabale{
-    background-color: #008A0027;
-    color: #008A00;
-    border: 1px solid #008A00;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .availability .unavailabale{
-    background-color: #DD384227;
-    color: #DD3842;
-    border: 1px solid #DD3842;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .buttons{
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .buttons .buttons-content{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    column-gap: 10px;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .buttons button{
-    border: none;
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .buttons .buttons-content .update{
     background-color: transparent;
-    padding: 10px;
-    border-radius: 50%;
-    transition: 0.25s;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .buttons button:hover{
-    background-color: #F1F5F6;
+    border: none;
+    width: 20px;
+    color: #2B38D1;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .buttons i{
-    font-size: 18px;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .update{
-    color: #2B38D1;
-}
-.admin-container .sections .sections-body .product-section .product-body .product-list .products .delete{
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .buttons .buttons-content .delete{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #DD3842;
+    font-weight: 600;
+    transition: 0.25s;
+    margin-right: 10px;
     color: #DD3842;
+    transition: 0.25s;
 }
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .buttons .buttons-content .delete:hover{
+    background-color: #DD3842;
+    color: #fff;
+    cursor: pointer;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .cat p{
+    color: #8b5cf6;
+    font-weight: 700;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .price p{
+    font-weight: 700;
+    color: #b3122c;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .availability p{
+    padding: 3px 10px;
+    width: fit-content;
+    border-radius: 30px;
+    margin: auto;
+    font-size: 12px;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .availability .availabale{
+    color: #008A00;
+    border: 1px solid #008a005d;
+    background-color: #008a0026;
+}
+.admin-container .sections .sections-body .product-section .product-body table tbody .product-box .availability .unavailabale{
+    color: #DD3842;
+    border: 1px solid #DD38425d;
+    background-color: #DD384226;
+}
+
 
 /* responsive list style */
 .admin-container .sections .sections-body .product-section .product-body .responsive-list{

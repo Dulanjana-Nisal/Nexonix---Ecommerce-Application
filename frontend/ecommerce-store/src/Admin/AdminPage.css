@@ -268,44 +268,8 @@
     margin: auto;
     padding-bottom: 30px;
 }
-.admin-container .sections .sections-body .product-section .product-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 .admin-container .sections .sections-body .product-section .product-header h1{
     font-size: 20px;
-}
-.admin-container .sections .sections-body .product-section .product-header .search{
-    display: flex;
-    align-items: center;
-}
-.admin-container .sections .sections-body .product-section .product-header .search input{
-    padding: 10px;
-    width: 100%;
-    border-radius: 30px 0 0 30px;
-    border: 2px solid #d8dbdccd;
-    border-right: none;
-    outline: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding-left: 20px;
-}
-.admin-container .sections .sections-body .product-section .product-header .search button{
-    width: 50px;
-    padding: 10px;
-    border-radius: 0 30px 30px 0;
-    border: 1px solid #2B38D1;
-    background-color: #2B38D1;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.25s;
-}
-.admin-container .sections .sections-body .product-section .product-header .search button:hover{
-    background-color: #fff;
-    color: #2B38D1;
-    cursor: pointer;
 }
 
 /* Add product and update box style */
@@ -323,7 +287,7 @@
     background-color: #fff;
     width: fit-content;
     height: fit-content;
-    margin: auto;
+    margin: 2% auto;
     padding: 30px;
     height: 90vh;
     overflow: hidden;

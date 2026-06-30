@@ -158,6 +158,8 @@
     color: #DD3842;
     cursor: pointer;
 }
+
+/* Empty section styles */
 .cart-container .cart-body .empty-cart-container{
     width: 100%;
     padding: 30px 20px;

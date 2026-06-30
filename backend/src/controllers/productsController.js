@@ -7,7 +7,7 @@ const statusCodes = require('http-status-codes');
 //get all products
 const getAllProducts = asyncHaddler(async(req,res)=>{
 
-    const {search,category,availability,sortBy,brand,select,pr,rr} = req.query;
+    const {search,category,availability,productId,sortBy,brand,select,pr,rr} = req.query;
     let queryObject = {}; 
 
     //products filter by serach
@@ -23,7 +23,10 @@ const getAllProducts = asyncHaddler(async(req,res)=>{
         queryObject.category = category;
 
     }
-    
+    // product filter by product ID
+    if(productId){
+        queryObject._id = productId;
+    }
     //product filter by availability
     if(availability){
         queryObject.availability = availability==='false' ? false : true;
