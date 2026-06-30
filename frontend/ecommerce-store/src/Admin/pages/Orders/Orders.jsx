@@ -29,6 +29,9 @@ function Orders() {
     const searchQueryByProduct = queryData.get('searchByProduct') || ""
     const searchQueryByUserId = queryData.get('serchByUserId') || ""
 
+    // get Order ID form query data
+    const orderId = queryData.get('orderId') || ""
+
     // get status value form query data
     const statusValue = queryData.get('status') || ""
 
@@ -40,7 +43,7 @@ function Orders() {
         const fetchOrderData = async () => {
             setLoading(true)
             try {
-                const result = await api.get(`/orders/all?searchByProduct=${searchQueryByProduct}&serchByUserId=${searchQueryByUserId}&status=${statusValue}&page=${page}`)
+                const result = await api.get(`/orders/all?searchByProduct=${searchQueryByProduct}&serchByUserId=${searchQueryByUserId}&status=${statusValue}&page=${page}&orderId=${orderId}`)
                 const allResult = await api.get(`/orders/all?limit=1`)
                 setOrders(result.data.data)
                 setAllOrders(allResult.data.data)
@@ -54,7 +57,7 @@ function Orders() {
             }
         }
         fetchOrderData();
-    }, [searchQueryByProduct, searchQueryByUserId, queryData, statusValue, page, relaod])
+    }, [searchQueryByProduct, searchQueryByUserId, queryData, statusValue, page, relaod, orderId])
 
     // update orders
     const updateOrders = async (userId) => {

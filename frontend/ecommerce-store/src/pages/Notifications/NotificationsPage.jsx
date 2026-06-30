@@ -5,7 +5,6 @@ import empty_notificataios from '../../assets/empty-notifications.svg'
 import './NotificationsPage.css';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../services/auth';
-import { Link } from 'react-router-dom';
 import { NOTIFI_ACTIONS } from '../../context/NotificationReducer';
 import LoadingComponent from '../../components/Loading/LoadingComponent';
 import { formatDistanceToNow } from 'date-fns';
@@ -213,14 +212,6 @@ function NotificationsPage() {
                                                 <div class="container-bottom">
                                                     <h1>Your Notification list is empty</h1>
                                                     <p>Looks like you haven't any notifications yet.</p>
-                                                    <Link to='/products/computers' class="no-style-link">
-                                                        <button>
-                                                            Continue Shopping
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                                <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                                            </svg>
-                                                        </button>
-                                                    </Link>
                                                 </div>
                                             </div>
                                         :

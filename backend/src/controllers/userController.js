@@ -6,7 +6,7 @@ const asyncHaddler = require('../utils/asyncHaddler')
 
 //get all users data
 const getAllUsers = asyncHaddler(async(req,res) => {
-    const {search,role} = req.query
+    const {search,role,userId} = req.query
 
     const querySelectore = {}
 
@@ -16,6 +16,10 @@ const getAllUsers = asyncHaddler(async(req,res) => {
 
     if(role){
         querySelectore.role = role
+    }
+
+    if(userId){
+        querySelectore._id = userId
     }
 
     //product paging

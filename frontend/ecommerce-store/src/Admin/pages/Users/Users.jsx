@@ -18,7 +18,8 @@ function Users() {
     const [toggleDetails, setToggleDetails] = useState(false)
     const [allResultCount, setAllResultCount] = useState(1)
     const [updateUsersToggle, setUpdateUsersToggle] = useState(false)
-    const [searchValue, setSearchValue] = useState("")
+    const [userIdSearchValue, setUserIdSearchValue] = useState("")
+    const [usersSearchValue, setUsersSearchValue] = useState("")
     const [fullDetails, setFullDetails] = useState({})
     const [loading, setLoading] = useState(false)
 
@@ -35,42 +36,59 @@ function Users() {
     const userFilter = queryData.get('role') || ""
 
     //users search
-    const searchUsers = queryData.get('search') || ""
+    const searchKeyword = queryData.get('search') || ""
+
+    // search by user id
+    const userID = queryData.get('userId') || ''
 
     // fetch all users data
     useEffect(() => {
         const fetchUsersData = async () => {
             setLoading(true)
-            try{
-                const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}&search=${searchUsers}`)
+            try {
+                const result = await api.get(`/users?page=${pageNumber}&role=${userFilter}&search=${searchKeyword}&userId=${userID}`)
                 setUsers(result.data.data)
                 setAllResultCount(result.data.all_result)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
-            
+
         }
         fetchUsersData();
-    }, [pageNumber,userFilter,setupMessage,searchUsers])
+    }, [pageNumber, userFilter, setupMessage, userID, searchKeyword])
 
-    //search users function 
-    const searchUsersByKeyword = async () => {
-        const newQuery = new URLSearchParams(queryData)
-        if (searchValue.length < 2) {
-            setupMessage('error', 'Please Enter more than 1 values for search...')
-            newQuery.set("search", "")
-            setQueryData(newQuery)
+    // search users
+    const searchUsers = () => {
+        const newquery = new URLSearchParams(queryData);
+        if (userIdSearchValue.length <= 1 && usersSearchValue <= 1) {
+            setupMessage('error', 'Please Enter more than 1 value to search...', "Search Faild!")
             return
         }
-        newQuery.set("search", searchValue)
-        setQueryData(newQuery)
+        if (userIdSearchValue.length > 1) {
+            if (userIdSearchValue.length !== 24) {
+                setupMessage('error', 'User ID must be 24 characters!', "Search Faild!")
+                return
+            }
+            newquery.set('userId', userIdSearchValue)
+            newquery.set('page', 1)
+        }
+        if (usersSearchValue.length > 1) {
+            newquery.set('search', usersSearchValue)
+            newquery.set('page', 1)
+        }
+        setQueryData(newquery)
     }
 
-    console.log('hellow')
+    // reset button
+    const resetOrders = () => {
+        setQueryData({})
+        setUsersSearchValue("")
+        setUserIdSearchValue("")
+    }
 
     //toggle user full details box
     const toggleFullDetailsBox = (itemId) => {
@@ -120,66 +138,121 @@ function Users() {
             <div class="user-section">
                 <div class="user-header">
                     <div class="header-filter">
-                        <p>Filter By</p>
-                        <select onClick={(e) => filterUsers(e.target.value)}>
-                            <option value="">All</option>
-                            <option value="admin">Admins</option>
-                            <option value="user">Users</option>
-                        </select>
-                    </div>
-                    <div class="search">
-                        <input type="text" placeholder="Search Users" onChange={(e) => setSearchValue(e.target.value)} />
-                        <button onClick={() => searchUsersByKeyword()}><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <div class="filter-methods">
+                            <div class="header-filter">
+                                <p>Filter By</p>
+                                <select onClick={(e) => filterUsers(e.target.value)}>
+                                    <option value="">Select Status</option>
+                                    <option value="">All</option>
+                                    <option value="admin">Admins</option>
+                                    <option value="user">Users</option>
+                                </select>
+                            </div>
+                            <div class="find">
+                                <p>Search by User ID</p>
+                                <input type="text" value={userIdSearchValue} type="text" onChange={(e) => setUserIdSearchValue(e.target.value)}/>
+                                {
+                                    userIdSearchValue === "" &&
+                                    <div class="placeholder">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                        <p>Enter User ID</p>
+                                    </div>
+                                }
+                            </div>
+                            <div class="search">
+                                <p>Search by User Name</p>
+                                <input value={usersSearchValue} type="text" onChange={(e) => setUsersSearchValue(e.target.value)} />
+                                {
+                                    usersSearchValue === "" &&
+                                    <div class="placeholder">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                            <path d="M2 7v10l10 5V12" />
+                                            <path d="M22 7v10l-10 5V12" />
+                                            <path d="M7 4.5l10 5" />
+                                        </svg>
+                                        <p>Enter User Name</p>
+                                    </div>
+                                }
+                            </div>
+                            <div class="buttons">
+                                <button onClick={() => searchUsers()}><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                                <button class='reset' onClick={() => resetOrders()}><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg> Reset</button>
+                            </div>
+                        </div>
+                        <div class="filter-keys">
+                            {
+                                userFilter &&
+                                <p>{userFilter}</p>
+                            }
+                            {
+                                userID &&
+                                <p>ID: {userID}</p>
+                            }
+                            {
+                                searchKeyword &&
+                                <p>{searchKeyword}</p>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="user-body">
                     {
                         loading ? <LoadingComponent />
-                        :
-                        <div class="user-list">
-                            <div class="list-header">
-                                <p>Name</p>
-                                <p>Email</p>
-                                <p>Id</p>
-                                <p>Orders</p>
-                            </div>
-                            {
+                            :
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Id</th>
+                                    <th>Orders</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
                                 users.length > 0 &&
                                 users.map((items) => {
                                     return (
-                                        <div class="user-box" key={items._id}>
-                                            <div class="name" onClick={() => toggleFullDetailsBox(items._id)}>
+                                        <tr class="user-box" key={items._id}>
+                                            <td class="name" onClick={() => toggleFullDetailsBox(items._id)}>
                                                 <img src={user_profile_image} alt="prodile-image" class="user-image" />
-                                                <p>{items.name}</p>
-                                            </div>
-                                            <div>
+                                                <div class="box-user-details">
+                                                    <h3>{items.name}</h3>
+                                                    <p>ID: {items._id}</p>
+                                                </div>
+                                            </td>
+                                            <td>
                                                 <p>{items.email}</p>
-                                            </div>
-                                            <div>
+                                            </td>
+                                            <td>
                                                 <p>{items._id}</p>
-                                            </div>
-                                            <div class="buttons">
-                                                {
-                                                    items.role === 'admin' ?
-                                                        <button class="order-btn admin">Admin</button>
-                                                        :
-                                                        <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
-                                                }
-                                                {
-                                                    items.role !== 'admin' &&
-                                                    <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                }
-                                                {
-                                                    items.role !== 'admin' &&
-                                                    <button class="delete-btn"><img src={delete_img} alt="" onClick={() => deleteUser(items._id)} /></button>
-                                                }
-
-                                            </div>
-                                        </div>
+                                            </td>
+                                            <td class="buttons">
+                                                <div class="button-content">
+                                                    {
+                                                        items.role === 'admin' ?
+                                                            <button class="order-btn admin">Admin</button>
+                                                            :
+                                                            <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
+                                                    }
+                                                    {
+                                                        items.role !== 'admin' &&
+                                                        <button class="update" onClick={() => setUpdateUsersToggle({toggle: !updateUsersToggle.toggle, userId: items._id})}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    }
+                                                    {
+                                                        items.role !== 'admin' &&
+                                                        <svg onClick={() => deleteUser(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
                                     )
                                 })
                             }
-                        </div>
+                            </tbody>
+                        </table>
                     }
                     {
                         updateUsersToggle.toggle &&
@@ -251,9 +324,9 @@ function Users() {
                             pageNumber !== 1 &&
                             <button class="pre" onClick={() => prevPage()}>‹</button>
                         }
-                        <p><span>{pageNumber}</span> of {Math.ceil(allResultCount /10)}</p>
+                        <p><span>{pageNumber}</span> of {Math.ceil(allResultCount / 10)}</p>
                         {
-                            (Math.ceil(allResultCount /10)) > pageNumber &&
+                            (Math.ceil(allResultCount / 10)) > pageNumber &&
                             <button class="next" onClick={() => nextPage()}>›</button>
                         }
                     </div>

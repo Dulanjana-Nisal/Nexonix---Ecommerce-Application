@@ -4,117 +4,193 @@
     margin: auto;
     padding-bottom: 30px;
 }
+
+/* User filters sectio styles */
 .admin-container .sections .sections-body .user-section .user-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 20px 20px 20px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.admin-container .sections .sections-body .user-section .user-header .header-filter{
+.admin-container .sections .sections-body .user-section .user-header .filter-methods{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    column-gap: 30px;
+}
+.admin-container .sections .sections-body .user-section .user-header .filter-methods div{
+    width: 100%;
+}
+.admin-container .sections .sections-body .user-section .user-header div p{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.admin-container .sections .sections-body .user-section .user-header div input{
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #6b728039;
+    outline: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+.admin-container .sections .sections-body .user-section .user-header div input:focus + .placeholder{
+    display: none;
+}
+.admin-container .sections .sections-body .user-section .user-header div select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #6b728039;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280a1;
+}
+.admin-container .sections .sections-body .user-section .user-header .buttons{
+    width: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     column-gap: 15px;
 }
-.admin-container .sections .sections-body .user-section .user-header .header-filter p{
-    width: 70px;
-    font-size: 16px;
+.admin-container .sections .sections-body .user-section .user-header .buttons .reset{
+    background-color: transparent;
+    border: 1px solid #6b728045;
+    color: #000;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-header .header-filter select{
-    padding: 5px 10px 5px 5px;
-    outline: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    color: rgb(109, 107, 107);
+.admin-container .sections .sections-body .user-section .user-header .buttons .reset svg{
+    width: 16px;
 }
-.admin-container .sections .sections-body .user-section .user-header h1{
-    font-size: 20px;
-}
-.admin-container .sections .sections-body .user-section .user-header .search{
+.admin-container .sections .sections-body .user-section .user-header .buttons button{
+    width: fit-content;
     display: flex;
     align-items: center;
-}
-.admin-container .sections .sections-body .user-section .user-header .search input{
-    padding: 10px;
-    width: 100%;
-    border-radius: 30px 0 0 30px;
-    border: 2px solid #d8dbdccd;
-    border-right: none;
-    outline: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding-left: 20px;
-}
-.admin-container .sections .sections-body .user-section .user-header .search button{
-    width: 50px;
-    padding: 10px;
-    border-radius: 0 30px 30px 0;
+    justify-content: center;
+    column-gap: 10px;
+    padding: 10px 15px;
     border: 1px solid #2B38D1;
+    border-radius: 10px;
     background-color: #2B38D1;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
-    transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-header .search button:hover{
-    background-color: #fff;
-    color: #2B38D1;
+.admin-container .sections .sections-body .user-section .user-header .buttons button:hover{
+    opacity: 0.75;
     cursor: pointer;
 }
+.admin-container .sections .sections-body .user-section .user-header .find{
+    position: relative;
+}
+.admin-container .sections .sections-body .user-section .user-header .search{
+    position: relative;
+}
+.admin-container .sections .sections-body .user-section .user-header .placeholder{
+    display: flex;
+    column-gap: 8px;
+    justify-content: start;
+    color: #6b72808a;
+    position: absolute;
+    top: 58%;
+    left: 5%;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.admin-container .sections .sections-body .user-section .user-header .placeholder svg{
+    width: 18px;
+    height: 20px;
+}
+.admin-container .sections .sections-body .user-section .user-header .filter-keys{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 20px;
+    padding-top: 20px;
+}
+.admin-container .sections .sections-body .user-section .user-header .filter-keys p{
+    display: flex;
+    align-items: end;
+    padding: 3px 10px;
+    font-size: 12px;
+    border: 1px solid #6b728030;
+    border-radius: 30px;
+    color: #6b72807d;
+}
+
+
 .admin-container .sections .sections-body .user-section .user-body{
     margin-top: 30px;
     min-height: 60vh;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list{
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
+
+.admin-container .sections .sections-body .user-section .user-body table{
+    width: 100%;
+    border-collapse: collapse;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list .list-header,
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list .list-header p,
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box div{
-    width: 200px;
-    padding: 10px;
-    font-size: 16px;
+.admin-container .sections .sections-body .user-section .user-body table thead th{
+    padding-bottom: 20px;
+    color: #6b7280;
     font-weight: 600;
-    color: rgb(109, 107, 107);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box div{
-    padding: 10px 0;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box{
+.admin-container .sections .sections-body .user-section .user-body .user-box{
     background-color: #fff;
-    border-radius: 10px;
-    padding: 10px 0;
-    transition: 0.25s;
-    padding-right: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box p{
+.admin-container .sections .sections-body .user-section .user-body .user-box td{
+    padding: 25px 5px;
+    text-align: center;
+    border-top: 1px solid #6b728026;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box td p{
     font-size: 14px;
-    color: #000;
-    width: 95%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box:hover{
-    cursor: pointer;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list .user-box .name{
+.admin-container .sections .sections-body .user-section .user-body .user-box .name{
     display: flex;
     align-items: center;
-    justify-content: start;
+    column-gap: 15px;
+    padding-left: 15px;
+    text-align: left;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .name:hover{
+    cursor: pointer;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .name h3{
+    font-size: 15px;
+    font-weight: 700;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .name p{
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 5px;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons .button-content{
+    display: flex;
+    align-items: center;
     column-gap: 5px;
-    padding-left: 10px;
+    justify-content: center;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #DD3842;
+    font-weight: 600;
+    transition: 0.25s;
+    margin-right: 10px;
+    color: #DD3842;
+    transition: 0.25s;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg:hover{
+    cursor: pointer;
+    background-color: #DD3842;
+    color: #Fff;
 }
 .admin-container .sections .sections-body .user-section .user-body .orders{
     width: fit-content;
@@ -122,7 +198,7 @@
     border: 1px solid #FFB800;
     background-color: #fff;
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #FFB800;
     transition: 0.25s;
@@ -132,7 +208,7 @@
     border-radius: 30px;
     width: fit-content;
     padding: 5px 12px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     border: 1px solid #008A00;
     color: #008A00;
@@ -160,15 +236,8 @@
 }
 .admin-container .sections .sections-body .user-section .user-body .update:hover{
     cursor: pointer;
-    color: #fff;
-    background-color: #2B38D1;
 }
-.admin-container .sections .sections-body .user-section .user-body .delete-btn:hover{
-    cursor: pointer;
-}
-.admin-container .sections .sections-body .user-section .user-body .delete-btn img{
-    width: 25px;
-}
+
 .admin-container .sections .sections-body .user-section .user-body .user-list-responsive{
     display: none;
 }

@@ -51,7 +51,7 @@ const getOrders = asyncHaddler(async (req, res) => {
 
 // get all orders
 const getAllOrders = asyncHaddler(async (req, res) => {
-    const { searchByProduct, serchByUserId, user, product, status,limit } = req.query;
+    const { searchByProduct, serchByUserId, orderId, user, product, status,limit } = req.query;
     let queryObject = {};
 
     //orders filter by users
@@ -60,6 +60,10 @@ const getAllOrders = asyncHaddler(async (req, res) => {
         //orders filter search by product
         if (searchByProduct) {
             queryObject.productName = { $regex: searchByProduct, $options: 'i' };
+        }
+        //filter by order id
+        if(orderId){
+            queryObject._id = orderId;
         }
         //orders filter search by user id
         if (serchByUserId) {
