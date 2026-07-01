@@ -1,33 +1,37 @@
 /* User section style */
-.admin-container .sections .sections-body .user-section{
+.admin-container .sections .sections-body .user-section {
     width: 90%;
     margin: auto;
     padding-bottom: 30px;
 }
 
 /* User filters sectio styles */
-.admin-container .sections .sections-body .user-section .user-header{
+.admin-container .sections .sections-body .user-section .user-header {
     background-color: #fff;
-    margin: 10px 0;
+    margin: 10px 0 50px 0;
     padding: 20px 20px 20px 20px;
     border-radius: 15px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.admin-container .sections .sections-body .user-section .user-header .filter-methods{
+
+.admin-container .sections .sections-body .user-section .user-header .filter-methods {
     display: flex;
     justify-content: space-between;
     align-items: end;
     column-gap: 30px;
 }
-.admin-container .sections .sections-body .user-section .user-header .filter-methods div{
+
+.admin-container .sections .sections-body .user-section .user-header .filter-methods div {
     width: 100%;
 }
-.admin-container .sections .sections-body .user-section .user-header div p{
+
+.admin-container .sections .sections-body .user-section .user-header div p {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-header div input{
+
+.admin-container .sections .sections-body .user-section .user-header div input {
     width: 100%;
     padding: 10px 15px;
     border: 1px solid #6b728039;
@@ -37,10 +41,12 @@
     font-weight: 600;
     color: #6b7280;
 }
-.admin-container .sections .sections-body .user-section .user-header div input:focus + .placeholder{
+
+.admin-container .sections .sections-body .user-section .user-header div input:focus+.placeholder {
     display: none;
 }
-.admin-container .sections .sections-body .user-section .user-header div select{
+
+.admin-container .sections .sections-body .user-section .user-header div select {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
@@ -50,23 +56,27 @@
     font-weight: 600;
     color: #6b7280a1;
 }
-.admin-container .sections .sections-body .user-section .user-header .buttons{
+
+.admin-container .sections .sections-body .user-section .user-header .buttons {
     width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 15px;
 }
-.admin-container .sections .sections-body .user-section .user-header .buttons .reset{
+
+.admin-container .sections .sections-body .user-section .user-header .buttons .reset {
     background-color: transparent;
     border: 1px solid #6b728045;
     color: #000;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-header .buttons .reset svg{
+
+.admin-container .sections .sections-body .user-section .user-header .buttons .reset svg {
     width: 16px;
 }
-.admin-container .sections .sections-body .user-section .user-header .buttons button{
+
+.admin-container .sections .sections-body .user-section .user-header .buttons button {
     width: fit-content;
     display: flex;
     align-items: center;
@@ -80,17 +90,21 @@
     font-size: 14px;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-header .buttons button:hover{
+
+.admin-container .sections .sections-body .user-section .user-header .buttons button:hover {
     opacity: 0.75;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-header .find{
+
+.admin-container .sections .sections-body .user-section .user-header .find {
     position: relative;
 }
-.admin-container .sections .sections-body .user-section .user-header .search{
+
+.admin-container .sections .sections-body .user-section .user-header .search {
     position: relative;
 }
-.admin-container .sections .sections-body .user-section .user-header .placeholder{
+
+.admin-container .sections .sections-body .user-section .user-header .placeholder {
     display: flex;
     column-gap: 8px;
     justify-content: start;
@@ -101,18 +115,21 @@
     pointer-events: none;
     transition: opacity 0.2s ease;
 }
-.admin-container .sections .sections-body .user-section .user-header .placeholder svg{
+
+.admin-container .sections .sections-body .user-section .user-header .placeholder svg {
     width: 18px;
     height: 20px;
 }
-.admin-container .sections .sections-body .user-section .user-header .filter-keys{
+
+.admin-container .sections .sections-body .user-section .user-header .filter-keys {
     display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 20px;
     padding-top: 20px;
 }
-.admin-container .sections .sections-body .user-section .user-header .filter-keys p{
+
+.admin-container .sections .sections-body .user-section .user-header .filter-keys p {
     display: flex;
     align-items: end;
     padding: 3px 10px;
@@ -123,82 +140,116 @@
 }
 
 
-.admin-container .sections .sections-body .user-section .user-body{
+.admin-container .sections .sections-body .user-section .user-body {
     margin-top: 30px;
     min-height: 60vh;
 }
 
 /* Empty section styles */
-.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container{
+.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container {
     width: 100%;
     padding: 30px 20px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #787c8f25;
 }
-.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-top img{
+
+.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-top img {
     width: 100%;
     height: 200px;
     margin-bottom: 30px;
 }
-.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-bottom h1{
+
+.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-bottom h1 {
     font-size: 25px;
 }
-.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-bottom p{
+
+.admin-container .sections .sections-body .user-section .user-body .admin-empty-user-container .container-bottom p {
     font-size: 14px;
     font-weight: 500;
     margin: 5px 0 25px 0;
     color: #787c8f;
 }
+
 /* ---------------------- */
 
-.admin-container .sections .sections-body .user-section .user-body table{
+.admin-container .sections .sections-body .user-section .user-body table {
     width: 100%;
     border-collapse: collapse;
 }
-.admin-container .sections .sections-body .user-section .user-body table thead th{
+
+.admin-container .sections .sections-body .user-section .user-body table thead th {
     padding-bottom: 20px;
     color: #6b7280;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 14px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box {
     background-color: #fff;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box td{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box td {
     padding: 25px 5px;
     text-align: center;
     border-top: 1px solid #6b728026;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box td p{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box td p {
     font-size: 14px;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .name{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .name {
     display: flex;
     align-items: center;
     column-gap: 15px;
     padding-left: 25px;
     text-align: left;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .name:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .name:hover {
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .name h3{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .user-role p {
+    font-size: 12px;
+    padding: 5px 8px;
+    font-weight: 700;
+    border-radius: 30px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .user-role .user-admin {
+    background-color: #008a001a;
+    color: #008A00;
+    border: 1px solid #008a0029;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .user-role .user-user {
+    background-color: #1d4fd81b;
+    color: #1d4ed8;
+    border: 1px solid #1d4fda29;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .name h3 {
     font-size: 15px;
     font-weight: 700;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .name p{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .name p {
     font-size: 12px;
     color: #6b7280;
     margin-top: 5px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .buttons .button-content{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons .button-content {
     display: flex;
     align-items: center;
     column-gap: 5px;
     justify-content: center;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg {
     width: 30px;
     height: 30px;
     padding: 5px;
@@ -211,14 +262,16 @@
     color: #DD3842;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .user-box .buttons svg:hover {
     cursor: pointer;
     background-color: #DD3842;
     color: #Fff;
 }
-.admin-container .sections .sections-body .user-section .user-body .orders{
-    width: fit-content;
-    padding: 5px 12px;
+
+.admin-container .sections .sections-body .user-section .user-body .orders {
+    min-width: fit-content;
+    padding: 3px 10px;
     border: 1px solid #FFB800;
     background-color: #fff;
     border-radius: 30px;
@@ -227,89 +280,138 @@
     color: #FFB800;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .admin{
-    background-color: #008A0027;
-    border-radius: 30px;
-    width: fit-content;
-    padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    border: 1px solid #008A00;
-    color: #008A00;
-}
-.admin-container .sections .sections-body .user-section .user-body .orders:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .orders:hover {
     background-color: #FFB80027;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-image{
+
+.admin-container .sections .sections-body .user-section .user-body .user-image {
     width: 40px;
     border-radius: 50%;
     border: 1px solid #DD384227;
 }
+
 .admin-container .sections .sections-body .user-section .user-body .delete-btn,
-.admin-container .sections .sections-body .user-section .user-body .update{
+.admin-container .sections .sections-body .user-section .user-body .update {
     background-color: transparent;
     border: none;
     transition: 0.25s;
     border-radius: 50%;
 }
-.admin-container .sections .sections-body .user-section .user-body .update{
+
+.admin-container .sections .sections-body .user-section .user-body .update {
     width: 30px;
     height: 30px;
     color: #2B38D1;
 }
-.admin-container .sections .sections-body .user-section .user-body .update:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .update:hover {
     cursor: pointer;
 }
 
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive{
+
+/* Responsive Box styles */
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive {
     display: none;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box{
-    display: flex;
-    align-items: start;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 15px 0;
-    transition: 0.25s;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box:hover{
-    cursor: pointer;
-    background-color: #2B38D1;
-    color: #fff;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .left-side img{
-    width: 100px;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side{
-    width: 100%;
-    margin-left: 10px;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side .row{
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box {
+    position: relative;
     display: flex;
     align-items: center;
-    column-gap: 15px;
+    column-gap: 25px;
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px 20px 30px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .left-side img {
+    width: 100px;
+    height: 100px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side {
+    width: 100%;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top h4 {
+    font-size: 18px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top p {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 5px 0 25px 0;
+    background-color: #6b728019;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 30px;
+    border: 1px solid #d9dedf;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 20px;
+    align-items: center;
     justify-content: space-between;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side .row h4{
-    font-weight: 600;
-    margin: 5px 0;
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom h4 {
+    font-size: 15px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side .row p{
-    font-size: 12px;
-    font-weight: 600;
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom div {
+    display: flex;
+    align-items: start;
+    column-gap: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side .orders .btns{
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #787c8f;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom .admin {
+    color: #008A00;
+    font-weight: 700;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom .user {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns{
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-box .right-side .orders .btns button{
-    font-size: 12px;
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns .delete{
+        width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #DD3842;
+    font-weight: 600;
+    transition: 0.25s;
+    margin-right: 10px;
+    color: #DD3842;
+    transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details{
+
+/* User Detials box styles */
+.admin-container .sections .sections-body .user-section .user-body .user-full-details,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details {
     position: fixed;
     top: 0;
     left: 0;
@@ -321,45 +423,183 @@
     justify-content: center;
     background-color: #000000d7;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box{
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box {
     position: relative;
-    width: 350px;
+    width: fit-content;
     text-align: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 20px 40px;
+    position: relative;
+    border-radius: 10px;    
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box img{
-    width: 200px;
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top {
+    padding-bottom: 20px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-thumb {
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #2b39d11c;
+    box-shadow: 0 1px 2px rgba(20, 20, 43, 0.04), 0 4px 16px rgba(20, 20, 43, 0.04)
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box button{
+
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-thumb {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #d1fae5;
+    box-shadow: 0 1px 2px rgba(20, 20, 43, 0.04), 0 4px 16px rgba(20, 20, 43, 0.04);
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-thumb svg {
+    width: 60px;
+    height: 60px;
+    color: #2B38D1;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-thumb svg {
+    width: 60px;
+    height: 60px;
+    color: #059669;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-name,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-name {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0;
+    column-gap: 15px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-name h1,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-name h1 {
+    font-size: 20px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-name p {
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #1d4fd822;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-name p {
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #d1fae5;
+    color: #059669;
+    border: 1px solid #d1fae5;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-id p,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-id p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top .user-id span {
+    color: #1d4ed8;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-top .user-id span {
+    color: #059669;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-bottom .bottom-section,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-bottom .bottom-section {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    padding: 15px 0;
+    border-top: 1px solid #6b72801c;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-bottom .bottom-section .section-left-side svg {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    stroke-width: 1.6;
+    background: #dbeafe;
+    color: #2563eb;
+    border: 1px solid #1d4fd825
+}
+
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-bottom .bottom-section .section-left-side svg {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    stroke-width: 1.6;
+    background: #d1fae5;
+    color: #059669;
+    border: 1px solid #d1fae5;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-bottom .bottom-section .section-right-side,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-bottom .bottom-section .section-right-side {
+    text-align: left;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-bottom .bottom-section .section-right-side h4,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-bottom .bottom-section .section-right-side h4 {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-bottom .bottom-section .section-right-side p,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .box-bottom .bottom-section .section-right-side p {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .close-toggle-btn,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .close-toggle-btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 50px;
-    height: 50px;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
     border-radius: 50%;
-    font-size: 25px;
-    font-weight: 500;
-    border: none;
-    background-color: transparent;
-    color: #DD3842;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    cursor: pointer;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box button:hover{
-    cursor: pointer;
+
+.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .close-toggle-btn:hover,
+.admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box .close-toggle-btn:hover {
+    transform: rotate(90deg);
 }
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .row{
-    margin: 15px 0;
-    text-align: start;
-}
-.admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box div p{
-    color: rgb(109, 107, 107);
-    font-weight: 500;
-    margin-top: 5px;
-}
+
 /* Add product and update box style */
-.admin-container .sections .sections-body .user-section .user-body .update-user-box{
+.admin-container .sections .sections-body .user-section .user-body .update-user-box {
     position: fixed;
     top: 0;
     left: 0;
@@ -371,7 +611,8 @@
     align-items: center;
     justify-content: center;
 }
-.admin-container .sections .sections-body .user-section .user-body .box{
+
+.admin-container .sections .sections-body .user-section .user-body .box {
     background-color: #fff;
     width: fit-content;
     height: fit-content;
@@ -380,44 +621,53 @@
     overflow-y: scroll;
     scroll-padding: 1px;
 }
+
 .admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar {
-  width: 5px;
-}
-.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-thumb {
-  background: #2B38D1;
-  border-radius: 10px;
+    width: 5px;
 }
 
-.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-button{
+.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-thumb {
+    background: #2B38D1;
+    border-radius: 10px;
+}
+
+.admin-container .sections .sections-body .user-section .user-body .box::-webkit-scrollbar-button {
     scrollbar-width: 1px;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-header{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-header {
     padding-bottom: 20px;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #d8dbdccd
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-header h1{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-header h1 {
     font-size: 25px;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .row{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .row {
     margin: 15px 0;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .row label{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .row label {
     font-size: 16px;
     color: rgb(109, 107, 107);
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-header{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-header {
     padding-bottom: 20px;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #d8dbdccd
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-header h1{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-header h1 {
     font-size: 25px;
 }
-.admin-container .sections .sections-body .user-section .user-body .update-user-box .name input{
+
+.admin-container .sections .sections-body .user-section .user-body .update-user-box .name input {
     width: 100%;
     padding: 10px;
     border: 1px solid #d8dbdccd;
@@ -429,13 +679,16 @@
     font-weight: 600;
     padding-left: 20px;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .category{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category {
     padding: 10px 0;
-} 
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .category label{
+}
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category label {
     margin-right: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .category select{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .category select {
     padding: 8px 10px;
     outline: none;
     border: 1px solid #d8dbdccd;
@@ -443,7 +696,8 @@
     background-color: #F1F5F6;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .alert{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .alert {
     width: 100%;
     text-align: center;
     padding: 8px 0;
@@ -451,24 +705,29 @@
     font-weight: 600;
     background-color: #fff;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form p{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form p {
     background-color: #fff;
     border: none;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .err{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .err {
     color: #DD3842;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .success{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .success {
     color: #008A00;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons {
     padding-top: 10px;
     display: flex;
     align-items: center;
     column-gap: 20px;
     justify-content: space-around;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close {
     padding: 10px;
     width: 100%;
     font-size: 14px;
@@ -479,12 +738,14 @@
     border-radius: 30px;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons .close:hover {
     background-color: #fff;
     color: #DD3842;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input {
     width: 100%;
     padding: 10px;
     border: 1px solid #2B38D1;
@@ -495,7 +756,8 @@
     border-radius: 30px;
     transition: 0.25s;
 }
-.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input:hover{
+
+.admin-container .sections .sections-body .user-section .user-body .box .box-form .buttons input:hover {
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
@@ -503,14 +765,15 @@
 
 
 /* box buttons */
-.admin-container .sections .sections-body .user-section .user-footer .box-buttons{
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons {
     display: flex;
     width: 100%;
     padding: 30px 0 10px 0;
     justify-content: center;
     align-items: center;
 }
-.admin-container .sections .sections-body .user-section .user-footer .box-buttons button{
+
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons button {
     background: #F1F5F6;
     display: flex;
     border-radius: 50%;
@@ -525,19 +788,85 @@
     transition: 0.25s;
     padding-bottom: 5px;
 }
-.admin-container .sections .sections-body .user-section .user-footer .box-buttons button:hover{
+
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons button:hover {
     color: #fff;
     background-color: #2B38D1;
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-footer .box-buttons p{
+
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons p {
     margin: 0 20px;
     font-weight: 600;
 }
-.admin-container .sections .sections-body .user-section .user-footer .box-buttons span{
+
+.admin-container .sections .sections-body .user-section .user-footer .box-buttons span {
     color: #2B38D1;
     font-weight: 600;
 }
 
+/* Responsive styles */
+@media(max-width: 1060px) {
+    .admin-container .sections .sections-body .user-section .user-body table {
+        display: none;
+    }
 
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive {
+        display: block;
+    }
+}
 
+@media(max-width: 1000px) {
+    .admin-container .sections .sections-body .user-section .user-header .filter-methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 20px;
+    }
+
+    .admin-container .sections .sections-body .user-section .user-header .buttons button {
+        width: 100%;
+    }
+
+}
+
+@media(max-width: 980px) {
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 770px) {
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box {
+        display: grid;
+        justify-content: center;
+    }
+
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .left-side {
+        margin: auto;
+    }
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top{
+        display: grid;
+        justify-content: center;
+    }
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top h4 {
+        margin: 5px auto;
+    }
+}
+
+@media(max-width: 600px) {
+    .admin-container .sections .sections-body .user-section .user-header .filter-methods{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 430px) {
+    .admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box, .admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box{
+        padding: 20px;
+    }
+}

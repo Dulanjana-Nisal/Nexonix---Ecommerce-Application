@@ -1,6 +1,5 @@
 import './Users.css';
 import user_profile_image from '../../../assets/user-profile-image.png'
-import delete_img from '../../../assets/delete-icon.png'
 import empty_user from '../../../assets/empty-users.svg'
 import { useEffect, useState } from 'react';
 import api from '../../../services/auth'
@@ -8,6 +7,7 @@ import { Message } from '../../../context/MessagesContext';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import UserUpdate from './UserUpdate';
 import LoadingComponent from '../../Components/Loading/LoadingComponent';
+import { format } from 'date-fns';
 
 function Users() {
 
@@ -210,9 +210,11 @@ function Users() {
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Role</th>
                                             <th>Email</th>
                                             <th>Joined</th>
                                             <th>Orders</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -228,6 +230,9 @@ function Users() {
                                                                 <p>ID: {items._id}</p>
                                                             </div>
                                                         </td>
+                                                        <td class="user-role">
+                                                            <p class={`user-${items.role}`}>{items.role === 'admin' ? "Admin" : "User"}</p>
+                                                        </td>
                                                         <td>
                                                             <p>{items.email}</p>
                                                         </td>
@@ -236,12 +241,11 @@ function Users() {
                                                         </td>
                                                         <td class="buttons">
                                                             <div class="button-content">
-                                                                {
-                                                                    items.role === 'admin' ?
-                                                                        <button class="order-btn admin">Admin</button>
-                                                                        :
-                                                                        <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
-                                                                }
+                                                                <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
+                                                            </div>
+                                                        </td>
+                                                        <td class="buttons">
+                                                            <div class="button-content">
                                                                 {
                                                                     items.role !== 'admin' &&
                                                                     <button class="update" onClick={() => setUpdateUsersToggle({ toggle: !updateUsersToggle.toggle, userId: items._id })}><i class="fa-solid fa-pen-to-square"></i></button>
@@ -264,63 +268,160 @@ function Users() {
                         <UserUpdate setUpdateUsersToggle={setUpdateUsersToggle} updateUsersToggle={updateUsersToggle} setupMessage={setupMessage} />
                     }
                     <div class="user-list-responsive">
-                        {/* map here */}
-                        <div class="user-box">
-                            <div class="left-side">
-                                <img src="../images/user-profile-image.png" alt="" />
-                            </div>
-                            <div class="right-side">
-                                <div class="name row">
-                                    <h4>Name</h4>
-                                    <p>Dulanjana Nisal</p>
-                                </div>
-                                <div class="email row">
-                                    <h4>Email</h4>
-                                    <p>dulanjananisal67@gmail.com</p>
-                                </div>
-                                <div class="id row">
-                                    <h4>User ID</h4>
-                                    <p>69da8f62c39fbcbf86351016</p>
-                                </div>
-                                <div class="orders row">
-                                    <h4>Orders</h4>
-                                    <div class="btns">
-                                        <button class="order-btn">All Orders</button>
-                                        <button class="delete-btn"><img src={delete_img}
-                                            alt="" /></button>
+                        {
+                            users.length > 0 &&
+                            users.map((items) => {
+                                return (
+                                    <div class="user-responsive-box" key={items._id}>
+                                        <div class="left-side" onClick={() => toggleFullDetailsBox(items._id)}>
+                                            <img src={user_profile_image} alt="prodile-image" class="user-image" />
+                                        </div>
+                                        <div class="right-side">
+                                            <div class="right-side-top">
+                                                <h4>{items.name}</h4>
+                                                <p>User ID: {items._id}</p>
+                                            </div>
+                                            <div class="right-side-bottom">
+                                                <div class="side-bottom-part">
+                                                    <h4>Name:</h4>
+                                                    <p>{items.name}</p>
+                                                </div>
+                                                <div class="side-bottom-part">
+                                                    <h4>Role:</h4>
+                                                    <p class={items.role}>{items.role}</p>
+                                                </div>
+                                                <div class="side-bottom-part">
+                                                    <h4>Email:</h4>
+                                                    <p>{items.email}</p>
+                                                </div>
+                                                <div class="side-bottom-part">
+                                                    <h4>Joined:</h4>
+                                                    <p>{(items.createdAt).slice(0, 10)}</p>
+                                                </div>
+                                                <div class="side-bottom-part">
+                                                    <h4>Orders:</h4>
+                                                    <button class="order-btn orders" onClick={() => navigate(`/admin/orders?serchByUserId=${items._id}`)}>All Orders</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="actions-btns">
+                                            {
+                                                items.role !== 'admin' &&
+                                                <button class="update" onClick={() => setUpdateUsersToggle({ toggle: !updateUsersToggle.toggle, userId: items._id })}><i class="fa-solid fa-pen-to-square"></i></button>
+                                            }
+                                            {
+                                                items.role !== 'admin' &&
+                                                <svg onClick={() => deleteUser(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                )
+                            })
+                        }
                     </div>
                     {
                         toggleDetails &&
-                        <div class="user-full-details">
+                        <div class={`${fullDetails.role}-full-details`}>
                             <div class="user-box">
-                                <div class="left-side">
-                                    <img src={user_profile_image} alt="" />
+                                <div class="box-top">
+                                    <div class="user-thumb">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="user-name">
+                                        <h1>{fullDetails.name}</h1>
+                                        <p>{fullDetails.role === 'admin' ? "Admin" : "User"}</p>
+                                    </div>
+                                    <div class="user-id">
+                                        <p>User ID: <span>{fullDetails._id}</span></p>
+                                    </div>
                                 </div>
-                                <div class="right-side">
-                                    <div class="name row">
-                                        <h4>Name</h4>
-                                        <p>{fullDetails.name}</p>
+                                <div class="box-bottom">
+                                    <div class="bottom-section">
+                                        <div class="section-left-side">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="M3.5 6.5L12 13l8.5-6.5" />
+                                            </svg>
+                                        </div>
+                                        <div class="section-right-side">
+                                            <h4>Email</h4>
+                                            <p>{fullDetails.email}</p>
+                                        </div>
                                     </div>
-                                    <div class="email row">
-                                        <h4>Email</h4>
-                                        <p>{fullDetails.email}</p>
+                                    <div class="bottom-section">
+                                        <div class="section-left-side">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="2.5" y="4.5" width="19" height="15" rx="2.2"></rect>
+                                                <circle cx="8.5" cy="11" r="2"></circle>
+                                                <path d="M5.5 16.5c0-1.8 1.5-3 3-3s3 1.2 3 3"></path>
+                                                <line x1="14.5" y1="9.5" x2="18.5" y2="9.5"></line>
+                                                <line x1="14.5" y1="13" x2="18.5" y2="13"></line>
+                                            </svg>
+                                        </div>
+                                        <div class="section-right-side">
+                                            <h4>User ID</h4>
+                                            <p>{fullDetails._id}</p>
+                                        </div>
                                     </div>
-                                    <div class="id row">
-                                        <h4>User ID</h4>
-                                        <p>{fullDetails._id}</p>
+                                    <div class="bottom-section">
+                                        <div class="section-left-side">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 2l8 3.5v6c0 5-3.6 8.3-8 10.5-4.4-2.2-8-5.5-8-10.5v-6L12 2z" /><path d="M8.5 12l2.3 2.3L15.5 9.7" />
+                                            </svg>
+                                        </div>
+                                        <div class="section-right-side">
+                                            <h4>Role</h4>
+                                            <p>{fullDetails.role}</p>
+                                        </div>
                                     </div>
-                                    <div class="role row">
-                                        <h4>Role</h4>
-                                        <p>{fullDetails.role}</p>
+                                    <div class="bottom-section">
+                                        <div class="section-left-side">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                                                <line x1="16" y1="3" x2="16" y2="7"></line>
+                                                <line x1="8" y1="3" x2="8" y2="7"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                        <div class="section-right-side">
+                                            <h4>Joined On</h4>
+                                            <p>{format(new Date(fullDetails.createdAt), "MMMM dd, yyyy") || "2021.12.03"}</p>
+                                        </div>
                                     </div>
-                                    <button onClick={() => setToggleDetails(prev => !prev)}><i class="fa fa-close"></i></button>
                                 </div>
+                                <svg class="close-toggle-btn" onClick={() => setToggleDetails(prev => !prev)} viewBox="0 0 24 24" fill="none" width="24" height="24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
                             </div>
                         </div>
+                        // <div class="user-full-details">
+                        //     <div class="user-box">
+                        //         <div class="left-side">
+                        //             <img src={user_profile_image} alt="" />
+                        //         </div>
+                        //         <div class="right-side">
+                        //             <div class="name row">
+                        //                 <h4>Name</h4>
+                        //                 <p>{fullDetails.name}</p>
+                        //             </div>
+                        //             <div class="email row">
+                        //                 <h4>Email</h4>
+                        //                 <p>{fullDetails.email}</p>
+                        //             </div>
+                        //             <div class="id row">
+                        //                 <h4>User ID</h4>
+                        //                 <p>{fullDetails._id}</p>
+                        //             </div>
+                        //             <div class="role row">
+                        //                 <h4>Role</h4>
+                        //                 <p>{fullDetails.role}</p>
+                        //             </div>
+                        //             <button onClick={() => setToggleDetails(prev => !prev)}><i class="fa fa-close"></i></button>
+                        //         </div>
+                        //     </div>
+                        // </div>
                     }
                 </div>
                 <div class="user-footer">

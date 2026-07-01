@@ -177,10 +177,12 @@
 .details-container .container-product .product-details .product-data .in-stock{
     background-color: #008A0027;
     color: #008A00;
+    font-size: 12px;
 }
 .details-container .container-product .product-details .product-data .out-stock{
     color: #DD3842;
     background-color: #DD384227;
+    font-size: 12px;
 }
 .details-container .container-product .product-details .product-data .brand h4{
     color: #2B38D1;

@@ -61,7 +61,6 @@ function Orders() {
 
     // update orders
     const updateOrders = async (userId) => {
-        console.log(userId)
         try {
             await api.patch(`/orders/${updateDetails.orderId}`,
                 {
@@ -91,13 +90,13 @@ function Orders() {
                 console.log(err.response)
             }
 
-            setupMessage('success', 'Order Updated!')
+            setupMessage('success', 'Order Updated!', `Order (ID: ${updateDetails.orderId}) is Updated Successfully`)
             setReload(prev => !prev)
         }
         
         catch (err) {
             console.log(err.response)
-            setupMessage('error', 'Update Faild!')
+            setupMessage('error', 'Update Faild!',`Order (ID: ${updateDetails.orderId}) is Faild to update!!`)
         }
     }
 

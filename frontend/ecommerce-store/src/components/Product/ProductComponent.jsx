@@ -58,8 +58,13 @@ function ProductComponent({ items, ratings }) {
                         {
                             state.find(item => item.productId == items._id) ?
                                 <button class="in-cart" style={{ opacity: "0.5", cursor: " not-allowed" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    In Cart
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="8" cy="21" r="1" />
+                                        <circle cx="19" cy="21" r="1" />
+                                        <path d="M2 3h2l2.6 12.4A2 2 0 0 0 8.6 17h9.8a2 2 0 0 0 2-1.6L22 7H6" />
+                                        <polyline points="9.5 11.5 12 14 16.5 9" />
+                                    </svg>
+                                    In Your Cart
                                 </button>
                                 :
                                 <button class='cart-btn' onClick={() => addCartItems(items._id, items.name, items.image, 1, items.price, items.availability, dispatch, setupMessage)}>

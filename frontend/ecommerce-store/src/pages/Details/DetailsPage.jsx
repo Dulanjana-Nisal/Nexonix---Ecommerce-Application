@@ -61,10 +61,13 @@ function DetailsPage() {
             setProducatKeywords(products.data.data.keywords)
             setProductRecomendation(recommendations.data.data)
             setAllReviewsData(allReviewsData.data.data)
+            setScrollWidth(0)
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [productId, refesh])
+
+    console.log('hellow')
 
     //fetch reviews data
     useEffect(() => {

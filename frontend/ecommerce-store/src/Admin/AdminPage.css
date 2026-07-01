@@ -597,4 +597,33 @@
         right: 0;
     }
 }
+@media(max-width: 500px){
+    .section-header{
+        column-gap: 0;
+    }
+}
+@media(max-width: 470px){
+    .section-header .header-top-right .store svg{
+        display: none;
+    }
+}
+@media(max-width: 440px){
+    .section-header .header-top-left h1{
+        font-size: 20px;
+    }
+}
+@media(max-width: 410px){
+    .admin-container .sidebar{
+        width: 60px;
+    }
+    .sections{
+        margin-left: 60px;
+    }
+    .section-header{
+        left: 60px;
+    }
+    .admin-container .sidebar .sidebar-body ul li{
+        padding: 20px;
+    }
+}
 /*-------------------------------------------------- */
