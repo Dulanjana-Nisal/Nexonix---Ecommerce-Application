@@ -2,6 +2,7 @@ import './Products.css'
 import { useEffect, useState } from "react"
 import api from "../../../services/auth"
 import axios from "axios"
+import empty_user from '../../../assets/empty-products.svg'
 import { useSearchParams } from "react-router-dom"
 import LoadingComponent from '../../Components/Loading/LoadingComponent'
 import { Message } from '../../../context/MessagesContext'
@@ -368,66 +369,78 @@ function Products({ path }) {
                 </div>
                 <div class="product-body">
                     {
-                        loading ? <LoadingComponent /> :
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="name row">
-                                            <p>Product</p>
-                                        </th>
-                                        <th class="category row">
-                                            <p>Category</p>
-                                        </th>
-                                        <th class="qnt row">
-                                            <p>Qunatity</p>
-                                        </th>
-                                        <th class="price row">
-                                            <p>Price</p>
-                                        </th>
-                                        <th class="availability row">
-                                            <p>Availability</p>
-                                        </th>
-                                        <th class="action row">
-                                            <p>Actions</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        products.map((items) => {
-                                            return (
-                                                <tr class="product-box products" key={items._id}>
-                                                    <td class="name row">
-                                                        <div class="image"><img src={items.image} alt="" /></div>
-                                                        <div class="details">
-                                                            <h4>{items.name}</h4>
-                                                            <p>ID: {items._id}</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="cat row">
-                                                        <p>{items.category}</p>
-                                                    </td>
-                                                    <td class="qnt row">
-                                                        <p>{items.stock} Products</p>
-                                                    </td>
-                                                    <td class="price row">
-                                                        <p>${items.price}</p>
-                                                    </td>
-                                                    <td class="availability row">
-                                                        <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
-                                                    </td>
-                                                    <td class="buttons row">
-                                                        <div class="buttons-content">
-                                                            <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                            <svg onClick={() => deleteProduct(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
+                        loading ? <LoadingComponent />
+                            :
+                            products.length === 0 ?
+                                <div class="admin-empty-user-container">
+                                    <div class="container-top">
+                                        <img src={empty_user} alt="emty-cart-image" />
+                                    </div>
+                                    <div class="container-bottom">
+                                        <h1>No Products Here</h1>
+                                        <p>Looks like you haven't any Products here.</p>
+                                    </div>
+                                </div>
+                            :
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="name row">
+                                                <p>Product</p>
+                                            </th>
+                                            <th class="category row">
+                                                <p>Category</p>
+                                            </th>
+                                            <th class="qnt row">
+                                                <p>Qunatity</p>
+                                            </th>
+                                            <th class="price row">
+                                                <p>Price</p>
+                                            </th>
+                                            <th class="availability row">
+                                                <p>Availability</p>
+                                            </th>
+                                            <th class="action row">
+                                                <p>Actions</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            products.map((items) => {
+                                                return (
+                                                    <tr class="product-box products" key={items._id}>
+                                                        <td class="name row">
+                                                            <div class="image"><img src={items.image} alt="" /></div>
+                                                            <div class="details">
+                                                                <h4>{items.name}</h4>
+                                                                <p>ID: {items._id}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="cat row">
+                                                            <p>{items.category}</p>
+                                                        </td>
+                                                        <td class="qnt row">
+                                                            <p>{items.stock} Products</p>
+                                                        </td>
+                                                        <td class="price row">
+                                                            <p>${items.price}</p>
+                                                        </td>
+                                                        <td class="availability row">
+                                                            <p class={items.availability ? "availabale" : "unavailabale"}>{items.availability ? "In Stock" : "Out Stock"}</p>
+                                                        </td>
+                                                        <td class="buttons row">
+                                                            <div class="buttons-content">
+                                                                <button class="update" onClick={() => updateProductsToggleButton(items._id)}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                                <svg onClick={() => deleteProduct(items._id)} class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
                     }
                     <div class="product-list-responsive">
                         {
@@ -458,7 +471,7 @@ function Products({ path }) {
                                                 </div>
                                                 <div class="side-bottom-part">
                                                     <h4>Availability:</h4>
-                                                    <p class={items.availability ? 'availabale':'unavailabale'}>{items.availability? 'In Stcok' : "Out Stock"}</p>
+                                                    <p class={items.availability ? 'availabale' : 'unavailabale'}>{items.availability ? 'In Stcok' : "Out Stock"}</p>
                                                 </div>
                                                 <div class="side-bottom-part brand">
                                                     <h4>Brand:</h4>
