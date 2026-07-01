@@ -396,32 +396,6 @@ function Users() {
                                 </svg>
                             </div>
                         </div>
-                        // <div class="user-full-details">
-                        //     <div class="user-box">
-                        //         <div class="left-side">
-                        //             <img src={user_profile_image} alt="" />
-                        //         </div>
-                        //         <div class="right-side">
-                        //             <div class="name row">
-                        //                 <h4>Name</h4>
-                        //                 <p>{fullDetails.name}</p>
-                        //             </div>
-                        //             <div class="email row">
-                        //                 <h4>Email</h4>
-                        //                 <p>{fullDetails.email}</p>
-                        //             </div>
-                        //             <div class="id row">
-                        //                 <h4>User ID</h4>
-                        //                 <p>{fullDetails._id}</p>
-                        //             </div>
-                        //             <div class="role row">
-                        //                 <h4>Role</h4>
-                        //                 <p>{fullDetails.role}</p>
-                        //             </div>
-                        //             <button onClick={() => setToggleDetails(prev => !prev)}><i class="fa fa-close"></i></button>
-                        //         </div>
-                        //     </div>
-                        // </div>
                     }
                 </div>
                 <div class="user-footer">
