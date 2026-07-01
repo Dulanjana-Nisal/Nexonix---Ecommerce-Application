@@ -40,7 +40,6 @@
 /* ── PAGE BODY ── */
 .notification-container-admin .page-body {
   flex: 1;
-  overflow-y: auto;
   padding: 0 28px;
   display: flex;
   gap: 30px;
@@ -201,7 +200,7 @@
   margin-right: 5px;
 }
 
-.read-dot{
+.read-dot {
   width: 8px;
   height: 8px;
   margin-right: 5px;
@@ -281,7 +280,7 @@
   flex-shrink: 0;
 }
 
-.notif-right .actions-box{
+.notif-right .actions-box {
   position: absolute;
   max-width: fit-content;
   top: 40%;
@@ -291,12 +290,12 @@
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
-.notif-right .actions-box p{
+.notif-right .actions-box p {
   font-size: 12px;
   font-weight: 600;
 }
 
-.notif-right .actions-box div{
+.notif-right .actions-box div {
   padding: 10px 15px;
   display: flex;
   border-radius: 10px;
@@ -306,25 +305,25 @@
   align-items: center;
 }
 
-.notif-right .actions-box .read{
-  border-radius: 10px 10px 0 0 ;
+.notif-right .actions-box .read {
+  border-radius: 10px 10px 0 0;
   background-color: #fff;
   color: #059669;
   border-bottom: 1px solid #6b728049;
 }
 
-.notif-right .actions-box .read:hover{
+.notif-right .actions-box .read:hover {
   background: #d1fae5;
 }
 
-.notif-right .actions-box .delete{
+.notif-right .actions-box .delete {
   border: none;
   border-radius: 0 0 10px 10px;
   background-color: #fff;
   color: #dc2626;
 }
 
-.notif-right .actions-box .delete:hover{
+.notif-right .actions-box .delete:hover {
   background-color: #fee2e2;
 }
 
@@ -466,10 +465,12 @@
 .menu-btn:hover {
   background: var(--bg);
 }
+
 .notification-container .page-footer,
-.notification-container-admin .page-footer{
+.notification-container-admin .page-footer {
   padding-bottom: 30px;
 }
+
 .notification-container .box-buttons,
 .notification-container-admin .box-buttons {
   display: flex;
@@ -513,4 +514,114 @@
 .notification-container-admin .box-buttons span {
   color: #2B38D1;
   font-weight: 600;
+}
+
+/* Reasponsive Styles */
+@media(max-width: 1440px) {
+  .notification-container-admin .page-body {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .notification-container-admin .col-aside-admin {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media(max-width: 910px) {
+  .notification-container-admin .tab-actions .refesh p {
+    display: none;
+  }
+}
+
+@media(max-width: 850px) {
+  .notification-container-admin .tab-btn {
+    padding: 15px 12px;
+  }
+}
+
+@media(max-width: 800px) {
+  .notification-container-admin .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 15px;
+  }
+
+  .notification-container-admin .tab-actions {
+    grid-row-start: -1;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    width: 100%;
+  }
+
+  .notification-container-admin .tab-actions .refesh p {
+    display: block;
+  }
+
+  .notification-container-admin .tab-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media(max-width: 600px) {
+  .notification-container-admin .notif-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .notification-container-admin .notif-icon,
+  .notification-container-admin .badge-pill {
+    margin: auto;
+  }
+
+  .notification-container-admin .notif-right {
+    gap: 0;
+  }
+
+  .notification-container-admin .menu-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .notification-container-admin .notif-right .action-box {
+    top: 38px;
+    right: 38px;
+  }
+}
+
+@media(max-width: 590px) {
+  .notification-container-admin .tab-actions {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 100%;
+  }
+
+  .notification-container-admin .tabs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .notification-container-admin .tab-btn {
+    margin: auto;
+  }
+}
+
+@media(max-width: 460px) {
+  .notification-container-admin .tab-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+  }
+}
+
+@media(max-width: 380px) {
+  .notification-container-admin .page-body{
+    padding: 0 10px;
+  }
 }
