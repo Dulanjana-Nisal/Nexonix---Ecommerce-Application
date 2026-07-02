@@ -13,12 +13,14 @@ import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
 import NotificationsPage from './pages/Notifications/Notifications'
 import { Notifications } from './Context/NotificationContext'
+import { Message } from '../context/MessagesContext'
 
 function AdminPage() {
 
     //load context
-    const { dispatch } = Cart()
+    const { dispatch } = Cart() || []
     const { notifiState } = Notifications() || {}
+    const { setupMessage } = Message() || []
 
     //products states
     const [productData, setProductData] = useState([])
@@ -125,7 +127,7 @@ function AdminPage() {
                                         <h3>{adminData.role}</h3>
                                         <p>{adminData.email}</p>
                                     </div>
-                                    <button class="log-out" onClick={() => logout(navigate)}>
+                                    <button class="log-out" onClick={() => logout(navigate,dispatch,setupMessage)}>
                                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
                                         Log Out
                                     </button>
@@ -140,7 +142,7 @@ function AdminPage() {
                                 <h3>{adminData.role}</h3>
                                 <p>{adminData.email}</p>
                             </div>
-                            <button class="log-out" onClick={() => logout(navigate)}>
+                            <button class="log-out" onClick={() => logout(navigate,dispatch,setupMessage)}>
                                 Log Out
                                 <svg width="20" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
                             </button>
