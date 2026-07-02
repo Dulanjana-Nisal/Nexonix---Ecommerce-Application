@@ -805,6 +805,10 @@
     .details-container .container-product .product-details .product-more img{
         height: 25px;
     }
+    .details-container .container-product .product-image .thumb-image button{
+        right: -10px;
+        top: -10px;
+    }
 }
 @media(max-width: 700px){
     .details-container .container-options .option-body  .reviews-body .review-box .box-head{

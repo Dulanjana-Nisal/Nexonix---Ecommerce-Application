@@ -1,6 +1,7 @@
 import './MessagesComponent.css';
 
 function MessagesComponent({ title, message, status }) {
+
     return (
         <div class={`message-container message-container-${status}`}>
             <div class="left-side">

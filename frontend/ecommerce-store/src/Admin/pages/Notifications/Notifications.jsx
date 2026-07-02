@@ -16,6 +16,7 @@ function NotificationsPage() {
     // notification states
     const [notifications, setNotifications] = useState([])
     const [toggleDetails, setToggleDetails] = useState({ notificationId: null, toggle: false })
+    const [notificationCount,setNotificationCount] = useState([])
     const [loading, setLoading] = useState(false)
 
     // load query data
@@ -37,6 +38,7 @@ function NotificationsPage() {
             try {
                 const reuslt = await api.get(`/notifications?page=${page}&type=${type}&status=${isRead}`)
                 setNotifications(reuslt.data.data)
+                setNotificationCount(reuslt.data.all_result)
             }
             catch (err) {
                 console.log(err.response)
@@ -48,7 +50,6 @@ function NotificationsPage() {
 
         fetchNotificationsData()
     }, [page, type, isRead, notifiDispatch, notifiState])
-
 
     // update notifications
     const updateNotifications = async (notifiId) => {
@@ -321,9 +322,9 @@ function NotificationsPage() {
                             page > 1 &&
                             <button class="pre" onClick={() => preButton()}>‹</button>
                         }
-                        <p><span>{1}</span> of 2 </p>
+                        <p><span>{1}</span> of {Math.ceil(notificationCount / 10) || 1} </p>
                         {
-                            page < Math.ceil(notifiState.length / 10) &&
+                            Math.ceil(notificationCount / 10) > page &&
                             <button class="next" onClick={() => nextButton()}>›</button>
                         }
                     </div>

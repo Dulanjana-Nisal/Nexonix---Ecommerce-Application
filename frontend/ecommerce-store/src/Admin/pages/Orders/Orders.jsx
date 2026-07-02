@@ -101,6 +101,18 @@ function Orders() {
         }
     }
 
+    //delete cancelled order
+    const deleteCancelledOrder = async (delOrderId) => {
+        try{
+            await api.delete(`/orders/${delOrderId}`);
+            setupMessage('success', `Cancelled Order (ID: ${delOrderId}) is deleted successfully!`, 'Order Deleted')
+        }
+        catch(err){
+            console.log(err.response)
+            setupMessage('error', `Error while Order (ID: ${delOrderId}) is deletion proseed!`, 'Order Deletion Faild!')
+        }
+    }
+
     // Filter orders by status
     const filterbyStatus = (value) => {
         const newQuery = new URLSearchParams(queryData)
@@ -116,19 +128,19 @@ function Orders() {
     // search orders
     const searchOrders = () => {
         const newquery = new URLSearchParams(queryData);
-        if (orderSearchValue.length <= 1 && productSearchValue <= 1) {
-            setupMessage('error', 'Please Enter more than 1 value to search...')
+        if (orderSearchValue.length <= 1 && productSearchValue.length <= 1) {
+            setupMessage('error', 'Please Enter more than 1 value to search...', "Search Faild!")
             return
         }
         if (orderSearchValue.length > 1) {
             if (orderSearchValue.length !== 24) {
-                setupMessage('error', 'Order ID must be 24 characters!')
+                setupMessage('error', 'User ID must be 24 characters!', "Search Faild!")
                 return
             }
             newquery.set('orderId', orderSearchValue)
             newquery.set('page', 1)
         }
-        if (productSearchValue.length > 1) {
+        if (productSearchValue.length >= 2) {
             newquery.set('searchByProduct', productSearchValue)
             newquery.set('page', 1)
         }
@@ -213,7 +225,7 @@ function Orders() {
                             <div class="header-filter">
                                 <p>Filter By</p>
                                 <select onClick={(e) => filterbyStatus(e.target.value)}>
-                                    <option value="">Select Status</option>
+                                    <option value="">All Status</option>
                                     <option value="Delivered">Delivered</option>
                                     <option value="Processing">Processing</option>
                                     <option value="Shipped">Shipped</option>
@@ -340,7 +352,7 @@ function Orders() {
                                                                     }
                                                                     {
                                                                         items.status === 'Cancelled' &&
-                                                                        <button title='Delete' class='delete'>
+                                                                        <button onClick={() => deleteCancelledOrder(items._id)} title='Delete' class='delete'>
                                                                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
                                                                         </button>
                                                                     }
@@ -544,7 +556,7 @@ function Orders() {
                                             }
                                             {
                                                 items.status === 'Cancelled' &&
-                                                <button title='Delete' class='delete'>
+                                                <button onClick={() => deleteCancelledOrder(items._id)} title='Delete' class='delete'>
                                                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
                                                 </button>
                                             }
@@ -695,7 +707,7 @@ function Orders() {
                         }
                         <p><span>{page}</span> of {Math.ceil(allOrdersCounts.all_result / 10)} </p>
                         {
-                            Math.ceil(allOrdersCounts.all_result / 10) !== page &&
+                            Math.ceil(allOrdersCounts.all_result / 10) > page &&
                             <button class="next" onClick={() => nextPage()}>›</button>
                         }
                     </div>

@@ -65,7 +65,7 @@ function AccountPage() {
                 JSON.stringify(login.data.user)
             )
 
-
+            setupMessage("success", "Welcome back and happy shopping...", "Successfully Loged")
 
             setTimeout(async () => {
                 //update context
@@ -112,7 +112,7 @@ function AccountPage() {
                 message: "Register Success!"
             })
 
-            setupMessage("success", "Register Success", "Now you need to Signin with Signup account")
+            setupMessage("success", "Now you need to Signin with Signup account", "Register Success")
 
             // post notification to admin 
             try {
@@ -146,7 +146,8 @@ function AccountPage() {
             }, 1000)
         }
         catch (err) {
-            setMessages(err.response.data)
+            setupMessage("error", "Error While registation proceed, try again later!", "Register Faild!")
+            console.log(err.response.data)
             setTimeout(() => {
                 setMessages(false)
             }, 1500)

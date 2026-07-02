@@ -12,7 +12,7 @@ import { format } from 'date-fns';
 function Users() {
 
     //load context
-    const { setupMessage } = Message()
+    const { setupMessage } = Message() || ''
 
     // users states
     const [users, setUsers] = useState([])
@@ -65,7 +65,7 @@ function Users() {
     // search users
     const searchUsers = () => {
         const newquery = new URLSearchParams(queryData);
-        if (userIdSearchValue.length <= 1 && usersSearchValue <= 1) {
+        if (userIdSearchValue.length <= 1 && usersSearchValue.length <= 1) {
             setupMessage('error', 'Please Enter more than 1 value to search...', "Search Faild!")
             return
         }
@@ -77,7 +77,7 @@ function Users() {
             newquery.set('userId', userIdSearchValue)
             newquery.set('page', 1)
         }
-        if (usersSearchValue.length > 1) {
+        if (usersSearchValue.length >= 2) {
             newquery.set('search', usersSearchValue)
             newquery.set('page', 1)
         }
@@ -110,10 +110,10 @@ function Users() {
     const deleteUser = async (userId) => {
         try {
             await api.delete(`users/${userId}`)
-            setupMessage('success', 'User Delete success!')
+            setupMessage('success', `User (ID: ${userId}) is successfully deleted`, 'User Delete success!')
         } catch (err) {
             console.log(err.response)
-            setupMessage('error', 'User Delete Error!')
+            setupMessage('error', 'Error while deletion proceed try again later!' , 'User Delete Error!')
         }
     }
 

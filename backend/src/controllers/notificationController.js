@@ -52,10 +52,12 @@ const getNotifications = asyncHaddler(async (req, res) => {
     const limit = Number(req.query.limit) || 10;
     const skip = (page - 1) * limit
 
+    const getAllNotificationCount = await Notification.find(queryObject)
     const getAllNotification = await Notification.find(queryObject).skip(skip).limit(limit).sort({createdAt: -1})
 
     res.status(statusCodes.OK).json({
         success: true, 
+        all_result: getAllNotificationCount.length,
         notification_count: getAllNotification.length, 
         data: getAllNotification,
         page: page

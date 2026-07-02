@@ -27,6 +27,7 @@
     column-gap: 20px;
     border-radius: 10px;
     background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .admin-container .sections .sections-body .dashboard-section .dashboard-body .box svg {
@@ -86,5 +87,11 @@
 @media(max-width: 540px){
     .admin-container .sections .sections-body .dashboard-section .dashboard-body{
         grid-template-columns: auto;
+    }
+}
+
+@media(max-width: 440px){
+    .admin-container .sections .sections-body .dashboard-section .dashboard-header p{
+        text-align: center;
     }
 }

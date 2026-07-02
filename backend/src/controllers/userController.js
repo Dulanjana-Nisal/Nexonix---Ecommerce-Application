@@ -28,7 +28,7 @@ const getAllUsers = asyncHaddler(async(req,res) => {
     const skip = (page-1)*limit
 
     const usersCount = await Users.find(querySelectore, {password: 0})
-    const allUsers = await Users.find(querySelectore, {password: 0}).skip(skip).limit(limit)
+    const allUsers = await Users.find(querySelectore, {password: 0}).skip(skip).limit(limit).sort({createdAt: -1})
     res.status(200).json({success: true,page: page, all_result: usersCount.length, data: allUsers})
 })
 

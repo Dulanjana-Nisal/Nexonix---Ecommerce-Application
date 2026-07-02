@@ -1,5 +1,5 @@
 import './AdminPage.css'
-import  api, { logout } from '../services/auth'
+import api, { logout } from '../services/auth'
 import user_profile from '../assets/user-profile-image.png'
 import logo from '../assets/logo2.png'
 import logo_letter from '../assets/logo-image-letter.png'
@@ -17,14 +17,15 @@ import { Notifications } from './Context/NotificationContext'
 function AdminPage() {
 
     //load context
-    const {dispatch} = Cart()
-    const {notifiState} = Notifications() || {}
+    const { dispatch } = Cart()
+    const { notifiState } = Notifications() || {}
 
     //products states
     const [productData, setProductData] = useState([])
     const [ordersData, setOrdersData] = useState([])
     const [userData, setUserData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [profileToggle,setProfileToggle] = useState(false)
 
     //get admin data from localstorage
     const adminData = JSON.parse(localStorage.getItem('user'))
@@ -39,8 +40,8 @@ function AdminPage() {
     useEffect(() => {
         const fetchProductData = async () => {
             setLoading(true)
-            try{
-                const [productResult,ordersResult,usersResult] = await Promise.all([
+            try {
+                const [productResult, ordersResult, usersResult] = await Promise.all([
                     api.get(`/products`),
                     api.get(`/orders/all?limit=1`),
                     api.get('/users')
@@ -50,10 +51,10 @@ function AdminPage() {
                 setOrdersData(ordersResult.data.data);
                 setUserData(usersResult.data.all_result);
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }
@@ -61,7 +62,7 @@ function AdminPage() {
     }, [])
 
     //refesh reducer
-    const fetchCartData = async () =>{
+    const fetchCartData = async () => {
         const result = await api.get('/cart')
         dispatch({
             type: ACTIONS.SET_CART,
@@ -116,21 +117,24 @@ function AdminPage() {
                     </div>
                     <div class="bottom">
                         <div class="responsive-footer">
-                            <img src={user_profile} alt="" />
-                            <div class="prodile-box">
-                                <div class="footer-right">
-                                    <h3>{adminData.role}</h3>
-                                    <p>{adminData.email}</p>
+                            <img src={user_profile} alt="" onClick={() => setProfileToggle(prev => !prev)} />
+                            {
+                                profileToggle &&
+                                <div class="prodile-box">
+                                    <div class="footer-right">
+                                        <h3>{adminData.role}</h3>
+                                        <p>{adminData.email}</p>
+                                    </div>
+                                    <button class="log-out" onClick={() => logout(navigate)}>
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
+                                        Log Out
+                                    </button>
                                 </div>
-                                <button class="log-out" onClick={() => logout(navigate)}>
-                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
-                                    Log Out
-                                </button>
-                            </div>
+                            }
                         </div>
                         <div class="sidebar-footer">
                             <div class="footer-left">
-                                <img src={user_profile} alt="user-profile" />
+                                <img src={user_profile} alt="user-profile" onClick={() => setProfileToggle(prev => !prev)} />
                             </div>
                             <div class="footer-right">
                                 <h3>{adminData.role}</h3>
@@ -139,7 +143,7 @@ function AdminPage() {
                             <button class="log-out" onClick={() => logout(navigate)}>
                                 Log Out
                                 <svg width="20" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
-                                </button>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -180,17 +184,17 @@ function AdminPage() {
                         {/* <!-- product Section --> */}
                         {
                             path === 'products' &&
-                            <Products path={path}/>
+                            <Products path={path} />
                         }
                         {/* <!-- Orders Section --> */}
                         {
                             path === 'orders' &&
-                            <Orders path={path}/>
+                            <Orders path={path} />
                         }
                         {/* <!-- Notifications Section --> */}
                         {
                             path === 'notifications' &&
-                            <NotificationsPage path={path}/>
+                            <NotificationsPage path={path} />
                         }
                     </div>
                 </div>

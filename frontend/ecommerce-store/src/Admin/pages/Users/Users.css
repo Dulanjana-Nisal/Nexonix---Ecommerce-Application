@@ -309,13 +309,9 @@
 .admin-container .sections .sections-body .user-section .user-body .update:hover {
     cursor: pointer;
 }
-
-
-/* Responsive Box styles */
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive {
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive{
     display: none;
 }
-
 .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box {
     position: relative;
     display: flex;
@@ -862,6 +858,14 @@
 @media(max-width: 600px) {
     .admin-container .sections .sections-body .user-section .user-header .filter-methods{
         grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 460px) {
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom div{
+        justify-content: space-between;
+        width: auto;
+        height: auto;
     }
 }
 

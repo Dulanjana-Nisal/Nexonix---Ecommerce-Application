@@ -15,8 +15,9 @@ api.interceptors.request.use((config)=>{
 })
 
 // logut function
-export function logout(navigate,dispatch){
+export function logout(navigate,dispatch,setupMessage){
     localStorage.clear()
+    setupMessage('success', `You suucessfully logged out.`, 'Log Out!')
     dispatch({type: ACTIONS.SET_CART, payload: []})
     navigate('/account')
 }

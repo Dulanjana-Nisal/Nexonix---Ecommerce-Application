@@ -5,11 +5,13 @@ import user_profile from '../../assets/profile-avatar-transparent.png'
 import { Notifications } from '../../context/NotificationContext';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import { Message } from '../../context/MessagesContext';
 
 function ProfilePage({ navigate, dispatch, user, state }) {
 
     // load data from context
     const { notifiState } = Notifications() || {};
+    const {setupMessage} = Message()
 
     // states
     const [ordersDetails,setOrdersDetails] = useState([])
@@ -73,14 +75,14 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                                                 <p>Go to Admin Panel</p>
                                             </button>
-                                            <button class="logout" onClick={() => logout('/',dispatch)}>
+                                            <button class="logout" onClick={() => logout('/',dispatch,setupMessage)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>
                                         </div>
                                         :
                                         <div class="details-buttons">
-                                            <button class="logout" onClick={() => logout('/',dispatch)}>
+                                            <button class="logout" onClick={() => logout('/',dispatch,setupMessage)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>

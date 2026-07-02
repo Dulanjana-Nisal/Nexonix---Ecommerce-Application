@@ -223,11 +223,11 @@ function Products({ path }) {
     // search users
     const searchProducts = () => {
         const newquery = new URLSearchParams(queryData);
-        if (productIdSearchValue.length <= 1 && ProductsSearchValue <= 1) {
+        if (productIdSearchValue.length <= 1 && ProductsSearchValue.length <= 1) {
             setupMessage('error', 'Please Enter more than 1 value to search...', "Search Faild!")
             return
         }
-        if (productIdSearchValue.length > 1) {
+        if (productIdSearchValue.length > 2) {
             if (productIdSearchValue.length !== 24) {
                 setupMessage('error', 'User ID must be 24 characters!', "Search Faild!")
                 return
@@ -235,7 +235,7 @@ function Products({ path }) {
             newquery.set('productId', productIdSearchValue)
             newquery.set('page', 1)
         }
-        if (ProductsSearchValue.length > 1) {
+        if (ProductsSearchValue.length >= 2) {
             newquery.set('search', ProductsSearchValue)
             newquery.set('page', 1)
         }
@@ -354,7 +354,7 @@ function Products({ path }) {
                         <div class="filter-keys">
                             {
                                 availability &&
-                                <p>{availability ? "Available" : "UnAvailable"}</p>
+                                <p>{availability === 'true' ? "Available" : "Unavailable"}</p>
                             }
                             {
                                 productId &&
@@ -1073,9 +1073,15 @@ function Products({ path }) {
                     </div> */}
                 <div class="product-footer">
                     <div class="box-buttons">
-                        <button class="pre" onClick={() => prevPage()}>‹</button>
-                        <p><span>{pageNumber}</span> of {productData.page_result}</p>
-                        <button class="next" onClick={() => nextPage()}>›</button>
+                        {
+                            pageNumber !== 1 &&
+                            <button class="pre" onClick={() => prevPage()}>‹</button>
+                        }
+                        <p><span>{pageNumber}</span> of {Math.ceil(productData.all_result / 12)}</p>
+                        {
+                            Math.ceil(productData.all_result / 12) > pageNumber &&
+                            <button class="next" onClick={() => nextPage()}>›</button>
+                        }
                     </div>
                 </div>
             </div>
