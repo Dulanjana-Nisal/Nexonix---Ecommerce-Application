@@ -678,4 +678,8 @@
   .notification-main-container .unread-dot{  
     transform: translateY(20px);
   }
+  .notification-main-container .notif-right .action-box{
+    top: 35px;
+    right: 35px;
+  }
 }
