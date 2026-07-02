@@ -110,31 +110,32 @@ function CartPage() {
                                 return (
                                     <div class={items.availability ? "card" : "card disabel-card"}>
                                         <div class="image">
-                                            <input type="checkbox" defaultChecked={true} />
                                             <img src={items.image} alt="" />
                                         </div>
                                         <div class="card-details">
-                                            <div class="name">
+                                            <div class="card-details-header">
                                                 <h1>{items.name}</h1>
-                                                <button onClick={() => deleteCartItem(items._id, dispatch)}>✕</button>
+                                                <button onClick={() => deleteCartItem(items.productId, dispatch)}>✕</button>
                                             </div>
-                                            <div class="price">
-                                                <p>Price: </p>
-                                                <h3>${items.price}</h3>
-                                            </div>
-                                            <div class="quantity">
-                                                <div class="quentity-header">
-                                                    <p>Quantity: </p>
+                                            <div class="card-details-footer">
+                                                <div class="price">
+                                                    <p>Price: </p>
+                                                    <h3>${items.price}</h3>
                                                 </div>
-                                                <div class="quentity-body">
-                                                    <button class="plus" onClick={() => dispatch({ type: ACTIONS.MIN_QNT, payload: { id: items.productId } })}>−</button>
-                                                    <p>{items.quantity}</p>
-                                                    <button class="min" onClick={() => dispatch({ type: ACTIONS.ADD_QNT, payload: { id: items.productId } })}>+</button>
+                                                <div class="quantity">
+                                                    <div class="quentity-header">
+                                                        <p>Quantity: </p>
+                                                    </div>
+                                                    <div class="quentity-body">
+                                                        <button class="plus" onClick={() => dispatch({ type: ACTIONS.MIN_QNT, payload: { id: items.productId } })}>−</button>
+                                                        <p>{items.quantity}</p>
+                                                        <button class="min" onClick={() => dispatch({ type: ACTIONS.ADD_QNT, payload: { id: items.productId } })}>+</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="subtotal">
-                                                <p>Subtotal: </p>
-                                                <h3>${(items.price * Number(items.quantity)).toFixed(2)}</h3>
+                                                <div class="subtotal">
+                                                    <p>Subtotal: </p>
+                                                    <h3>${(items.price * Number(items.quantity)).toFixed(2)}</h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

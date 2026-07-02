@@ -287,59 +287,61 @@
     display: none;
 }
 .cart-container .cart-body .cart-details-responsive .card{
-    padding: 25px 0;
+    padding: 25px;
     display: flex;
     align-items: start;
     border-bottom: 1px solid #d9dedf;
+    position: relative;
+    margin: 25px 0;
 }
 .cart-container .cart-body .cart-details-responsive .card .image{
     display: flex;
     align-items: center;
 }
 .cart-container .cart-body .cart-details-responsive .card .image img{
-    width: 150px;
+    width: 100px;
+    height: 100px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
-    object-fit: cover;
+    background-size: contain;
+    object-fit: contain;
 }
-.cart-container .cart-body .cart-details-responsive .card .image input{
-    transform: scale(1.2);
+.cart-container .cart-body .cart-details-responsive .card .card-details .card-details-header button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #616470;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
+    transition: 0.25s;;
 }
 .cart-container .cart-body .cart-details-responsive .card .card-details{
     margin-left: 20px;
     width: 100%;
 }
-.cart-container .cart-body .cart-details-responsive .card .card-details .name h1{
-    width: 70%;
-    font-size: 16px;
-    margin-bottom: 10px;
+.cart-container .cart-body .cart-details-responsive .card .card-details .card-details-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
-.cart-container .cart-body .cart-details-responsive .card .card-details .name{
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-}
-.cart-container .cart-body .cart-details-responsive .card .card-details .name button{
-    border: none;
-    font-size: 16px;
-    background: transparent;
-    margin-right: 10px;
-    font-weight: 500;
-    transition: 0.25s;
-}
-.cart-container .cart-body .cart-details-responsive .card .card-details .name button:hover{
-    color: #DD3842;
-    cursor: pointer;
-}
-.cart-container .cart-body .cart-details-responsive .card .card-details .price,
-.cart-container .cart-body .cart-details-responsive .card .card-details .quantity,
-.cart-container .cart-body .cart-details-responsive .card .card-details .price,
-.cart-container .cart-body .cart-details-responsive .card .card-details .subtotal{
+.cart-container .cart-body .cart-details-responsive .card .card-details .card-details-footer div{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     column-gap: 10px;
+}
+.cart-container .cart-body .cart-details-responsive .card .card-details .card-details-header h1{
+    width: 70%;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 .cart-container .cart-body .cart-details-responsive .card .card-details p{
     font-size: 14px;
@@ -350,12 +352,13 @@
     font-size: 16px;
     color: #2B38D1;
 }
-.cart-container .cart-body .cart-details-responsive .card .card-details .quantity{
-    margin: 5px 0;
+.cart-container .cart-body .cart-details-responsive .card .card-details .price h3{
+    color: #b3122c;
 }
 .cart-container .cart-body .cart-details-responsive .card .card-details .quantity .quentity-body{
     display: flex;
     align-items: center;
+    width: fit-content;
     background-color: #F1F5F6;
     padding: 3px 10px;
     border-radius: 30px;
@@ -372,6 +375,8 @@
     font-size: 15px;
     width: 40px;
 }
+
+
 /* ************************************** */
 
 
@@ -407,6 +412,29 @@
 @media(max-width: 520px){
     .cart-container .cart-body .cart-details-responsive .card .image img{
         width: 100px;
+    }
+    .cart-container .cart-body .cart-details-responsive .card{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .cart-container .cart-body .cart-details-responsive .card .image img{
+        margin: auto;
+    }
+    .cart-container .cart-body .cart-details-responsive .card .card-details .card-details-header h1{
+        width: 100%;
+        margin: 10px auto 20px auto;
+        text-align: center;
+    }
+    .cart-container .cart-body .cart-details-responsive .card .card-details{
+        margin-left: 0;
+    }
+}
+@media(max-width: 470px){
+    .cart-container .cart-body .cart-details-responsive .card .card-details .card-details-footer{
+        grid-template-columns: 1fr;
+    }
+    .cart-container .cart-body .cart-details-responsive .card .card-details .card-details-footer div{
+        justify-content: space-between;
     }
 }
 
