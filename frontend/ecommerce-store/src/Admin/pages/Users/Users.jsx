@@ -113,7 +113,7 @@ function Users() {
             setupMessage('success', `User (ID: ${userId}) is successfully deleted`, 'User Delete success!')
         } catch (err) {
             console.log(err.response)
-            setupMessage('error', 'Error while deletion proceed try again later!' , 'User Delete Error!')
+            setupMessage('error', 'Error while deletion proceed try again later!', 'User Delete Error!')
         }
     }
 

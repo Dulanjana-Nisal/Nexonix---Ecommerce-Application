@@ -1,6 +1,6 @@
 import './Dashboard.css';
 
-function Dashboard({adminData,productData,ordersData,userData,loading}) {
+function Dashboard({ adminData, productData, ordersData, userData, loading }) {
     return (
         <>
             <div class="dashboard-section">
@@ -13,8 +13,8 @@ function Dashboard({adminData,productData,ordersData,userData,loading}) {
                         <div class="details">
                             {
                                 loading ? <p>Loading...</p>
-                                :
-                                <h1>{userData}</h1>
+                                    :
+                                    <h1>{userData}</h1>
                             }
                             <p>Total Customers</p>
                         </div>
@@ -24,8 +24,8 @@ function Dashboard({adminData,productData,ordersData,userData,loading}) {
                         <div class="details">
                             {
                                 loading ? <p>Loading...</p>
-                                :
-                                <h1>{productData}</h1>
+                                    :
+                                    <h1>{productData}</h1>
                             }
                             <p>Total Products</p>
                         </div>
@@ -35,8 +35,8 @@ function Dashboard({adminData,productData,ordersData,userData,loading}) {
                         <div class="details">
                             {
                                 loading ? <p>Loading...</p>
-                                :
-                                <h1>{ordersData.length}</h1>
+                                    :
+                                    <h1>{ordersData.length}</h1>
                             }
                             <p>Total Orders</p>
                         </div>
@@ -46,8 +46,8 @@ function Dashboard({adminData,productData,ordersData,userData,loading}) {
                         <div class="details">
                             {
                                 loading ? <p>Loading...</p>
-                                :
-                                <h1>{(ordersData.filter(items => items.status !== 'Delivered')).length}</h1>
+                                    :
+                                    <h1>{(ordersData.filter(items => items.status !== 'Delivered')).length}</h1>
                             }
                             <p>Pending Delivery</p>
                         </div>

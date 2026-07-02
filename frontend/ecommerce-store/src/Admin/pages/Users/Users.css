@@ -309,9 +309,11 @@
 .admin-container .sections .sections-body .user-section .user-body .update:hover {
     cursor: pointer;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive{
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive {
     display: none;
 }
+
 .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box {
     position: relative;
     display: flex;
@@ -383,7 +385,8 @@
     color: #1d4ed8;
     font-weight: 700;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns{
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -391,8 +394,9 @@
     align-items: center;
     column-gap: 10px;
 }
-.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns .delete{
-        width: 30px;
+
+.admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .actions-btns .delete {
+    width: 30px;
     height: 30px;
     padding: 5px;
     border-radius: 5px;
@@ -428,7 +432,7 @@
     background-color: #fff;
     padding: 20px 40px;
     position: relative;
-    border-radius: 10px;    
+    border-radius: 10px;
 }
 
 .admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box .box-top,
@@ -759,7 +763,6 @@
     cursor: pointer;
 }
 
-
 /* box buttons */
 .admin-container .sections .sections-body .user-section .user-footer .box-buttons {
     display: flex;
@@ -846,23 +849,25 @@
     .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .left-side {
         margin: auto;
     }
-    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top{
+
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top {
         display: grid;
         justify-content: center;
     }
+
     .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-top h4 {
         margin: 5px auto;
     }
 }
 
 @media(max-width: 600px) {
-    .admin-container .sections .sections-body .user-section .user-header .filter-methods{
+    .admin-container .sections .sections-body .user-section .user-header .filter-methods {
         grid-template-columns: 1fr;
     }
 }
 
 @media(max-width: 460px) {
-    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom div{
+    .admin-container .sections .sections-body .user-section .user-body .user-list-responsive .user-responsive-box .right-side .right-side-bottom div {
         justify-content: space-between;
         width: auto;
         height: auto;
@@ -870,7 +875,9 @@
 }
 
 @media(max-width: 430px) {
-    .admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box, .admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box{
+
+    .admin-container .sections .sections-body .user-section .user-body .user-full-details .user-box,
+    .admin-container .sections .sections-body .user-section .user-body .admin-full-details .user-box {
         padding: 20px;
     }
 }

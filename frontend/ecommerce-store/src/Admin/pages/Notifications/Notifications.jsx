@@ -16,7 +16,7 @@ function NotificationsPage() {
     // notification states
     const [notifications, setNotifications] = useState([])
     const [toggleDetails, setToggleDetails] = useState({ notificationId: null, toggle: false })
-    const [notificationCount,setNotificationCount] = useState([])
+    const [notificationCount, setNotificationCount] = useState([])
     const [loading, setLoading] = useState(false)
 
     // load query data

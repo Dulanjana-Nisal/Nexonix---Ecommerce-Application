@@ -4,30 +4,30 @@ import api from '../../services/auth'
 
 const NotificationContext = createContext();
 
-export default function NotifiContext({children}){
+export default function NotifiContext({ children }) {
 
-    const [notifiState,notifiDispatch] = useReducer(NotificationReducer, [])
+    const [notifiState, notifiDispatch] = useReducer(NotificationReducer, [])
 
-    useEffect(()=>{
-        const fetchNotificationData = async()=>{ 
-            try{
+    useEffect(() => {
+        const fetchNotificationData = async () => {
+            try {
                 const result = await api.get('/notifications/all')
-                notifiDispatch({type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS, payload: result.data.data})
+                notifiDispatch({ type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS, payload: result.data.data })
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
-        } 
-        fetchNotificationData()  
+        }
+        fetchNotificationData()
     }, [])
 
-    return(
-        <NotificationContext.Provider value={{notifiState,notifiDispatch}} >
+    return (
+        <NotificationContext.Provider value={{ notifiState, notifiDispatch }} >
             {children}
         </NotificationContext.Provider>
     )
 }
 
-export function Notifications(){
+export function Notifications() {
     return useContext(NotificationContext)
 }

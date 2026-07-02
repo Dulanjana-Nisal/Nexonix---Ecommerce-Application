@@ -77,21 +77,21 @@
 
 /* Responsive Design */
 
-@media(max-width: 1156px){
-    .admin-container .sections .sections-body .dashboard-section .dashboard-body{
+@media(max-width: 1156px) {
+    .admin-container .sections .sections-body .dashboard-section .dashboard-body {
         display: grid;
         grid-template-columns: auto auto;
     }
 }
 
-@media(max-width: 540px){
-    .admin-container .sections .sections-body .dashboard-section .dashboard-body{
+@media(max-width: 540px) {
+    .admin-container .sections .sections-body .dashboard-section .dashboard-body {
         grid-template-columns: auto;
     }
 }
 
-@media(max-width: 440px){
-    .admin-container .sections .sections-body .dashboard-section .dashboard-header p{
+@media(max-width: 440px) {
+    .admin-container .sections .sections-body .dashboard-section .dashboard-header p {
         text-align: center;
     }
 }

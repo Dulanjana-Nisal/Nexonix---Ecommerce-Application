@@ -103,11 +103,11 @@ function Orders() {
 
     //delete cancelled order
     const deleteCancelledOrder = async (delOrderId) => {
-        try{
+        try {
             await api.delete(`/orders/${delOrderId}`);
             setupMessage('success', `Cancelled Order (ID: ${delOrderId}) is deleted successfully!`, 'Order Deleted')
         }
-        catch(err){
+        catch (err) {
             console.log(err.response)
             setupMessage('error', `Error while Order (ID: ${delOrderId}) is deletion proseed!`, 'Order Deletion Faild!')
         }
@@ -539,7 +539,7 @@ function Orders() {
                                                 </div>
                                                 <div class="side-bottom-part status">
                                                     <h4>Status:</h4>
-                                                   <h5 class={(items.status).toLowerCase()}>{items.status}</h5>
+                                                    <h5 class={(items.status).toLowerCase()}>{items.status}</h5>
                                                 </div>
                                             </div>
                                         </div>
