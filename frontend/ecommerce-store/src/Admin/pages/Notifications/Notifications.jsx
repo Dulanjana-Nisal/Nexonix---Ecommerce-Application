@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Notifications.css';
 import api from '../../../services/auth'
+import empty_notification from '../../../assets/empty-notifications.svg'
 import { formatDistanceToNow } from 'date-fns'
 import { useSearchParams } from 'react-router-dom';
 import { Notifications } from '../../Context/NotificationContext';
@@ -10,11 +11,11 @@ import LoadingComponent from '../../Components/Loading/LoadingComponent';
 function NotificationsPage() {
 
     // get context data
-    const {notifiState,notifiDispatch} = Notifications() || {}
+    const { notifiState, notifiDispatch } = Notifications() || {}
 
     // notification states
     const [notifications, setNotifications] = useState([])
-    const [toggleDetails, setToggleDetails] = useState({ notificationId: null, toggle: false})
+    const [toggleDetails, setToggleDetails] = useState({ notificationId: null, toggle: false })
     const [loading, setLoading] = useState(false)
 
     // load query data
@@ -33,25 +34,25 @@ function NotificationsPage() {
     useEffect(() => {
         const fetchNotificationsData = async () => {
             setLoading(true)
-            try{
+            try {
                 const reuslt = await api.get(`/notifications?page=${page}&type=${type}&status=${isRead}`)
                 setNotifications(reuslt.data.data)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }
 
         fetchNotificationsData()
-    }, [page,type,isRead,notifiDispatch,notifiState])
+    }, [page, type, isRead, notifiDispatch, notifiState])
 
 
     // update notifications
-    const updateNotifications = async(notifiId) => {
-        try{
+    const updateNotifications = async (notifiId) => {
+        try {
             await api.patch(`/notifications/${notifiId}`,
                 {
                     isread: true
@@ -60,29 +61,29 @@ function NotificationsPage() {
             // update context
             notifiDispatch({
                 type: NOTIFI_ACTIONS.UPDATE_NOTIFICATION,
-                payload: {_id: notifiId}
+                payload: { _id: notifiId }
             })
         }
-        catch(err){
+        catch (err) {
             console.log(err.responce)
         }
-        finally{
+        finally {
             setToggleDetails({})
         }
     }
 
     // update all notification as read
     const updateAllNotifications = () => {
-        const updateAll = async(notificationID)=>{
-            try{
-                await api.patch(`/notifications/${notificationID}`, {isread: true})
+        const updateAll = async (notificationID) => {
+            try {
+                await api.patch(`/notifications/${notificationID}`, { isread: true })
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
         }
 
-        notifiState.map((items)=>{
+        notifiState.map((items) => {
             updateAll(items._id)
         })
 
@@ -93,20 +94,20 @@ function NotificationsPage() {
     }
 
     // delete notifications
-    const deleteNotifications = async(notifiId) => {
-        try{
+    const deleteNotifications = async (notifiId) => {
+        try {
             await api.delete(`/notifications/${notifiId}`)
 
             // update context
             notifiDispatch({
                 type: NOTIFI_ACTIONS.DELETE_NOTIFICATION,
-                payload: {_id: notifiId}
+                payload: { _id: notifiId }
             })
         }
-        catch(err){
+        catch (err) {
             console.log(err.responce)
         }
-        finally{
+        finally {
             setToggleDetails({})
         }
     }
@@ -119,33 +120,33 @@ function NotificationsPage() {
         }
         newQuery.set('page', page - 1)
         setQueryData(newQuery)
-        window.scroll({ top: 0, behavior: 'smooth'})
+        window.scroll({ top: 0, behavior: 'smooth' })
     }
     const nextButton = () => {
         const newQuery = new URLSearchParams(queryData)
         newQuery.set('page', page + 1)
         setQueryData(newQuery)
-        window.scroll({ top: 0, behavior: 'smooth'})
+        window.scroll({ top: 0, behavior: 'smooth' })
     }
 
     // notifications filter by type
     const filterByType = (value) => {
         const newQuery = new URLSearchParams(queryData);
-        if(!value){
+        if (!value) {
             setQueryData({})
             return
         }
-        if(value === 'unread'){
-            setQueryData({'status': false})
+        if (value === 'unread') {
+            setQueryData({ 'status': false })
             return
         }
         newQuery.delete('status')
         newQuery.set('type', value)
         setQueryData(newQuery)
-        window.scroll({ top: 0, behavior: 'smooth'})
+        window.scroll({ top: 0, behavior: 'smooth' })
     }
 
-     // set notification UI
+    // set notification UI
     const notificationThumb = {
         "users": <div class="notif-icon info">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>
@@ -157,8 +158,8 @@ function NotificationsPage() {
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
         </div>,
         'deletes': <div class="notif-icon error">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+        </div>
     }
     const notificationTag = {
         "users": "badge-pill info",
@@ -179,9 +180,9 @@ function NotificationsPage() {
                             <button class={`tab-btn ${isRead === 'false' && 'active'}`} onClick={() => filterByType('unread')}>
                                 Unread
                                 {
-                                    (notifiState && notifiState.filter(items => !items.isread)).length !== 0 && 
+                                    (notifiState && notifiState.filter(items => !items.isread)).length !== 0 &&
                                     <span class="tab-badge">{(notifiState && notifiState.filter(items => !items.isread)).length}</span>
-                                } 
+                                }
                             </button>
                             <button class={`tab-btn ${type === 'orders' && 'active'}`} onClick={() => filterByType('orders')}>Orders</button>
                             <button class={`tab-btn ${type === 'users' && 'active'}`} onClick={() => filterByType('users')}>Users</button>
@@ -201,56 +202,67 @@ function NotificationsPage() {
                         {
                             loading ?
                                 <LoadingComponent />
-                            :
-                            <div class="notif-list">
+                                :
+                                notifications.length === 0 ?
+                                    <div class="admin-empty-notifi-container">
+                                        <div class="container-top">
+                                            <img src={empty_notification} alt="emty-cart-image" />
+                                        </div>
+                                        <div class="container-bottom">
+                                            <h1>Your Notification list is empty</h1>
+                                            <p>Looks like you haven't any notifications yet.</p>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div class="notif-list">
 
-                                {
-                                    notifications.length > 0 &&
-                                    notifications.map((items) => {
-                                        return (
-                                            <div class="notif-item" key={items._id}>
-                                                {
-                                                    items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
-                                                }
-                                                {
-                                                    notificationThumb[items.type]
-                                                }
-                                                <div class="notif-body">
-                                                    <div class="notif-title">{items.title}</div>
-                                                    <div class="notif-desc">{items.message}</div>
-                                                    <div class="notif-time">
-                                                        {formatDistanceToNow(new Date(items.createdAt),
-                                                            {
-                                                                addSuffix: true,
-                                                            }
-                                                        )}
-                                                    </div>
-                                                </div>
-                                                <div class="notif-right">
-                                                    <span class={notificationTag[items.type]}>{items.type}</span>
-                                                    <button class="menu-btn" onClick={() => setToggleDetails({notificationId: items._id, toggle: !toggleDetails.toggle})}>
-                                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
-                                                    </button>
-                                                    {
-                                                        toggleDetails.toggle && toggleDetails.notificationId === items._id &&
-                                                        <div class="action-box">
-                                                            <div class='read' onClick={() => updateNotifications(items._id)}>
-                                                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                                                <p >Mark as Read</p>
-                                                            </div>
-                                                            <div class='delete' onClick={() => deleteNotifications(items._id)}>
-                                                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"></line><line x1="9" y1="9" x2="15" y2="15" stroke-linecap="round"></line></svg>
-                                                                <p>Delete Notification</p>
+                                        {
+                                            notifications.length > 0 &&
+                                            notifications.map((items) => {
+                                                return (
+                                                    <div class="notif-item" key={items._id}>
+                                                        {
+                                                            items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
+                                                        }
+                                                        {
+                                                            notificationThumb[items.type]
+                                                        }
+                                                        <div class="notif-body">
+                                                            <div class="notif-title">{items.title}</div>
+                                                            <div class="notif-desc">{items.message}</div>
+                                                            <div class="notif-time">
+                                                                {formatDistanceToNow(new Date(items.createdAt),
+                                                                    {
+                                                                        addSuffix: true,
+                                                                    }
+                                                                )}
                                                             </div>
                                                         </div>
-                                                    }
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                                        <div class="notif-right">
+                                                            <span class={notificationTag[items.type]}>{items.type}</span>
+                                                            <button class="menu-btn" onClick={() => setToggleDetails({ notificationId: items._id, toggle: !toggleDetails.toggle })}>
+                                                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
+                                                            </button>
+                                                            {
+                                                                toggleDetails.toggle && toggleDetails.notificationId === items._id &&
+                                                                <div class="action-box">
+                                                                    <div class='read' onClick={() => updateNotifications(items._id)}>
+                                                                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                                                        <p >Mark as Read</p>
+                                                                    </div>
+                                                                    <div class='delete' onClick={() => deleteNotifications(items._id)}>
+                                                                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"></line><line x1="9" y1="9" x2="15" y2="15" stroke-linecap="round"></line></svg>
+                                                                        <p>Delete Notification</p>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
 
-                            </div>
+                                    </div>
                         }
                     </div>
                     <div class="col-aside-admin">
@@ -311,7 +323,7 @@ function NotificationsPage() {
                         }
                         <p><span>{1}</span> of 2 </p>
                         {
-                            page < Math.ceil(notifiState.length /10) &&
+                            page < Math.ceil(notifiState.length / 10) &&
                             <button class="next" onClick={() => nextButton()}>›</button>
                         }
                     </div>

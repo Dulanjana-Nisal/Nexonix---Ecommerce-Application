@@ -2,7 +2,7 @@ import './Products.css'
 import { useEffect, useState } from "react"
 import api from "../../../services/auth"
 import axios from "axios"
-import empty_user from '../../../assets/empty-products.svg'
+import empty_product from '../../../assets/empty-products.svg'
 import { useSearchParams } from "react-router-dom"
 import LoadingComponent from '../../Components/Loading/LoadingComponent'
 import { Message } from '../../../context/MessagesContext'
@@ -374,7 +374,7 @@ function Products({ path }) {
                             products.length === 0 ?
                                 <div class="admin-empty-user-container">
                                     <div class="container-top">
-                                        <img src={empty_user} alt="emty-cart-image" />
+                                        <img src={empty_product} alt="emty-cart-image" />
                                     </div>
                                     <div class="container-bottom">
                                         <h1>No Products Here</h1>
