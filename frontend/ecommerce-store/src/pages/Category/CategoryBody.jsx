@@ -3,10 +3,10 @@ import ProductComponent from "../../components/Product/ProductComponent";
 import empty_product from '../../assets/empty-products.svg';
 import { Link } from "react-router-dom";
 
-function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNextPage,loading}) {
+function CategoryBody({ category, categoryData, pageNumber, toPrePage, pagesSize, toNextPage, loading }) {
 
     const capitalizeWord = (char) => {
-        if(!char) return ""
+        if (!char) return ""
         return char.charAt(0).toUpperCase() + char.slice(1)
     }
 
@@ -18,7 +18,7 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                 </div>
                 {
                     loading ? <LoadingComponent />
-                    :
+                        :
                         categoryData.length === 0 ?
                             <div class="empty-products-container">
                                 <div class="container-top">
@@ -37,7 +37,7 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                                     </Link>
                                 </div>
                             </div>
-                        :
+                            :
                             <div class="body-template">
                                 {
                                     categoryData.map((items) => {
@@ -55,7 +55,7 @@ function CategoryBody({category,categoryData,pageNumber,toPrePage,pagesSize,toNe
                     }
                     <p><span>{pageNumber}</span> of {pagesSize}</p>
                     {
-                        pagesSize != pageNumber &&
+                        pageNumber < pagesSize &&
                         <button class="next" onClick={() => toNextPage()}>›</button>
                     }
                 </div>

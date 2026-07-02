@@ -3,20 +3,20 @@ import MessagesComponent from "../components/Messages/MessagesComonent"
 
 const MessageContext = createContext()
 
-export default function MessageProvider({children}){
+export default function MessageProvider({ children }) {
 
-    const [message,setMessage] = useState(null)
+    const [message, setMessage] = useState(null)
 
-    function setupMessage(msgStatus,msgMessage,msgTitle){
-        setMessage({status: msgStatus, message: msgMessage, title: msgTitle})
+    function setupMessage(msgStatus, msgMessage, msgTitle) {
+        setMessage({ status: msgStatus, message: msgMessage, title: msgTitle })
 
-        setTimeout(()=>{
+        setTimeout(() => {
             setMessage(null)
         }, 3000)
     }
 
-    return(
-        <MessageContext.Provider value={{setupMessage}}>
+    return (
+        <MessageContext.Provider value={{ setupMessage }}>
             {children}
 
             {
@@ -28,6 +28,6 @@ export default function MessageProvider({children}){
     )
 }
 
-export function Message(){
+export function Message() {
     return useContext(MessageContext)
 }

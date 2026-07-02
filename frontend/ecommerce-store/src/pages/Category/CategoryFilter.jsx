@@ -1,5 +1,5 @@
 
-function CategoryFilter({clearFilters,filterTags,brandName,productBrands,brandsFilter,ratingsFilter,ratingRange,priceValues,setPriceValues,submitPriceValue,filterByAvailability,availability}) {
+function CategoryFilter({ clearFilters, filterTags, brandName, productBrands, brandsFilter, ratingsFilter, ratingRange, priceValues, setPriceValues, submitPriceValue, filterByAvailability, availability }) {
     return (
         <>
             <div class="container-filter">

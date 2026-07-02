@@ -1,4 +1,4 @@
-.notfound-container{
+.notfound-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,34 +6,40 @@
     width: 90%;
     margin: auto;
 }
-.notfound-container img{
+
+.notfound-container img {
     max-width: 600px;
     object-fit: cover;
     background-size: cover;
     background-position: center;
 }
-.notfound-container .background-details h4{
+
+.notfound-container .background-details h4 {
     font-size: 14px;
     color: #2B38D1;
 }
-.notfound-container .background-details h1{
+
+.notfound-container .background-details h1 {
     font-size: 35px;
     margin: 10px 0;
 }
-.notfound-container .background-details p{
+
+.notfound-container .background-details p {
     font-size: 14px;
     color: #5c5e68;
     font-weight: 600;
     margin-bottom: 30px;
     max-width: 400px;
 }
-.notfound-container .background-details .buttons{
+
+.notfound-container .background-details .buttons {
     display: flex;
     align-items: center;
     width: 100%;
     column-gap: 20px;
 }
-.notfound-container .background-details .buttons button{
+
+.notfound-container .background-details .buttons button {
     width: 100%;
     display: flex;
     column-gap: 10px;
@@ -43,83 +49,99 @@
     font-weight: 600;
     transition: 0.25s;
 }
-.notfound-container .background-details .buttons button:hover{
+
+.notfound-container .background-details .buttons button:hover {
     cursor: pointer;
     opacity: 0.75;
 }
-.notfound-container .background-details .buttons .home-btn{
+
+.notfound-container .background-details .buttons .home-btn {
     background-color: #2B38D1;
     color: #fff;
     border: 1px solid #2B38D1;
 }
-.notfound-container .background-details .buttons .cat-btn{
+
+.notfound-container .background-details .buttons .cat-btn {
     border: 1px solid #5c5e6849;
     background: transparent;
 }
 
 /* Responsive styles */
-@media(max-width: 1050px){
-    .notfound-container img{
+@media(max-width: 1050px) {
+    .notfound-container img {
         width: 400px;
     }
 }
-@media(max-width: 850px){
-    .notfound-container img{
+
+@media(max-width: 850px) {
+    .notfound-container img {
         width: 300px;
     }
-    .notfound-container .background-details h1{
+
+    .notfound-container .background-details h1 {
         font-size: 25px;
     }
 }
-@media(max-width: 730px){
-    .notfound-container .background-details .buttons{
+
+@media(max-width: 730px) {
+    .notfound-container .background-details .buttons {
         display: grid;
         grid-template-columns: 1fr;
         row-gap: 15px;
     }
-    .notfound-container .background-details .buttons button{
+
+    .notfound-container .background-details .buttons button {
         width: 300px;
         justify-content: center;
     }
 }
-@media(max-width: 670px){
-    .notfound-container .background-details .buttons button{
+
+@media(max-width: 670px) {
+    .notfound-container .background-details .buttons button {
         width: 100%;
         justify-content: center;
     }
 }
-@media(max-width: 600px){
-    .notfound-container{
+
+@media(max-width: 600px) {
+    .notfound-container {
         display: grid;
         height: fit-content;
         padding: 20px 0 50px 0;
         grid-template-columns: 1fr;
     }
-    .notfound-container img{
+
+    .notfound-container img {
         margin: auto;
     }
-    .notfound-container .background-details p{
+
+    .notfound-container .background-details p {
         margin: 10px auto 30px auto;
     }
-    .notfound-container .background-details{
+
+    .notfound-container .background-details {
         text-align: center;
     }
-    .notfound-container .background-details .buttons{
+
+    .notfound-container .background-details .buttons {
         display: flex;
         justify-content: center;
     }
 }
-@media(max-width: 400px){
-    .notfound-container .background-details .buttons{
+
+@media(max-width: 400px) {
+    .notfound-container .background-details .buttons {
         display: grid;
         grid-template-columns: 1fr;
     }
 }
-@media(max-width: 320px){
-    .notfound-container img{
+
+@media(max-width: 320px) {
+    .notfound-container img {
         width: 100%;
     }
-    .notfound-container .background-details p{
+
+    .notfound-container .background-details p {
         width: 100%;
     }
 }

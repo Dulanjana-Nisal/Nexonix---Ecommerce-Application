@@ -1,4 +1,4 @@
-function CategoryHeader({allCategoryDetails,setToggleOption,toggleOption,label,sortProducts}) {
+function CategoryHeader({ allCategoryDetails, setToggleOption, toggleOption, label, sortProducts }) {
     return (
         <>
             <div class="container-header">

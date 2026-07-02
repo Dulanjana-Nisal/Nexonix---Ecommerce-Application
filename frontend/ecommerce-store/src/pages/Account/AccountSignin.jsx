@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function AccountSignin({loginFrom,loginEmail,setLoginEmail,loginPassword,setLoginPassword,loginmessages,close_eye,open_eye}) {
+function AccountSignin({ loginFrom, loginEmail, setLoginEmail, loginPassword, setLoginPassword, loginmessages, close_eye, open_eye }) {
 
     // use states
-    const [togglePass,setTogglePass] = useState(true);
+    const [togglePass, setTogglePass] = useState(true);
 
     //See password toggle button
-    function toggleSeePassword(){
+    function toggleSeePassword() {
         togglePass ? setTogglePass(prev => !prev) : setTogglePass(prev => !prev)
     }
 

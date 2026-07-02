@@ -1,5 +1,5 @@
 import './App.css'
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/Home/HomePage'
 import AccountPage from './pages/Account/AccountPage'
 import OrdersPage from './pages/Orders/OrdersPage'
@@ -16,7 +16,7 @@ import NotificationsPage from './pages/Notifications/NotificationsPage'
 function App() {
 
   //load context
-  const {user} = Cart()
+  const { user } = Cart()
 
   return (
     <Routes>
@@ -29,9 +29,9 @@ function App() {
       <Route path='/details/:productId' element={<DetailsPage />} />
       {
         user?.role === 'admin' ?
-        <Route path='/admin/:path' element={<AdminPage />} />
-        :
-        <Route path='*' element={<NotFoundPage />} />
+          <Route path='/admin/:path' element={<AdminPage />} />
+          :
+          <Route path='*' element={<NotFoundPage />} />
       }
       <Route path='/checkout' element={<CheckoutPage />} />
       <Route path='/notifications' element={<NotificationsPage />} />

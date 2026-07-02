@@ -13,7 +13,7 @@ function OrdersPage() {
 
     // load  context 
     const { notifiDispatch } = Notifications() || {};
-        const { setupMessage } = Message();
+    const { setupMessage } = Message();
 
     //order states
     const [orders, setOrders] = useState([])
@@ -46,7 +46,7 @@ function OrdersPage() {
                     )
                     const postResult = await api.get('/notifications/all');
 
-                    setupMessage('success',`Your order (OID: ${orderID}) is cancelled...`, "Order Cancelled")
+                    setupMessage('success', `Your order (OID: ${orderID}) is cancelled...`, "Order Cancelled")
 
                     // create notification in context
                     notifiDispatch(
@@ -96,120 +96,120 @@ function OrdersPage() {
                                 </Link>
                             </div>
                         </div>
-                    :
-                    <div class="order-body">
-                        <div class="order-details">
-                            <table>
-                                <thead>
-                                    <tr class="details-head">
-                                        <th>Product</th>
-                                        <th>Date</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Method</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        orders.map((items) => {
-                                            return (
-                                                <tr class="card" key={items._id}>
-                                                    <td class="card-product">
-                                                        <div class="thumb">
-                                                            <img src={items.image} alt="" />
-                                                        </div>
-                                                        <div class="name">
-                                                            <p>{items.productName}</p>
-                                                            <p class="order-id">OID: {items._id}</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="card-date">
-                                                        <p>{(items.createdAt).slice(0, 10)}</p>
-                                                    </td>
-                                                    <td class="card-price">
-                                                        <p>${items.price}</p>
-                                                    </td>
-                                                    <td class="card-quantity">
-                                                        <p>{items.quantity}</p>
-                                                    </td>
-                                                    <td class="card-method">
-                                                        <p>{items.method === 'cash-on-delivery' ? 'Cash on Delivery' : "Card Payment"}</p>
-                                                    </td>
-                                                    <td class="card-total">
-                                                        <p>${items.price * items.quantity + (items.tax || 0)}</p>
-                                                    </td>
-                                                    <td class="card-state">
-                                                        {
-                                                            items.status === "Cancelled" || items.status === "Processing" ?
-                                                                <div class="status-menu">
-                                                                    <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
-                                                                    <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                                </div>
-                                                                :
-                                                                <div class="status-menu">
-                                                                    <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
-                                                                </div>
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="order-details-responsive">
-                            {
-                                orders.map((items) => {
-                                    return (
-                                        <div class="card" key={items._id} key={items._id}>
-                                            <div class="image">
-                                                <img src={items.image} alt="" />
-                                            </div>
-                                            <div class="card-details">
-                                                <div class="details-header">
-                                                    <h1>{items.productName}</h1>
-                                                    <p>OID: {items._id}</p>
+                        :
+                        <div class="order-body">
+                            <div class="order-details">
+                                <table>
+                                    <thead>
+                                        <tr class="details-head">
+                                            <th>Product</th>
+                                            <th>Date</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Method</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            orders.map((items) => {
+                                                return (
+                                                    <tr class="card" key={items._id}>
+                                                        <td class="card-product">
+                                                            <div class="thumb">
+                                                                <img src={items.image} alt="" />
+                                                            </div>
+                                                            <div class="name">
+                                                                <p>{items.productName}</p>
+                                                                <p class="order-id">OID: {items._id}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="card-date">
+                                                            <p>{(items.createdAt).slice(0, 10)}</p>
+                                                        </td>
+                                                        <td class="card-price">
+                                                            <p>${items.price}</p>
+                                                        </td>
+                                                        <td class="card-quantity">
+                                                            <p>{items.quantity}</p>
+                                                        </td>
+                                                        <td class="card-method">
+                                                            <p>{items.method === 'cash-on-delivery' ? 'Cash on Delivery' : "Card Payment"}</p>
+                                                        </td>
+                                                        <td class="card-total">
+                                                            <p>${items.price * items.quantity + (items.tax || 0)}</p>
+                                                        </td>
+                                                        <td class="card-state">
+                                                            {
+                                                                items.status === "Cancelled" || items.status === "Processing" ?
+                                                                    <div class="status-menu">
+                                                                        <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
+                                                                        <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                                    </div>
+                                                                    :
+                                                                    <div class="status-menu">
+                                                                        <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
+                                                                    </div>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="order-details-responsive">
+                                {
+                                    orders.map((items) => {
+                                        return (
+                                            <div class="card" key={items._id} key={items._id}>
+                                                <div class="image">
+                                                    <img src={items.image} alt="" />
                                                 </div>
-                                                <div class="details-footer">
-                                                    <div class="card-date">
-                                                        <h3>Date</h3>
-                                                        <p>{(items.createdAt).slice(0, 10)}</p>
+                                                <div class="card-details">
+                                                    <div class="details-header">
+                                                        <h1>{items.productName}</h1>
+                                                        <p>OID: {items._id}</p>
                                                     </div>
-                                                    <div class="card-price">
-                                                        <h3>Price: </h3>
-                                                        <p>${items.price}</p>
+                                                    <div class="details-footer">
+                                                        <div class="card-date">
+                                                            <h3>Date</h3>
+                                                            <p>{(items.createdAt).slice(0, 10)}</p>
+                                                        </div>
+                                                        <div class="card-price">
+                                                            <h3>Price: </h3>
+                                                            <p>${items.price}</p>
+                                                        </div>
+                                                        <div class="card-quantity">
+                                                            <h3>Quantity: </h3>
+                                                            <p>{items.quantity}</p>
+                                                        </div>
+                                                        <div class="card-method">
+                                                            <h3>Method: </h3>
+                                                            <p>{items.method === 'cash-on-delivery' ? 'Cash on Delivery' : "Card Payment"}</p>
+                                                        </div>
+                                                        <div class="card-total">
+                                                            <h3>Total: </h3>
+                                                            <p>${items.price * items.quantity + (items.tax || 0)}</p>
+                                                        </div>
+                                                        <div class="card-state">
+                                                            <h3>Status: </h3>
+                                                            <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="card-quantity">
-                                                        <h3>Quantity: </h3>
-                                                        <p>{items.quantity}</p>
-                                                    </div>
-                                                    <div class="card-method">
-                                                        <h3>Method: </h3>
-                                                        <p>{items.method === 'cash-on-delivery' ? 'Cash on Delivery' : "Card Payment"}</p>
-                                                    </div>
-                                                    <div class="card-total">
-                                                        <h3>Total: </h3>
-                                                        <p>${items.price * items.quantity + (items.tax || 0)}</p>
-                                                    </div>
-                                                    <div class="card-state">
-                                                        <h3>Status: </h3>
-                                                        <h4 class={(items.status).toLowerCase()}>{items.status}</h4>
-                                                    </div>
+                                                    {
+                                                        items.status === "Cancelled" || items.status === "Processing" &&
+                                                        <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                    }
                                                 </div>
-                                                {
-                                                    items.status === "Cancelled" || items.status === "Processing" &&
-                                                    <svg class="delete" onClick={() => cancleOrder(items._id, items.name, items.userId, items.status)} fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                }
                                             </div>
-                                        </div>
-                                    )
-                                })
-                            }
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
-                    </div>
                 }
             </div>
             <FooterCompoennt />

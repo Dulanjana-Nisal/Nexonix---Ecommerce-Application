@@ -4,7 +4,7 @@ import HeaderComponent from '../../components/Header/HeaderComponent';
 import './SearchPage.css';
 import axios from 'axios';
 import empty_search from '../../assets/empty-search.svg'
-import { useSearchParams,Link } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import ProductComponent from '../../components/Product/ProductComponent';
 import LoadingComponent from '../../components/Loading/LoadingComponent';
 
@@ -31,7 +31,6 @@ function SearchPage() {
 
     //get page number from query data
     const searchKeyword = queryData.get("search") || "";
-    console.log(searchKeyword)
 
     //get page number from query data
     const pageNumber = Number(queryData.get("page")) || 1;
@@ -346,34 +345,34 @@ function SearchPage() {
                         {
                             loading ? <LoadingComponent />
                                 :
-                                    categoryData.length === 0 ?
-                                        <div class="empty-products-container">
-                                            <div class="container-top">
-                                                <img src={empty_search} alt="emty-cart-image" />
-                                            </div>
-                                            <div class="container-bottom">
-                                                <h1>Not Product Found Here</h1>
-                                                <p>Looks like haven't any Products yet to Shop.</p>
-                                                <Link to='/products/computers' class="no-style-link">
-                                                    <button>
-                                                        Continue Shopping
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                                        </svg>
-                                                    </button>
-                                                </Link>
-                                            </div>
+                                categoryData.length === 0 ?
+                                    <div class="empty-products-container">
+                                        <div class="container-top">
+                                            <img src={empty_search} alt="emty-cart-image" />
                                         </div>
+                                        <div class="container-bottom">
+                                            <h1>Not Product Found Here</h1>
+                                            <p>Looks like haven't any Products yet to Shop.</p>
+                                            <Link to='/products/computers' class="no-style-link">
+                                                <button>
+                                                    Continue Shopping
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                                    </svg>
+                                                </button>
+                                            </Link>
+                                        </div>
+                                    </div>
                                     :
-                                        <div class="body-template">
-                                            {
-                                                categoryData.map((items) => {
-                                                    return (
-                                                        <ProductComponent items={items} ratings={items.ratings} />
-                                                    )
-                                                })
-                                            }
-                                        </div>
+                                    <div class="body-template">
+                                        {
+                                            categoryData.map((items) => {
+                                                return (
+                                                    <ProductComponent items={items} ratings={items.ratings} />
+                                                )
+                                            })
+                                        }
+                                    </div>
                         }
                         <div class="box-buttons">
                             {

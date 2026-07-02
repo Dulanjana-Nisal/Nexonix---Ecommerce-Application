@@ -1,4 +1,4 @@
-.body-template{
+.body-template {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     column-gap: 25px;
@@ -6,7 +6,8 @@
     justify-content: start;
     margin-top: 30px;
 }
-.search-container .container-body .body-template{
+
+.search-container .container-body .body-template {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 25px;
@@ -14,23 +15,26 @@
     justify-content: start;
     margin-top: 30px;
 }
+
 .template-box,
-.card{
+.card {
     padding: 10px 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
     border-radius: 10px;
     position: relative;
 }
+
 .template-box .box-head,
-.card .box-head{
+.card .box-head {
     width: 100%;
     height: 210px;
     padding: 10px 10px 0 10px;
     overflow: hidden;
 }
+
 .template-box .box-head img,
-.card .box-head img{
+.card .box-head img {
     width: 100%;
     height: 100%;
     background-position: center;
@@ -40,22 +44,26 @@
     border-radius: 10px 10px 0 0;
     transition: 0.55s;
 }
+
 .template-box .box-head img:hover,
-.card .box-head img:hover{
+.card .box-head img:hover {
     transform: scale(110%);
     cursor: pointer;
 }
+
 .template-box .box-body,
-.card .box-body{
+.card .box-body {
     padding-bottom: 10px;
 }
+
 .template-box .box-body .name p,
-.card .box-body .name p{
+.card .box-body .name p {
     margin: 10px 0;
     height: 35px;
 }
+
 .template-box .box-body .name p,
-.card .box-body .name p{
+.card .box-body .name p {
     font-size: 14px;
     font-weight: 700;
     display: -webkit-box;
@@ -64,8 +72,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .template-box .box-body .ratings,
-.card .box-body .ratings{
+.card .box-body .ratings {
     width: fit-content;
     color: #FFB800;
     font-size: 18px;
@@ -74,24 +83,28 @@
     align-items: center;
     margin: 3px 0 10px 0;
 }
+
 .template-box .box-body .ratings p,
-.card .box-body .ratings p{
+.card .box-body .ratings p {
     font-size: 18px;
     color: #f5a524;
 }
+
 .template-box .box-body .ratings span,
-.card .box-body .ratings span{
+.card .box-body .ratings span {
     color: #b6bcbd;
     font-weight: 600;
     font-size: 14px;
 }
+
 .template-box .box-body .price,
-.card .box-body .price{
+.card .box-body .price {
     width: 100%;
     z-index: 10;
 }
-.template-box .box-body .price p ,
-.card .box-body .price p{
+
+.template-box .box-body .price p,
+.card .box-body .price p {
     font-size: 20px;
     border-radius: 30px;
     color: #b3122c;
@@ -99,14 +112,16 @@
     width: fit-content;
     background-color: #fff;
 }
+
 .template-box .box-body .availability,
-.card .box-body .availability{
+.card .box-body .availability {
     position: absolute;
     top: 0;
     left: 0;
 }
+
 .template-box .box-body .availability .in-stock,
-.card .box-body .availability .in-stock{
+.card .box-body .availability .in-stock {
     padding: 4px 10px;
     width: fit-content;
     color: #fff;
@@ -115,8 +130,9 @@
     background-color: #008A00;
     border-radius: 10px 0 10px 0;
 }
+
 .template-box .box-body .availability .out-stock,
-.card .box-body .availability .out-stock{
+.card .box-body .availability .out-stock {
     padding: 4px 10px;
     width: fit-content;
     color: #fff;
@@ -125,8 +141,9 @@
     background-color: #DD3842;
     border-radius: 10px 0 10px 0;
 }
+
 .template-box .box-body .button button,
-.card .box-body .button button{
+.card .box-body .button button {
     width: 100%;
     display: flex;
     align-items: center;
@@ -141,19 +158,22 @@
     background-color: #2B38D1;
     transition: 0.25s;
 }
+
 .template-box .box-body .button button svg,
-.card .box-body .button button svg{
+.card .box-body .button button svg {
     width: 15px;
     height: 15px;
 }
+
 .template-box .box-body .button .cart-btn:hover,
-.card .box-body .button .cart-btn:hover{
+.card .box-body .button .cart-btn:hover {
     background-color: #fff;
     color: #2B38D1;
     cursor: pointer;
 }
+
 .template-box .box-body .button .in-cart,
-.card .box-body .button .in-cart{
+.card .box-body .button .in-cart {
     background-color: #008A00;
     border: 1px solid #008A00;
 }

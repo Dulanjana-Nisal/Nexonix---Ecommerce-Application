@@ -38,18 +38,18 @@
 }
 
 /* Orders Table styles */
-.order-container .order-body .order-details table{
+.order-container .order-body .order-details table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.order-container .order-body .order-details table thead tr th{ 
+.order-container .order-body .order-details table thead tr th {
     padding-bottom: 20px;
     color: #6b7280;
     font-weight: 600;
 }
 
-.order-container .order-body .order-details table tbody tr td{
+.order-container .order-body .order-details table tbody tr td {
     padding: 10px 0;
     text-align: center;
 }
@@ -59,32 +59,32 @@
     border-top: 1px solid #6b728026;
 }
 
-.order-container .order-body .order-details table tbody .card p{
+.order-container .order-body .order-details table tbody .card p {
     font-size: 15px;
     font-weight: 600;
 }
 
-.order-container .order-body .order-details table tbody .card .card-product{
+.order-container .order-body .order-details table tbody .card .card-product {
     max-width: 400px;
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
 
-.order-container .order-body .order-details table tbody .card .card-product .name p{
+.order-container .order-body .order-details table tbody .card .card-product .name p {
     font-size: 15px;
     font-weight: 700;
     text-align: start;
 }
 
-.order-container .order-body .order-details table tbody .card .card-product .name .order-id{
+.order-container .order-body .order-details table tbody .card .card-product .name .order-id {
     font-size: 12px;
     font-weight: 500;
     color: #6b7280;
     margin-top: 5px;
 }
 
-.order-container .order-body .order-details table tbody .card .card-product img{
+.order-container .order-body .order-details table tbody .card .card-product img {
     width: 100px;
     height: 80px;
     background-size: contain;
@@ -92,14 +92,16 @@
     object-fit: contain;
 }
 
-.order-container .order-body .order-details table tbody .card .card-total p{
+.order-container .order-body .order-details table tbody .card .card-total p {
     color: #b3122c;
     font-weight: 700;
 }
-.order-container .order-body .order-details table tbody .card td{
+
+.order-container .order-body .order-details table tbody .card td {
     padding: 10px;
 }
-.order-container .order-body .order-details table tbody .card .card-state .status-menu{
+
+.order-container .order-body .order-details table tbody .card .card-state .status-menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,13 +124,13 @@
 }
 
 .order-container .order-body .order-details table tbody .card .card-state .status-menu svg:hover,
-.order-container .order-body .order-details-responsive svg:hover{
+.order-container .order-body .order-details-responsive svg:hover {
     background-color: #DD3842;
     color: #fff;
     cursor: pointer;
 }
 
-.order-container .order-body .order-details table tbody .card .card-state h4{
+.order-container .order-body .order-details table tbody .card .card-state h4 {
     font-size: 12px;
     padding: 5px 10px;
     border-radius: 30px;
@@ -152,31 +154,35 @@
 .card-state .cancelled {
     color: #DD3842;
     background-color: #DD384227;
-} 
+}
 
 /* Empty order Container style */
-.order-container .empty-order-container{
+.order-container .empty-order-container {
     width: 100%;
     text-align: center;
     padding: 25px 20px 0 20px;
     border-top: 1px solid #787c8f25;
     margin-top: -20px;
 }
-.order-container .empty-order-container .container-top img{
+
+.order-container .empty-order-container .container-top img {
     width: 100%;
     height: 200px;
     margin-bottom: 30px;
 }
-.order-container .empty-order-container .container-bottom h1{
+
+.order-container .empty-order-container .container-bottom h1 {
     font-size: 25px;
 }
-.order-container .empty-order-container .container-bottom p{
+
+.order-container .empty-order-container .container-bottom p {
     font-size: 14px;
     font-weight: 500;
     margin: 5px 0 25px 0;
     color: #787c8f;
 }
-.order-container .empty-order-container .container-bottom button{
+
+.order-container .empty-order-container .container-bottom button {
     display: flex;
     justify-content: center;
     column-gap: 10px;
@@ -190,17 +196,19 @@
     border: 1px solid #2563eb;
     transition: 0.25s;
 }
-.order-container .empty-order-container .container-bottom button:hover{
+
+.order-container .empty-order-container .container-bottom button:hover {
     background-color: #fff;
     color: #2563eb;
     cursor: pointer;
 }
 
 /* responsive cards */
-.order-container .order-body .order-details-responsive{
+.order-container .order-body .order-details-responsive {
     display: none;
 }
-.order-container .order-body .order-details-responsive .card{
+
+.order-container .order-body .order-details-responsive .card {
     padding: 25px 0;
     display: flex;
     column-gap: 10px;
@@ -209,11 +217,13 @@
     margin: 20px 0;
     position: relative;
 }
-.order-container .order-body .order-details-responsive .card .image{
+
+.order-container .order-body .order-details-responsive .card .image {
     display: flex;
     align-items: center;
 }
-.order-container .order-body .order-details-responsive .card .image img{
+
+.order-container .order-body .order-details-responsive .card .image img {
     width: 150px;
     height: 100px;
     background-repeat: no-repeat;
@@ -221,17 +231,21 @@
     background-size: contain;
     object-fit: contain;
 }
-.order-container .order-body .order-details-responsive .card .card-details{
+
+.order-container .order-body .order-details-responsive .card .card-details {
     width: 100%;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-header{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-header {
     margin-bottom: 15px;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-header h1{
-    font-size: 18px; 
+
+.order-container .order-body .order-details-responsive .card .card-details .details-header h1 {
+    font-size: 18px;
     font-weight: 700;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-header p{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-header p {
     font-size: 12px;
     font-weight: 500;
     color: #8d92ad;
@@ -242,7 +256,8 @@
     border-radius: 30px;
     border: 1px solid #d9dedf;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -250,31 +265,36 @@
     align-items: center;
     gap: 10px 15px;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer div{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer div {
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer div h3{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer div h3 {
     font-size: 16px;
     font-weight: 700;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer div p{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer div p {
     font-size: 15px;
     font-weight: 600;
     color: #6b7280;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer .card-total p{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer .card-total p {
     color: #b3122c;
     font-weight: 700;
 }
-.order-container .order-body .order-details-responsive .card .card-details .details-footer .card-state h4{
+
+.order-container .order-body .order-details-responsive .card .card-details .details-footer .card-state h4 {
     font-size: 12px;
     padding: 3px 10px;
     border-radius: 30px;
 }
 
-.order-container .order-body .order-details-responsive svg{
+.order-container .order-body .order-details-responsive svg {
     position: absolute;
     top: 15px;
     right: 5px;
@@ -282,11 +302,12 @@
 
 
 /* Responsive styles */
-@media(max-width: 1135px){
-    .order-container .order-body .order-details table tbody .card .card-product{
+@media(max-width: 1135px) {
+    .order-container .order-body .order-details table tbody .card .card-product {
         max-width: 330px;
     }
-    .order-container .order-body .order-details table tbody .card .card-product .name p{
+
+    .order-container .order-body .order-details table tbody .card .card-product .name p {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -295,45 +316,49 @@
     }
 }
 
-@media(max-width: 1055px){
-    .order-container .order-body .order-details{
+@media(max-width: 1055px) {
+    .order-container .order-body .order-details {
         display: none;
     }
-    .order-container .order-body .order-details-responsive{
+
+    .order-container .order-body .order-details-responsive {
         display: block;
     }
 }
 
-@media(max-width: 940px){
-    .order-container .order-body .order-details-responsive .card .card-details .details-footer{
+@media(max-width: 940px) {
+    .order-container .order-body .order-details-responsive .card .card-details .details-footer {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media(max-width: 660px){
-   .order-container .order-body .order-details-responsive .card{
+@media(max-width: 660px) {
+    .order-container .order-body .order-details-responsive .card {
         display: grid;
         justify-content: center;
         padding: 25px 20px;
-   }
-   .order-container .order-body .order-details-responsive .card .image img{
+    }
+
+    .order-container .order-body .order-details-responsive .card .image img {
         margin: 0 auto 15px auto;
-   }
-   .order-container .order-body .order-details-responsive .card .card-details .details-header{
+    }
+
+    .order-container .order-body .order-details-responsive .card .card-details .details-header {
         text-align: center;
-   }
-   .order-container .order-body .order-details-responsive .card .card-details .details-header p{
-    margin: 10px auto;
-   }
+    }
+
+    .order-container .order-body .order-details-responsive .card .card-details .details-header p {
+        margin: 10px auto;
+    }
 }
 
-@media(max-width: 490px){
-   .order-container .order-body .order-details-responsive .card .card-details .details-footer{
+@media(max-width: 490px) {
+    .order-container .order-body .order-details-responsive .card .card-details .details-footer {
         grid-template-columns: 1fr;
     }
-    .order-container .order-body .order-details-responsive .card .card-details .details-footer div{
+
+    .order-container .order-body .order-details-responsive .card .card-details .details-footer div {
         justify-content: space-between;
         margin: 5px 0;
     }
 }
-

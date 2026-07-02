@@ -5,12 +5,12 @@ import gaming_category from '../../assets/gmaings-category-sections.png'
 import sonftware_category from '../../assets/softwre-category-section.jpg'
 import { useNavigate } from 'react-router-dom'
 
-function Category(){
+function Category() {
 
     // load navigate
     const navigate = useNavigate();
 
-    return(
+    return (
         <>
             <div className="category-container">
                 <div className="container-header">

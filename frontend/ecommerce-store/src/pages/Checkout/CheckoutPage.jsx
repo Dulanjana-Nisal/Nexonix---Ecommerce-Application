@@ -17,7 +17,7 @@ function CheckoutPage() {
     const { setupMessage } = Message();
     const { notifiDispatch } = Notifications() || {};
 
-
+    // use useNavigate hook
     const navigate = useNavigate();
 
     //chekout states
@@ -179,11 +179,11 @@ function CheckoutPage() {
             setTimeout(() => {
                 navigate('/orders')
             }, 1000)
-            setupMessage('success',"Successfully Added order to your order list", "Order Placed")
+            setupMessage('success', "Successfully Added order to your order list", "Order Placed")
 
         } catch (err) {
             if (err) {
-                setupMessage('error',"Something Wrong while checkout proceed", 'Product Checkout Error!')
+                setupMessage('error', "Something Wrong while checkout proceed", 'Product Checkout Error!')
             }
             console.log(err.response || err)
 

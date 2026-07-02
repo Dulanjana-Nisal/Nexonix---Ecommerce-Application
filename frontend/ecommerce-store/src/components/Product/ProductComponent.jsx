@@ -18,8 +18,13 @@ function ProductComponent({ items, ratings }) {
     //fetch review data
     useEffect(() => {
         const fetchReviewData = async () => {
-            const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${items._id}`)
-            setReviews(result.data)
+            try {
+                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${items._id}`)
+                setReviews(result.data)
+            }
+            catch (err) {
+                console.log(err.response)
+            }
         }
         fetchReviewData()
     }, [items])

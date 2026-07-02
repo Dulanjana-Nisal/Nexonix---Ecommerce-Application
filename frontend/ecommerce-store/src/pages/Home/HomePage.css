@@ -275,11 +275,12 @@
 }
 
 /* infor 2 section style */
-.container .second-info-container{
+.container .second-info-container {
     width: 100%;
     background-color: #F1F5F6;
 }
-.container .second-info-container .info-row{
+
+.container .second-info-container .info-row {
     width: 90%;
     padding: 45px 0;
     margin: auto;
@@ -361,11 +362,12 @@
         width: 100%;
         margin-bottom: 50px;
     }
-    
+
     .container .best-choice .best-choice-body .body-template {
         grid-template-columns: auto auto auto;
     }
-    .footer .footer-top{
+
+    .footer .footer-top {
         grid-template-columns: 300px auto auto auto;
         justify-content: space-between;
         row-gap: 40px;
@@ -413,12 +415,13 @@
 }
 
 @media(max-width: 900px) {
-   .container .second-info-container .info-row{
+    .container .second-info-container .info-row {
         display: grid;
         grid-template-columns: auto auto;
         row-gap: 30px;
-   }
-   .container .second-info-container .info-row .products{
+    }
+
+    .container .second-info-container .info-row .products {
         grid-row-start: 2;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -436,7 +439,8 @@
     .footer .footer-top {
         grid-template-columns: auto auto auto;
     }
-    .footer .footer-top .location{
+
+    .footer .footer-top .location {
         grid-column-start: 1;
         grid-column-end: 3;
     }
@@ -478,18 +482,20 @@
 }
 
 @media(max-width: 600px) {
-   .container .second-info-container .info-row{
+    .container .second-info-container .info-row {
         grid-template-columns: auto;
         justify-content: center;
         row-gap: 50px;
-   }
-   .container .second-info-container .info-row .second-info-box{
+    }
+
+    .container .second-info-container .info-row .second-info-box {
         grid-column-start: 1;
         grid-column-end: 3;
-   }
-   .container .second-info-container .info-row .products{
+    }
+
+    .container .second-info-container .info-row .products {
         margin: 0;
-   }
+    }
 }
 
 @media(max-width: 560px) {
@@ -569,6 +575,7 @@
         grid-template-columns: auto;
         justify-content: center;
     }
+
     .container .best-choice .best-choice-head,
     .container .category-container .container-header {
         text-align: center;

@@ -68,8 +68,6 @@ function DetailsPage() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [productId, refesh])
 
-    console.log('hellow')
-
     //fetch reviews data
     useEffect(() => {
         const fetchReviews = async () => {
@@ -99,12 +97,12 @@ function DetailsPage() {
             await api.post('/reviews', addReviews)
             await api.patch(`/products/${productId}`, { ratings: Math.round(newRatingCount) })
             setPage(1)
-            setAddReviews({productId: productId, message: '', ratings: 0})
-            setupMessage('success','Your Review is added successfully...','Review Added')
+            setAddReviews({ productId: productId, message: '', ratings: 0 })
+            setupMessage('success', 'Your Review is added successfully...', 'Review Added')
         }
         catch (err) {
             console.log(err.response)
-            setupMessage('error','Error while submiting your Review tray again later!','Review Submit Faild!')
+            setupMessage('error', 'Error while submiting your Review tray again later!', 'Review Submit Faild!')
         }
         setRefesh(prev => !prev)
     }

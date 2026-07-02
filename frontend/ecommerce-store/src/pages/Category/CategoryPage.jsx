@@ -10,27 +10,27 @@ import CategoryBody from './CategoryBody';
 function CategoryPage() {
 
     //use state hooks
-    const [allCategoryDetails,setAllCategoryDetails] = useState([]);
-    const [categoryData,setCategoryData] = useState([]);
-    const [toggleOption,setToggleOption] = useState(false);
-    const [brands,setBrand] = useState([]);
-    const [productBrands,setProductBrands] = useState([]);
-    const [loading,setLoading] = useState(false);
-    const [priceValues,setPriceValues] = useState({
+    const [allCategoryDetails, setAllCategoryDetails] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+    const [toggleOption, setToggleOption] = useState(false);
+    const [brands, setBrand] = useState([]);
+    const [productBrands, setProductBrands] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [priceValues, setPriceValues] = useState({
         maxPrice: 100000,
         minPrice: 0
     })
-    const [filterTags,setFilterTags] = useState({
+    const [filterTags, setFilterTags] = useState({
         brand: undefined,
         rr: undefined,
         pr: undefined,
     });
- 
+
     //get Category name from url
-    const {category} = useParams();
+    const { category } = useParams();
 
     //get query data from url
-    const [queryData,setQueryData] = useSearchParams();
+    const [queryData, setQueryData] = useSearchParams();
 
     //get page number from query data
     const pageNumber = Number(queryData.get("page")) || 1;
@@ -41,7 +41,7 @@ function CategoryPage() {
     //get brand name from query data
     const brandName = queryData.get("brand") || "";
 
-     //get rating rage from query data
+    //get rating rage from query data
     const ratingRange = queryData.get("rr") || "";
 
     //get rating rage from query data
@@ -50,30 +50,30 @@ function CategoryPage() {
     //get rating rage from query data
     const availability = queryData.get("availability") || "";
 
-    useEffect(()=>{
-        const fetchCategoryDetails = async ()=>{
+    useEffect(() => {
+        const fetchCategoryDetails = async () => {
             setLoading(true)
-            try{
+            try {
                 const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
                 setAllCategoryDetails(result.data)
                 setCategoryData(result.data.data)
                 setToggleOption(false)
             }
-            catch(err){
-                console.log(err)
+            catch (err) {
+                console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }
         fetchCategoryDetails();
-        window.scroll({ top: 0, behavior: 'smooth'})
+        window.scroll({ top: 0, behavior: 'smooth' })
     }, [category, queryData, pageNumber, sortMethod, brandName, ratingRange, pricingRange, availability])
 
     // set brands in product
-    useEffect(()=>{
-        const fetchBrands = async ()=>{
-            try{
+    useEffect(() => {
+        const fetchBrands = async () => {
+            try {
                 const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}`);
                 setBrand(result.data.data)
                 setFilterTags({})
@@ -82,23 +82,23 @@ function CategoryPage() {
                     minPrice: 0,
                 })
             }
-            catch(err){
-                console.log(err)
+            catch (err) {
+                console.log(err.response)
             }
         }
         fetchBrands();
     }, [category])
 
-    useEffect(()=>{
-        const renderBrand = ()=>{
+    useEffect(() => {
+        const renderBrand = () => {
             const uniqueBrands = [...new Set(brands.map(item => item.brand))];
             setProductBrands(uniqueBrands);
         }
         renderBrand()
     }, [brands])
-    
+
     // go to next page
-    function toNextPage(){
+    function toNextPage() {
         const currentPage = pageNumber + 1;
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("page", currentPage);
@@ -106,7 +106,7 @@ function CategoryPage() {
     }
 
     //go to prev page
-    function toPrePage(){
+    function toPrePage() {
         const currentPage = pageNumber - 1;
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("page", currentPage)
@@ -114,7 +114,7 @@ function CategoryPage() {
     }
 
     //Sort products
-    function sortProducts(value){
+    function sortProducts(value) {
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("sort", value);
         newQuery.set("page", 1);
@@ -122,7 +122,7 @@ function CategoryPage() {
     }
 
     //filter by brand
-    function brandsFilter(event){
+    function brandsFilter(event) {
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("brand", event.target.id);
         newQuery.set("page", 1)
@@ -130,18 +130,18 @@ function CategoryPage() {
             ...filterTags,
             brand: event.target.id
         })
-        if(event.target.id === 'undefined'){
+        if (event.target.id === 'undefined') {
             setFilterTags({
                 ...filterTags,
                 brand: undefined
             })
         }
         setQueryData(newQuery);
-        
+
     }
 
     ///filter by ratings
-    function ratingsFilter(event){
+    function ratingsFilter(event) {
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("rr", event.target.id);
         newQuery.set("page", 1)
@@ -149,7 +149,7 @@ function CategoryPage() {
             ...filterTags,
             rr: event.target.id
         })
-        if(event.target.id === ' '){
+        if (event.target.id === ' ') {
             setFilterTags({
                 ...filterTags,
                 rr: undefined
@@ -159,7 +159,7 @@ function CategoryPage() {
     }
 
     //filter by price
-    function submitPriceValue(){
+    function submitPriceValue() {
         const updateQery = new URLSearchParams(queryData);
         updateQery.set("pr", `${priceValues.minPrice}-${priceValues.maxPrice}`)
         updateQery.set("page", 1)
@@ -172,7 +172,7 @@ function CategoryPage() {
     }
 
     //filter by availability
-    function filterByAvailability(event){
+    function filterByAvailability(event) {
         const newQuery = new URLSearchParams(queryData);
         newQuery.set("availability", event.target.id)
         newQuery.set("page", 1)
@@ -183,7 +183,7 @@ function CategoryPage() {
             availability: event.target.id === 'false' ? "Out Stock" : "In Stock"
         })
 
-        if(event.target.id == 'all'){
+        if (event.target.id == 'all') {
             newQuery.set("availability", "")
 
             setFilterTags({
@@ -194,9 +194,9 @@ function CategoryPage() {
     }
 
     //clearFilters
-    function clearFilters(){
+    function clearFilters() {
         setFilterTags({})
-        setQueryData({...queryData})
+        setQueryData({ ...queryData })
         window.location.reload();
     }
 
@@ -207,10 +207,10 @@ function CategoryPage() {
         high_to_low: "Price High to Low"
     }
     const label = sortLabels[sortMethod] || 'Latest';
-    
+
     //count page size
     const resultSize = allCategoryDetails.all_result;
-    const pagesSize = Math.ceil(resultSize/10)  
+    const pagesSize = Math.ceil(resultSize / 10)
 
 
     return (
@@ -225,10 +225,10 @@ function CategoryPage() {
 
                     {/* category Filter */}
                     <CategoryFilter clearFilters={clearFilters} filterTags={filterTags} brandName={brandName} productBrands={productBrands} brandsFilter={brandsFilter} ratingsFilter={ratingsFilter} ratingRange={ratingRange} priceValues={priceValues} setPriceValues={setPriceValues} submitPriceValue={submitPriceValue} filterByAvailability={filterByAvailability} availability={availability} />
-                    
+
                     {/* Category Body */}
                     <CategoryBody category={category} categoryData={categoryData} pageNumber={pageNumber} toPrePage={toPrePage} pagesSize={pagesSize} toNextPage={toNextPage} loading={loading} />
-                    
+
                 </div>
             </div>
             <FooterCompoennt />

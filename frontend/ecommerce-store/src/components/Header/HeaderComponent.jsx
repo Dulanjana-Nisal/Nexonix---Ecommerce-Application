@@ -201,7 +201,7 @@ function HeaderComponent() {
                                     </svg>
                                 </div>
                                 <div class="profile-box">
-                                    
+
                                 </div>
                             </div>
                         </Link>

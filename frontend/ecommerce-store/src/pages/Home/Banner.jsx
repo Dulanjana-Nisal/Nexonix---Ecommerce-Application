@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const slides = [
-    {  
+    {
         bannerID: 1,
         header: <h1>HP Omen 45L <span>Gaming Desktop</span></h1>,
         discription: "The HP Omen 45L Gaming Desktop comes with AMD Ryzen 9, NVIDIA RTX 4080, 64GB DDR5 RAM, 2TB SSD, and a liquid-cooled Cryo Chamber design for extreme thermal performance.",
@@ -34,26 +34,25 @@ const slides = [
 
 function Banner() {
 
-    const [scale,setScale] = useState(0)
-    useEffect(()=>{
-        const intervel = setInterval(()=>{
+    const [scale, setScale] = useState(0)
+    useEffect(() => {
+        const intervel = setInterval(() => {
             setScale((prev) => (prev + 1) % slides.length)
         }, 10000)
         return () => clearInterval(intervel)
     }, [])
-    
-    const navigateBanner = (value) =>{
+
+    const navigateBanner = (value) => {
         setScale(value - 1)
     }
-
 
     return (
         <>
             <div class="banner-container">
                 {
-                    slides.map((items)=>{
-                        return(
-                            <div class={`banner banner${items.bannerID}`} key={items.bannerID} style={{transform: `translateX(-${scale * 100}%)`}}>
+                    slides.map((items) => {
+                        return (
+                            <div class={`banner banner${items.bannerID}`} key={items.bannerID} style={{ transform: `translateX(-${scale * 100}%)` }}>
                                 <div class="banner-info">
                                     {items.header}
                                     <p>{items.discription}</p>
@@ -78,9 +77,9 @@ function Banner() {
                 }
                 <div class="banner-nav">
                     {
-                        slides.map((items)=>{
-                            return(
-                                <p key={items.bannerID} id={scale === items.bannerID-1 && 'select'} onClick={() => navigateBanner(items.bannerID)}></p>
+                        slides.map((items) => {
+                            return (
+                                <p key={items.bannerID} id={scale === items.bannerID - 1 && 'select'} onClick={() => navigateBanner(items.bannerID)}></p>
                             )
                         })
                     }

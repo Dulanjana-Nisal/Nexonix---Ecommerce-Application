@@ -203,66 +203,66 @@ function NotificationsPage() {
                                 loading ?
                                     <LoadingComponent />
                                     :
-                                        notifications.length === 0 ?
-                                            <div class="empty-notifi-container">
-                                                <div class="container-top">
-                                                    <img src={empty_notificataios} alt="emty-cart-image" />
-                                                </div>
-                                                <div class="container-bottom">
-                                                    <h1>Your Notification list is empty</h1>
-                                                    <p>Looks like you haven't any notifications yet.</p>
-                                                </div>
+                                    notifications.length === 0 ?
+                                        <div class="empty-notifi-container">
+                                            <div class="container-top">
+                                                <img src={empty_notificataios} alt="emty-cart-image" />
                                             </div>
+                                            <div class="container-bottom">
+                                                <h1>Your Notification list is empty</h1>
+                                                <p>Looks like you haven't any notifications yet.</p>
+                                            </div>
+                                        </div>
                                         :
-                                            <div class="notif-list">
+                                        <div class="notif-list">
 
-                                                {
-                                                    notifications.length > 0 &&
-                                                    notifications.map((items) => {
-                                                        return (
-                                                            <div class="notif-item" key={items._id}>
-                                                                {
-                                                                    items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
-                                                                }
-                                                                {
-                                                                    notificationThumb[items.type]
-                                                                }
-                                                                <div class="notif-body">
-                                                                    <div class="notif-title">{items.title}</div>
-                                                                    <div class="notif-desc">{items.message}</div>
-                                                                    <div class="notif-time">
-                                                                        {formatDistanceToNow(new Date(items.createdAt),
-                                                                            {
-                                                                                addSuffix: true,
-                                                                            }
-                                                                        )}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="notif-right">
-                                                                    <span class={notificationTag[items.type]}>{items.type}</span>
-                                                                    <button class="menu-btn" onClick={() => setToggleDetails({ notificationId: items._id, toggle: !toggleDetails.toggle })}>
-                                                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
-                                                                    </button>
-                                                                    {
-                                                                        toggleDetails.toggle && toggleDetails.notificationId === items._id &&
-                                                                        <div class="action-box">
-                                                                            <div class='read' onClick={() => updateNotifications(items._id)}>
-                                                                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                                                                <p >Mark as Read</p>
-                                                                            </div>
-                                                                            <div class='delete' onClick={() => deleteNotifications(items._id)}>
-                                                                                <svg class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                                                                                <p>Delete</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    }
+                                            {
+                                                notifications.length > 0 &&
+                                                notifications.map((items) => {
+                                                    return (
+                                                        <div class="notif-item" key={items._id}>
+                                                            {
+                                                                items.isread ? <div class="read-dot"></div> : <div class="unread-dot"></div>
+                                                            }
+                                                            {
+                                                                notificationThumb[items.type]
+                                                            }
+                                                            <div class="notif-body">
+                                                                <div class="notif-title">{items.title}</div>
+                                                                <div class="notif-desc">{items.message}</div>
+                                                                <div class="notif-time">
+                                                                    {formatDistanceToNow(new Date(items.createdAt),
+                                                                        {
+                                                                            addSuffix: true,
+                                                                        }
+                                                                    )}
                                                                 </div>
                                                             </div>
-                                                        )
-                                                    })
-                                                }
+                                                            <div class="notif-right">
+                                                                <span class={notificationTag[items.type]}>{items.type}</span>
+                                                                <button class="menu-btn" onClick={() => setToggleDetails({ notificationId: items._id, toggle: !toggleDetails.toggle })}>
+                                                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
+                                                                </button>
+                                                                {
+                                                                    toggleDetails.toggle && toggleDetails.notificationId === items._id &&
+                                                                    <div class="action-box">
+                                                                        <div class='read' onClick={() => updateNotifications(items._id)}>
+                                                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                                                            <p >Mark as Read</p>
+                                                                        </div>
+                                                                        <div class='delete' onClick={() => deleteNotifications(items._id)}>
+                                                                            <svg class="delete" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                                                                            <p>Delete</p>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
 
-                                            </div>
+                                        </div>
                             }
                         </div>
                         <div class="col-aside">

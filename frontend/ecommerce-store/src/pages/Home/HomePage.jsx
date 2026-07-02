@@ -26,9 +26,9 @@ function HomePage() {
                 setBestChoiceProduct(fetchBestChoiceProducts.data.data)
             }
             catch (err) {
-                console.log(err)
+                console.log(err.response)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }

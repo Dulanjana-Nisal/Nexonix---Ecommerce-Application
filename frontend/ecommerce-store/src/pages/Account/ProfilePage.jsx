@@ -11,19 +11,19 @@ function ProfilePage({ navigate, dispatch, user, state }) {
 
     // load data from context
     const { notifiState } = Notifications() || {};
-    const {setupMessage} = Message()
+    const { setupMessage } = Message()
 
     // states
-    const [ordersDetails,setOrdersDetails] = useState([])
+    const [ordersDetails, setOrdersDetails] = useState([])
 
     // useEffect
-    useEffect(()=>{
-        const fetchOrdersData = async() => {
-            try{
+    useEffect(() => {
+        const fetchOrdersData = async () => {
+            try {
                 const result = await api.get(`/orders?limit=-1`)
                 setOrdersDetails(result.data.data)
             }
-            catch(err){
+            catch (err) {
                 console.log(err.response)
             }
         }
@@ -35,7 +35,7 @@ function ProfilePage({ navigate, dispatch, user, state }) {
         const filterOrders = ordersDetails.filter(items => items.method !== 'cash-on-delivery' || items.status === 'Delivered')
         let totalSpent = 0
         filterOrders.forEach((items) => {
-            totalSpent += items.price *items.quantity + (items.tax || 0)
+            totalSpent += items.price * items.quantity + (items.tax || 0)
         })
         return totalSpent
     }
@@ -75,14 +75,14 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                                                 <p>Go to Admin Panel</p>
                                             </button>
-                                            <button class="logout" onClick={() => logout('/',dispatch,setupMessage)}>
+                                            <button class="logout" onClick={() => logout('/', dispatch, setupMessage)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>
                                         </div>
                                         :
                                         <div class="details-buttons">
-                                            <button class="logout" onClick={() => logout('/',dispatch,setupMessage)}>
+                                            <button class="logout" onClick={() => logout('/', dispatch, setupMessage)}>
                                                 <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                                 <p>Logout</p>
                                             </button>
@@ -164,21 +164,21 @@ function ProfilePage({ navigate, dispatch, user, state }) {
                                 </div>
                             </div>
                             {
-                                user.role === 'admin' ? 
-                                <button onClick={() => navigate('/admin/dashboard')}>
-                                    Go to Admin Panel
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                    </svg>
-                                </button>
-                                :
-                                <button onClick={() => navigate('/')}>
-                                    Shop Now
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
-                                    </svg>
-                                </button>
-                             }
+                                user.role === 'admin' ?
+                                    <button onClick={() => navigate('/admin/dashboard')}>
+                                        Go to Admin Panel
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                        </svg>
+                                    </button>
+                                    :
+                                    <button onClick={() => navigate('/')}>
+                                        Shop Now
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+                                        </svg>
+                                    </button>
+                            }
                         </div>
                     </div>
                     {/* Container Right */}

@@ -1,7 +1,7 @@
 import LoadingComponent from "../../components/Loading/LoadingComponent";
 import ProductComponent from "../../components/Product/ProductComponent";
 
-function BestChoice({bestChoiceProduct,loading}) {
+function BestChoice({ bestChoiceProduct, loading }) {
     return (
         <>
             <div class="best-choice">
@@ -11,16 +11,16 @@ function BestChoice({bestChoiceProduct,loading}) {
                 <div class="best-choice-body">
                     {
                         loading ? <LoadingComponent />
-                        :
-                        <div class="body-template">
-                            {
-                                bestChoiceProduct.map((items) => {
-                                    return (
-                                        <ProductComponent items={items} ratings={items.ratings} key={items._id} />
-                                    )
-                                })
-                            }
-                        </div>
+                            :
+                            <div class="body-template">
+                                {
+                                    bestChoiceProduct.map((items) => {
+                                        return (
+                                            <ProductComponent items={items} ratings={items.ratings} key={items._id} />
+                                        )
+                                    })
+                                }
+                            </div>
                     }
                 </div>
             </div>

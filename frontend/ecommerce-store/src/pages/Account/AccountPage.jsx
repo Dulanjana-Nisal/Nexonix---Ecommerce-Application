@@ -106,7 +106,6 @@ function AccountPage() {
 
             // call fetch cart data function
             fetchCartData()
-            console.log(registerUser.data)
             setMessages({
                 success: true,
                 message: "Register Success!"
