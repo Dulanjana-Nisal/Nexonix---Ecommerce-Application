@@ -29,7 +29,7 @@ const getAllReviews = asyncHaddler(async (req,res) => {
     if(limit == 'all'){
         const newAllReviews = await Reviews.find(querySelectore).sort({createdAt: -1})
 
-        res.status(statusCodes.OK).json({
+        return res.status(statusCodes.OK).json({
         success: true,
         all_result: newAllReviews.length,
         data: newAllReviews,

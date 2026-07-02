@@ -37,7 +37,8 @@ function DetailsPage() {
     const [refesh, setRefesh] = useState(false)
     const [page, setPage] = useState(1)
     const [scrollWidth, setScrollWidth] = useState(0)
-
+    console.log(allReviewsData)
+    console.log(user._id)
     // add quntity
     function addQnt() {
         const sum = quantity + 1
@@ -358,12 +359,12 @@ function DetailsPage() {
                                                             <div class="reviews" key={items._id}>
                                                                 <div class="user-review">
                                                                     <div class="profile-image">
-                                                                        <img src={user_profile} alt="user-profile" />
+                                                                        <img style={{ border: items.userId === user._id ? '2px solid #2B38D1' : 'none' }} src={user_profile} alt="user-profile" />
                                                                     </div>
                                                                     <div class="profile-data">
                                                                         <div class="name">
                                                                             <h3>{items.userName}</h3>
-                                                                            <p>{(items.createdAt).slice(0, 10)}</p>
+                                                                            <p>{(items.createdAt).slice(0, 10)} </p>
                                                                         </div>
                                                                         <div class="stars">
                                                                             {ratingsQuery[items.ratings]}
