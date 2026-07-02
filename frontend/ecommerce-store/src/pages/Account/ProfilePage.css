@@ -421,6 +421,9 @@
     .profile-container .profile-main-container .container-left .profile-foot-section button{
         min-width: 170px;
     }
+    .profile-container .profile-main-container .container-left .profile-foot-section button{
+        justify-content: center;
+    }
 }
 @media(max-width: 820px){
     .profile-container .profile-main-container{

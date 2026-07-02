@@ -922,6 +922,9 @@
     .details-container .container-options .option-body .reviews-body .review-box .box-body .reviews .user-comment p{
         text-align: center;
     }
+    .details-container .container-options .option-body .reviews-body .add-reviews .add-review-content .loged-content .star-count h4{
+        font-size: 14px;
+    }
 }
 
 /* ************************************** */
