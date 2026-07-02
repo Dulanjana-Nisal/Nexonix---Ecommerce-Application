@@ -611,12 +611,6 @@
   }
 }
 
-@media(max-width: 665px){
-  .notification-main-container .notification-container .tab-btn{
-    padding: 15px 10px;
-  }
-}
-
 @media(max-width: 575px){
   .notification-main-container .btn-primary p{
     display: none;
@@ -629,7 +623,7 @@
   }
   .notification-main-container .tabs{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .notification-main-container .notification-container .tab-btn{
     margin: auto;

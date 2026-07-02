@@ -188,7 +188,6 @@ function NotificationsPage() {
                                     }
                                 </button>
                                 <button class={`tab-btn ${type === 'orders' && 'active'}`} onClick={() => filterByType('orders')}>Orders</button>
-                                <button class={`tab-btn ${type === 'products' && 'active'}`} onClick={() => filterByType('products')}>Products</button>
                                 <div class="tab-actions">
                                     <button class="btn-primary refesh" onClick={() => location.reload()}>
                                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
@@ -290,13 +289,6 @@ function NotificationsPage() {
                                     </div>
                                     <span class="label">Orders</span>
                                     <span class="count">{(notifiState.filter(items => items.type === 'orders')).length}</span>
-                                </div>
-                                <div class="summary-row">
-                                    <div class="sr-icon warn2">
-                                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
-                                    </div>
-                                    <span class="label">Products</span>
-                                    <span class="count">{(notifiState.filter(items => items.type === 'products')).length}</span>
                                 </div>
                             </div>
                         </div>
