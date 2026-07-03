@@ -1,4 +1,4 @@
-function NotificationAsideContainer({notifiState}) {
+function NotificationAsideContainer({ notifiState }) {
     return (
         <div className="col-aside-admin">
             {/* <!-- Notification Summary --> */}
