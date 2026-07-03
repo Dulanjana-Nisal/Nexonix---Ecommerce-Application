@@ -68,7 +68,7 @@ function DetailsProductContainer({ producatDetails, setFullScreen, fullScreen, r
                 <div className="product-buttons row">
                     {
                         state.find(item => item.productId == producatDetails._id) ?
-                            <button style={{ opacity: "0.5", cursor: " not-allowed" }} classNameName='in-cart-btn'>
+                            <button style={{ opacity: "0.5", cursor: " not-allowed" }} className='in-cart-btn'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2 3h2l2.6 12.4A2 2 0 0 0 8.6 17h9.8a2 2 0 0 0 2-1.6L22 7H6"></path><polyline points="9.5 11.5 12 14 16.5 9"></polyline></svg>
                                 In Your Cart
                             </button>

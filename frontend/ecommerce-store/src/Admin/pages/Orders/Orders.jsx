@@ -91,13 +91,13 @@ function Orders() {
                 console.log(err.response)
             }
 
-            setupMessage('success', 'Order Updated!', `Order (ID: ${updateDetails.orderId}) is Updated Successfully`)
+            setupMessage('success', `Order (ID: ${updateDetails.orderId}) is Updated Successfully`, 'Order Updated!')
             setReload(prev => !prev)
         }
 
         catch (err) {
             console.log(err.response)
-            setupMessage('error', 'Update Faild!', `Order (ID: ${updateDetails.orderId}) is Faild to update!!`)
+            setupMessage('error', `Order (ID: ${updateDetails.orderId}) is Faild to update!!`, 'Update Faild!',)
         }
     }
 

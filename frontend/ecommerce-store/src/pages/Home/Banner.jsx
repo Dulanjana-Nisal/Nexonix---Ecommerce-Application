@@ -48,22 +48,22 @@ function Banner() {
 
     return (
         <>
-            <div class="banner-container">
+            <div className="banner-container">
                 {
                     slides.map((items) => {
                         return (
-                            <div class={`banner banner${items.bannerID}`} key={items.bannerID} style={{ transform: `translateX(-${scale * 100}%)` }}>
-                                <div class="banner-info">
+                            <div className={`banner banner${items.bannerID}`} key={items.bannerID} style={{ transform: `translateX(-${scale * 100}%)` }}>
+                                <div className="banner-info">
                                     {items.header}
                                     <p>{items.discription}</p>
-                                    <div class="buttons">
-                                        <Link class="no-style-link" to={items.link}><button class='shop-btn'>
+                                    <div className="buttons">
+                                        <Link className="no-style-link" to={items.link}><button className='shop-btn'>
                                             Shop Now
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
                                             </svg>
                                         </button></Link>
-                                        <Link class="no-style-link" to={items.link}><button class='details-btn'>
+                                        <Link className="no-style-link" to={items.link}><button className='details-btn'>
                                             Lern More
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
@@ -75,7 +75,7 @@ function Banner() {
                         )
                     })
                 }
-                <div class="banner-nav">
+                <div className="banner-nav">
                     {
                         slides.map((items) => {
                             return (
