@@ -593,4 +593,42 @@
     .admin-container .sections .sections-body .product-section .product-header .filter-keys {
         padding-top: 0;
     }
+
+    .admin-container .sections .sections-body .product-section .product-body .add-product-box, .admin-container .sections .sections-body .product-section .product-body .update-product-box{
+        height: 100%;
+    }
+
+    .admin-container .sections .sections-body .product-section .product-body .box{
+        width: 90%;
+        margin-top: 10%;
+    }
+
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .key-values{
+        width: auto;
+    }
+
+}
+
+@media(max-width: 480px) {
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .counters{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .quantity input, .admin-container .sections .sections-body .product-section .product-body .box .box-form .price input{
+        width: 100%;
+    }
+
+}
+
+@media(max-width: 350px) {
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs{
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+    }
+
+    .admin-container .sections .sections-body .product-section .product-body .box .box-form .keywords .inputs button{
+        width: 100%;
+    }
+
 }

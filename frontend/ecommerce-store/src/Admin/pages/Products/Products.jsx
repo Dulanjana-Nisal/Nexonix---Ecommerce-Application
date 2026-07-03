@@ -32,6 +32,19 @@ function Products({ path }) {
     const [reloadEffect, setReloadEffect] = useState(false)
 
     // add and update product states
+    // const [productDetails, setProductDetails] = useState({
+    //     name: '',
+    //     image: '',
+    //     stock: '',
+    //     price: '',
+    //     ratings: '',
+    //     description: '',
+    //     keywords: '',
+    //     category: '',
+    //     brand: '',
+    //     availability: ''
+
+    // })
     const [productName, setProductName] = useState('')
     const [image, setImage] = useState(null)
     const [productStock, setProductStock] = useState(null)
@@ -304,6 +317,7 @@ function Products({ path }) {
 
     // Toggle Add Product Button
     const addProductsToggleButton = () => {
+        setProductKeywords([])
         addProductsToggle ? setAddProductsToggle(false) : setAddProductsToggle(true) & setReloadEffect(reloadEffect ? false : true)
     }
 

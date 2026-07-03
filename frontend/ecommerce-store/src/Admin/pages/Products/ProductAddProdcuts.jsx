@@ -65,9 +65,9 @@ function ProductAddProdcuts({ setProductName, setImage, setProductPrice, setProd
                             {
                                 productKeywords.map((items) => {
                                     return (
-                                        <div className="values" key={items.id}>
-                                            <p>{items.value}</p>
-                                            <i className="fa fa-close" onClick={() => deleteKeywords(items.id)}></i>
+                                        <div className="values" key={items}>
+                                            <p>{items}</p>
+                                            <i className="fa fa-close" onClick={() => deleteKeywords(items)}></i>
                                         </div>
                                     )
                                 })
