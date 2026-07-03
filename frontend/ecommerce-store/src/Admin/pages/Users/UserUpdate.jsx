@@ -34,17 +34,17 @@ function UserUpdate({setUpdateUsersToggle,updateUsersToggle,setupMessage}) {
 
     return (
         <>
-            <div class="update-user-box">
-                <div class="box">
-                    <div class="box-header">
+            <div className="update-user-box">
+                <div className="box">
+                    <div className="box-header">
                         <h1>Update User</h1>
                     </div>
-                    <div class="box-form">
-                        <div class="name row">
+                    <div className="box-form">
+                        <div className="name row">
                             <label>User Name</label>
                             <input type="text" placeholder="Enter Update Name" onChange={(e) => setUpdateData({...updateData, name: e.target.value})}/>
                         </div>
-                        <div class="category row">
+                        <div className="category row">
                             <label>Select Role</label>
                             <select defaultValue={"user"} onChange={(e) => setUpdateData({...updateData, role: e.target.value})}>
                                 <option value="admin">Admin</option>
@@ -53,18 +53,18 @@ function UserUpdate({setUpdateUsersToggle,updateUsersToggle,setupMessage}) {
                         </div>
                         {
                             messages.msg &&
-                            <div class={`alert ${messages.status === 'error' ? 'err' : 'succ'}`}>
-                                <p class={messages.status}>{messages.msg}</p>
+                            <div className={`alert ${messages.status === 'error' ? 'err' : 'succ'}`}>
+                                <p className={messages.status}>{messages.msg}</p>
                             </div>
                         }
-                        <div class="buttons row">
+                        <div className="buttons row">
                             {
                                 loading ?
                                     <input type="submit" value="Updating..."/>
                                     :
                                     <input type="submit" value="Update users" onClick={() => updateUsers(updateUsersToggle.userId)}/>
                             }
-                            <button class="close" onClick={() => setUpdateUsersToggle(prev => !prev)}>Close</button>
+                            <button className="close" onClick={() => setUpdateUsersToggle(prev => !prev)}>Close</button>
                         </div>
                     </div>
                 </div>
