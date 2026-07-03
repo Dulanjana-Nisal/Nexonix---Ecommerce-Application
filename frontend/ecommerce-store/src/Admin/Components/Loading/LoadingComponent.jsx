@@ -3,8 +3,8 @@ import './LoadingComponent.css'
 function LoadingComponent() {
     return (
         <>
-            <div class="loading-container">
-                <div class="loader">
+            <div className="loading-container">
+                <div className="loader">
                     <span></span>
                     <span></span>
                     <span></span>
