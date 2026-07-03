@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function AdminSectionHeader({notifiState,fetchCartData}) {
+function AdminSectionHeader({ notifiState, fetchCartData }) {
     return (
         <div className="section-header">
             <div className="header-top-left">

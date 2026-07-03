@@ -3,7 +3,7 @@ import user_profile from '../assets/user-profile-image.png'
 import logo from '../assets/logo2.png'
 import logo_letter from '../assets/logo-image-letter.png'
 
-function AdminSidebar({path,setProfileToggle,profileToggle,adminData,logout,navigate,dispatch,setupMessage}) {
+function AdminSidebar({ path, setProfileToggle, profileToggle, adminData, logout, navigate, dispatch, setupMessage }) {
     return (
         <div className="sidebar">
             <div className="top">
