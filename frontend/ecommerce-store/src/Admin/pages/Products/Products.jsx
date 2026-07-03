@@ -122,7 +122,7 @@ function Products({ path }) {
         productKeywords.map((items) =>
             keyList.push(items)
         )
-
+        
         //setup image url
         const formData = new FormData();
         formData.append('file', image)
@@ -143,7 +143,7 @@ function Products({ path }) {
                 keywords: keyList,
                 category: productCategory,
                 brand: productBrand,
-                availability: productAvailability
+                availability: productAvailability || true
             })
             if (result) {
                 setMessage({

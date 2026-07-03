@@ -77,6 +77,7 @@ function ProductAddProdcuts({ setProductName, setImage, setProductPrice, setProd
                     <div className="category row">
                         <label>Select Category</label>
                         <select onClick={(e) => setProductCategory((e.target.value).toLowerCase())}>
+                            <option value="">Select Category</option>
                             <option>Computers</option>
                             <option>Laptops</option>
                             <option>Components</option>
