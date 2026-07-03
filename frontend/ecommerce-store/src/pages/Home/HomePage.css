@@ -17,7 +17,7 @@
 .container .banner {
     flex: 1 0 100%;
     scroll-snap-align: start;
-    height: 75vh;
+    height: 550px;
     width: 100%;
     background-position: center;
     background-size: cover;

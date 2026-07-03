@@ -42,7 +42,7 @@ function CategoryBody({ category, categoryData, pageNumber, toPrePage, pagesSize
                                 {
                                     categoryData.map((items) => {
                                         return (
-                                            <ProductComponent items={items} ratings={items.ratings} />
+                                            <ProductComponent items={items} ratings={items.ratings} key={items._id} />
                                         )
                                     })
                                 }

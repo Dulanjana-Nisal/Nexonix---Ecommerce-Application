@@ -112,7 +112,7 @@ function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,p
                                             <div className="reviews" key={items._id}>
                                                 <div className="user-review">
                                                     <div className="profile-image">
-                                                        <img style={{ border: items.userId === user._id ? '2px solid #2564eb56' : 'none' }} src={user_profile} alt="user-profile" />
+                                                        <img style={{ border: items.userId === (user && user._id) ? '2px solid #2564eb56' : 'none' }} src={user_profile} alt="user-profile" />
                                                     </div>
                                                     <div className="profile-data">
                                                         <div className="name">

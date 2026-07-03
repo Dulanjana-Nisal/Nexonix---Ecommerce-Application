@@ -1,5 +1,6 @@
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
+import LoadingComponent from '../../components/Loading/LoadingComponent'
 import './DetailsPage.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -17,7 +18,7 @@ import DetailsSuggetionsContainer from './DetailsSuggetionsContainer';
 function DetailsPage() {
 
     // load context
-    const { state, dispatch, user } = Cart();
+    const { state, dispatch, user } = Cart() || {};
     const { setupMessage } = Message();
 
     //get product id form url
@@ -37,6 +38,7 @@ function DetailsPage() {
     const [refesh, setRefesh] = useState(false)
     const [page, setPage] = useState(1)
     const [scrollWidth, setScrollWidth] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     // add quntity
     function addQnt() {
@@ -53,16 +55,25 @@ function DetailsPage() {
     // fetch all data
     useEffect(() => {
         const fetchAllData = async () => {
-            const [products, recommendations, allReviewsData] = await Promise.all([
-                axios.get(`http://localhost:5000/api/v1/products/${productId}`),
-                axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
-                axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&limit=all`),
-            ])
-            setProductDetails(products.data.data)
-            setProducatKeywords(products.data.data.keywords)
-            setProductRecomendation(recommendations.data.data)
-            setAllReviewsData(allReviewsData.data.data)
-            setScrollWidth(0)
+            try{
+                setLoading(true)
+                const [products, recommendations, allReviewsData] = await Promise.all([
+                    axios.get(`http://localhost:5000/api/v1/products/${productId}`),
+                    axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
+                    axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&limit=all`),
+                ])
+                setProductDetails(products.data.data)
+                setProducatKeywords(products.data.data.keywords)
+                setProductRecomendation(recommendations.data.data)
+                setAllReviewsData(allReviewsData.data.data)
+                setScrollWidth(0)
+            }
+            catch(err){
+                console.log(err.response)
+            }
+            finally{
+                setLoading(false)
+            }
         }
         fetchAllData()
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -141,6 +152,9 @@ function DetailsPage() {
             <HeaderComponent />
             {/* <!---------------- container ----------------> */}
             {
+                loading ? 
+                    <LoadingComponent />
+                :
                 producatDetails.length === 0 ?
                     // Details Not Found container
                     <DetailsNotFoundContainer />
