@@ -1,18 +1,18 @@
 import FooterCompoennt from '../../components/Footer/FooterComponent';
 import HeaderComponent from '../../components/Header/HeaderComponent';
 import './DetailsPage.css';
-import user_profile from '../../assets/user-profile-image.png';
-import resize_image from '../../assets/resize-image.svg';
-import not_found from '../../assets/404-background.png';
-import close_btn_image from '../../assets/close-btn.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { addCartItems } from '../../api/cartApi';
 import { Cart } from '../../context/CartContext';
 import { Message } from '../../context/MessagesContext';
 import api from '../../services/auth';
-import ProductComponent from '../../components/Product/ProductComponent';
+import DetailsNotFoundContainer from './DetailsNotFoundContainer';
+import DetailsHeader from './DetailsHeader';
+import DetailsProductContainer from './DetailsProductContainer';
+import DetailsOptionContainer from './DetailsOptionContainer';
+import DetailsSuggetionsContainer from './DetailsSuggetionsContainer';
 
 function DetailsPage() {
 
@@ -37,8 +37,7 @@ function DetailsPage() {
     const [refesh, setRefesh] = useState(false)
     const [page, setPage] = useState(1)
     const [scrollWidth, setScrollWidth] = useState(0)
-    console.log(allReviewsData)
-    console.log(user._id)
+
     // add quntity
     function addQnt() {
         const sum = quantity + 1
@@ -143,320 +142,21 @@ function DetailsPage() {
             {/* <!---------------- container ----------------> */}
             {
                 producatDetails.length === 0 ?
-                    <div class="notfound-container">
-                        <img src={not_found} alt="404 notfound" />
-                        <div class="background-details">
-                            <h4>Oops! Page Not Found</h4>
-                            <h1>Look like you're lost</h1>
-                            <p>The page you're looking for dosen't exist or has been moved. Let's get you back on track.</p>
-                            <div class="buttons">
-                                <Link to="/" class="no-style-link">
-                                    <button class="home-btn">
-                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                            <path d="M3 9.5 12 3l9 6.5"></path>
-                                            <path d="M5 8.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V8.5"></path>
-                                        </svg>
-                                        Go to Homepage
-                                    </button>
-                                </Link>
-                                <Link to="/products/computers" class="no-style-link">
-                                    <button class="cat-btn">
-                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                        Browse Categories
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    // Details Not Found container
+                    <DetailsNotFoundContainer />
                     :
                     <div class="details-container">
-                        <div class="container-header">
-                            <p><Link to="/" style={{ textDecoration: "none" }}><span>Home</span></Link> / <Link to={`/products/${producatDetails.category}`} style={{ textDecoration: "none" }}><span>{producatDetails.category}</span></Link> / {producatDetails.name}</p>
-                        </div>
-                        <div class="container-product">
-                            <div class="product-image">
-                                <div class="thumb-image">
-                                    <img src={producatDetails.image} alt="product-image" />
-                                    <button onClick={() => { setFullScreen(true) }}><img src={resize_image} alt="" /></button>
-                                </div>
-                                {
-                                    fullScreen &&
-                                    <div class="full-image">
-                                        <div class="full-image-background">
-                                            <button class="close"><img src={close_btn_image} alt="" onClick={() => { setFullScreen(false) }} /></button>
-                                            <img src={producatDetails.image} alt="" />
-                                            <div class="product-details">
-                                                <div class="details-product-data">
-                                                    <h2>{producatDetails.name}</h2>
-                                                    <p>
-                                                        {ratingsQuery[producatDetails.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
-                                                    </p>
-                                                </div>
-                                                <div class="screen-data">
-                                                    <h4>Full Screen Mode</h4>
-                                                    <p>Zoom 100%</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="product-details">
-                                <div class="product-name row">
-                                    <h1>{producatDetails.name}</h1>
-                                </div>
-                                <div class="product-data row">
-                                    <div class="availability">
-                                        <p>Availability:</p>
-                                        <h4 class={producatDetails.availability ? "in-stock" : "out-stock"}>{producatDetails.availability ? "In Stock" : "Out Stock"}</h4>
-                                    </div>
-                                    <div class="review">
-                                        {ratingsQuery[producatDetails.ratings]}<span>( {reviewsResult.all_result || 0} Reviews )</span>
-                                    </div>
-                                    <div class="brand">
-                                        <p>Brand: </p>
-                                        <h4>{producatDetails.brand}</h4>
-                                    </div>
-                                </div>
-                                <div class="product-price row">
-                                    <p class="price">${producatDetails.price}</p>
-                                    <p class="stock">( {producatDetails.stock} items in stock )</p>
-                                </div>
-                                <div class="product-qnt row">
-                                    <div class="qnt-tag">
-                                        <p>Quantity: </p>
-                                    </div>
-                                    <div class="qnt-counter">
-                                        <button class="min" onClick={() => minQnt()}>−</button>
-                                        <p>{quantity}</p>
-                                        <button class="plus" onClick={() => addQnt()}>+</button>
-                                    </div>
-                                </div>
-                                <div class="product-description row">
-                                    <p>{producatDetails.description}</p>
-                                </div>
-                                <div class="product-buttons row">
-                                    {
-                                        state.find(item => item.productId == producatDetails._id) ?
-                                            <button style={{ opacity: "0.5", cursor: " not-allowed" }}>in Cart</button>
-                                            :
-                                            <button class="cart" onClick={() => addCartItems(producatDetails._id, producatDetails.name, producatDetails.image, quantity, producatDetails.price, producatDetails.availability, dispatch, setupMessage)}>Add To Cart</button>
+                        {/* Details Header */}
+                        <DetailsHeader producatDetails={producatDetails} />
 
-                                    }
-                                </div>
-                                <div class="product-more row">
-                                    <p>Guarantee safe & Secure checkout</p>
-                                    <img src="https://uminex.kutethemes.net/wp-content/uploads/2022/12/01-payment.svg" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container-options">
-                            <div class="option-header">
-                                <div class={!option ? "description selected" : "description"} onClick={() => { setOption(false) }}>
-                                    <p>Description</p>
-                                </div>
-                                <div class={option ? "reviews selected" : "reviews"} onClick={() => { setOption(true) }}>
-                                    <p>Reviews</p>
-                                </div>
-                            </div>
-                            <div class="option-body">
-                                {
-                                    !option &&
-                                    <div class="description-body">
-                                        <div class="name row">
-                                            <h3>Product Name: </h3>
-                                            <p>{producatDetails.name}</p>
-                                        </div>
-                                        <div class="price row">
-                                            <h3>Product price: </h3>
-                                            <p>${producatDetails.price}</p>
-                                        </div>
-                                        <div class="ratings row">
-                                            <h3>Ratings: </h3>
-                                            {ratingsQuery[producatDetails.ratings]}
-                                        </div>
-                                        <div class="description row">
-                                            <h3>Product description: </h3>
-                                            <p>{producatDetails.description}</p>
-                                        </div>
-                                        <div class="keywords row">
-                                            <h3>Keywords: </h3>
-                                            <div class="tags">
-                                                {
-                                                    producatKeywords.map((items) => {
-                                                        return (
-                                                            <p key={items}>{items}</p>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        </div>
-                                        <div class="category row">
-                                            <h3>Product Category: </h3>
-                                            <p>{producatDetails.category}</p>
-                                        </div>
-                                        <div class="brand row">
-                                            <h3>Brand: </h3>
-                                            <p>{producatDetails.brand}</p>
-                                        </div>
-                                    </div>
-                                }
-                                {
-                                    option &&
-                                    <div class="reviews-body">
-                                        <div class="review-box">
-                                            <div class="box-head">
-                                                <div class="total-reviews">
-                                                    <h1>{(producatDetails.ratings).toFixed(1)}</h1>
-                                                    {ratingsQuery[producatDetails.ratings]}
-                                                </div>
-                                                <div class="count-reviews">
-                                                    <div class="five-star row">
-                                                        <p class="star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-                                                        <div class="range-row">
-                                                            <div class="range" style={{ width: ` ${(reviewsCounter(5) / reviewsResult.all_result) * 100}%` }}></div>
-                                                        </div>
-                                                        <p>{reviewsCounter(5)}</p>
-                                                    </div>
-                                                    <div class="four-star row">
-                                                        <p class="star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                                        <div class="range-row">
-                                                            <div class="range" style={{ width: ` ${(reviewsCounter(4) / reviewsResult.all_result) * 100}%` }}></div>
-                                                        </div>
-                                                        <p>{reviewsCounter(4)}</p>
-                                                    </div>
-                                                    <div class="three-star row">
-                                                        <p class="star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
-                                                        <div class="range-row">
-                                                            <div class="range" style={{ width: ` ${(reviewsCounter(3) / reviewsResult.all_result) * 100}%` }}></div>
-                                                        </div>
-                                                        <p>{reviewsCounter(3)}</p>
-                                                    </div>
-                                                    <div class="two-star row">
-                                                        <p class="star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
-                                                        <div class="range-row">
-                                                            <div class="range" style={{ width: ` ${(reviewsCounter(2) / reviewsResult.all_result) * 100}%` }}></div>
-                                                        </div>
-                                                        <p>{reviewsCounter(2)}</p>
-                                                    </div>
-                                                    <div class="one-star row">
-                                                        <p class="star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
-                                                        <div class="range-row">
-                                                            <div class="range" style={{ width: ` ${(reviewsCounter(1) / reviewsResult.all_result) * 100}%` }}></div>
-                                                        </div>
-                                                        <p>{reviewsCounter(1)}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-body">
-                                                <div class="title">
-                                                    <p>{reviewsResult.all_result} Reviews for "<span>{producatDetails.name}</span>"</p>
-                                                </div>
-                                                {
-                                                    reviews.length > 0 &&
-                                                    reviews.map((items) => {
-                                                        return (
-                                                            <div class="reviews" key={items._id}>
-                                                                <div class="user-review">
-                                                                    <div class="profile-image">
-                                                                        <img style={{ border: items.userId === user._id ? '2px solid #2B38D1' : 'none' }} src={user_profile} alt="user-profile" />
-                                                                    </div>
-                                                                    <div class="profile-data">
-                                                                        <div class="name">
-                                                                            <h3>{items.userName}</h3>
-                                                                            <p>{(items.createdAt).slice(0, 10)} </p>
-                                                                        </div>
-                                                                        <div class="stars">
-                                                                            {ratingsQuery[items.ratings]}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="user-comment">
-                                                                    <p>{items.message}</p>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            {
-                                                reviews.length > 0 &&
-                                                <div class="box-buttons">
-                                                    {
-                                                        page !== 1 &&
-                                                        <button class="pre" onClick={() => setPage(prev => prev - 1)}>‹</button>
-                                                    }
-                                                    <p><span>{reviewsResult.page}</span> of {limitResult || 1}</p>
-                                                    {
-                                                        limitResult !== page &&
-                                                        <button class="next" onClick={() => setPage(prev => prev + 1)}>›</button>
-                                                    }
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="add-reviews">
-                                            <div class="add-review-head">
-                                                <h3>Add a Review</h3>
-                                            </div>
-                                            <div class="add-review-content">
-                                                {
-                                                    user ?
-                                                        <div class="loged-content">
-                                                            <form onSubmit={submitReviews}>
-                                                                <div class="star-count">
-                                                                    <div class="label">
-                                                                        <h4>Your Ratings <span>*</span></h4>
-                                                                    </div>
-                                                                    <div class="ratings">
-                                                                        <input type="radio" name="rating" id="5-star" onClick={() => setAddReviews({ ...addReviews, ratings: 5 })} /><label for="5-star">★</label>
-                                                                        <input type="radio" name="rating" id="4-star" onClick={() => setAddReviews({ ...addReviews, ratings: 4 })} /><label for="4-star">★</label>
-                                                                        <input type="radio" name="rating" id="3-star" onClick={() => setAddReviews({ ...addReviews, ratings: 3 })} /><label for="3-star">★</label>
-                                                                        <input type="radio" name="rating" id="2-star" onClick={() => setAddReviews({ ...addReviews, ratings: 2 })} /><label for="2-star">★</label>
-                                                                        <input type="radio" name="rating" id="1-star" onClick={() => setAddReviews({ ...addReviews, ratings: 1 })} /><label for="1-star">★</label>
-                                                                    </div>
-                                                                </div>
-                                                                <textarea value={addReviews.message} name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({ ...addReviews, message: e.target.value })}></textarea><br />
-                                                                <input type="submit" value="Submit" class="submit-btn" />
-                                                            </form>
-                                                        </div>
-                                                        :
-                                                        <div class="nunloged-content">
-                                                            <p>You must <span><Link to="/account" class="no-style-link">Login</Link></span> in to Add reviews.</p>
-                                                        </div>
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                        <div class="container-suggetions">
-                            {/* <!-- suggetions --> */}
-                            <div class="suggetions-header">
-                                <p>Related Products</p>
-                            </div>
-                            <div class="suggetions-card-row">
-                                {
-                                    productRecomendation.map((items) => {
-                                        return (
-                                            <div class="suggetions-card" style={{ transform: `translateX(${scrollWidth}px)` }}>
-                                                <ProductComponent items={items} ratings={items.ratings} key={items._id} />
-                                            </div>
-                                        )
-                                    })
-                                }
-                                <div class="btns">
-                                    {
-                                        scrollWidth !== 0 &&
-                                        <button class="left" onClick={() => scrollToLeft()}>‹</button>
-                                    }
-                                    {
-                                        productRecomendation.length * 240 > -scrollWidth + 240 &&
-                                        <button class="right" onClick={() => scrollToRight()}>›</button>
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                        {/* Details Product Container */}
+                        <DetailsProductContainer producatDetails={producatDetails} setFullScreen={setFullScreen} fullScreen={fullScreen} ratingsQuery={ratingsQuery} reviewsResult={reviewsResult} quantity={quantity} state={state} minQnt={minQnt} addQnt={addQnt} addCartItems={addCartItems} dispatch={dispatch} setupMessage={setupMessage} />
+
+                        {/* Details Option container */}
+                        <DetailsOptionContainer option={option} setOption={setOption} producatDetails={producatDetails} ratingsQuery={ratingsQuery} producatKeywords={producatKeywords} reviewsCounter={reviewsCounter} reviewsResult={reviewsResult} reviews={reviews} user={user} page={page} setPage={setPage} limitResult={limitResult} submitReviews={submitReviews} addReviews={addReviews} setAddReviews={setAddReviews} />
+
+                        {/* Details Suggetions Container */}
+                        <DetailsSuggetionsContainer productRecomendation={productRecomendation} scrollWidth={scrollWidth} scrollToLeft={scrollToLeft} scrollToRight={scrollToRight} />
                     </div>
             }
             <FooterCompoennt />

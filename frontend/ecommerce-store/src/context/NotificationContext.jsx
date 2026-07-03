@@ -1,24 +1,24 @@
-import { createContext, useContext, useEffect, useReducer } from "react"
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { NOTIFI_ACTIONS, NotificationReducer } from "./NotificationReducer";
-import api from '../services/auth'
+import api from '../services/auth';
 
 const NotificationContext = createContext();
 
 export default function NotifiUserContext({ children }) {
 
-    const [notifiState, notifiDispatch] = useReducer(NotificationReducer, [])
+    const [notifiState, notifiDispatch] = useReducer(NotificationReducer, []);
 
     useEffect(() => {
         const fetchNotificationData = async () => {
             try {
-                const result = await api.get('/notifications/all?receiver=user')
-                notifiDispatch({ type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS, payload: result.data.data })
+                const result = await api.get('/notifications/all?receiver=user');
+                notifiDispatch({ type: NOTIFI_ACTIONS.GET_ALL_NOTIFICATIONS, payload: result.data.data });
             }
             catch (err) {
-                console.log(err.response)
+                console.log(err.response);
             }
         }
-        fetchNotificationData()
+        fetchNotificationData();
     }, [])
 
     return (
@@ -28,6 +28,6 @@ export default function NotifiUserContext({ children }) {
     )
 }
 
-export function Notifications() {
-    return useContext(NotificationContext)
-}
+export const Notifications = () => {
+    return useContext(NotificationContext);
+} 

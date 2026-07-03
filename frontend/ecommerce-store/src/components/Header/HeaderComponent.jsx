@@ -19,7 +19,7 @@ function HeaderComponent() {
 
     // use context
     const { state } = Cart();
-    const { notifiState } = Notifications();
+    const { notifiState } = Notifications()
 
     // get param values
     const { category } = useParams();
