@@ -297,12 +297,27 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.details-container .container-product .product-details .product-buttons button svg {
+    width: 20px;
+    height: 20px;
 }
 
 .details-container .container-product .product-details .product-buttons .cart {
     background-color: #2B38D1;
     color: #fff;
     border: 1px solid #2B38D1;
+}
+
+.details-container .container-product .product-details .product-buttons .in-cart-btn {
+    background-color: #008A00;
+    border: 1px solid #008A00;
+    color: #fff;
 }
 
 .details-container .container-product .product-details .product-buttons .cart:hover {

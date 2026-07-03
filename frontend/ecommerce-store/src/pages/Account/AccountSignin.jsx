@@ -12,33 +12,33 @@ function AccountSignin({ loginFrom, loginEmail, setLoginEmail, loginPassword, se
 
     return (
         <>
-            <div class="signin-container">
-                <div class="signin-header">
+            <div className="signin-container">
+                <div className="signin-header">
                     <p>Sign In</p>
                 </div>
-                <div class="signin-form">
+                <div className="signin-form">
                     <form onSubmit={loginFrom}>
-                        <div class="email">
+                        <div className="email">
                             <label>Email Address <span>*</span></label><br />
                             <input type="text" value={loginEmail} onChange={() => { setLoginEmail(event.target.value) }} />
                         </div>
-                        <div class="password">
+                        <div className="password">
                             <label>Password <span>*</span></label><br />
                             <input type={togglePass ? "password" : "text"} value={loginPassword} onChange={() => { setLoginPassword(event.target.value) }} />
                             {
                                 togglePass ?
-                                    <img src={close_eye} class="open" alt="" onClick={() => toggleSeePassword()} />
+                                    <img src={close_eye} className="open" alt="" onClick={() => toggleSeePassword()} />
                                     :
-                                    <img src={open_eye} class="close" alt="" onClick={() => toggleSeePassword()} />
+                                    <img src={open_eye} className="close" alt="" onClick={() => toggleSeePassword()} />
                             }
                         </div>
                         {
                             loginmessages &&
-                            <div class="messages">
-                                <p class={loginmessages.success === true ? "success" : "error"}>{loginmessages.message}</p>
+                            <div className="messages">
+                                <p className={loginmessages.success === true ? "success" : "error"}>{loginmessages.message}</p>
                             </div>
                         }
-                        <input type="submit" class="button" value="Sign In" />
+                        <input type="submit" className="button" value="Sign In" />
                     </form>
                 </div>
             </div>

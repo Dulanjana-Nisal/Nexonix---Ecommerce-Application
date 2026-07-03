@@ -12,22 +12,22 @@ function CategoryBody({ category, categoryData, pageNumber, toPrePage, pagesSize
 
     return (
         <>
-            <div class="container-body">
-                <div class={`body-head ${category}-section`}>
+            <div className="container-body">
+                <div className={`body-head ${category}-section`}>
                     <h1>{capitalizeWord(category)}</h1>
                 </div>
                 {
                     loading ? <LoadingComponent />
                         :
                         categoryData.length === 0 ?
-                            <div class="empty-products-container">
-                                <div class="container-top">
+                            <div className="empty-products-container">
+                                <div className="container-top">
                                     <img src={empty_product} alt="emty-cart-image" />
                                 </div>
-                                <div class="container-bottom">
+                                <div className="container-bottom">
                                     <h1>Not Product Found Here</h1>
                                     <p>Looks like haven't any Products yet to Shop.</p>
-                                    <Link to='/' class="no-style-link">
+                                    <Link to='/' className="no-style-link">
                                         <button>
                                             Continue Shopping
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -38,7 +38,7 @@ function CategoryBody({ category, categoryData, pageNumber, toPrePage, pagesSize
                                 </div>
                             </div>
                             :
-                            <div class="body-template">
+                            <div className="body-template">
                                 {
                                     categoryData.map((items) => {
                                         return (
@@ -48,15 +48,15 @@ function CategoryBody({ category, categoryData, pageNumber, toPrePage, pagesSize
                                 }
                             </div>
                 }
-                <div class="box-buttons">
+                <div className="box-buttons">
                     {
                         pageNumber > 1 &&
-                        <button class="prv" onClick={() => toPrePage()}>‹</button>
+                        <button className="prv" onClick={() => toPrePage()}>‹</button>
                     }
                     <p><span>{pageNumber}</span> of {pagesSize}</p>
                     {
                         pageNumber < pagesSize &&
-                        <button class="next" onClick={() => toNextPage()}>›</button>
+                        <button className="next" onClick={() => toNextPage()}>›</button>
                     }
                 </div>
             </div>

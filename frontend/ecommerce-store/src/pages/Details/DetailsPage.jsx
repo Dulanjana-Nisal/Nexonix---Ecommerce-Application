@@ -109,11 +109,11 @@ function DetailsPage() {
 
     // display ratings
     const ratingsQuery = {
-        5: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; </p>,
-        4: <p class="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; </p>,
-        3: <p class="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; </p>,
-        2: <p class="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; </p>,
-        1: <p class="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; </p>,
+        5: <p className="four-star">&#9733; &#9733; &#9733; &#9733; &#9733; </p>,
+        4: <p className="four-star">&#9733; &#9733; &#9733; &#9733; &#9734; </p>,
+        3: <p className="four-star">&#9733; &#9733; &#9733; &#9734; &#9734; </p>,
+        2: <p className="four-star">&#9733; &#9733; &#9734; &#9734; &#9734; </p>,
+        1: <p className="four-star">&#9733; &#9734; &#9734; &#9734; &#9734; </p>,
     }
 
     //calculate result limit page
@@ -145,7 +145,7 @@ function DetailsPage() {
                     // Details Not Found container
                     <DetailsNotFoundContainer />
                     :
-                    <div class="details-container">
+                    <div className="details-container">
                         {/* Details Header */}
                         <DetailsHeader producatDetails={producatDetails} />
 

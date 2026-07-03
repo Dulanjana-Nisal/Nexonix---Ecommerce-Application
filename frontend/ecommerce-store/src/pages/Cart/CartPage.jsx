@@ -25,7 +25,7 @@ function CartPage() {
         <>
             <HeaderComponent />
             {/* <!---------------- container ----------------> */}
-            <div class="cart-container">
+            <div className="cart-container">
                 {/* cart header */}
                 <CartHeader />
 

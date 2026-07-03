@@ -12,37 +12,37 @@ function AccountSignup({ registerForm, name, setName, email, setEmail, password,
 
     return (
         <>
-            <div class="signup-container">
-                <div class="signup-header">
+            <div className="signup-container">
+                <div className="signup-header">
                     <p>Sign Up</p>
                 </div>
-                <div class="signup-form">
+                <div className="signup-form">
                     <form onSubmit={registerForm}>
-                        <div class="name">
+                        <div className="name">
                             <label>Your Name <span>*</span></label><br />
                             <input type="text" value={name} onChange={() => { setName(event.target.value) }} />
                         </div>
-                        <div class="email">
+                        <div className="email">
                             <label>Email Address <span>*</span></label><br />
                             <input type="email" value={email} onChange={() => { setEmail(event.target.value) }} />
                         </div>
-                        <div class="password">
+                        <div className="password">
                             <label>Password <span>*</span></label><br />
                             <input type={togglePass ? "password" : "text"} value={password} onChange={() => { setPassword(event.target.value) }} />
                             {
                                 togglePass ?
-                                    <img src={close_eye} class="open" alt="" onClick={() => toggleSeePassword()} />
+                                    <img src={close_eye} className="open" alt="" onClick={() => toggleSeePassword()} />
                                     :
-                                    <img src={open_eye} class="close" alt="" onClick={() => toggleSeePassword()} />
+                                    <img src={open_eye} className="close" alt="" onClick={() => toggleSeePassword()} />
                             }
                         </div>
                         {
                             messages &&
-                            <div class="messages">
-                                <p class={messages.success === true ? "success" : "error"}>{messages.message}</p>
+                            <div className="messages">
+                                <p className={messages.success === true ? "success" : "error"}>{messages.message}</p>
                             </div>
                         }
-                        <input type="submit" class="button" value="Sign Up" />
+                        <input type="submit" className="button" value="Sign Up" />
                     </form>
                 </div>
             </div>

@@ -217,8 +217,8 @@ function CategoryPage() {
         <>
             <HeaderComponent />
             {/* <!---------------- container ----------------> */}
-            <div class="search-container">
-                <div class="container-grid">
+            <div className="search-container">
+                <div className="container-grid">
 
                     {/* Category Header */}
                     <CategoryHeader allCategoryDetails={allCategoryDetails} setToggleOption={setToggleOption} toggleOption={toggleOption} label={label} sortProducts={sortProducts} />

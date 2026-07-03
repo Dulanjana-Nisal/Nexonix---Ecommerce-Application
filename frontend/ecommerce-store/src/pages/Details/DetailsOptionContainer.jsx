@@ -3,38 +3,38 @@ import user_profile from '../../assets/user-profile-image.png';
 
 function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,producatKeywords,reviewsCounter,reviewsResult,reviews,user,page,setPage,limitResult,submitReviews,addReviews,setAddReviews}) {
     return (
-        <div class="container-options">
-            <div class="option-header">
-                <div class={!option ? "description selected" : "description"} onClick={() => { setOption(false) }}>
+        <div className="container-options">
+            <div className="option-header">
+                <div className={!option ? "description selected" : "description"} onClick={() => { setOption(false) }}>
                     <p>Description</p>
                 </div>
-                <div class={option ? "reviews selected" : "reviews"} onClick={() => { setOption(true) }}>
+                <div className={option ? "reviews selected" : "reviews"} onClick={() => { setOption(true) }}>
                     <p>Reviews</p>
                 </div>
             </div>
-            <div class="option-body">
+            <div className="option-body">
                 {
                     !option &&
-                    <div class="description-body">
-                        <div class="name row">
+                    <div className="description-body">
+                        <div className="name row">
                             <h3>Product Name: </h3>
                             <p>{producatDetails.name}</p>
                         </div>
-                        <div class="price row">
+                        <div className="price row">
                             <h3>Product price: </h3>
                             <p>${producatDetails.price}</p>
                         </div>
-                        <div class="ratings row">
+                        <div className="ratings row">
                             <h3>Ratings: </h3>
                             {ratingsQuery[producatDetails.ratings]}
                         </div>
-                        <div class="description row">
+                        <div className="description row">
                             <h3>Product description: </h3>
                             <p>{producatDetails.description}</p>
                         </div>
-                        <div class="keywords row">
+                        <div className="keywords row">
                             <h3>Keywords: </h3>
-                            <div class="tags">
+                            <div className="tags">
                                 {
                                     producatKeywords.map((items) => {
                                         return (
@@ -44,11 +44,11 @@ function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,p
                                 }
                             </div>
                         </div>
-                        <div class="category row">
+                        <div className="category row">
                             <h3>Product Category: </h3>
                             <p>{producatDetails.category}</p>
                         </div>
-                        <div class="brand row">
+                        <div className="brand row">
                             <h3>Brand: </h3>
                             <p>{producatDetails.brand}</p>
                         </div>
@@ -56,75 +56,75 @@ function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,p
                 }
                 {
                     option &&
-                    <div class="reviews-body">
-                        <div class="review-box">
-                            <div class="box-head">
-                                <div class="total-reviews">
+                    <div className="reviews-body">
+                        <div className="review-box">
+                            <div className="box-head">
+                                <div className="total-reviews">
                                     <h1>{(producatDetails.ratings).toFixed(1)}</h1>
                                     {ratingsQuery[producatDetails.ratings]}
                                 </div>
-                                <div class="count-reviews">
-                                    <div class="five-star row">
-                                        <p class="star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-                                        <div class="range-row">
-                                            <div class="range" style={{ width: ` ${(reviewsCounter(5) / reviewsResult.all_result) * 100}%` }}></div>
+                                <div className="count-reviews">
+                                    <div className="five-star row">
+                                        <p className="star">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
+                                        <div className="range-row">
+                                            <div className="range" style={{ width: ` ${(reviewsCounter(5) / reviewsResult.all_result) * 100}%` }}></div>
                                         </div>
                                         <p>{reviewsCounter(5)}</p>
                                     </div>
-                                    <div class="four-star row">
-                                        <p class="star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                                        <div class="range-row">
-                                            <div class="range" style={{ width: ` ${(reviewsCounter(4) / reviewsResult.all_result) * 100}%` }}></div>
+                                    <div className="four-star row">
+                                        <p className="star">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
+                                        <div className="range-row">
+                                            <div className="range" style={{ width: ` ${(reviewsCounter(4) / reviewsResult.all_result) * 100}%` }}></div>
                                         </div>
                                         <p>{reviewsCounter(4)}</p>
                                     </div>
-                                    <div class="three-star row">
-                                        <p class="star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
-                                        <div class="range-row">
-                                            <div class="range" style={{ width: ` ${(reviewsCounter(3) / reviewsResult.all_result) * 100}%` }}></div>
+                                    <div className="three-star row">
+                                        <p className="star">&#9733; &#9733; &#9733; &#9734; &#9734;</p>
+                                        <div className="range-row">
+                                            <div className="range" style={{ width: ` ${(reviewsCounter(3) / reviewsResult.all_result) * 100}%` }}></div>
                                         </div>
                                         <p>{reviewsCounter(3)}</p>
                                     </div>
-                                    <div class="two-star row">
-                                        <p class="star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
-                                        <div class="range-row">
-                                            <div class="range" style={{ width: ` ${(reviewsCounter(2) / reviewsResult.all_result) * 100}%` }}></div>
+                                    <div className="two-star row">
+                                        <p className="star">&#9733; &#9733; &#9734; &#9734; &#9734;</p>
+                                        <div className="range-row">
+                                            <div className="range" style={{ width: ` ${(reviewsCounter(2) / reviewsResult.all_result) * 100}%` }}></div>
                                         </div>
                                         <p>{reviewsCounter(2)}</p>
                                     </div>
-                                    <div class="one-star row">
-                                        <p class="star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
-                                        <div class="range-row">
-                                            <div class="range" style={{ width: ` ${(reviewsCounter(1) / reviewsResult.all_result) * 100}%` }}></div>
+                                    <div className="one-star row">
+                                        <p className="star">&#9733; &#9734; &#9734; &#9734; &#9734;</p>
+                                        <div className="range-row">
+                                            <div className="range" style={{ width: ` ${(reviewsCounter(1) / reviewsResult.all_result) * 100}%` }}></div>
                                         </div>
                                         <p>{reviewsCounter(1)}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-body">
-                                <div class="title">
+                            <div className="box-body">
+                                <div className="title">
                                     <p>{reviewsResult.all_result} Reviews for "<span>{producatDetails.name}</span>"</p>
                                 </div>
                                 {
                                     reviews.length > 0 &&
                                     reviews.map((items) => {
                                         return (
-                                            <div class="reviews" key={items._id}>
-                                                <div class="user-review">
-                                                    <div class="profile-image">
+                                            <div className="reviews" key={items._id}>
+                                                <div className="user-review">
+                                                    <div className="profile-image">
                                                         <img style={{ border: items.userId === user._id ? '2px solid #2B38D1' : 'none' }} src={user_profile} alt="user-profile" />
                                                     </div>
-                                                    <div class="profile-data">
-                                                        <div class="name">
+                                                    <div className="profile-data">
+                                                        <div className="name">
                                                             <h3>{items.userName}</h3>
                                                             <p>{(items.createdAt).slice(0, 10)} </p>
                                                         </div>
-                                                        <div class="stars">
+                                                        <div className="stars">
                                                             {ratingsQuery[items.ratings]}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="user-comment">
+                                                <div className="user-comment">
                                                     <p>{items.message}</p>
                                                 </div>
                                             </div>
@@ -134,33 +134,33 @@ function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,p
                             </div>
                             {
                                 reviews.length > 0 &&
-                                <div class="box-buttons">
+                                <div className="box-buttons">
                                     {
                                         page !== 1 &&
-                                        <button class="pre" onClick={() => setPage(prev => prev - 1)}>‹</button>
+                                        <button className="pre" onClick={() => setPage(prev => prev - 1)}>‹</button>
                                     }
                                     <p><span>{reviewsResult.page}</span> of {limitResult || 1}</p>
                                     {
                                         limitResult !== page &&
-                                        <button class="next" onClick={() => setPage(prev => prev + 1)}>›</button>
+                                        <button className="next" onClick={() => setPage(prev => prev + 1)}>›</button>
                                     }
                                 </div>
                             }
                         </div>
-                        <div class="add-reviews">
-                            <div class="add-review-head">
+                        <div className="add-reviews">
+                            <div className="add-review-head">
                                 <h3>Add a Review</h3>
                             </div>
-                            <div class="add-review-content">
+                            <div className="add-review-content">
                                 {
                                     user ?
-                                        <div class="loged-content">
+                                        <div className="loged-content">
                                             <form onSubmit={submitReviews}>
-                                                <div class="star-count">
-                                                    <div class="label">
+                                                <div className="star-count">
+                                                    <div className="label">
                                                         <h4>Your Ratings <span>*</span></h4>
                                                     </div>
-                                                    <div class="ratings">
+                                                    <div className="ratings">
                                                         <input type="radio" name="rating" id="5-star" onClick={() => setAddReviews({ ...addReviews, ratings: 5 })} /><label for="5-star">★</label>
                                                         <input type="radio" name="rating" id="4-star" onClick={() => setAddReviews({ ...addReviews, ratings: 4 })} /><label for="4-star">★</label>
                                                         <input type="radio" name="rating" id="3-star" onClick={() => setAddReviews({ ...addReviews, ratings: 3 })} /><label for="3-star">★</label>
@@ -169,12 +169,12 @@ function DetailsOptionContainer({option,setOption,producatDetails,ratingsQuery,p
                                                     </div>
                                                 </div>
                                                 <textarea value={addReviews.message} name="review" placeholder="Write Your Review Here..." onChange={(e) => setAddReviews({ ...addReviews, message: e.target.value })}></textarea><br />
-                                                <input type="submit" value="Submit" class="submit-btn" />
+                                                <input type="submit" value="Submit" className="submit-btn" />
                                             </form>
                                         </div>
                                         :
-                                        <div class="nunloged-content">
-                                            <p>You must <span><Link to="/account" class="no-style-link">Login</Link></span> in to Add reviews.</p>
+                                        <div className="nunloged-content">
+                                            <p>You must <span><Link to="/account" className="no-style-link">Login</Link></span> in to Add reviews.</p>
                                         </div>
                                 }
                             </div>

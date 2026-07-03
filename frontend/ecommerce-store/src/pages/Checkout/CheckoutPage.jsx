@@ -197,7 +197,7 @@ function CheckoutPage() {
     return (
         <>
             <HeaderComponent />
-            <div class="checkout-container">
+            <div className="checkout-container">
                 {/* checkout header */}
                 <CheckoutHeader />
 

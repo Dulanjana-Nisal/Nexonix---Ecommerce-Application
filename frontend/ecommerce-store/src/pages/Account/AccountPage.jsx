@@ -157,10 +157,10 @@ function AccountPage() {
         <>
             <HeaderComponent />
             {/* <!---------------- container ----------------> */}
-            <div class="account-container">
+            <div className="account-container">
                 {
                     !user &&
-                    <div class="container-header">
+                    <div className="container-header">
                         <h1>My Account</h1>
                         <p><span>Home /</span> My Account</p>
                     </div>
@@ -171,7 +171,7 @@ function AccountPage() {
                 }
                 {
                     !user &&
-                    <div class="container-body">
+                    <div className="container-body">
                         <AccountSignin loginFrom={loginFrom} loginEmail={loginEmail} setLoginEmail={setLoginEmail} loginPassword={loginPassword} setLoginPassword={setLoginPassword} loginmessages={loginmessages} close_eye={close_eye} open_eye={open_eye} />
 
                         <AccountSignup registerForm={registerForm} name={name} setName={setName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} close_eye={close_eye} open_eye={open_eye} messages={messages} />
