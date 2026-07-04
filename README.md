@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./docs/nexonix-logo.svg" alt="Nexonix Logo" width="220"/>
+<img src="./docs/nexonix-logo.png" alt="Nexonix Logo" width="220"/>
 
 # Nexonix
 
