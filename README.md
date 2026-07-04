@@ -232,7 +232,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 ## 👤 Author
 
 **Dulanjana**
-Full-stack developer, focused on the MERN stack and AI engineering.
+Full-stack developer, focused on the Fullstack and AI engineering.
 
 ---
 
