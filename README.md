@@ -59,8 +59,6 @@ This project was built as a hands-on deep dive into full-stack architecture — 
 
 ## 📸 Screenshots
 
-> _Add screenshots of the storefront and admin dashboard here — drop image files into `docs/screenshots/` and reference them below._
-
 <div align="center">
 
 | Storefront — Home | Product Details | Cart |
