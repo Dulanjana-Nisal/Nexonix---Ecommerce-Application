@@ -6,19 +6,19 @@ const createAdmin = async ()=>{
     try{
         await mongoose.connect(process.env.MONGO_URI)
 
-        //check admin already in registerd
-        const check = await Users.findOne({email: 'dulanjananisal67@gmail.com'})
+        //check admin already in registered
+        const check = await Users.findOne({email: process.env.ADMIN_EMAIL})
         if(check){
             console.log('Admin already exist')
             process.exit();
         }
 
-        //admin registation
+        //admin registration
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash("#D123u45l#", salt);
         const admin = await Users.create({
             name : "Dulanjana Nisal (Admin)",
-            email:"dulanjananisal67@gmail.com",
+            email: process.env.ADMIN_EMAIL,
             password: hashPassword,
             role: 'admin'
         })
