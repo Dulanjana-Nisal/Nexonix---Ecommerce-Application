@@ -6,6 +6,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import CategoryHeader from './CategoryHeader';
 import CategoryFilter from './CategoryFilter';
 import CategoryBody from './CategoryBody';
+import api from '../../services/auth';
 
 function CategoryPage() {
 
@@ -54,7 +55,7 @@ function CategoryPage() {
         const fetchCategoryDetails = async () => {
             setLoading(true)
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
+                const result = await api.get(`/products?category=${category}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
                 setAllCategoryDetails(result.data)
                 setCategoryData(result.data.data)
                 setToggleOption(false)
@@ -74,7 +75,7 @@ function CategoryPage() {
     useEffect(() => {
         const fetchBrands = async () => {
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/products?category=${category}`);
+                const result = await api.get(`/products?category=${category}`);
                 setBrand(result.data.data)
                 setFilterTags({})
                 setPriceValues({

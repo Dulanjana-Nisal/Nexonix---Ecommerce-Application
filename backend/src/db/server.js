@@ -6,4 +6,4 @@ const dbConnection = async (url)=>{
             .catch((err)=>{console.log(err)})
 }
 
-module.exports = dbConnection;
+module.exports = dbConnection;  

@@ -7,6 +7,7 @@ import Banner from './Banner';
 import Info from './Info';
 import Category from './Category';
 import BestChoice from './BestChoice';
+import api from '../../services/auth';
 
 function HomePage() {
 
@@ -20,7 +21,7 @@ function HomePage() {
             setLoading(true)
             try {
                 const [fetchBestChoiceProducts] = await Promise.all([
-                    axios.get('http://localhost:5000/api/v1/products?page=1&limit=10'),
+                    api.get('/products?page=1&limit=10'),
                 ])
 
                 setBestChoiceProduct(fetchBestChoiceProducts.data.data)

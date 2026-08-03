@@ -5,6 +5,7 @@ import { Message } from '../../context/MessagesContext';
 import './ProductComponent.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../services/auth';
 
 function ProductComponent({ items, ratings }) {
 
@@ -19,7 +20,7 @@ function ProductComponent({ items, ratings }) {
     useEffect(() => {
         const fetchReviewData = async () => {
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${items._id}`)
+                const result = await api.get(`/reviews?productId=${items._id}`)
                 setReviews(result.data)
             }
             catch (err) {

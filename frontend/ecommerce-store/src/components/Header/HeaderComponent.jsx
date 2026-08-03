@@ -9,6 +9,7 @@ import { Notifications } from '../../context/NotificationContext';
 import HeaderComponentTopContainer from './HeaderComponentTopContainer';
 import HeaderComponentMiddleContainer from './HeaderComponentMiddleContainer';
 import HeaderComponentNavbarContainer from './HeaderComponentNavbarContainer';
+import api from '../../services/auth';
 
 function HeaderComponent() {
 
@@ -53,7 +54,7 @@ function HeaderComponent() {
         const fetchSearchData = async () => {
             setLoading(true)
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchValue}&limit=5`);
+                const result = await api.get(`/products?search=${searchValue}&limit=5`);
                 setSearchResult(result.data.data)
             }
             catch (err) {

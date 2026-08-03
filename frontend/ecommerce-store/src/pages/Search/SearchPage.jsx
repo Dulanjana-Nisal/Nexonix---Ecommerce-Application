@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import SearchHeaderContainer from './SearchHeaderContainer';
 import SearchFilterContainer from './SearchFilterContainer';
 import SearchBodyContainer from './SearchBodyContainer';
+import api from '../../services/auth';
 
 function SearchPage() {
     //use state hooks
@@ -54,7 +55,7 @@ function SearchPage() {
         const fetchCategoryDetails = async () => {
             setLoading(true)
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchKeyword}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
+                const result = await api.get(`/products?search=${searchKeyword}&page=${pageNumber}&sortBy=${sortMethod}&brand=${brandName}&rr=${ratingRange}&pr=${pricingRange}&availability=${availability}`);
                 setAllCategoryDetails(result.data)
                 setCategoryData(result.data.data)
                 setToggleOption(false)
@@ -73,7 +74,7 @@ function SearchPage() {
     // set brands in product
     useEffect(() => {
         const fetchBrands = async () => {
-            const result = await axios.get(`http://localhost:5000/api/v1/products?search=${searchKeyword}`);
+            const result = await api.get(`/products?search=${searchKeyword}`);
             setBrand(result.data.data)
             setFilterTags({})
             setPriceValues({

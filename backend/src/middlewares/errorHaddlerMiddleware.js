@@ -6,11 +6,11 @@ const errorHaddlerMiddleware = (err,req,res,next)=>{
         status: err.status || statusCodes.INTERNAL_SERVER_ERROR,
         code: err.code || 'INTERNAL_SERVER_ERROR'
     }
-    //check validation errors
+    //check validation errors 
     if(err.name === "ValidationError"){
-
+ 
         const validationErr = err.errors.name || err.errors.email || err.errors.password; 
-
+ 
         customErrors.message = validationErr.message,
         customErrors.status = statusCodes.BAD_REQUEST,
         customErrors.code = 'BAD_REQUEST'

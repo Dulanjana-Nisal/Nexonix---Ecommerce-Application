@@ -48,7 +48,7 @@ function AccountPage() {
         e.preventDefault();
 
         try {
-            const login = await api.post('http://localhost:5000/api/v1/account/signin', {
+            const login = await api.post('/account/signin', {
                 "email": loginEmail,
                 "password": loginPassword,
             })
@@ -98,7 +98,7 @@ function AccountPage() {
         e.preventDefault()
 
         try {
-            const registerUser = await api.post('http://localhost:5000/api/v1/account/signup', {
+            const registerUser = await api.post('/account/signup', {
                 "name": name,
                 "email": email,
                 "password": password,

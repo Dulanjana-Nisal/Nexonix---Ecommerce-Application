@@ -58,9 +58,9 @@ function DetailsPage() {
             try{
                 setLoading(true)
                 const [products, recommendations, allReviewsData] = await Promise.all([
-                    axios.get(`http://localhost:5000/api/v1/products/${productId}`),
-                    axios.get(`http://localhost:5000/api/v1/products/${productId}/recommendations`),
-                    axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&limit=all`),
+                    api.get(`/products/${productId}`),
+                    api.get(`/products/${productId}/recommendations`),
+                    api.get(`/reviews?productId=${productId}&limit=all`),
                 ])
                 setProductDetails(products.data.data)
                 setProducatKeywords(products.data.data.keywords)
@@ -83,7 +83,7 @@ function DetailsPage() {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const result = await axios.get(`http://localhost:5000/api/v1/reviews?productId=${productId}&page=${page}`)
+                const result = await api.get(`/reviews?productId=${productId}&page=${page}`)
                 setReviews(result.data.data)
                 setReviewsResult(result.data)
             }
