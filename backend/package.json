@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
+    "dev": "nodemon --legacy-watch src/app.js",
     "admin": "node src/scripts/createAdmin.js"
   },
   "keywords": [],
