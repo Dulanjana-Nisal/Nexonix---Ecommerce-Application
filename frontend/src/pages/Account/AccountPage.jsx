@@ -53,7 +53,7 @@ function AccountPage() {
                 "password": loginPassword,
             })
 
-            // call fetch caart data function
+            // call fetch cart data function
             fetchCartData()
 
             //save token
