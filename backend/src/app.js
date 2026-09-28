@@ -13,11 +13,11 @@ const notifications = require('./routers/notificationRouters');
 const users = require('./routers/usersRouter');
 
 const express = require('express');
-const app = express(); 
+const app = express();  
 
 //middleware
 app.use(express.json());
-app.use(cors())
+app.use(cors()) 
 
 //routers
 app.use('/api/v1/account', accounts);
@@ -25,7 +25,7 @@ app.use('/api/v1/products', products);
 app.use('/api/v1/orders', orders);
 app.use('/api/v1/cart', cart);
 app.use('/api/v1/notifications', notifications);
-app.use('/api/v1/reviews', review);
+app.use('/api/v1/reviews', review); 
 app.use('/api/v1/users', users);
 
 //error haddlers

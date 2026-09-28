@@ -13,7 +13,7 @@ export const addCartItems = async (productId, name, image, quantity, price, avai
                     "quantity": quantity,
                     "price": price,
                     "availability": availability
-                }
+                } 
             }
         )
         setupMessage("success", name, 'Item Added to Cart')
