@@ -63,3 +63,13 @@ jobs:
       - name: Build Application
         run: npm run build
     
+  quality-gate:
+    name: Quality Gate
+
+    runs-on: ubuntu-latest
+
+    needs: [backend-test, frontend-test]
+
+    steps:
+      - name: Run final job
+        run: echo 'All application validations passed.'
