@@ -61,5 +61,5 @@ jobs:
         run: npm test
       
       - name: Build Application
-        run: npm build
+        run: npm run build
     
