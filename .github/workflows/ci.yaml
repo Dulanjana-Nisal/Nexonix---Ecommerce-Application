@@ -46,7 +46,7 @@ jobs:
         run: npm test
 
       - name: Build docker image
-        run: docker build -t nexonix-backend .
+        run: docker build -f Dockerfile.dev -t nexonix-backend .
     
   frontend-test:
     name: Frontend Test
@@ -80,7 +80,7 @@ jobs:
         run: npm run build
 
       - name: Build docker image
-        run: docker build -t nexonix-frontend .
+        run: docker build -f Dockerfile.dev -t nexonix-frontend .
     
   quality-gate:
     name: Quality Gate
