@@ -5,6 +5,17 @@ on:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ci-${{ github.workflow }} - ${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   backend-test:
     name: Backend Test
@@ -14,9 +25,8 @@ jobs:
     defaults:
       run:
         working-directory: backend
-    
-    permissions:
-      contents: read
+
+    timeout-minutes: 10
     
     steps:
       - name: Checkout codebase
@@ -40,12 +50,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-
     defaults:
       run:
         working-directory: frontend
+    
+    timeout-minutes: 10
     
     steps:
       - name: Checkout codebase
